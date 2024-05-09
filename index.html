@@ -4,33 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PDF Viewer</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.4/pdfobject.min.js"></script>
 <style>
   body {
     margin: 0;
     padding: 0;
     overflow: hidden;
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f0f0f0;
   }
-  #pdf-viewer {
+  iframe {
     width: 100%;
     height: 100%;
+    border: none;
   }
 </style>
 </head>
 <body>
-  <div id="pdfRenderer"></div>
-  <script>
-    PDFObject.embed("Nader_Khatib_Portfolio_compressed.pdf", "#pdfRenderer", {
-      pdfOpenParams: {
-        view: "FitH"
-      }
-    });
-  </script>
+  <iframe src="Nader_Khatib_Portfolio_compressed.pdf" title="PDF Viewer"></iframe>
 </body>
 </html>
 
