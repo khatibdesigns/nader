@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nader A. Alkhatib</title>
+<title>PDF Viewer</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.4/pdfobject.min.js"></script>
 <style>
   body {
@@ -25,14 +25,13 @@
 <body>
   <div id="pdfRenderer"></div>
   <script>
-    var pdf = new PDFObject({
-      url: "Nader_Khatib_Portfolio_compressed.pdf", // Change the URL to your local PDF file
-      id: "pdfRendered",
+    PDFObject.embed("Nader_Khatib_Portfolio_compressed.pdf", "#pdfRenderer", {
       pdfOpenParams: {
         view: "FitH"
       }
-    }).embed("pdfRenderer");
+    });
   </script>
 </body>
 </html>
+
 
