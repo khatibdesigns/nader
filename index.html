@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Viewer</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF Viewer</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+  }
+  #pdf-viewer {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+</style>
 </head>
 <body>
-    <?php
-  
-    // Store the file name into variable
-    $file = 'Nader_Khatib_Portfolio_compressed.pdf';
-    $filename = 'Nader_Khatib_Portfolio_compressed.pdf';
-      
-    // Header content type
-    header('Content-type: application/pdf');
-    header('Content-Disposition: inline; filename="' . $filename . '"');
-    header('Content-Transfer-Encoding: binary');
-    header('Accept-Ranges: bytes');
-      
-    // Read the file
-    @readfile($file);
-      
-    ?>
+  <iframe id="pdf-viewer" src="Nader_Khatib_Portfolio_compressed.pdf"></iframe>
 </body>
 </html>
