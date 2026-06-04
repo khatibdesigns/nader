@@ -6,6 +6,10 @@
   const ARROW = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
   const EXT = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17 17 7M9 7h8v8"/></svg>';
   function closeIcon() { return '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M18 6 6 18"/></svg>'; }
+  function phoneFrame(src, name) {
+    return '<div class="phone"><div class="notch"></div><div class="glare"></div>' +
+      '<div class="screen"><img src="' + src + '" alt="' + name + ' app screen" loading="lazy" /></div></div>';
+  }
 
   /* ---------- starfield ---------- */
   function stars(n) {
@@ -75,7 +79,7 @@
 
     $('#modal').style.setProperty('--pc', acc);
     $('#modal-visual').innerHTML = p.shot
-      ? '<img src="' + p.shot + '" alt="' + p.name + ' app screen" loading="lazy" />'
+      ? phoneFrame(p.shot, p.name)
       : '<div style="font-family:var(--display);font-size:30px;letter-spacing:.06em">' + p.name + '</div>';
 
     let meta = metaCell('Market', c.flag + ' ' + c.name) +
@@ -119,7 +123,7 @@
       const acc = KHD.accent(p.category);
       const tags = p.features.map(function (f) { return '<span class="tagpill">' + f + '</span>'; }).join('');
       const visual = '<div class="feat-visual"><div class="halo"></div>' +
-        (p.shot ? '<img class="shot" src="' + p.shot + '" alt="' + p.name + ' app" loading="lazy" />' : '') +
+        (p.shot ? phoneFrame(p.shot, p.name) : '') +
         '</div>';
       return '<article class="feat-item reveal" style="--pc:' + acc + '">' +
         visual +
