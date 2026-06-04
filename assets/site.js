@@ -1,6 +1,15 @@
 /* Khatib Designs — site logic (Atelier) */
 (function () {
   const KHD = window.KHD;
+  // ---- i18n (Arabic when <html lang="ar">; English otherwise) ----
+  const L = (document.documentElement.lang === 'ar') ? 'ar' : 'en';
+  function S(k) { var d = window.KHD_STR || { en: {} }; return (d[L] && d[L][k]) || (d.en && d.en[k]) || k; }
+  function ctry(c) { return (L === 'ar' && window.KHD_AR && window.KHD_AR.countries[c.id]) || c.name; }
+  function cat(name) { return (L === 'ar' && window.KHD_AR && window.KHD_AR.cats[name]) || name; }
+  function appf(id, field, fallback) {
+    if (L === 'ar' && window.KHD_AR && window.KHD_AR.apps[id] && window.KHD_AR.apps[id][field] != null) return window.KHD_AR.apps[id][field];
+    return fallback;
+  }
   const $ = function (s, r) { return (r || document).querySelector(s); };
   const $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   const ARROW = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
@@ -69,7 +78,7 @@
     const wrap = $('#chips'); if (!wrap) return;
     wrap.innerHTML = KHD.countryList.map(function (c) {
       return '<button class="chip" data-country="' + c.id + '"><span class="cdot"></span>' +
-        c.name + ' <span class="num">' + c.count + '</span></button>';
+        ctry(c) + ' <span class="num">' + c.count + '</span></button>';
     }).join('');
   }
 
@@ -79,9 +88,9 @@
     const isHero = p.tier === 'hero';
     return '<button class="pcard" data-project="' + p.id + '" style="--pc:' + acc + '">' +
       '<span class="logo">' + p.name.charAt(0) + '</span>' +
-      '<span class="pc-info"><span class="tag">' + p.category + '</span>' +
-      '<h4>' + p.name + (isHero ? ' <span class="star">★ Flagship</span>' : '') + '</h4>' +
-      '<p>' + (p.tagline || p.desc) + '</p></span>' +
+      '<span class="pc-info"><span class="tag">' + cat(p.category) + '</span>' +
+      '<h4>' + p.name + (isHero ? ' <span class="star">' + S('flagship') + '</span>' : '') + '</h4>' +
+      '<p>' + (appf(p.id, 'tagline', p.tagline) || appf(p.id, 'desc', p.desc)) + '</p></span>' +
       '<span class="arrow">' + ARROW + '</span></button>';
   }
   function openDrawer(cid) {
@@ -89,9 +98,9 @@
     const list = KHD.byCountry(cid).slice().sort(function (a, b) {
       return (a.tier === 'hero' ? 0 : 1) - (b.tier === 'hero' ? 0 : 1);
     });
-    $('#drawer-eyebrow').innerHTML = '<span class="dot"></span>' + c.flag + ' Made for';
-    $('#drawer-title').textContent = c.name;
-    $('#drawer-meta').textContent = c.count + (c.count === 1 ? ' product' : ' products') + ' · shipped from this market';
+    $('#drawer-eyebrow').innerHTML = '<span class="dot"></span>' + c.flag + ' ' + S('madeFor');
+    $('#drawer-title').textContent = ctry(c);
+    $('#drawer-meta').textContent = c.count + ' ' + (c.count === 1 ? S('productOne') : S('productMany')) + ' · ' + S('shippedFrom');
     $('#drawer-body').innerHTML = list.map(projectRow).join('');
     $('#scrim').classList.add('open');
     $('#drawer').classList.add('open');
@@ -120,15 +129,16 @@
       : '<div style="font-family:var(--display);font-size:30px;letter-spacing:.06em">' + p.name + '</div>';
     startCarousels($('#modal-visual'));
 
-    let meta = metaCell('Market', c.flag + ' ' + c.name) +
-      metaCell('Category', p.category) +
-      metaCell('Platform', platforms.join(' · '));
-    if (p.year) meta += metaCell('Launched', p.year);
-    meta += metaCell('Client', p.client || p.name);
+    let meta = metaCell(S('market'), c.flag + ' ' + ctry(c)) +
+      metaCell(S('category'), cat(p.category)) +
+      metaCell(S('platform'), platforms.join(' · '));
+    if (p.year) meta += metaCell(S('launched'), p.year);
+    meta += metaCell(S('client'), p.client || p.name);
 
+    const feats = appf(p.id, 'features', p.features);
     let features = '';
-    if (p.features && p.features.length) {
-      features = '<ul class="feature-list">' + p.features.map(function (f) { return '<li>' + f + '</li>'; }).join('') + '</ul>';
+    if (feats && feats.length) {
+      features = '<ul class="feature-list">' + feats.map(function (f) { return '<li>' + f + '</li>'; }).join('') + '</ul>';
     }
     const st = p.store || {};
     function storeLink(href, label) {
@@ -143,14 +153,14 @@
 
     $('#modal-info').innerHTML =
       '<button class="x-close" id="modal-x" aria-label="Close">' + closeIcon() + '</button>' +
-      '<span class="eyebrow"><span class="dot"></span>' + (p.tier === 'hero' ? 'Flagship product' : 'Product') + '</span>' +
+      '<span class="eyebrow"><span class="dot"></span>' + (p.tier === 'hero' ? S('flagshipProduct') : S('product')) + '</span>' +
       '<h2>' + p.name + '</h2>' +
-      '<div class="tagline">' + (p.tagline || p.desc) + '</div>' +
-      '<p class="desc">' + p.desc + '</p>' +
+      '<div class="tagline">' + (appf(p.id, 'tagline', p.tagline) || appf(p.id, 'desc', p.desc)) + '</div>' +
+      '<p class="desc">' + appf(p.id, 'desc', p.desc) + '</p>' +
       features +
       '<div class="modal-meta">' + meta + '</div>' +
       '<div class="store-row">' + stores + '</div>' +
-      (p.slug ? '<a class="case-link" href="/work/' + p.slug + '/">Read the full case study ' + ARROW + '</a>' : '');
+      (p.slug ? '<a class="case-link" href="/work/' + p.slug + '/">' + S('readFullCase') + ' ' + ARROW + '</a>' : '');
 
     $('#modal-x').addEventListener('click', closeModal);
     $('#modal-scrim').classList.add('open');
@@ -168,25 +178,25 @@
     wrap.innerHTML = KHD.hero.map(function (p, i) {
       const c = KHD.countries[p.country];
       const acc = KHD.accent(p.category);
-      const tags = p.features.map(function (f) { return '<span class="tagpill">' + f + '</span>'; }).join('');
+      const tags = appf(p.id, 'features', p.features).map(function (f) { return '<span class="tagpill">' + f + '</span>'; }).join('');
       const visual = '<div class="feat-visual"><div class="halo"></div>' +
         ((p.shots && p.shots.length) ? phoneFrame(p.shots, p.name) : '') +
         '</div>';
       return '<article class="feat-item reveal" style="--pc:' + acc + '">' +
         visual +
         '<div class="feat-body">' +
-          '<div class="feat-num">0' + (i + 1) + ' — ' + c.flag + ' ' + c.name + '</div>' +
+          '<div class="feat-num">0' + (i + 1) + ' — ' + c.flag + ' ' + ctry(c) + '</div>' +
           '<h3 class="feat-name">' + p.name + '</h3>' +
-          '<div class="feat-tagline">' + p.tagline + '</div>' +
-          '<p class="feat-desc">' + p.desc + '</p>' +
+          '<div class="feat-tagline">' + appf(p.id, 'tagline', p.tagline) + '</div>' +
+          '<p class="feat-desc">' + appf(p.id, 'desc', p.desc) + '</p>' +
           '<div class="feat-tags">' + tags + '</div>' +
           '<div class="feat-meta">' +
-            '<div class="m"><div class="k">Category</div><div class="v">' + p.category + '</div></div>' +
-            '<div class="m"><div class="k">Platform</div><div class="v">' + p.platforms.join(' · ') + '</div></div>' +
-            '<div class="m"><div class="k">Launched</div><div class="v">' + p.year + '</div></div>' +
+            '<div class="m"><div class="k">' + S('category') + '</div><div class="v">' + cat(p.category) + '</div></div>' +
+            '<div class="m"><div class="k">' + S('platform') + '</div><div class="v">' + p.platforms.join(' · ') + '</div></div>' +
+            '<div class="m"><div class="k">' + S('launched') + '</div><div class="v">' + p.year + '</div></div>' +
           '</div>' +
-          '<div class="feat-cta"><a class="btn solid" href="/work/' + p.slug + '/">Read case study ' + ARROW + '</a>' +
-          '<button class="btn" data-country="' + p.country + '">More from ' + c.name + '</button></div>' +
+          '<div class="feat-cta"><a class="btn solid" href="/work/' + p.slug + '/">' + S('readCase') + ' ' + ARROW + '</a>' +
+          '<button class="btn" data-country="' + p.country + '">' + S('moreFrom') + ' ' + ctry(c) + '</button></div>' +
         '</div>' +
       '</article>';
     }).join('');
@@ -197,10 +207,10 @@
     const c = KHD.countries[p.country];
     const acc = KHD.accent(p.category);
     return '<button class="ocard reveal" data-project="' + p.id + '" style="--pc:' + acc + '">' +
-      '<span class="cat">' + p.category + '</span>' +
+      '<span class="cat">' + cat(p.category) + '</span>' +
       '<div class="top"><span class="logo">' + p.name.charAt(0) + '</span>' +
-      '<span><h4>' + p.name + '</h4><div class="loc">' + c.name + '</div></span></div>' +
-      '<p>' + p.desc + '</p></button>';
+      '<span><h4>' + p.name + '</h4><div class="loc">' + ctry(c) + '</div></span></div>' +
+      '<p>' + appf(p.id, 'desc', p.desc) + '</p></button>';
   }
   function buildOthers(filter) {
     const wrap = $('#others-grid'); if (!wrap) return;
@@ -210,10 +220,10 @@
   }
   function buildFilter() {
     const wrap = $('#others-filter'); if (!wrap) return;
-    let html = '<button class="fbtn active" data-filter="all">All regions</button>';
+    let html = '<button class="fbtn active" data-filter="all">' + S('allRegions') + '</button>';
     KHD.countryList.forEach(function (c) {
       const n = KHD.others.filter(function (p) { return p.country === c.id; }).length;
-      if (n) html += '<button class="fbtn" data-filter="' + c.id + '">' + c.name + ' (' + n + ')</button>';
+      if (n) html += '<button class="fbtn" data-filter="' + c.id + '">' + ctry(c) + ' (' + n + ')</button>';
     });
     wrap.innerHTML = html;
   }
@@ -224,7 +234,8 @@
     if (em) { em.textContent = KHD.contact.email; em.href = 'mailto:' + KHD.contact.email; }
     const ph = $('#contact-phones');
     if (ph) ph.innerHTML = KHD.contact.phones.map(function (p) {
-      return '<div class="pcell"><div class="c">' + p.c + '</div><div class="num">' + p.num + '</div></div>';
+      var label = (L === 'ar') ? ({ Bulgaria: 'بلغاريا', Kuwait: 'الكويت' }[p.c] || p.c) : p.c;
+      return '<div class="pcell"><div class="c">' + label + '</div><div class="num">' + p.num + '</div></div>';
     }).join('');
   }
 
@@ -236,7 +247,7 @@
       e.preventDefault();
       if (form._honey && form._honey.value) return;             // bot trap
       if (!form.checkValidity()) { form.reportValidity(); return; }
-      status.className = 'form-status'; status.textContent = 'Sending…';
+      status.className = 'form-status'; status.textContent = S('formSending');
       btn.disabled = true;
       const data = {}; new FormData(form).forEach(function (v, k) { if (k.charAt(0) !== '_' || k === '_subject') data[k] = v; });
       data._subject = 'New project enquiry — khatibdesigns.com';
@@ -257,11 +268,11 @@
         if (!ok) throw new Error('not ok');
         form.reset();
         status.className = 'form-status ok';
-        status.textContent = 'Thanks — your enquiry is on its way. We’ll reply within one business day.';
+        status.textContent = S('formOk');
         if (window.khdTrack) window.khdTrack('generate_lead', { method: 'contact_form' });
       }).catch(function () {
         status.className = 'form-status err';
-        status.innerHTML = 'Something went wrong — please email <a href="mailto:nader@khatibdesigns.com">nader@khatibdesigns.com</a> or message us on WhatsApp.';
+        status.innerHTML = S('formErr');
       }).finally(function () { btn.disabled = false; });
     });
   }

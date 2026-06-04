@@ -484,3 +484,49 @@ footer{position:relative;z-index:5;padding:40px var(--shell) 56px;border-top:1px
   html{scroll-behavior:auto;}
   .reveal{opacity:1;transform:none;}
 }
+
+/* ============================================================
+   RTL / Arabic  (applied on <html lang="ar" dir="rtl">)
+   ============================================================ */
+html[dir="rtl"]{--display:'Tajawal',sans-serif;--body:'Tajawal',sans-serif;}
+/* letter-spacing breaks Arabic letter-joining — reset everywhere except the Latin brand wordmark */
+html[dir="rtl"] *:not(.k):not(.d){letter-spacing:normal !important;}
+html[dir="rtl"] body{font-weight:400;}
+/* keep numeric runs left-to-right */
+html[dir="rtl"] .stat .n,
+html[dir="rtl"] .fact .n,
+html[dir="rtl"] .phones .num,
+html[dir="rtl"] .contact .email{direction:ltr;unicode-bidi:isolate;}
+html[dir="rtl"] .stat .n{display:inline-block;}
+/* hero globe mirrors to the left */
+html[dir="rtl"] #globe{left:-22%;right:auto;}
+@media(max-width:860px){ html[dir="rtl"] #globe{left:-30%;right:auto;} }
+html[dir="rtl"] .scroll-cue{left:auto;right:var(--shell);}
+/* left-aligned text blocks → right */
+html[dir="rtl"] .pcard,
+html[dir="rtl"] .ocard,
+html[dir="rtl"] .lead-form,
+html[dir="rtl"] .article{text-align:right;}
+/* drawer slides in from the left */
+html[dir="rtl"] .drawer{left:0;right:auto;border-left:0;border-right:1px solid var(--line);
+  transform:translateX(-100%);box-shadow:30px 0 80px rgba(0,0,0,.5);}
+html[dir="rtl"] .drawer.open{transform:translateX(0);}
+html[dir="rtl"] .x-close{right:auto;left:24px;}
+html[dir="rtl"] .modal-info .x-close{right:auto;left:22px;}
+html[dir="rtl"] .pcard:hover{transform:translateX(3px);}
+html[dir="rtl"] .pcard:hover .arrow{transform:translateX(-3px) scaleX(-1);}
+html[dir="rtl"] .pcard .arrow,
+html[dir="rtl"] .feat-cta .btn svg,
+html[dir="rtl"] .case-link svg,
+html[dir="rtl"] .breadcrumb{transform:none;}
+html[dir="rtl"] .feat-cta .btn.solid svg,
+html[dir="rtl"] .svc-cta .btn svg{transform:scaleX(-1);}
+/* modal split: keep the screenshot panel on the right, info on the left border */
+html[dir="rtl"] .modal-visual{border-right:0;border-left:1px solid var(--line);}
+@media(max-width:860px){ html[dir="rtl"] .modal-visual{border-left:0;border-bottom:1px solid var(--line);} }
+/* floating whatsapp to the left */
+html[dir="rtl"] .wa-fab{right:auto;left:22px;}
+@media(max-width:860px){ html[dir="rtl"] .wa-fab{right:auto;left:16px;} }
+/* language switch pill */
+.lang-switch{border:1px solid var(--line-2);border-radius:30px;padding:8px 16px !important;font-weight:600;}
+.lang-switch:hover{border-color:var(--accent);}
