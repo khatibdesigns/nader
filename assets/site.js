@@ -244,12 +244,19 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(data)
-      }).then(function (r) { return r.json(); }).then(function (res) {
-        if (res && (res.success === true || res.success === 'true')) {
-          form.reset();
-          status.className = 'form-status ok';
-          status.textContent = 'Thanks — your enquiry is on its way. We’ll reply within one business day.';
-        } else { throw new Error('failed'); }
+      }).then(function (r) {
+        // success on any 2xx — first (pre-activation) submit returns a
+        // non-JSON activation page, so don't depend on parsing the body
+        return r.text().then(function (t) {
+          var okBody = false;
+          try { okBody = String(JSON.parse(t).success).toLowerCase() === 'true'; } catch (e) {}
+          return r.ok || okBody;
+        });
+      }).then(function (ok) {
+        if (!ok) throw new Error('not ok');
+        form.reset();
+        status.className = 'form-status ok';
+        status.textContent = 'Thanks — your enquiry is on its way. We’ll reply within one business day.';
       }).catch(function () {
         status.className = 'form-status err';
         status.innerHTML = 'Something went wrong — please email <a href="mailto:nader@khatibdesigns.com">nader@khatibdesigns.com</a> or message us on WhatsApp.';
