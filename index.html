@@ -37,6 +37,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://unpkg.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/styles.css" />
 
@@ -313,9 +314,9 @@
   </a>
 
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-  <script src="//unpkg.com/globe.gl"></script>
-  <script src="assets/data.js"></script>
-  <script src="assets/globe.js"></script>
-  <script src="assets/site.js"></script>
+  <!-- globe.gl (heavy WebGL) is loaded lazily by site.js, off the critical path -->
+  <script defer src="assets/data.js"></script>
+  <script defer src="assets/globe.js"></script>
+  <script defer src="assets/site.js"></script>
 </body>
 </html>

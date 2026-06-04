@@ -350,9 +350,32 @@
     delegate();
     observeReveal(document);
 
-    if (window.KHDGlobe) {
-      window.KHDGlobe.init($('#globe'), { onSelect: function (cid) { openDrawer(cid); } });
+    mountGlobeWhenIdle();
+  }
+
+  /* ---------- lazy globe (keep heavy WebGL off the critical path) ---------- */
+  function mountGlobe() {
+    if (window.__khdGlobeMounted) return; window.__khdGlobeMounted = true;
+    function go() {
+      if (window.KHDGlobe) window.KHDGlobe.init($('#globe'), { onSelect: function (cid) { openDrawer(cid); } });
     }
+    if (window.Globe) { go(); return; }
+    var s = document.createElement('script');
+    s.src = 'https://unpkg.com/globe.gl@2.46.1/dist/globe.gl.min.js';
+    s.async = true;
+    s.onload = go;
+    document.head.appendChild(s);
+  }
+  function mountGlobeWhenIdle() {
+    if (!$('#globe')) return;
+    // also mount on first interaction, in case idle is slow
+    var fired = false;
+    function once() { if (fired) return; fired = true; mountGlobe(); }
+    ['pointerdown', 'touchstart', 'scroll', 'keydown'].forEach(function (ev) {
+      window.addEventListener(ev, once, { once: true, passive: true });
+    });
+    if ('requestIdleCallback' in window) requestIdleCallback(once, { timeout: 2600 });
+    else setTimeout(once, 1400);
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
