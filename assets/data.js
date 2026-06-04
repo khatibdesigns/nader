@@ -17,10 +17,19 @@
     'On-demand': 55, 'Delivery': 40, 'Fintech': 155, 'Health': 165,
     'Enterprise': 265, 'Marketplace': 35, 'Shopping': 350, 'Lifestyle': 320,
     'Real estate': 230, 'Education': 250, 'Utility': 200, 'Entertainment': 290,
-    'Games': 25, 'Productivity': 220,
+    'Games': 25, 'Productivity': 220, 'Social': 330,
   };
 
   const HERO = [
+    {
+      id:'connecthere', name:'Connect Here', country:'kuwait', tier:'hero',
+      category:'Social', tagline:'Meet the people in the room.',
+      client:'Connect Here LLC', year:'2024', platforms:['iOS'],
+      shot:'assets/img/screen-connecthere.png',
+      desc:"A social-networking app that revolutionises how you connect with people inside any establishment. Walk into a coffee shop, restaurant or bar, see who else is checked in, browse profiles and send a request to connect and chat — turning any venue into real-time, real-world introductions.",
+      features:['Find nearby establishments','See who’s here right now','Send connect & chat requests','Real-time in-venue messaging'],
+      store:{ ios:'https://apps.apple.com/kw/app/connect-here/id6502897211' },
+    },
     {
       id:'iwash', name:'iWASH', country:'kuwait', tier:'hero',
       category:'On-demand', tagline:'Book a wash, get on shining.',
@@ -102,8 +111,7 @@
     email:'nader@khatibdesigns.com',
     phones:[
       { c:'Bulgaria', num:'+359 87 6375875' },
-      { c:'Lebanon',  num:'+961 76 674 262' },
-      { c:'Kuwait',   num:'+965 69614912'  },
+      { c:'Kuwait',   num:'+965 50003758'  },
     ],
   };
 

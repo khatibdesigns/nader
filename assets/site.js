@@ -92,9 +92,16 @@
     if (p.features && p.features.length) {
       features = '<ul class="feature-list">' + p.features.map(function (f) { return '<li>' + f + '</li>'; }).join('') + '</ul>';
     }
-    let stores = '<a class="store" href="' + ((p.store && p.store.ios) || '#') + '">App Store ' + EXT + '</a>' +
-      '<a class="store" href="' + ((p.store && p.store.android) || '#') + '">Google Play ' + EXT + '</a>';
-    if (p.store && p.store.web) stores += '<a class="store" href="' + p.store.web + '">Web App ' + EXT + '</a>';
+    const st = p.store || {};
+    function storeLink(href, label) {
+      const real = href && href !== '#';
+      const attr = real ? ' href="' + href + '" target="_blank" rel="noopener"' : ' href="#"';
+      return '<a class="store"' + attr + '>' + label + ' ' + EXT + '</a>';
+    }
+    let stores = '';
+    if (st.ios) stores += storeLink(st.ios, 'App Store');
+    if (st.android) stores += storeLink(st.android, 'Google Play');
+    if (st.web) stores += storeLink(st.web, 'Web App');
 
     $('#modal-info').innerHTML =
       '<button class="x-close" id="modal-x" aria-label="Close">' + closeIcon() + '</button>' +
