@@ -227,6 +227,36 @@
     }).join('');
   }
 
+  /* ---------- lead form (FormSubmit AJAX) ---------- */
+  function initLeadForm() {
+    const form = $('#lead-form'); if (!form) return;
+    const status = $('#form-status'), btn = $('#lead-submit');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (form._honey && form._honey.value) return;             // bot trap
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      status.className = 'form-status'; status.textContent = 'Sending…';
+      btn.disabled = true;
+      const data = {}; new FormData(form).forEach(function (v, k) { if (k.charAt(0) !== '_' || k === '_subject') data[k] = v; });
+      data._subject = 'New project enquiry — khatibdesigns.com';
+      data._template = 'table';
+      fetch('https://formsubmit.co/ajax/nader@khatibdesigns.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(function (r) { return r.json(); }).then(function (res) {
+        if (res && (res.success === true || res.success === 'true')) {
+          form.reset();
+          status.className = 'form-status ok';
+          status.textContent = 'Thanks — your enquiry is on its way. We’ll reply within one business day.';
+        } else { throw new Error('failed'); }
+      }).catch(function () {
+        status.className = 'form-status err';
+        status.innerHTML = 'Something went wrong — please email <a href="mailto:nader@khatibdesigns.com">nader@khatibdesigns.com</a> or message us on WhatsApp.';
+      }).finally(function () { btn.disabled = false; });
+    });
+  }
+
   /* ---------- stats counters ---------- */
   function animateStats() {
     $$('.stat .n').forEach(function (el) {
@@ -307,6 +337,7 @@
     buildFilter();
     buildOthers('all');
     buildContact();
+    initLeadForm();
     nav();
     delegate();
     observeReveal(document);

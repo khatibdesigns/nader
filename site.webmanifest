@@ -1,0 +1,13 @@
+{
+  "name": "Khatib Designs — App Design & Development Studio",
+  "short_name": "Khatib Designs",
+  "description": "Design & development studio building iOS, Android and web apps for the GCC and beyond.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#070611",
+  "theme_color": "#070611",
+  "icons": [
+    { "src": "/assets/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
