@@ -149,7 +149,8 @@
       '<p class="desc">' + p.desc + '</p>' +
       features +
       '<div class="modal-meta">' + meta + '</div>' +
-      '<div class="store-row">' + stores + '</div>';
+      '<div class="store-row">' + stores + '</div>' +
+      (p.slug ? '<a class="case-link" href="/work/' + p.slug + '/">Read the full case study ' + ARROW + '</a>' : '');
 
     $('#modal-x').addEventListener('click', closeModal);
     $('#modal-scrim').classList.add('open');
@@ -184,7 +185,7 @@
             '<div class="m"><div class="k">Platform</div><div class="v">' + p.platforms.join(' · ') + '</div></div>' +
             '<div class="m"><div class="k">Launched</div><div class="v">' + p.year + '</div></div>' +
           '</div>' +
-          '<div class="feat-cta"><button class="btn solid" data-project="' + p.id + '">View case ' + ARROW + '</button>' +
+          '<div class="feat-cta"><a class="btn solid" href="/work/' + p.slug + '/">Read case study ' + ARROW + '</a>' +
           '<button class="btn" data-country="' + p.country + '">More from ' + c.name + '</button></div>' +
         '</div>' +
       '</article>';

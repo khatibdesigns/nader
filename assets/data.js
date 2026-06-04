@@ -22,7 +22,7 @@
 
   const HERO = [
     {
-      id:'connecthere', name:'Connect Here', country:'usa', tier:'hero',
+      id:'connecthere', slug:'connect-here', name:'Connect Here', country:'usa', tier:'hero',
       category:'Social', tagline:'Meet the people in the room.',
       client:'Connect Here LLC', year:'2024', platforms:['iOS','Android'],
       shots:['assets/img/screen-connecthere-1.png','assets/img/screen-connecthere-2.png'],
@@ -31,7 +31,7 @@
       store:{ ios:'https://apps.apple.com/kw/app/connect-here/id6502897211', android:'https://play.google.com/store/apps/details?id=com.khd.CH' },
     },
     {
-      id:'iwash', name:'iWASH', country:'kuwait', tier:'hero',
+      id:'iwash', slug:'iwash', name:'iWASH', country:'kuwait', tier:'hero',
       category:'On-demand', tagline:'Book a wash, get on shining.',
       client:'iWASH', year:'2018', platforms:['iOS','Android'],
       shots:['assets/img/screen-iwash-1.png','assets/img/screen-iwash-2.png','assets/img/screen-iwash-3.png'],
@@ -40,7 +40,7 @@
       store:{ ios:'#', android:'#' },
     },
     {
-      id:'coines', name:'Coines', country:'bulgaria', tier:'hero',
+      id:'coines', slug:'coines', name:'Coines', country:'bulgaria', tier:'hero',
       category:'Fintech', tagline:'Crypto exchange, simplified.',
       client:'Coines', year:'2018', platforms:['iOS','Android'],
       shots:['assets/img/screen-coines-1.png','assets/img/screen-coines-2.png','assets/img/screen-coines-3.png'],
@@ -49,7 +49,7 @@
       store:{ ios:'#', android:'#' },
     },
     {
-      id:'dwa', name:'DWA', country:'kuwait', tier:'hero',
+      id:'dwa', slug:'dwa', name:'DWA', country:'kuwait', tier:'hero',
       category:'Health', tagline:'Your pharmacy, delivered.',
       client:'DWA', year:'2018', platforms:['iOS','Android','Web'],
       shots:['assets/img/screen-dwa-1.png','assets/img/screen-dwa-2.png','assets/img/screen-dwa-3.png'],
@@ -58,7 +58,7 @@
       store:{ ios:'#', android:'#', web:'#' },
     },
     {
-      id:'wcs', name:'WCS', country:'usa', tier:'hero',
+      id:'wcs', slug:'wcs', name:'WCS', country:'usa', tier:'hero',
       category:'Enterprise', tagline:'Run the factory floor.',
       client:'WCS Management', year:'2018', platforms:['iOS','Android'],
       shots:['assets/img/screen-wcs-1.png','assets/img/screen-wcs-2.png','assets/img/screen-wcs-3.png'],
@@ -67,7 +67,7 @@
       store:{ ios:'#', android:'#' },
     },
     {
-      id:'printit', name:'PrintIt', country:'kuwait', tier:'hero',
+      id:'printit', slug:'printit', name:'PrintIt', country:'kuwait', tier:'hero',
       category:'Marketplace', tagline:'Printing, delivered to your door.',
       client:'PrintIt', year:'2018', platforms:['iOS','Android'],
       shots:['assets/img/screen-printit-1.png','assets/img/screen-printit-2.png','assets/img/screen-printit-3.png'],
