@@ -169,7 +169,15 @@ header.nav.scrolled{background:rgba(7,6,17,0.74);backdrop-filter:blur(14px);
     inset 0 1px 1px rgba(255,255,255,.08);}
 .phone .screen{position:relative;width:100%;height:100%;border-radius:32px;overflow:hidden;
   background:#0b0a12;}
-.phone .screen img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
+/* auto-scrolling screen carousel */
+.phone .screen .car-track{display:flex;width:100%;height:100%;
+  transition:transform .85s cubic-bezier(.72,0,.18,1);}
+.phone .screen .car-track img{min-width:100%;width:100%;height:100%;
+  object-fit:cover;object-position:top center;display:block;}
+.phone .cdots{position:absolute;bottom:9px;left:50%;transform:translateX(-50%);z-index:4;
+  display:flex;gap:5px;padding:5px 8px;border-radius:20px;background:rgba(8,7,16,0.42);backdrop-filter:blur(4px);}
+.phone .cdots span{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.45);transition:.35s;}
+.phone .cdots span.on{background:#fff;width:14px;border-radius:3px;}
 .phone .notch{position:absolute;top:12px;left:50%;transform:translateX(-50%);
   width:42%;height:26px;background:#0a0910;border-radius:0 0 16px 16px;z-index:3;}
 .phone .glare{position:absolute;inset:12px;border-radius:32px;pointer-events:none;z-index:2;

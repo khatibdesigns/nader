@@ -6,9 +6,46 @@
   const ARROW = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
   const EXT = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17 17 7M9 7h8v8"/></svg>';
   function closeIcon() { return '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M18 6 6 18"/></svg>'; }
-  function phoneFrame(src, name) {
+  function phoneFrame(shots, name) {
+    const arr = Array.isArray(shots) ? shots : [shots];
+    const imgs = arr.map(function (s, i) {
+      return '<img src="' + s + '" alt="' + name + ' screen ' + (i + 1) + '"' + (i ? ' loading="lazy"' : '') + ' />';
+    }).join('');
+    const dots = arr.length > 1
+      ? '<div class="cdots">' + arr.map(function (_, i) { return '<span' + (i ? '' : ' class="on"') + '></span>'; }).join('') + '</div>'
+      : '';
     return '<div class="phone"><div class="notch"></div><div class="glare"></div>' +
-      '<div class="screen"><img src="' + src + '" alt="' + name + ' app screen" loading="lazy" /></div></div>';
+      '<div class="screen"><div class="car-track">' + imgs + '</div>' + dots + '</div></div>';
+  }
+
+  /* auto-scrolling screen carousels inside phone frames */
+  const PERIOD = 2900;
+  function startCarousels(root) {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    $$('.car-track', root).forEach(function (track, idx) {
+      if (track._started) return;
+      const n = track.children.length;
+      if (n < 2) return;
+      track._started = true;
+      const dots = track.parentNode.querySelectorAll('.cdots span');
+      let i = 0;
+      function advance() {
+        i = (i + 1) % n;
+        track.style.transform = 'translateX(-' + (i * 100) + '%)';
+        dots.forEach(function (d, k) { d.classList.toggle('on', k === i); });
+      }
+      // stagger each phone so they don't flip in unison
+      track._to = setTimeout(function () {
+        advance();
+        track._iv = setInterval(advance, PERIOD);
+      }, 700 + (idx % 6) * 520);
+    });
+  }
+  function stopCarousels(root) {
+    $$('.car-track', root).forEach(function (track) {
+      clearTimeout(track._to); clearInterval(track._iv);
+      track._iv = null; track._to = null; track._started = false;
+    });
   }
 
   /* ---------- starfield ---------- */
@@ -78,9 +115,10 @@
     const platforms = p.platforms || ['iOS', 'Android'];
 
     $('#modal').style.setProperty('--pc', acc);
-    $('#modal-visual').innerHTML = p.shot
-      ? phoneFrame(p.shot, p.name)
+    $('#modal-visual').innerHTML = (p.shots && p.shots.length)
+      ? phoneFrame(p.shots, p.name)
       : '<div style="font-family:var(--display);font-size:30px;letter-spacing:.06em">' + p.name + '</div>';
+    startCarousels($('#modal-visual'));
 
     let meta = metaCell('Market', c.flag + ' ' + c.name) +
       metaCell('Category', p.category) +
@@ -119,6 +157,7 @@
   }
   function closeModal() {
     $('#modal-scrim').classList.remove('open');
+    stopCarousels($('#modal-visual'));
     if (!$('#drawer').classList.contains('open')) document.body.style.overflow = '';
   }
 
@@ -130,7 +169,7 @@
       const acc = KHD.accent(p.category);
       const tags = p.features.map(function (f) { return '<span class="tagpill">' + f + '</span>'; }).join('');
       const visual = '<div class="feat-visual"><div class="halo"></div>' +
-        (p.shot ? phoneFrame(p.shot, p.name) : '') +
+        ((p.shots && p.shots.length) ? phoneFrame(p.shots, p.name) : '') +
         '</div>';
       return '<article class="feat-item reveal" style="--pc:' + acc + '">' +
         visual +
@@ -264,6 +303,7 @@
     stars(window.matchMedia('(max-width:860px)').matches ? 80 : 150);
     buildChips();
     buildFeatured();
+    startCarousels(document);
     buildFilter();
     buildOthers('all');
     buildContact();
