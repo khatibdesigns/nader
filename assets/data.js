@@ -22,13 +22,13 @@
 
   const HERO = [
     {
-      id:'connecthere', name:'Connect Here', country:'kuwait', tier:'hero',
+      id:'connecthere', name:'Connect Here', country:'usa', tier:'hero',
       category:'Social', tagline:'Meet the people in the room.',
-      client:'Connect Here LLC', year:'2024', platforms:['iOS'],
+      client:'Connect Here LLC', year:'2024', platforms:['iOS','Android'],
       shot:'assets/img/screen-connecthere.png',
       desc:"A social-networking app that revolutionises how you connect with people inside any establishment. Walk into a coffee shop, restaurant or bar, see who else is checked in, browse profiles and send a request to connect and chat — turning any venue into real-time, real-world introductions.",
       features:['Find nearby establishments','See who’s here right now','Send connect & chat requests','Real-time in-venue messaging'],
-      store:{ ios:'https://apps.apple.com/kw/app/connect-here/id6502897211' },
+      store:{ ios:'https://apps.apple.com/kw/app/connect-here/id6502897211', android:'https://play.google.com/store/apps/details?id=com.khd.CH' },
     },
     {
       id:'iwash', name:'iWASH', country:'kuwait', tier:'hero',
