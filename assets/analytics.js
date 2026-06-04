@@ -4,7 +4,7 @@
    "G-XXXXXXXXXX"). Until then this file is a no-op.
    ============================================================ */
 (function () {
-  var GA_ID = 'G-XXXXXXXXXX';                 // <-- paste GA4 Measurement ID here
+  var GA_ID = 'G-HNDZLK8C8S';                 // GA4 Measurement ID (khatibdesigns.com)
   if (!GA_ID || GA_ID.indexOf('XXXX') !== -1) return;   // not configured yet → do nothing
 
   // gtag bootstrap
