@@ -1,8 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="refresh" content="0; URL='http://khatibdesigns.com/Nader_Khatib_Portfolio_compressed.pdf'">
-<title>Nader A. Alkhatib</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Khatib Designs — Together We Venture</title>
+<meta name="description" content="Khatib Designs — a worldwide design & development studio shipping software across six countries. Together We Venture." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/styles.css" />
 </head>
+<body>
+
+  <div id="stars"></div>
+  <div class="bg-neb"></div>
+  <div class="bg-neb two"></div>
+
+  <!-- NAV -->
+  <header class="nav">
+    <a class="brand" href="#top"><span class="k">Khatib</span><span class="d">Designs</span></a>
+    <nav class="nav-links" id="nav-links">
+      <a href="#about">Studio</a>
+      <a href="#work">Work</a>
+      <a href="#regions">Regions</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="btn solid">Start a project</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div id="globe"></div>
+    <div class="globe-veil"></div>
+
+    <div class="hero-copy">
+      <span class="eyebrow"><span class="dot"></span>Together we venture</span>
+      <h1>Software, designed<br />for <em class="grad">every corner</em><br />of the map.</h1>
+      <p class="hero-sub">A worldwide design &amp; development studio shipping products across six countries — from Kuwait to Bulgaria, the UK to the USA. Every glowing point is a launch.</p>
+      <div class="hero-cta">
+        <a href="#work" class="btn solid">Explore the work</a>
+        <a href="#about" class="btn">The studio</a>
+      </div>
+      <div class="explore">
+        <span class="hint">Tap a glowing point — or a region — to dive in</span>
+        <div class="chips" id="chips"></div>
+      </div>
+    </div>
+
+    <div class="scroll-cue"><span class="ln"></span>Scroll to explore</div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="about-grid">
+      <div class="about-copy reveal">
+        <span class="eyebrow"><span class="dot"></span>About the studio</span>
+        <h2 class="section-title" style="margin-top:20px">A family of specialists, spread across the map.</h2>
+        <p>At Khatib Designs we work as a family. Our team is formed by specialists from all over the world — yet we work as one, proud to deliver world-class quality wherever a project lives.</p>
+        <p>Our story started in 2015, when founders Nader &amp; Iva Khatib opened their own design and development company — one that keeps work values high and delivers exclusive, considered products to every client.</p>
+        <p>Today the studio is a constantly growing family of team members and happy clients who all believe in one thing:</p>
+        <div class="venture grad">Together We Venture.</div>
+      </div>
+      <div class="about-side reveal">
+        <div class="fact"><div class="n grad">2015</div><div class="l">The year Nader &amp; Iva founded the studio</div></div>
+        <div class="fact"><div class="n grad">6</div><div class="l">Countries we&rsquo;ve shipped products into</div></div>
+        <div class="fact"><div class="n grad">26</div><div class="l">Apps &amp; platforms designed and built</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED -->
+  <section class="section" id="work">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span>Flagship work</span>
+      <h2 class="section-title" style="margin-top:20px">Five products we&rsquo;re proud of.</h2>
+      <p class="lead">Deep dives into our flagship launches — from a Kuwaiti car-wash platform to a Bulgarian crypto exchange. Open any case for the full story, or spin the globe to explore by region.</p>
+    </div>
+    <div class="feat-list" id="featured-list"></div>
+  </section>
+
+  <!-- OTHERS -->
+  <section class="section" id="regions">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span>The wider catalogue</span>
+      <h2 class="section-title" style="margin-top:20px">Twenty-one more, around the world.</h2>
+      <p class="lead">Shopping, fintech, education, utilities, games and more — filter by region, or tap any card for details.</p>
+    </div>
+    <div class="filter-row" id="others-filter"></div>
+    <div class="others-grid" id="others-grid"></div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats reveal" id="stats">
+    <div class="stat"><div class="n" data-target="26">0</div><div class="l">Products shipped</div></div>
+    <div class="stat"><div class="n" data-target="6">0</div><div class="l">Countries</div></div>
+    <div class="stat"><div class="n" data-target="11">0</div><div class="l">Years venturing</div></div>
+    <div class="stat"><div class="n" data-target="5">0</div><div class="l">Flagship platforms</div></div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section contact" id="contact">
+    <div class="reveal">
+      <span class="eyebrow" style="justify-content:center"><span class="dot"></span>Let&rsquo;s venture together</span>
+      <h2 style="margin-top:24px">Got a project<br />in mind?</h2>
+      <a class="email" id="contact-email" href="#">nader@khatibdesigns.com</a>
+      <div class="phones" id="contact-phones"></div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="brand"><span class="k">Khatib</span><span class="d">Designs</span></span>
+    <span>&copy; 2015&ndash;<span id="year"></span> Khatib Designs &middot; Together We Venture</span>
+  </footer>
+
+  <!-- COUNTRY DRAWER -->
+  <div class="scrim" id="scrim"></div>
+  <aside class="drawer" id="drawer" aria-label="Projects by region">
+    <div class="drawer-head">
+      <span class="eyebrow" id="drawer-eyebrow"></span>
+      <h2 id="drawer-title"></h2>
+      <div class="meta" id="drawer-meta"></div>
+      <button class="x-close" id="drawer-x" aria-label="Close">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <div class="drawer-body" id="drawer-body"></div>
+  </aside>
+
+  <!-- PROJECT MODAL -->
+  <div class="modal-scrim" id="modal-scrim">
+    <div class="modal" id="modal">
+      <div class="modal-grid">
+        <div class="modal-visual" id="modal-visual"></div>
+        <div class="modal-info" id="modal-info"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script src="//unpkg.com/globe.gl"></script>
+  <script src="assets/data.js"></script>
+  <script src="assets/globe.js"></script>
+  <script src="assets/site.js"></script>
+</body>
 </html>
