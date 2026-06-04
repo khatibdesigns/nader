@@ -258,6 +258,7 @@
         form.reset();
         status.className = 'form-status ok';
         status.textContent = 'Thanks — your enquiry is on its way. We’ll reply within one business day.';
+        if (window.khdTrack) window.khdTrack('generate_lead', { method: 'contact_form' });
       }).catch(function () {
         status.className = 'form-status err';
         status.innerHTML = 'Something went wrong — please email <a href="mailto:nader@khatibdesigns.com">nader@khatibdesigns.com</a> or message us on WhatsApp.';
