@@ -160,7 +160,7 @@
       features +
       '<div class="modal-meta">' + meta + '</div>' +
       '<div class="store-row">' + stores + '</div>' +
-      (p.slug ? '<a class="case-link" href="/work/' + p.slug + '/">' + S('readFullCase') + ' ' + ARROW + '</a>' : '');
+      (p.slug ? '<a class="case-link" href="' + (L === 'ar' ? '/ar' : '') + '/work/' + p.slug + '/">' + S('readFullCase') + ' ' + ARROW + '</a>' : '');
 
     $('#modal-x').addEventListener('click', closeModal);
     $('#modal-scrim').classList.add('open');
@@ -195,7 +195,7 @@
             '<div class="m"><div class="k">' + S('platform') + '</div><div class="v">' + p.platforms.join(' · ') + '</div></div>' +
             '<div class="m"><div class="k">' + S('launched') + '</div><div class="v">' + p.year + '</div></div>' +
           '</div>' +
-          '<div class="feat-cta"><a class="btn solid" href="/work/' + p.slug + '/">' + S('readCase') + ' ' + ARROW + '</a>' +
+          '<div class="feat-cta"><a class="btn solid" href="' + (L === 'ar' ? '/ar' : '') + '/work/' + p.slug + '/">' + S('readCase') + ' ' + ARROW + '</a>' +
           '<button class="btn" data-country="' + p.country + '">' + S('moreFrom') + ' ' + ctry(c) + '</button></div>' +
         '</div>' +
       '</article>';
