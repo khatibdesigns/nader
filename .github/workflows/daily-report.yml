@@ -1,0 +1,42 @@
+name: Daily SEO & Traffic Report
+
+on:
+  schedule:
+    - cron: '0 5 * * *'      # 05:00 UTC = 08:00 Kuwait (AST, UTC+3), every day
+  workflow_dispatch: {}        # allows manual "Run workflow" from the Actions tab
+
+permissions:
+  contents: read
+
+concurrency:
+  group: daily-report
+  cancel-in-progress: false
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (recent history for the "shipped in 24h" section)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 60
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install GA4 client
+        run: pip install --quiet google-analytics-data
+
+      - name: Write GA4 key from secret
+        run: printf '%s' "$GA4_KEY" > "$RUNNER_TEMP/ga4-key.json"
+        env:
+          GA4_KEY: ${{ secrets.GA4_KEY }}
+
+      - name: Run daily report + email
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/ga4-key.json
+          GA4_PROPERTY: '540327946'
+          REPORT_EMAIL: 'nader@khatibdesigns.com'
+        run: python3 scripts/daily_report.py
