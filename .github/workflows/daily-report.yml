@@ -26,17 +26,23 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install GA4 client
-        run: pip install --quiet google-analytics-data
+      - name: Install dependencies
+        run: pip install --quiet google-analytics-data google-api-python-client fpdf2
 
       - name: Write GA4 key from secret
         run: printf '%s' "$GA4_KEY" > "$RUNNER_TEMP/ga4-key.json"
         env:
           GA4_KEY: ${{ secrets.GA4_KEY }}
 
-      - name: Run daily report + email
+      - name: Run executive report (GA4 + Search Console + PDF + email)
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/ga4-key.json
           GA4_PROPERTY: '540327946'
+          GSC_SITE: 'sc-domain:khatibdesigns.com'
           REPORT_EMAIL: 'nader@khatibdesigns.com'
+          PDF_OUT: ${{ runner.temp }}/khatib-report.pdf
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}
         run: python3 scripts/daily_report.py
