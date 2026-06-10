@@ -16,8 +16,46 @@ GSC_SITE = os.environ.get("GSC_SITE", "sc-domain:khatibdesigns.com")
 KEYFILE  = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS", os.path.expanduser("~/.khatib/ga4-key.json"))
 SMTP_USER= os.environ.get("SMTP_USER"); SMTP_PASS=os.environ.get("SMTP_PASS")
 SMTP_HOST= os.environ.get("SMTP_HOST","smtp.gmail.com"); SMTP_PORT=int(os.environ.get("SMTP_PORT","465"))
+INDEXNOW_KEY = "46c93e9f3befc9978159530178129dc4"
 TODAY = datetime.date.today().isoformat()
 D = {}   # collected data
+
+def sitemap_urls():
+    sm=urllib.request.urlopen(SITE+"/sitemap.xml",timeout=25).read().decode()
+    return [l.split("<loc>")[1].split("</loc>")[0] for l in sm.split("\n") if "<loc>" in l]
+
+# ---------- automated action: IndexNow (prompt Bing/Yandex to recrawl) ----------
+def indexnow():
+    try:
+        urls=sitemap_urls()
+        payload=json.dumps({"host":"khatibdesigns.com","key":INDEXNOW_KEY,
+            "keyLocation":f"{SITE}/{INDEXNOW_KEY}.txt","urlList":urls}).encode()
+        req=urllib.request.Request("https://api.indexnow.org/indexnow",data=payload,
+            headers={"Content-Type":"application/json; charset=utf-8"})
+        code=urllib.request.urlopen(req,timeout=30).getcode()
+        D["indexnow"]=(len(urls),code)
+    except Exception as e:
+        D["indexnow"]=(0,f"err {type(e).__name__}")
+
+# ---------- automated action: on-page SEO audit ----------
+def audit():
+    try:
+        urls=sitemap_urls(); issues=[]; ok=0
+        for u in urls:
+            try: h=urllib.request.urlopen(u,timeout=15).read().decode("utf-8","ignore")
+            except Exception: issues.append(f"{u} (unreachable)"); continue
+            miss=[]
+            if "<title>" not in h: miss.append("title")
+            if 'name="description"' not in h: miss.append("meta-desc")
+            if 'rel="canonical"' not in h: miss.append("canonical")
+            if 'property="og:image"' not in h: miss.append("og:image")
+            if 'application/ld+json' not in h: miss.append("schema")
+            if 'hreflang=' not in h: miss.append("hreflang")
+            if miss: issues.append(f"{u.replace(SITE,'')}: missing {', '.join(miss)}")
+            else: ok+=1
+        D["audit"]=(ok,len(urls),issues)
+    except Exception as e:
+        D["audit"]=(0,0,[str(e)])
 
 def pct(cur, prev):
     if prev == 0: return "new" if cur else "0%"
@@ -143,6 +181,10 @@ def exec_summary():
         tl=sum(D["leads"].values()); s.append(f"Leads: {tl} lead action(s) in 28d (" + ", ".join(f"{k}={v}" for k,v in D['leads'].items()) + ").")
     if "health" in D:
         ok,tot,bad=D["health"]; s.append(f"Health: {ok}/{tot} pages OK." + ("" if not bad else f" DOWN: {', '.join(b[:60] for b in bad[:3])}"))
+    acts=[]
+    if D.get("indexnow") and isinstance(D["indexnow"][1],int): acts.append(f"submitted {D['indexnow'][0]} URLs to IndexNow for recrawl")
+    if D.get("audit"): acts.append(f"audited on-page SEO ({D['audit'][0]}/{D['audit'][1]} pages clean)")
+    if acts: s.append("Automated today: " + "; ".join(acts) + ".")
     s.append("Focus today: " + tip())
     return s
 
@@ -167,6 +209,12 @@ def text_body():
     if "health" in D:
         ok,tot,bad=D["health"]; L+=["","SITE HEALTH",f"  {ok}/{tot} pages return 200"]+[f"  ! DOWN {b}" for b in bad[:8]]
     L+=["","IMPROVEMENTS SHIPPED (last 24h)"]+([f"  • {m}" for m in D["shipped"]] or ["  • No changes deployed in the last 24h."])
+    L+=["","AUTOMATED SEO ACTIONS (today)"]
+    if D.get("indexnow"):
+        n,st=D["indexnow"]; L.append(f"  • IndexNow: submitted {n} URLs for recrawl (status {st})")
+    if D.get("audit"):
+        ok,tot,iss=D["audit"]; L.append(f"  • On-page audit: {ok}/{tot} pages have full title/meta/canonical/OG/schema/hreflang")
+        for i in iss[:6]: L.append(f"    - fix: {i}")
     L+=["","RECOMMENDED NEXT ACTION","  "+tip(),"","— PDF attached. Dashboards: GA4 + Search Console."]
     return "\n".join(L)
 
@@ -225,6 +273,12 @@ def make_pdf(path):
         ok,tot,bad=D["health"]; h("Site health"); body(f"{ok}/{tot} pages return HTTP 200." + ("" if not bad else "  DOWN: "+", ".join(bad[:4])))
     h("Improvements shipped (last 24h)")
     body("\n".join(f"- {asc(m)}" for m in D["shipped"]) if D["shipped"] else "- No changes deployed in the last 24h.")
+    h("Automated SEO actions (today)")
+    al=[]
+    if D.get("indexnow"): al.append(f"IndexNow: submitted {D['indexnow'][0]} URLs for recrawl (status {D['indexnow'][1]})")
+    if D.get("audit"):
+        ok,tot,iss=D["audit"]; al.append(f"On-page audit: {ok}/{tot} pages fully optimized" + ("" if not iss else "; fixes needed: "+ "; ".join(iss[:4])))
+    body("\n".join("- "+a for a in al) if al else "- none")
     h("Recommended next action"); body(tip())
     pdf.output(path)
 
@@ -246,7 +300,7 @@ def send_formsubmit(subject, body):
     return urllib.request.urlopen(req,timeout=40).read().decode()[:160]
 
 if __name__=="__main__":
-    ga4(); gsc(); health(); shipped()
+    ga4(); gsc(); health(); shipped(); audit(); indexnow()
     body=text_body(); print(body)
     pdf_path=os.environ.get("PDF_OUT","/tmp/khatib-report.pdf")
     try: make_pdf(pdf_path); print("\n[pdf]",pdf_path)
