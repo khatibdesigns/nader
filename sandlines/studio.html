@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sandlines Studio — Publish to TikTok</title>
+<style>
+  body{margin:0;background:#0e1424;color:#e8edf6;font:16px/1.6 -apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;min-height:100vh}
+  .wrap{max-width:720px;margin:0 auto;padding:40px 22px 80px}
+  .brand{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+  .brand h1{color:#f0b53f;font-size:24px;margin:0}
+  .brand .sub{color:#9fb0c8;font-size:13px}
+  .card{background:#141d33;border:1px solid #243049;border-radius:16px;padding:24px;margin:16px 0}
+  .row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  button{background:#f0b53f;color:#0e1424;border:0;border-radius:10px;padding:12px 22px;font-weight:800;font-size:15px;cursor:pointer}
+  button:disabled{opacity:.45;cursor:not-allowed}
+  button.alt{background:#243049;color:#e8edf6}
+  video{width:220px;border-radius:12px;border:1px solid #243049;background:#000}
+  .status{margin-top:14px;font-size:14px;color:#9fb0c8;white-space:pre-wrap}
+  .ok{color:#9fe6b4}.err{color:#ff8a8a}
+  .pill{display:inline-block;background:#1c2740;border:1px solid #2d3a57;border-radius:999px;padding:4px 12px;font-size:13px;color:#cbd6e8}
+  .muted{color:#9fb0c8;font-size:13px}
+</style>
+</head>
+<body><div class="wrap">
+  <div class="brand">
+    <span style="font-size:30px">🦅</span>
+    <div><h1>Sandlines Studio</h1><div class="sub">Publish faceless Arabia reels to TikTok</div></div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin:0 0 10px">1 · Connect your TikTok account</h3>
+    <p class="muted">Authorize Sandlines to publish to <b>@sandlines.tv</b> using TikTok Login Kit.</p>
+    <div class="row">
+      <button id="connect">Connect TikTok</button>
+      <span id="who" class="pill" style="display:none"></span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin:0 0 10px">2 · Review &amp; publish the reel</h3>
+    <div class="row">
+      <video src="demo.mp4" muted controls playsinline></video>
+      <div>
+        <p class="muted" style="margin:0 0 10px">This reel was generated and approved in the Sandlines pipeline. Publishing sends it to TikTok via the Content Posting API (Direct Post).</p>
+        <button id="publish" disabled>Publish to TikTok</button>
+      </div>
+    </div>
+    <div id="status" class="status"></div>
+  </div>
+
+<script>
+  var WORKER = "https://sandlines-tiktok.sandlines.workers.dev";
+  var CLIENT_KEY = "awikgmsrny3rp6gs";
+  var REDIRECT = "https://khatibdesigns.com/sandlines/auth.html";
+  var SCOPE = "user.info.basic,video.publish";
+  var $ = function(id){return document.getElementById(id);};
+  var statusEl = $("status");
+  function setStatus(msg, cls){ statusEl.className = "status " + (cls||""); statusEl.textContent = msg; }
+
+  $("connect").onclick = function(){
+    var state = Math.random().toString(36).slice(2);
+    localStorage.setItem("sl_state", state);
+    var u = "https://www.tiktok.com/v2/auth/authorize/?client_key=" + encodeURIComponent(CLIENT_KEY) +
+            "&scope=" + encodeURIComponent(SCOPE) + "&response_type=code" +
+            "&redirect_uri=" + encodeURIComponent(REDIRECT) + "&state=" + state;
+    location.href = u;
+  };
+
+  $("publish").onclick = function(){
+    setStatus("Sending to TikTok…");
+    $("publish").disabled = true;
+    fetch(WORKER + "/publish", {method:"POST", headers:{"content-type":"application/json"}, body: JSON.stringify({title:"Sandlines — Barakah: the Arab world's first nuclear plant"})})
+      .then(function(r){return r.json();})
+      .then(function(d){
+        if(d.error || d.error_code){ setStatus("Publish error:\n" + JSON.stringify(d, null, 2), "err"); $("publish").disabled=false; return; }
+        var pid = (d.data && d.data.publish_id) || d.publish_id;
+        setStatus("Accepted by TikTok ✅\npublish_id: " + pid + "\nChecking status…", "ok");
+        poll(pid, 0);
+      })
+      .catch(function(e){ setStatus("Network error: " + e, "err"); $("publish").disabled=false; });
+  };
+
+  function poll(pid, n){
+    if(n > 10) return;
+    fetch(WORKER + "/status?publish_id=" + encodeURIComponent(pid))
+      .then(function(r){return r.json();})
+      .then(function(d){
+        var st = (d.data && d.data.status) || d.status || "PROCESSING";
+        setStatus("Status: " + st + " (sandbox posts are private / SELF_ONLY)", "ok");
+        if(st !== "PUBLISH_COMPLETE" && st !== "FAILED") setTimeout(function(){poll(pid, n+1);}, 3000);
+      });
+  }
+
+  // on load: are we connected?
+  fetch(WORKER + "/me").then(function(r){return r.json();}).then(function(d){
+    if(d.connected){
+      var name = (d.creator && (d.creator.creator_nickname)) || d.open_id || "your account";
+      $("who").style.display = "inline-block";
+      $("who").textContent = "Connected ✓ " + name;
+      $("connect").textContent = "Reconnect";
+      $("publish").disabled = false;
+    }
+  }).catch(function(){});
+</script>
+</div></body></html>
