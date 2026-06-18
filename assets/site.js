@@ -252,7 +252,7 @@
       const data = {}; new FormData(form).forEach(function (v, k) { if (k.charAt(0) !== '_' || k === '_subject') data[k] = v; });
       data._subject = 'New project enquiry — khatibdesigns.com';
       data._template = 'table';
-      fetch('https://formsubmit.co/ajax/nader@khatibdesigns.com', {
+      fetch('https://formsubmit.co/ajax/studio@khatibdesigns.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(data)

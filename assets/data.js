@@ -108,10 +108,10 @@
 
   // Studio contact (from portfolio)
   const CONTACT = {
-    email:'nader@khatibdesigns.com',
+    email:'studio@khatibdesigns.com',
     phones:[
       { c:'Bulgaria', num:'+359 87 6375875' },
-      { c:'Kuwait',   num:'+965 50003758'  },
+      { c:'Kuwait',   num:'+965 50003048'  },
     ],
   };
 
