@@ -533,3 +533,16 @@ html[dir="rtl"] .wa-fab{right:auto;left:22px;}
 /* language switch pill */
 .lang-switch{border:1px solid var(--line-2);border-radius:30px;padding:8px 16px !important;font-weight:600;}
 .lang-switch:hover{border-color:var(--accent);}
+
+/* ===== AI Consultancy band ===== */
+.ai-band{position:relative;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(255,154,77,0.045),rgba(255,154,77,0.01) 40%,transparent);overflow:hidden}
+.ai-band .ai-glow{position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:min(900px,90%);height:520px;
+  background:radial-gradient(closest-side,rgba(255,154,77,0.16),transparent 70%);filter:blur(40px);pointer-events:none;z-index:0}
+.ai-band > *{position:relative;z-index:1}
+.ai-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:34px}
+.ai-steps .step{padding:24px 26px;border:1px solid var(--line);border-radius:var(--r);background:var(--panel)}
+.ai-steps .sn{font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.16em;color:var(--accent)}
+.ai-steps h4{font-family:var(--display);font-weight:500;font-size:20px;margin:10px 0 8px}
+.ai-steps .step p{color:var(--muted);font-size:15px;line-height:1.6;margin:0}
+@media(max-width:760px){.ai-steps{grid-template-columns:1fr}}
