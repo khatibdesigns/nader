@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>KHD — Concept · Warp (scroll-driven WebGL)</title>
+<link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{--ink:#f5f5fb;--muted:#b6b9d6;--vi:#8a8fe6;--vi2:#d7d9f2}
+  html{scroll-behavior:smooth}
+  body{background:#070816;color:var(--ink);font-family:'Manrope',sans-serif}
+  #c{position:fixed;inset:0;z-index:0;display:block}
+  .vign{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(130% 100% at 50% 50%,transparent 45%,rgba(3,2,10,.7) 100%)}
+  .nav{position:fixed;top:30px;left:54px;right:54px;z-index:6;display:flex;justify-content:space-between;align-items:center;
+    font-family:'Jura';letter-spacing:.3em;text-transform:uppercase;font-size:12px;color:var(--muted);mix-blend-mode:screen}
+  .nav img{height:32px}.nav .links{display:flex;gap:32px}.nav a{color:var(--muted);text-decoration:none}
+  .bar{position:fixed;top:0;left:0;height:2px;width:0;z-index:7;background:linear-gradient(90deg,var(--vi2),var(--vi))}
+  .content{position:relative;z-index:3}
+  .sec{min-height:100vh;display:flex;align-items:center;padding:0 8vw;will-change:opacity,transform}
+  .sec.right{justify-content:flex-end;text-align:right}
+  .sec.center{justify-content:center;text-align:center}
+  .box{max-width:640px;position:relative}
+  .box::before{content:'';position:absolute;inset:-50px -80px;z-index:-1;border-radius:50%;
+    background:radial-gradient(58% 60% at 50% 50%,rgba(7,8,22,.82),rgba(7,8,22,.45) 55%,transparent 78%);filter:blur(14px)}
+  .eye{font-family:'Jura';letter-spacing:.4em;text-transform:uppercase;font-size:12px;color:var(--vi2)}
+  h1{font-family:'Jura';font-weight:400;font-size:clamp(44px,6.2vw,92px);line-height:1.03;letter-spacing:.02em;margin-top:18px;text-shadow:0 2px 24px rgba(7,8,22,.95),0 6px 60px rgba(7,8,22,.8)}
+  h2{font-family:'Jura';font-weight:400;font-size:clamp(34px,4.6vw,64px);line-height:1.06;letter-spacing:.02em;text-shadow:0 2px 24px rgba(7,8,22,.95),0 6px 60px rgba(7,8,22,.8)}
+  b.g{font-weight:500;background:linear-gradient(92deg,#fff,var(--vi2) 55%,var(--vi));-webkit-background-clip:text;background-clip:text;color:transparent}
+  p.lead{margin-top:22px;color:#d3d5ea;font-size:18px;line-height:1.7;text-shadow:0 2px 18px rgba(7,8,22,.95)}
+  .hint{position:fixed;left:50%;bottom:30px;transform:translateX(-50%);z-index:6;font-family:'Jura';letter-spacing:.3em;
+    text-transform:uppercase;font-size:11px;color:var(--muted);animation:bob 2s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0);opacity:.5}50%{transform:translateX(-50%) translateY(6px);opacity:1}}
+  .works{display:flex;flex-direction:column;gap:14px;margin-top:28px}
+  .w{display:flex;justify-content:space-between;align-items:baseline;gap:24px;padding:16px 0;border-top:1px solid rgba(215,217,242,.18);
+     font-family:'Jura';transition:.3s;text-decoration:none;color:var(--ink)}
+  .w:hover{padding-left:10px;border-color:var(--vi2)}
+  .w .go{color:var(--vi2);opacity:0;transition:.3s}.w:hover .go{opacity:1}
+  .w .n{font-size:clamp(22px,2.6vw,34px);font-weight:400}
+  .w .m{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  .stats{display:flex;gap:54px;margin-top:34px;flex-wrap:wrap}
+  .stat .v{font-family:'Jura';font-size:clamp(40px,5vw,72px);font-weight:300}
+  .stat .l{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+  .cta{margin-top:34px;display:inline-flex;gap:14px;justify-content:center}
+  .btn{font-family:'Jura';font-size:12px;letter-spacing:.18em;text-transform:uppercase;padding:15px 32px;border-radius:40px;
+    border:1px solid rgba(205,188,255,.45);color:var(--ink);text-decoration:none;background:rgba(155,107,255,.08);backdrop-filter:blur(6px)}
+  .btn.solid{background:linear-gradient(92deg,#cdbcff,#9b6bff);color:#180b35;border-color:transparent;font-weight:600}
+  .load{position:fixed;inset:0;z-index:9;display:flex;align-items:center;justify-content:center;background:#070816;transition:opacity .9s;
+    font-family:'Jura';letter-spacing:.34em;text-transform:uppercase;font-size:12px;color:var(--muted)}
+  /* in-space reader — you never leave the world */
+  .reader{position:fixed;inset:0;z-index:5;display:flex;align-items:center;justify-content:center;padding:7vh 6vw;
+    opacity:0;pointer-events:none;transition:opacity .55s ease}
+  .reader.on{opacity:1;pointer-events:auto}
+  .panel{width:min(760px,100%);max-height:84vh;overflow:auto;border-radius:24px;padding:46px 54px;
+    background:rgba(11,13,30,.58);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+    border:1px solid rgba(215,217,242,.22);box-shadow:0 50px 140px rgba(0,0,0,.6);
+    transform:translateY(30px) scale(.97);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+  .reader.on .panel{transform:none}
+  .panel .kick{font-family:'Jura';letter-spacing:.3em;text-transform:uppercase;font-size:12px;color:var(--vi2)}
+  .panel h2{margin-top:12px;font-size:clamp(30px,3.6vw,46px)}
+  .rbody{margin-top:22px;color:#d3d5ea;font-size:17px;line-height:1.85}
+  .rbody p{margin-bottom:16px}
+  .rbody .full{display:inline-block;margin-top:8px;font-family:'Jura';letter-spacing:.12em;text-transform:uppercase;font-size:12px;color:var(--vi2);text-decoration:none}
+  .back{position:fixed;top:28px;left:50px;z-index:6;font-family:'Jura';letter-spacing:.18em;text-transform:uppercase;font-size:12px;
+    color:var(--ink);background:rgba(11,13,30,.5);backdrop-filter:blur(8px);border:1px solid rgba(215,217,242,.25);
+    padding:11px 20px;border-radius:30px;cursor:pointer;opacity:0;pointer-events:none;transition:.4s}
+  .back.on{opacity:1;pointer-events:auto}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div class="vign"></div>
+<div class="bar" id="bar"></div>
+<div class="nav"><img src="assets/khd-wordmark-white.png" alt="Khatib Designs" /><span class="links"><a href="#w">Work</a><a href="#s">Studio</a><a href="#ct">Contact</a></span></div>
+
+<div class="content">
+  <section class="sec center"><div class="box">
+    <div class="eye">● AI-native since 2015 · Together we venture</div>
+    <h1>We craft the<br /><b class="g">extraordinary.</b></h1>
+    <p class="lead">An AI-native design &amp; development studio — building intelligent products for iOS, Android &amp; web, and shipping AI long before it was a headline.</p>
+  </div></section>
+
+  <section class="sec" id="s"><div class="box">
+    <div class="eye">The studio</div>
+    <h2>Design that <b class="g">moves</b>.<br />Engineering &amp; AI that <b class="g">ship</b>.</h2>
+    <p class="lead">Since 2015 we've taken founders from a blank page to the App Store — strategy, brand, interface, the code behind it and the AI inside it. One team, end to end.</p>
+  </div></section>
+
+  <section class="sec right" id="ai"><div class="box">
+    <div class="eye">AI · in our DNA</div>
+    <h2>AI experts — <b class="g">years</b><br />before the buzzword.</h2>
+    <p class="lead">We've been building AI-powered products for years: recommendation engines, computer vision, conversational AI and LLM-driven features woven into apps real people use daily. Not a bolt-on bandwagon — a craft we've practised since the beginning.</p>
+  </div></section>
+
+  <section class="sec right" id="w"><div class="box">
+    <div class="eye">Selected work</div>
+    <h2>Things we've <b class="g">shipped</b>.</h2>
+    <div class="works">
+      <a class="w" href="/work/connect-here/"><span class="n">Connect Here</span><span class="m">United States · Social <span class="go">→</span></span></a>
+      <a class="w" href="/work/iwash/"><span class="n">iWASH</span><span class="m">Kuwait · On-demand <span class="go">→</span></span></a>
+      <a class="w" href="/work/coines/"><span class="n">Coines</span><span class="m">Bulgaria · Fintech <span class="go">→</span></span></a>
+      <a class="w" href="/work/dwa/"><span class="n">DWA</span><span class="m">Kuwait · Health <span class="go">→</span></span></a>
+      <a class="w" href="/work/wcs/"><span class="n">WCS</span><span class="m">GCC · Logistics <span class="go">→</span></span></a>
+      <a class="w" href="/work/printit/"><span class="n">PrintIt</span><span class="m">Kuwait · Print-on-demand <span class="go">→</span></span></a>
+    </div>
+  </div></section>
+
+  <section class="sec right" id="in"><div class="box">
+    <div class="eye">Insights</div>
+    <h2>Notes from the <b class="g">studio</b>.</h2>
+    <div class="works">
+      <a class="w" href="/blog/app-development-cost-gcc/"><span class="n">App development cost in the GCC</span><span class="m">Guide <span class="go">→</span></span></a>
+      <a class="w" href="/blog/how-long-to-build-an-app/"><span class="n">How long does it take to build an app?</span><span class="m">Guide <span class="go">→</span></span></a>
+      <a class="w" href="/blog/ios-android-or-both/"><span class="n">iOS, Android, or both?</span><span class="m">Guide <span class="go">→</span></span></a>
+      <a class="w" href="/blog/what-is-an-mvp/"><span class="n">What is an MVP?</span><span class="m">Guide <span class="go">→</span></span></a>
+      <a class="w" href="/blog/bilingual-arabic-english-apps/"><span class="n">Bilingual Arabic &amp; English apps</span><span class="m">Guide <span class="go">→</span></span></a>
+      <a class="w" href="/blog/"><span class="n">All articles</span><span class="m">Insights hub <span class="go">→</span></span></a>
+    </div>
+  </div></section>
+
+  <section class="sec"><div class="box">
+    <div class="eye">By the numbers</div>
+    <div class="stats">
+      <div class="stat"><div class="v">100+</div><div class="l">Products shipped</div></div>
+      <div class="stat"><div class="v">9</div><div class="l">Years building</div></div>
+      <div class="stat"><div class="v">AI</div><div class="l">In our DNA for years</div></div>
+      <div class="stat"><div class="v">6</div><div class="l">Countries</div></div>
+    </div>
+  </div></section>
+
+  <section class="sec center" id="ct"><div class="box">
+    <div class="eye">● Let's build</div>
+    <h2>Your idea, <b class="g">extraordinary</b>.</h2>
+    <p class="lead">Tell us what you're dreaming up. We'll tell you how we'd make it real.</p>
+    <div class="cta"><a class="btn solid">Start a project</a><a class="btn">See the work</a></div>
+  </div></section>
+</div>
+<div class="hint" id="hint">Scroll to fly ↓</div>
+
+<button class="back" id="back">← Back to space</button>
+<div class="reader" id="reader"><div class="panel"><div class="kick" id="rkick"></div><h2 id="rtitle"></h2><div class="rbody" id="rbody"></div></div></div>
+
+<div class="load" id="load">Entering…</div>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+}}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+
+const canvas=document.getElementById('c');
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.setSize(innerWidth,innerHeight);
+renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=1.15;
+
+const scene=new THREE.Scene();
+scene.background=new THREE.Color(0x070816);
+scene.fog=new THREE.FogExp2(0x070816,0.011);
+const camera=new THREE.PerspectiveCamera(55,innerWidth/innerHeight,0.1,400);
+
+const pmrem=new THREE.PMREMGenerator(renderer);
+scene.environment=pmrem.fromScene(new RoomEnvironment(),0.04).texture;
+
+scene.add(new THREE.AmbientLight(0x303058,0.7));
+const key=new THREE.DirectionalLight(0xffffff,1.6); key.position.set(4,6,6); scene.add(key);
+const vio=new THREE.PointLight(0x8a8fe6,80,60); vio.position.set(-6,2,-10); scene.add(vio);
+
+// hero gem — refractive glass with glowing core, sits near the start of the tunnel
+const gem=new THREE.Mesh(new THREE.IcosahedronGeometry(2.0,0),new THREE.MeshPhysicalMaterial({
+  color:0xe9e2ff,metalness:0,roughness:0.02,transmission:1,thickness:2.4,ior:1.7,iridescence:1,iridescenceIOR:1.4,
+  clearcoat:1,clearcoatRoughness:0.04,attenuationColor:new THREE.Color(0x6a72c8),attenuationDistance:3,envMapIntensity:1.5}));
+gem.position.set(0,0,-6); scene.add(gem);
+gem.add(new THREE.Mesh(new THREE.IcosahedronGeometry(0.7,0),new THREE.MeshBasicMaterial({color:0xdadcf2})));
+
+// crystal field — fly through this (refined silver-indigo palette)
+const COL=[0x9aa0ee,0xc9cbe8,0x7e86d6,0xaeb3ff];
+const field=[];
+const geos=[new THREE.IcosahedronGeometry(1,0),new THREE.OctahedronGeometry(1,0),new THREE.TetrahedronGeometry(1,0)];
+const COUNT=340;
+for(let i=0;i<COUNT;i++){
+  const m=new THREE.Mesh(geos[i%3],new THREE.MeshStandardMaterial({
+    color:0x131528,emissive:COL[i%4],emissiveIntensity:1.55,metalness:0.35,roughness:0.28,
+    transparent:true,opacity:0.95}));
+  const ring=6+Math.random()*11;           // wider clear corridor so text stays readable
+  const ang=Math.random()*Math.PI*2;
+  const z=-6-(i/COUNT)*150+(Math.random()-0.5)*5;   // EVEN coverage the whole way
+  m.position.set(Math.cos(ang)*ring,Math.sin(ang)*ring*0.72,z);
+  const s=0.2+Math.random()*0.8; m.scale.setScalar(s);
+  m.rotation.set(Math.random()*6,Math.random()*6,Math.random()*6);
+  m.userData.spin=(Math.random()-0.5)*0.01;
+  scene.add(m); field.push(m);
+}
+// dust
+const N=1100,pg=new THREE.BufferGeometry(),pa=new Float32Array(N*3);
+for(let i=0;i<N;i++){pa[i*3]=(Math.random()-0.5)*34;pa[i*3+1]=(Math.random()-0.5)*22;pa[i*3+2]=6-Math.random()*165;}
+pg.setAttribute('position',new THREE.BufferAttribute(pa,3));
+const dust=new THREE.Points(pg,new THREE.PointsMaterial({color:0xc9bcff,size:0.04,transparent:true,opacity:0.6}));
+scene.add(dust);
+
+const composer=new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene,camera));
+composer.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth,innerHeight),0.55,0.7,0.72));
+
+let mx=0,my=0;
+addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-0.5;my=e.clientY/innerHeight-0.5;});
+addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth,innerHeight);composer.setSize(innerWidth,innerHeight);});
+
+const secs=[...document.querySelectorAll('.sec')];
+const bar=document.getElementById('bar'),hint=document.getElementById('hint'),load=document.getElementById('load');
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)), lerp=(a,b,t)=>a+(b-a)*t;
+let camZ=10,t=0,warp=0,warpTarget=0;
+
+function frame(){
+  t+=0.016;
+  warp+=(warpTarget-warp)*0.07;
+  const max=document.documentElement.scrollHeight-innerHeight;
+  const p=clamp(scrollY/max,0,1);
+  bar.style.width=(p*100)+'%';
+  hint.style.opacity=(1-clamp(p*6,0,1))*(1-warp);
+
+  // fly forward through the corridor on scroll (smoothed) + warp deeper when reading
+  const targetZ=8 - p*150;
+  camZ+=(targetZ-camZ)*0.08;
+  const windX=Math.sin(p*7)*2.4, windY=Math.cos(p*5)*1.2;
+  camera.position.x+=((windX+mx*3*(1-warp))-camera.position.x)*0.06;
+  camera.position.y+=((windY-my*2*(1-warp))-camera.position.y)*0.06;
+  camera.position.z=camZ - warp*30;
+  camera.lookAt(Math.sin((p+0.04)*7)*2.4, Math.cos((p+0.04)*5)*1.2, camZ-12-warp*30);
+
+  gem.rotation.y+=0.004; gem.rotation.x=Math.sin(t*0.5)*0.2;
+  const fs=1+warp*2;                       // crystals streak faster mid-warp
+  for(const m of field){m.rotation.y+=m.userData.spin*fs;m.rotation.x+=m.userData.spin*0.6;}
+  dust.rotation.z+=0.0004; dust.material.size=0.04+warp*0.06;
+
+  // section reveals by distance to viewport centre (hidden while reading)
+  for(const s of secs){const r=s.getBoundingClientRect();
+    const d=Math.abs((r.top+r.height/2)-innerHeight/2)/innerHeight;
+    const o=clamp(1-d*1.5,0,1)*(1-warp); const box=s.firstElementChild;
+    box.style.opacity=o; box.style.transform='translateY('+(1-o)*40+'px)';}
+
+  composer.render();
+  requestAnimationFrame(frame);
+}
+frame();
+setTimeout(()=>{load.style.opacity=0;setTimeout(()=>load.remove(),900);},700);
+
+// ---------- in-space reader: warp in, read, fly back — never leave the world ----------
+const CONTENT={
+  'connect-here':{k:'United States · Social',t:'Connect Here',b:'<p>Connect Here turns the room you\'re in into your network. Check in to a venue and instantly see who else is there, what they\'re into, and how to break the ice — social discovery anchored to real-world places.</p><p>We led product, brand and engineering across iOS and Android, from first wireframe to the App Store and Google Play.</p>'},
+  'iwash':{k:'Kuwait · On-demand',t:'iWASH',b:'<p>Kuwait\'s most-loved on-demand car wash. Pin your car, pick a package, and a pro shows up — payments, scheduling and live tracking in one tap.</p><p>Designed for speed and trust in a market that lives on its phone.</p>'},
+  'coines':{k:'Bulgaria · Fintech',t:'Coines',b:'<p>A peer-to-peer crypto exchange that makes buying and selling feel as calm as a banking app — clear rates, instant matches, zero jargon.</p><p>We distilled a complex market into an interface anyone can use.</p>'},
+  'dwa':{k:'Kuwait · Health',t:'DWA',b:'<p>Your pharmacy, delivered. Browse, upload a prescription, and track delivery to the door — fully bilingual, end to end.</p><p>Healthcare UX that respects both language and urgency.</p>'},
+  'wcs':{k:'GCC · Logistics',t:'WCS',b:'<p>A logistics backbone connecting fleets, orders and customers across the Gulf — real-time, role-based, and built to scale.</p>'},
+  'printit':{k:'Kuwait · Print-on-demand',t:'PrintIt',b:'<p>Design it, print it, deliver it. A print-on-demand storefront that turns a photo into a doorstep delivery in minutes.</p>'},
+  'app-development-cost-gcc':{k:'Insights · Guide',t:'App development cost in the GCC',b:'<p>What does it really cost to build an app in Kuwait, Saudi or the UAE? We break down the ranges — MVP vs full build, the levers that move the number, and where founders overspend.</p><p>A practical guide written from 100+ shipped products.</p>'},
+  'how-long-to-build-an-app':{k:'Insights · Guide',t:'How long does it take to build an app?',b:'<p>From idea to App Store, realistic timelines for an MVP, a v1, and a polished launch — and the decisions that speed it up or slow it down.</p>'},
+  'ios-android-or-both':{k:'Insights · Guide',t:'iOS, Android, or both?',b:'<p>Which platform first? How to choose based on your market, budget and goals — and when cross-platform is the smart call.</p>'},
+  'what-is-an-mvp':{k:'Insights · Guide',t:'What is an MVP?',b:'<p>The minimum viable product, demystified — what to build first, what to cut, and how to learn fast without burning the budget.</p>'},
+  'bilingual-arabic-english-apps':{k:'Insights · Guide',t:'Bilingual Arabic & English apps',b:'<p>Building for both languages means more than translation — RTL layout, typography, and cultural nuance. Here\'s how we get it right.</p>'},
+  'blog':{k:'Insights',t:'Notes from the studio',b:'<p>Field notes on building products in the GCC — cost, timelines, MVPs, platforms and bilingual design.</p>'}
+};
+const reader=document.getElementById('reader'),back=document.getElementById('back');
+const rkick=document.getElementById('rkick'),rtitle=document.getElementById('rtitle'),rbody=document.getElementById('rbody');
+function idFrom(href){return href.replace(/\/+$/,'').split('/').pop()||'blog';}
+function openReader(id,href,push){
+  const c=CONTENT[id]; if(!c) return;
+  rkick.textContent=c.k; rtitle.textContent=c.t;
+  rbody.innerHTML=c.b+'<a class="full" href="'+href+'">Open the full page ↗</a>';
+  reader.classList.add('on'); back.classList.add('on'); warpTarget=1;
+  document.body.style.overflow='hidden';
+  if(push) history.pushState({id:id,href:href},'',href);
+}
+function closeReader(){reader.classList.remove('on'); back.classList.remove('on'); warpTarget=0; document.body.style.overflow='';}
+document.querySelectorAll('a.w').forEach(a=>a.addEventListener('click',e=>{
+  e.preventDefault(); const href=a.getAttribute('href'); openReader(idFrom(href),href,true);
+}));
+back.addEventListener('click',()=>{ if(history.state&&history.state.id) history.back(); else closeReader(); });
+addEventListener('popstate',e=>{ const st=e.state; if(st&&st.id&&CONTENT[st.id]) openReader(st.id,st.href,false); else closeReader(); });
+</script>
+</body>
+</html>
