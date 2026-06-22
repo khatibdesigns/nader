@@ -60,6 +60,7 @@
     footer{ border-top:1px solid #e7e4f3; padding:30px 0 50px; color:var(--ink600); font-size:14px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px; }
     footer a{ font-weight:600; margin-right:18px; }
   </style>
+  <script defer src="/assets/analytics.js"></script>
 </head>
 <body>
   <div class="wrap">
@@ -67,15 +68,18 @@
       <div class="logo"><span class="mark">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><ellipse cx="7" cy="9" rx="1.7" ry="2.3"/><ellipse cx="12" cy="7" rx="1.7" ry="2.4"/><ellipse cx="17" cy="9" rx="1.7" ry="2.3"/><ellipse cx="19" cy="14" rx="1.5" ry="2"/><path d="M12 11c-2.6 0-5 1.8-5 4.2C7 17.3 9 18.5 12 18.5s5-1.2 5-3.3C17 12.8 14.6 11 12 11z"/></svg>
       </span>eVet</div>
-      <nav><a href="#features">Features</a><a href="support.html">Support</a><a href="privacy.html">Privacy</a></nav>
+      <nav><a href="#features">Features</a><a href="guides/">Guides</a><a href="support.html">Support</a><a href="privacy.html">Privacy</a></nav>
     </header>
 
     <div class="hero">
       <h1>Your pet’s health,<br/><span class="grad">beautifully organized</span></h1>
       <p>eVet keeps vaccinations, weight, vet visits, appointments and documents for every dog and cat in one calm, simple place — and reminds you before anything’s due.</p>
       <div class="badges">
-        <div class="badge">📱<div><small>Coming soon to the</small>App Store</div></div>
-        <div class="badge">🤖<div><small>Coming soon to</small>Google Play</div></div>
+        <a class="badge" href="https://apps.apple.com/app/id1439789267" aria-label="Download eVet on the App Store">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M17.05 12.54c-.03-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.41-.14-2.76.83-3.47.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.75 2.28-1.6 2.78-.41 6.89 1.15 9.14.76 1.1 1.67 2.34 2.85 2.29 1.14-.05 1.57-.74 2.95-.74s1.76.74 2.96.72c1.22-.02 2-1.12 2.75-2.22.86-1.27 1.22-2.5 1.23-2.56-.03-.01-2.37-.91-2.4-3.62z"/><path d="M14.9 5.62c.63-.76 1.05-1.82.94-2.88-.9.04-2 .6-2.65 1.36-.58.67-1.1 1.75-.96 2.78 1.01.08 2.04-.51 2.67-1.26z"/></svg>
+          <div><small>Download on the</small>App Store</div>
+        </a>
+        <div class="badge" style="opacity:.6">🤖<div><small>Coming soon to</small>Google Play</div></div>
       </div>
       <div class="shots">
         <div class="phone"><img src="shots/home.png" alt="eVet home dashboard showing the next vet appointment and a health snapshot" /></div>
