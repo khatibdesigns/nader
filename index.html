@@ -409,5 +409,24 @@
   <script defer src="assets/i18n.js"></script>
   <script defer src="assets/globe.js"></script>
   <script defer src="assets/site.js"></script>
+
+  <!-- Persistent conversion CTA — always-visible "Book a call" → WhatsApp (fires GA4 book_call) -->
+  <a class="khd-book" data-cta="book-call"
+     href="https://wa.me/96550003048?text=Hi%20Khatib%20Designs%2C%20I%27d%20like%20to%20book%20a%2020-minute%20intro%20call%20about%20a%20project."
+     target="_blank" rel="noopener" aria-label="Book a 20-minute intro call">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.9c0 1.76.46 3.45 1.32 4.95L2 22l5.3-1.39a9.9 9.9 0 0 0 4.73 1.2h.01c5.46 0 9.9-4.45 9.9-9.9C21.94 6.45 17.5 2 12.04 2Zm5.52 13.86c-.21.58-1.2 1.11-1.68 1.18-.43.06-.97.09-1.56-.1-.36-.11-.82-.26-1.41-.52-2.48-1.07-4.11-3.57-4.23-3.74-.12-.16-1.01-1.34-1.01-2.56 0-1.22.63-1.82.86-2.07.23-.25.5-.31.66-.31l.48.01c.15.01.36-.05.56.43.2.5.7 1.72.76 1.84.06.12.1.26.02.43-.08.16-.12.26-.25.41-.12.14-.26.32-.37.43-.12.12-.25.25-.11.5.15.25.64 1.06 1.38 1.72.94.84 1.74 1.11 1.99 1.23.25.12.4.1.54-.06.15-.17.63-.72.79-.97.17-.25.33-.21.56-.12.22.08 1.44.68 1.69.8.25.12.41.18.47.28.07.11.07.6-.14 1.18Z"/></svg>
+    <span>Book a 20-min call</span>
+  </a>
+  <style>
+    .khd-book{position:fixed;right:20px;bottom:20px;z-index:9999;display:inline-flex;align-items:center;gap:9px;
+      padding:13px 18px;border-radius:40px;text-decoration:none;font:600 14px/1 system-ui,-apple-system,Segoe UI,sans-serif;
+      color:#08120a;background:#25d366;box-shadow:0 10px 30px rgba(0,0,0,.35),0 0 0 1px rgba(255,255,255,.08);
+      transition:transform .18s ease,box-shadow .18s ease;animation:khdBookIn .5s .8s both}
+    .khd-book:hover{transform:translateY(-2px);box-shadow:0 14px 38px rgba(37,211,102,.4)}
+    .khd-book span{white-space:nowrap}
+    @keyframes khdBookIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+    @media(max-width:560px){.khd-book{right:14px;bottom:14px;padding:12px 15px}.khd-book span{display:none}}
+    @media print{.khd-book{display:none}}
+  </style>
 </body>
 </html>

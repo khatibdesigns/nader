@@ -30,6 +30,8 @@
     var store = t.closest && t.closest('.store, .store-row a');
     if (store && store.href) { gtag('event', 'store_click', { link_url: store.href }); return; }
     var cta = t.closest && t.closest('a.btn.solid[href*="#contact"]');
-    if (cta) { gtag('event', 'cta_start_project', {}); }
+    if (cta) { gtag('event', 'cta_start_project', {}); return; }
+    var book = t.closest && t.closest('[data-cta="book-call"]');
+    if (book) { gtag('event', 'book_call', { transport_type: 'beacon' }); }
   }, true);
 })();
