@@ -554,11 +554,29 @@ body.has-cta-bar{--cta-bar-h:76px;padding-bottom:calc(var(--cta-bar-h) + env(saf
   display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;
   padding:14px var(--shell);padding-bottom:calc(14px + env(safe-area-inset-bottom,0px));
   border-top:1px solid var(--line-2);background:rgba(11,10,24,0.94);backdrop-filter:blur(10px);}
+/* The local-currency hint appended by pricing.js. Deliberately quieter than the KWD
+   figure beside it: KWD is the price, this is only there so a visitor in Dubai or London
+   does not have to do the arithmetic before deciding to talk. dir=ltr on the span keeps
+   the numerals and symbol in order inside the Arabic mirror. */
+.cta-head .fx{color:var(--muted);white-space:nowrap;}
 .cta-bar .cta-head{font-size:14px;line-height:1.5;color:var(--ink);letter-spacing:.01em;text-wrap:balance;}
-/* the floating WhatsApp button and the home-page pill sit above the bar, not on it */
-body.has-cta-bar .wa-fab,
+/* The bar's button IS the WhatsApp action, so the floating circle is a third copy of the
+   same link on one screen — and it was landing exactly on top of the pill. Drop it here;
+   pages without a bar (every case study) still rely on it as their only contact route. */
+body.has-cta-bar .wa-fab{display:none;}
+/* The pill keeps its own message ("Book a 20-min call") so it stays, lifted clear. */
 body.has-cta-bar .khd-book{bottom:calc(var(--cta-bar-h) + 16px + env(safe-area-inset-bottom,0px));}
+/* .wa-btn is an outline style; on the bar it needs to read as the primary action, and
+   green-on-orange is unreadable. Solid WhatsApp green, dark text — scoped to the bar so
+   the 78 pages using the outline version are untouched. */
+.cta-bar .wa-btn{background:#25d366!important;border-color:#25d366!important;color:#06210f!important;}
+.cta-bar .wa-btn:hover{background:#1eb955!important;border-color:#1eb955!important;color:#06210f!important;}
 @media(max-width:760px){
+  /* The pill collapses to an icon-only circle below 760px, which puts a bare WhatsApp
+     glyph immediately above the bar's full-width WhatsApp button — the same action
+     twice, with nothing left to distinguish them. The bar wins on mobile: it carries
+     the price. */
+  body.has-cta-bar .khd-book{display:none;}
   body.has-cta-bar{--cta-bar-h:130px;}
   .cta-bar{flex-direction:column;gap:12px;text-align:center;}
   .cta-bar .cta-head{font-size:13px;}
