@@ -69,7 +69,11 @@
   document.addEventListener('click', function (e) {
     var t = e.target;
     var book = t.closest && t.closest('[data-cta="book-call"]');   // checked first: the pill is itself a wa.me link
-    if (book) { window.khdTrack('book_call', { transport_type: 'beacon' }); return; }
+    // cta_location separates the sticky price bar from the inline buttons, so the two
+    // surfaces can be compared. Declared here and nowhere else: a second listener on
+    // the same selector would double-count every conversion.
+    if (book) { window.khdTrack('book_call', { transport_type: 'beacon',
+      cta_location: book.getAttribute('data-cta-location') || 'inline' }); return; }
     var wa = t.closest && t.closest('a[href*="wa.me"]');
     if (wa) { window.khdTrack('whatsapp_click', { transport_type: 'beacon', link_url: wa.href }); return; }
     var store = t.closest && t.closest('.store, .store-row a');
