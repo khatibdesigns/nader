@@ -546,3 +546,25 @@ html[dir="rtl"] .wa-fab{right:auto;left:22px;}
 .ai-steps h4{font-family:var(--display);font-weight:500;font-size:20px;margin:10px 0 8px}
 .ai-steps .step p{color:var(--muted);font-size:15px;line-height:1.6;margin:0}
 @media(max-width:760px){.ai-steps{grid-template-columns:1fr}}
+
+/* ===== persistent scoping-call CTA bar ===== */
+/* --cta-bar-h reserves the strip at the bottom of the page so the bar never covers the footer */
+body.has-cta-bar{--cta-bar-h:76px;padding-bottom:calc(var(--cta-bar-h) + env(safe-area-inset-bottom,0px));}
+.cta-bar{position:fixed;left:0;right:0;bottom:0;z-index:46;
+  display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;
+  padding:14px var(--shell);padding-bottom:calc(14px + env(safe-area-inset-bottom,0px));
+  border-top:1px solid var(--line-2);background:rgba(11,10,24,0.94);backdrop-filter:blur(10px);}
+.cta-bar .cta-head{font-size:14px;line-height:1.5;color:var(--ink);letter-spacing:.01em;text-wrap:balance;}
+/* the floating WhatsApp button and the home-page pill sit above the bar, not on it */
+body.has-cta-bar .wa-fab,
+body.has-cta-bar .khd-book{bottom:calc(var(--cta-bar-h) + 16px + env(safe-area-inset-bottom,0px));}
+@media(max-width:760px){
+  body.has-cta-bar{--cta-bar-h:130px;}
+  .cta-bar{flex-direction:column;gap:12px;text-align:center;}
+  .cta-bar .cta-head{font-size:13px;}
+}
+@media(max-width:420px){ body.has-cta-bar{--cta-bar-h:148px;} }
+@media print{
+  .cta-bar{display:none;}
+  body.has-cta-bar{padding-bottom:0;}
+}
