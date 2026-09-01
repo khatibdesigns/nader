@@ -68,13 +68,13 @@
   // delegated lead-event tracking (mark these as "key events" in GA4)
   document.addEventListener('click', function (e) {
     var t = e.target;
+    var book = t.closest && t.closest('[data-cta="book-call"]');   // checked first: the pill is itself a wa.me link
+    if (book) { window.khdTrack('book_call', { transport_type: 'beacon' }); return; }
     var wa = t.closest && t.closest('a[href*="wa.me"]');
     if (wa) { window.khdTrack('whatsapp_click', { transport_type: 'beacon', link_url: wa.href }); return; }
     var store = t.closest && t.closest('.store, .store-row a');
     if (store && store.href) { window.khdTrack('store_click', { link_url: store.href }); return; }
-    var cta = t.closest && t.closest('a.btn.solid[href*="#contact"]');
+    var cta = t.closest && t.closest('a[href*="#contact"]');       // plain .btn on blog CTA bands, .btn.solid on site pages
     if (cta) { window.khdTrack('cta_start_project', {}); return; }
-    var book = t.closest && t.closest('[data-cta="book-call"]');
-    if (book) { window.khdTrack('book_call', { transport_type: 'beacon' }); }
   }, true);
 })();
