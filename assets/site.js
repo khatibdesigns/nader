@@ -240,18 +240,44 @@
   }
 
   /* ---------- lead form (FormSubmit AJAX) ---------- */
+  const LEAD_KEY = 'khd_lead_pending';
+  const LEAD_TTL = 7 * 24 * 60 * 60 * 1000;                     // keep a stranded enquiry for a week
+  const LEAD_SUBJECT = 'New project enquiry — khatibdesigns.com';
+  const LEAD_WA = '96550003048';
   function initLeadForm() {
     const form = $('#lead-form'); if (!form) return;
     const status = $('#form-status'), btn = $('#lead-submit');
+    function payload() {
+      const data = {}; new FormData(form).forEach(function (v, k) { if (k.charAt(0) !== '_' || k === '_subject') data[k] = v; });
+      data._subject = LEAD_SUBJECT;
+      data._template = 'table';
+      return data;
+    }
+    // what the visitor already typed, ready to hand to WhatsApp or mail
+    function summary(data) {
+      const lines = [];
+      [['Name', 'name'], ['Company', 'company'], ['Budget', 'budget'], ['Project', 'message']].forEach(function (f) {
+        if (data[f[1]]) lines.push(f[0] + ': ' + data[f[1]]);
+      });
+      return lines.join('\n');
+    }
+    function recoveryLinks(data) {
+      const body = encodeURIComponent(summary(data));
+      return '<br /><a href="https://wa.me/' + LEAD_WA + '?text=' + body + '" target="_blank" rel="noopener">' + S('formErrWa') + '</a>' +
+        ' · <a href="mailto:studio@khatibdesigns.com?subject=' + encodeURIComponent(LEAD_SUBJECT) + '&amp;body=' + body + '">' + S('formErrMail') + '</a>';
+    }
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (form._honey && form._honey.value) return;             // bot trap
       if (!form.checkValidity()) { form.reportValidity(); return; }
       status.className = 'form-status'; status.textContent = S('formSending');
       btn.disabled = true;
-      const data = {}; new FormData(form).forEach(function (v, k) { if (k.charAt(0) !== '_' || k === '_subject') data[k] = v; });
-      data._subject = 'New project enquiry — khatibdesigns.com';
-      data._template = 'table';
+      const data = payload();
+      // persist first: the lead survives a dead notifier, a closed tab or a lost connection
+      try {
+        localStorage.setItem(LEAD_KEY, JSON.stringify({ data: data, t: Date.now(), path: location.pathname }));
+      } catch (err) {}
+      if (window.khdTrack) window.khdTrack('lead_submit_attempt', { method: 'contact_form' });
       fetch('https://formsubmit.co/ajax/studio@khatibdesigns.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -267,14 +293,36 @@
       }).then(function (ok) {
         if (!ok) throw new Error('not ok');
         form.reset();
+        try { localStorage.removeItem(LEAD_KEY); } catch (err) {}
         status.className = 'form-status ok';
         status.textContent = S('formOk');
         if (window.khdTrack) window.khdTrack('generate_lead', { method: 'contact_form' });
       }).catch(function () {
+        // keep the typed text on screen, keep the saved copy, offer one-tap ways out
         status.className = 'form-status err';
-        status.innerHTML = S('formErr');
+        status.innerHTML = S('formErr') + recoveryLinks(data);
+        if (window.khdTrack) window.khdTrack('lead_capture_failed', { method: 'contact_form' });
       }).finally(function () { btn.disabled = false; });
     });
+
+    /* a stranded enquiry from an earlier visit — refill it, never resend it */
+    try {
+      const raw = localStorage.getItem(LEAD_KEY);
+      const saved = raw ? JSON.parse(raw) : null;
+      if (saved && saved.data && saved.t && (Date.now() - saved.t) < LEAD_TTL) {
+        let restored = false;
+        Object.keys(saved.data).forEach(function (k) {
+          if (k.charAt(0) === '_') return;
+          const field = form.elements[k];
+          if (!field || !saved.data[k]) return;
+          if (!field.value) field.value = saved.data[k];
+          restored = true;
+        });
+        if (restored) { status.className = 'form-status'; status.textContent = S('formRestored'); }
+      } else if (raw) {
+        localStorage.removeItem(LEAD_KEY);
+      }
+    } catch (err) {}
   }
 
   /* ---------- stats counters ---------- */

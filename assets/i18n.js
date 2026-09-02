@@ -11,7 +11,10 @@ window.KHD_STR = {
     allRegions: 'All regions',
     formSending: 'Sending…',
     formOk: 'Thanks — your enquiry is on its way. We’ll reply within one business day.',
-    formErr: 'Something went wrong — please email <a href="mailto:studio@khatibdesigns.com">studio@khatibdesigns.com</a> or message us on WhatsApp.'
+    formErr: 'Something went wrong — please email <a href="mailto:studio@khatibdesigns.com">studio@khatibdesigns.com</a> or message us on WhatsApp.',
+    formErrWa: 'Send it on WhatsApp',
+    formErrMail: 'Send it by email',
+    formRestored: 'We saved your enquiry — press Send to try again.'
   },
   ar: {
     flagship: '★ منتج رئيسي', flagshipProduct: 'منتج رئيسي', product: 'منتج',
@@ -22,7 +25,10 @@ window.KHD_STR = {
     allRegions: 'كل المناطق',
     formSending: 'جارٍ الإرسال…',
     formOk: 'شكرًا — طلبك في طريقه إلينا. سنردّ خلال يوم عمل واحد.',
-    formErr: 'حدث خطأ ما — يرجى مراسلتنا على <a href="mailto:studio@khatibdesigns.com">studio@khatibdesigns.com</a> أو عبر واتساب.'
+    formErr: 'حدث خطأ ما — يرجى مراسلتنا على <a href="mailto:studio@khatibdesigns.com">studio@khatibdesigns.com</a> أو عبر واتساب.',
+    formErrWa: 'أرسل طلبك عبر واتساب',
+    formErrMail: 'أرسل طلبك بالبريد الإلكتروني',
+    formRestored: 'حفظنا طلبك — اضغط «أرسل طلبك» للمحاولة مرة أخرى.'
   }
 };
 
