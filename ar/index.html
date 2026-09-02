@@ -274,7 +274,7 @@
       <h2 style="margin-top:24px">لديك مشروع<br />في ذهنك؟</h2>
       <p class="contact-lead">تبني تطبيقًا للخليج أو خارجه؟ أخبرنا عنه وسنردّ خلال يوم عمل واحد — أو راسلنا على واتساب لدردشة سريعة.</p>
 
-      <form class="lead-form" id="lead-form" novalidate>
+      <form class="lead-form" id="lead-form" data-lead-form="contact_form" novalidate>
         <div class="lf-row">
           <label>الاسم<input name="name" required autocomplete="name" placeholder="اسمك" /></label>
           <label>البريد الإلكتروني<input name="email" type="email" required autocomplete="email" placeholder="you@company.com" /></label>
@@ -366,6 +366,7 @@
   <script defer src="/assets/i18n.js"></script>
   <script defer src="/assets/globe.js"></script>
   <script defer src="/assets/site.js"></script>
+  <script defer src="/assets/lead.js"></script>
 
   <!-- زر التحويل الدائم — احجز مكالمة عبر واتساب (يُفعّل GA4 book_call) -->
   <a class="khd-book" data-cta="book-call"

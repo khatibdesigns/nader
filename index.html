@@ -263,7 +263,7 @@
       <h2 style="margin-top:24px">Got a project<br />in mind?</h2>
       <p class="contact-lead">Building an app for the Gulf or beyond? Tell us about it and we&rsquo;ll reply within one business day &mdash; or message us on WhatsApp for a quick chat.</p>
 
-      <form class="lead-form" id="lead-form" novalidate>
+      <form class="lead-form" id="lead-form" data-lead-form="contact_form" novalidate>
         <div class="lf-row">
           <label>Name<input name="name" required autocomplete="name" placeholder="Your name" /></label>
           <label>Email<input name="email" type="email" required autocomplete="email" placeholder="you@company.com" /></label>
@@ -368,6 +368,7 @@
   <script defer src="assets/i18n.js"></script>
   <script defer src="assets/globe.js"></script>
   <script defer src="assets/site.js"></script>
+  <script defer src="assets/lead.js"></script>
 
   <!-- Persistent conversion CTA — always-visible "Book a call" → WhatsApp (fires GA4 book_call) -->
   <a class="khd-book" data-cta="book-call" data-cta-location="inline"

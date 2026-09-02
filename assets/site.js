@@ -239,44 +239,6 @@
     }).join('');
   }
 
-  /* ---------- lead form (FormSubmit AJAX) ---------- */
-  function initLeadForm() {
-    const form = $('#lead-form'); if (!form) return;
-    const status = $('#form-status'), btn = $('#lead-submit');
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      if (form._honey && form._honey.value) return;             // bot trap
-      if (!form.checkValidity()) { form.reportValidity(); return; }
-      status.className = 'form-status'; status.textContent = S('formSending');
-      btn.disabled = true;
-      const data = {}; new FormData(form).forEach(function (v, k) { if (k.charAt(0) !== '_' || k === '_subject') data[k] = v; });
-      data._subject = 'New project enquiry — khatibdesigns.com';
-      data._template = 'table';
-      fetch('https://formsubmit.co/ajax/studio@khatibdesigns.com', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(data)
-      }).then(function (r) {
-        // success on any 2xx — first (pre-activation) submit returns a
-        // non-JSON activation page, so don't depend on parsing the body
-        return r.text().then(function (t) {
-          var okBody = false;
-          try { okBody = String(JSON.parse(t).success).toLowerCase() === 'true'; } catch (e) {}
-          return r.ok || okBody;
-        });
-      }).then(function (ok) {
-        if (!ok) throw new Error('not ok');
-        form.reset();
-        status.className = 'form-status ok';
-        status.textContent = S('formOk');
-        if (window.khdTrack) window.khdTrack('generate_lead', { method: 'contact_form' });
-      }).catch(function () {
-        status.className = 'form-status err';
-        status.innerHTML = S('formErr');
-      }).finally(function () { btn.disabled = false; });
-    });
-  }
-
   /* ---------- stats counters ---------- */
   function animateStats() {
     $$('.stat .n').forEach(function (el) {
@@ -357,7 +319,6 @@
     buildFilter();
     buildOthers('all');
     buildContact();
-    initLeadForm();
     nav();
     delegate();
     observeReveal(document);

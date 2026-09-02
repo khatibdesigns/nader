@@ -245,6 +245,38 @@
         <a href="#offer" class="btn solid">See pricing</a>
         <a class="btn wa-btn" href="https://wa.me/96550003048?text=Hi%20Khatib%20Designs%2C%20I%27d%20like%20to%20talk%20about%20AI%20for%20my%20business." target="_blank" rel="noopener">WhatsApp us</a>
       </div>
+
+      <form class="lead-form" data-lead-form="ai_offer_form" novalidate>
+        <div class="lf-row">
+          <label>Name<input name="name" required autocomplete="name" placeholder="Your name" /></label>
+          <label>Email<input name="email" type="email" required autocomplete="email" placeholder="you@company.com" /></label>
+        </div>
+        <div class="lf-row">
+          <label>Company<input name="company" autocomplete="organization" placeholder="Company (optional)" /></label>
+          <label>Phone<input name="phone" type="tel" autocomplete="tel" placeholder="Best number / WhatsApp" /></label>
+        </div>
+        <label class="lf-full">Engagement
+          <select name="engagement">
+            <option value="">Which one fits? (optional)</option>
+            <option>AI Readiness &amp; Governance Sprint &mdash; KWD 3,500</option>
+            <option>Single-workflow sprint &mdash; KWD 1,500</option>
+            <option>The Build &mdash; from KWD 7,000</option>
+            <option>AI Operations &mdash; KWD 2,500/mo</option>
+            <option>Not sure yet</option>
+          </select>
+        </label>
+        <label class="lf-full">What you&rsquo;d want automated
+          <textarea name="message" required rows="4" placeholder="The workflow that eats the most time, and roughly how many people touch it. A few lines is plenty."></textarea>
+        </label>
+        <input type="hidden" name="_subject" value="Scoping-call request — /ai/" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="lf-honey" />
+        <div class="lf-actions">
+          <button type="submit" class="btn solid">Request a scoping call</button>
+        </div>
+        <p class="form-status" role="status" aria-live="polite"></p>
+      </form>
     </div>
   </section>
 
@@ -281,5 +313,6 @@
     document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el);});
   </script>
   <script defer src="/assets/pricing.js"></script>
+  <script defer src="/assets/lead.js"></script>
 </body>
 </html>
