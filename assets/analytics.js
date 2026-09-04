@@ -16,7 +16,8 @@
     generate_lead:     '',                    // contact-form lead   ← primary
     book_call:         '',                    // "book a call" WhatsApp CTA
     whatsapp_click:    '',                    // any WhatsApp tap
-    cta_start_project: ''                     // "Start a project" click
+    cta_start_project: '',                    // "Start a project" click
+    view_pricing:      ''                     // "See pricing" click
   };
 
   if (!GA_ID || GA_ID.indexOf('XXXX') !== -1) return;   // not configured yet → do nothing
@@ -72,6 +73,10 @@
     if (wa) { window.khdTrack('whatsapp_click', { transport_type: 'beacon', link_url: wa.href }); return; }
     var store = t.closest && t.closest('.store, .store-row a');
     if (store && store.href) { window.khdTrack('store_click', { link_url: store.href }); return; }
+    var price = t.closest && t.closest('a[href*="#offer"]');       // the missing funnel step between the landing view and book_call
+    if (price) { window.khdTrack('view_pricing', {
+      cta_location: price.closest('.nav-links') ? 'nav' : 'inline',
+      link_url: price.getAttribute('href') }); return; }
     var cta = t.closest && t.closest('a.btn.solid[href*="#contact"]');
     if (cta) { window.khdTrack('cta_start_project', {}); return; }
     var book = t.closest && t.closest('[data-cta="book-call"]');
