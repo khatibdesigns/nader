@@ -69,6 +69,13 @@
   // delegated lead-event tracking (mark these as "key events" in GA4)
   document.addEventListener('click', function (e) {
     var t = e.target;
+    // Checked first, and it must stay first: every book-call CTA (the pill, the
+    // case-study buttons) is itself a wa.me link, so a later branch never runs —
+    // the tap would be logged as a plain whatsapp_click and book_call would read 0.
+    var book = t.closest && t.closest('[data-cta="book-call"]');
+    if (book) { window.khdTrack('book_call', {
+      transport_type: 'beacon',
+      cta_location: book.getAttribute('data-cta-location') || 'inline' }); return; }
     var wa = t.closest && t.closest('a[href*="wa.me"]');
     if (wa) { window.khdTrack('whatsapp_click', { transport_type: 'beacon', link_url: wa.href }); return; }
     var store = t.closest && t.closest('.store, .store-row a');
@@ -91,7 +98,5 @@
       }
       return;
     }
-    var book = t.closest && t.closest('[data-cta="book-call"]');
-    if (book) { window.khdTrack('book_call', { transport_type: 'beacon' }); }
   }, true);
 })();
