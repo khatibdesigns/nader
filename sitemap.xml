@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://khatibdesigns.com/</loc><lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://khatibdesigns.com/ar/</loc><lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://khatibdesigns.com/</loc><lastmod>2026-06-10</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://khatibdesigns.com/ar/</loc><lastmod>2026-06-10</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://khatibdesigns.com/work/connect-here/</loc><lastmod>2026-06-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://khatibdesigns.com/work/iwash/</loc><lastmod>2026-06-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://khatibdesigns.com/work/coines/</loc><lastmod>2026-06-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://khatibdesigns.com/work/safey/</loc><lastmod>2026-06-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://khatibdesigns.com/ar/work/safey/</loc><lastmod>2026-06-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://khatibdesigns.com/work/spotly/</loc><lastmod>2026-06-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://khatibdesigns.com/ar/work/spotly/</loc><lastmod>2026-06-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://khatibdesigns.com/work/luma/</loc><lastmod>2026-06-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://khatibdesigns.com/ar/work/luma/</loc><lastmod>2026-06-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://khatibdesigns.com/work/dwa/</loc><lastmod>2026-06-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://khatibdesigns.com/work/wcs/</loc><lastmod>2026-06-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://khatibdesigns.com/work/printit/</loc><lastmod>2026-06-10</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -44,46 +38,14 @@
   <url><loc>https://khatibdesigns.com/ar/blog/ai-adoption-gcc/</loc><lastmod>2026-06-21</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://khatibdesigns.com/ar/blog/ai-use-cases-by-industry-gcc/</loc><lastmod>2026-06-21</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://khatibdesigns.com/ar/blog/what-an-ai-project-costs-gcc/</loc><lastmod>2026-06-21</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://khatibdesigns.com/evet/</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://khatibdesigns.com/evet/guides/</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://khatibdesigns.com/evet/guides/dog-vaccination-schedule.html</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://khatibdesigns.com/evet/guides/cat-vaccination-schedule.html</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://khatibdesigns.com/evet/guides/pet-health-tracker.html</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://khatibdesigns.com/evet/support.html</loc><lastmod>2026-06-17</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://khatibdesigns.com/blog/ai-customer-service-agents-gcc/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://khatibdesigns.com/ar/blog/ai-customer-service-agents-gcc/</loc><lastmod>2026-06-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://khatibdesigns.com/blog/ai-readiness-checklist-gcc/</loc><lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://khatibdesigns.com/ar/blog/ai-readiness-checklist-gcc/</loc><lastmod>2026-07-03</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://khatibdesigns.com/blog/ai-automation-for-real-estate-gcc/</loc><lastmod>2026-07-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://khatibdesigns.com/ar/blog/ai-automation-for-real-estate-gcc/</loc><lastmod>2026-07-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://khatibdesigns.com/blog/ai-automation-for-accounting-gcc/</loc><lastmod>2026-07-05</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://khatibdesigns.com/ar/blog/ai-automation-for-accounting-gcc/</loc><lastmod>2026-07-05</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://khatibdesigns.com/blog/ai-automation-clinics-gcc/</loc><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://khatibdesigns.com/ar/blog/ai-automation-clinics-gcc/</loc><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://khatibdesigns.com/blog/ai-automation-for-small-businesses-gcc/</loc><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://khatibdesigns.com/ar/blog/ai-automation-for-small-businesses-gcc/</loc><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://khatibdesigns.com/blog/ai-automation-marketing-gcc/</loc><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://khatibdesigns.com/ar/blog/ai-automation-marketing-gcc/</loc><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://khatibdesigns.com/blog/ai-automation-restaurants-gcc/</loc><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://khatibdesigns.com/ar/blog/ai-automation-restaurants-gcc/</loc><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://khatibdesigns.com/blog/ai-automation-retail-fnb-gcc/</loc><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://khatibdesigns.com/ar/blog/ai-automation-retail-fnb-gcc/</loc><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://khatibdesigns.com/blog/ai-whatsapp-automation-gcc/</loc><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://khatibdesigns.com/ar/blog/ai-whatsapp-automation-gcc/</loc><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://khatibdesigns.com/blog/arabic-ai-chatbot-gcc/</loc><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://khatibdesigns.com/ar/blog/arabic-ai-chatbot-gcc/</loc><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://khatibdesigns.com/blog/productized-design-retainer-kuwait/</loc><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://khatibdesigns.com/ar/blog/productized-design-retainer-kuwait/</loc><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://khatibdesigns.com/nader/</loc><lastmod>2026-08-27</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://khatibdesigns.com/work/</loc><lastmod>2026-08-27</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://khatibdesigns.com/blog/ai-automation-results-gcc/</loc><lastmod>2026-08-27</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://khatibdesigns.com/ar/blog/ai-automation-results-gcc/</loc><lastmod>2026-08-27</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://khatibdesigns.com/blog/ai-knowledge-assistant-gcc/</loc><lastmod>2026-08-29</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://khatibdesigns.com/ar/blog/ai-knowledge-assistant-gcc/</loc><lastmod>2026-08-29</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://khatibdesigns.com/blog/ai-automation-companies-kuwait/</loc><lastmod>2026-08-29</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://khatibdesigns.com/ar/blog/ai-automation-companies-kuwait/</loc><lastmod>2026-08-29</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://khatibdesigns.com/blog/ai-customer-service-software-gcc/</loc><lastmod>2026-08-31</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://khatibdesigns.com/ar/blog/ai-customer-service-software-gcc/</loc><lastmod>2026-08-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://khatibdesigns.com/blog/ai-automation-for-beginners-gcc/</loc><lastmod>2026-09-01</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://khatibdesigns.com/ar/blog/ai-automation-for-beginners-gcc/</loc><lastmod>2026-09-01</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://khatibdesigns.com/dubai/</loc><lastmod>2026-09-04</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://khatibdesigns.com/ar/dubai/</loc><lastmod>2026-09-04</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://khatibdesigns.com/blog/app-development-company-dubai/</loc><lastmod>2026-09-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://khatibdesigns.com/blog/app-cost-dubai-uae/</loc><lastmod>2026-09-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://khatibdesigns.com/blog/ai-consulting-uae/</loc><lastmod>2026-09-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://khatibdesigns.com/blog/building-apps-uae-market/</loc><lastmod>2026-09-04</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://khatibdesigns.com/ar/blog/app-development-company-dubai/</loc><lastmod>2026-09-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://khatibdesigns.com/ar/blog/app-cost-dubai-uae/</loc><lastmod>2026-09-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://khatibdesigns.com/ar/blog/ai-consulting-uae/</loc><lastmod>2026-09-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://khatibdesigns.com/ar/blog/building-apps-uae-market/</loc><lastmod>2026-09-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
 </urlset>
