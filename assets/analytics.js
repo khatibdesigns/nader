@@ -75,7 +75,7 @@
     if (store && store.href) { window.khdTrack('store_click', { link_url: store.href }); return; }
     var price = t.closest && t.closest('a[href*="#offer"]');       // the missing funnel step between the landing view and book_call
     if (price) { window.khdTrack('view_pricing', {
-      cta_location: price.closest('.nav-links') ? 'nav' : 'inline',
+      cta_location: price.getAttribute('data-cta-location') || (price.closest('.nav-links') ? 'nav' : 'inline'),
       link_url: price.getAttribute('href') }); return; }
     // Every #contact link that is a call to action, and none of the ones that are
     // navigation. A `btn` class means CTA wherever it sits — the header's "Start a
@@ -87,7 +87,7 @@
       var isBtn = cta.classList && cta.classList.contains('btn');
       if (isBtn || !cta.closest('nav, footer')) {
         window.khdTrack('cta_start_project', {
-          cta_location: !isBtn ? 'inline' : cta.closest('.nav-links') ? 'nav' : 'button' });
+          cta_location: cta.getAttribute('data-cta-location') || (!isBtn ? 'inline' : cta.closest('.nav-links') ? 'nav' : 'button') });
       }
       return;
     }
