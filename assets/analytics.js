@@ -16,6 +16,7 @@
     generate_lead:     '',                    // contact-form lead   ← primary
     book_call:         '',                    // "book a call" WhatsApp CTA
     whatsapp_click:    '',                    // any WhatsApp tap
+    phone_click:       '',                    // tap-to-call on the contact block
     cta_start_project: '',                    // "Start a project" click
     view_pricing:      ''                     // "See pricing" click
   };
@@ -71,6 +72,8 @@
     var t = e.target;
     var wa = t.closest && t.closest('a[href*="wa.me"]');
     if (wa) { window.khdTrack('whatsapp_click', { transport_type: 'beacon', link_url: wa.href }); return; }
+    var tel = t.closest && t.closest('a[href^="tel:"]');
+    if (tel) { window.khdTrack('phone_click', { transport_type: 'beacon', link_url: tel.href, cta_location: tel.getAttribute('data-cta-location') || 'contact' }); return; }
     var store = t.closest && t.closest('.store, .store-row a');
     if (store && store.href) { window.khdTrack('store_click', { link_url: store.href }); return; }
     var price = t.closest && t.closest('a[href*="#offer"]');       // the missing funnel step between the landing view and book_call

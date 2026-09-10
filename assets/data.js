@@ -110,8 +110,8 @@
   const CONTACT = {
     email:'studio@khatibdesigns.com',
     phones:[
-      { c:'Bulgaria', num:'+359 87 6375875' },
-      { c:'Kuwait',   num:'+965 50003048'  },
+      { c:'Bulgaria', num:'+359 87 6375875', tel:'+359876375875' },
+      { c:'Kuwait',   num:'+965 50003048',  tel:'+96550003048'  },
     ],
   };
 

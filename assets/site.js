@@ -235,7 +235,9 @@
     const ph = $('#contact-phones');
     if (ph) ph.innerHTML = KHD.contact.phones.map(function (p) {
       var label = (L === 'ar') ? ({ Bulgaria: 'بلغاريا', Kuwait: 'الكويت' }[p.c] || p.c) : p.c;
-      return '<div class="pcell"><div class="c">' + label + '</div><div class="num">' + p.num + '</div></div>';
+      return p.tel
+        ? '<a class="pcell" href="tel:' + p.tel + '" data-cta="phone" data-cta-location="contact"><div class="c">' + label + '</div><div class="num">' + p.num + '</div></a>'
+        : '<div class="pcell"><div class="c">' + label + '</div><div class="num">' + p.num + '</div></div>';
     }).join('');
   }
 
