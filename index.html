@@ -324,18 +324,19 @@
           <label>Email<input name="email" type="email" required autocomplete="email" placeholder="you@company.com" /></label>
         </div>
         <div class="lf-row">
+          <label>WhatsApp number<input name="phone" type="tel" required inputmode="tel" autocomplete="tel" placeholder="+965 5000 0000" /></label>
           <label>Company<input name="company" autocomplete="organization" placeholder="Company (optional)" /></label>
-          <label>Budget
-            <select name="budget">
-              <option value="">Select a range (optional)</option>
-              <option>Under $10k</option>
-              <option>$10k &ndash; $25k</option>
-              <option>$25k &ndash; $50k</option>
-              <option>$50k+</option>
-              <option>Not sure yet</option>
-            </select>
-          </label>
         </div>
+        <label class="lf-full">Budget
+          <select name="budget">
+            <option value="">Select a range (optional)</option>
+            <option>Under KWD 1,500</option>
+            <option>KWD 1,500 &ndash; 3,500</option>
+            <option>KWD 3,500 &ndash; 7,000</option>
+            <option>KWD 7,000+</option>
+            <option>Not sure yet</option>
+          </select>
+        </label>
         <label class="lf-full">Project
           <textarea name="message" required rows="4" placeholder="What are you building? A few lines is plenty."></textarea>
         </label>
