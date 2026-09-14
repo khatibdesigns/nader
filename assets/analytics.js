@@ -15,6 +15,7 @@
   var ADS_LABELS = {                          // per-conversion labels from Google Ads
     generate_lead:     '',                    // contact-form lead   ← primary
     book_call:         '',                    // "book a call" WhatsApp CTA
+    email_click:       '',                    // "Email instead" mailto tap
     whatsapp_click:    '',                    // any WhatsApp tap
     cta_start_project: '',                    // "Start a project" click
     view_pricing:      ''                     // "See pricing" click
@@ -69,6 +70,18 @@
   // delegated lead-event tracking (mark these as "key events" in GA4)
   document.addEventListener('click', function (e) {
     var t = e.target;
+    // Explicitly marked CTAs win. Every book-call button is also a wa.me link, so this
+    // has to run before the WhatsApp check or the scoping-call conversion never fires.
+    var el = t.closest && t.closest('[data-cta]');
+    if (el) {
+      var kind = el.getAttribute('data-cta');
+      if (kind === 'book-call') { window.khdTrack('book_call', {
+        transport_type: 'beacon',
+        cta_location: el.getAttribute('data-cta-location') || 'inline',
+        link_url: el.href }); return; }
+      if (kind === 'email') { window.khdTrack('email_click', { transport_type: 'beacon', link_url: el.href }); return; }
+      // any other data-cta value falls through to the generic checks below
+    }
     var wa = t.closest && t.closest('a[href*="wa.me"]');
     if (wa) { window.khdTrack('whatsapp_click', { transport_type: 'beacon', link_url: wa.href }); return; }
     var store = t.closest && t.closest('.store, .store-row a');
@@ -91,7 +104,29 @@
       }
       return;
     }
-    var book = t.closest && t.closest('[data-cta="book-call"]');
-    if (book) { window.khdTrack('book_call', { transport_type: 'beacon' }); }
   }, true);
+
+  // The denominator for those clicks: how many visitors ever reach a CTA at all.
+  // Without it a zero book_call count can't tell "nobody scrolled that far" from
+  // "everybody saw it and nobody wanted it". One event per block per pageview.
+  function watchCTAs() {
+    if (!window.IntersectionObserver) return;                     // old browser → skip
+    var blocks = document.querySelectorAll('.case-cta-band, .section.contact, .cta-bar');
+    if (!blocks.length) return;                                   // page has no CTA block
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        io.unobserve(el);                                         // first view only
+        window.khdTrack('cta_view', {
+          cta_type: el.classList.contains('case-cta-band') ? 'band'
+                  : el.classList.contains('cta-bar')       ? 'sticky' : 'contact',
+          page_path: location.pathname });
+      });
+    }, { threshold: 0.5 });
+    Array.prototype.forEach.call(blocks, function (el) { io.observe(el); });
+  }
+  // this file is synchronous in <head>, so <body> usually isn't parsed yet
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', watchCTAs);
+  else watchCTAs();
 })();
