@@ -16,6 +16,7 @@
     generate_lead:     '',                    // contact-form lead   ← primary
     book_call:         '',                    // "book a call" WhatsApp CTA
     whatsapp_click:    '',                    // any WhatsApp tap
+    email_click:       '',                    // "Email instead" mailto CTA
     cta_start_project: '',                    // "Start a project" click
     view_pricing:      ''                     // "See pricing" click
   };
@@ -69,8 +70,19 @@
   // delegated lead-event tracking (mark these as "key events" in GA4)
   document.addEventListener('click', function (e) {
     var t = e.target;
+    // First, before wa.me: every book-call CTA is itself a wa.me link, so if the
+    // WhatsApp test ran first it would match and return, and book_call would never fire.
+    var book = t.closest && t.closest('[data-cta="book-call"]');
+    if (book) { window.khdTrack('book_call', {
+      transport_type: 'beacon',
+      link_url: book.href,
+      cta_location: book.getAttribute('data-cta-location') || (book.closest('nav, footer') ? 'nav' : 'inline') }); return; }
     var wa = t.closest && t.closest('a[href*="wa.me"]');
     if (wa) { window.khdTrack('whatsapp_click', { transport_type: 'beacon', link_url: wa.href }); return; }
+    var mail = t.closest && t.closest('[data-cta="email"]');
+    if (mail) { window.khdTrack('email_click', {
+      link_url: mail.href,
+      cta_location: mail.getAttribute('data-cta-location') || 'inline' }); return; }
     var store = t.closest && t.closest('.store, .store-row a');
     if (store && store.href) { window.khdTrack('store_click', { link_url: store.href }); return; }
     var price = t.closest && t.closest('a[href*="#offer"]');       // the missing funnel step between the landing view and book_call
@@ -91,7 +103,5 @@
       }
       return;
     }
-    var book = t.closest && t.closest('[data-cta="book-call"]');
-    if (book) { window.khdTrack('book_call', { transport_type: 'beacon' }); }
   }, true);
 })();
