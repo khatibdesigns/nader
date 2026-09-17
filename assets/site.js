@@ -243,10 +243,27 @@
   function initLeadForm() {
     const form = $('#lead-form'); if (!form) return;
     const status = $('#form-status'), btn = $('#lead-submit');
+    function track(name, params) {
+      var p = params || {};
+      p.page_path = location.pathname; p.language = L;
+      if (window.khdTrack) window.khdTrack(name, p);
+    }
+    var started = false;                                        // one-shot engagement flag
+    function onEngage(e) {
+      if (started || e.target.name === '_honey') return;
+      started = true;
+      track('form_start', { method: 'contact_form' });
+    }
+    form.addEventListener('input', onEngage);
+    form.addEventListener('change', onEngage);
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (form._honey && form._honey.value) return;             // bot trap
-      if (!form.checkValidity()) { form.reportValidity(); return; }
+      if (!form.checkValidity()) {
+        var invalid = form.querySelector(':invalid');
+        track('lead_submit_blocked', { reason: 'validation', field: (invalid && invalid.name) || 'unknown' });
+        form.reportValidity(); return;
+      }
       status.className = 'form-status'; status.textContent = S('formSending');
       btn.disabled = true;
       const data = {}; new FormData(form).forEach(function (v, k) { if (k.charAt(0) !== '_' || k === '_subject') data[k] = v; });
@@ -269,8 +286,9 @@
         form.reset();
         status.className = 'form-status ok';
         status.textContent = S('formOk');
-        if (window.khdTrack) window.khdTrack('generate_lead', { method: 'contact_form' });
-      }).catch(function () {
+        track('generate_lead', { method: 'contact_form', budget: data.budget || 'unspecified', has_company: data.company ? 'yes' : 'no' });
+      }).catch(function (err) {
+        track('lead_submit_failed', { reason: (err && err.message === 'not ok') ? 'rejected' : 'network' });
         status.className = 'form-status err';
         status.innerHTML = S('formErr');
       }).finally(function () { btn.disabled = false; });
