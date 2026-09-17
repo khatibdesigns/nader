@@ -326,6 +326,23 @@ header.nav.scrolled{background:rgba(7,6,17,0.74);backdrop-filter:blur(14px);
 .case-cta-band h2{font-family:var(--display);font-weight:300;font-size:clamp(30px,4.4vw,56px);letter-spacing:.01em;}
 .case-cta-band p{color:var(--muted);max-width:520px;margin:18px auto 30px;font-size:16px;}
 .case-cta-band .row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+/* the band's price line reads as an anchor, not body copy */
+.case-cta-band .cta-price,
+.cta-price{color:var(--ink);max-width:560px;margin:14px auto 26px;}
+.cta-price strong{color:var(--accent);font-weight:500;}
+
+/* ---------- persistent priced CTA bar (/ai/, case studies) ---------- */
+.cta-bar{position:fixed;left:0;right:0;bottom:0;z-index:60;
+  display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;
+  padding:12px var(--shell);background:var(--panel);backdrop-filter:blur(14px);
+  border-top:1px solid var(--line);}
+.cta-bar .cta-head{font-family:var(--body);font-size:13.5px;line-height:1.5;color:var(--ink);margin:0;}
+.cta-bar .cta-head [data-kwd]{color:var(--accent);}
+/* the bar is fixed — hold the footer clear of it, and lift the fab above it */
+body.has-cta-bar{padding-bottom:82px;}
+body.has-cta-bar .wa-fab{bottom:98px;}
+/* local-currency hint appended by assets/pricing.js */
+.fx{font-size:.86em;color:var(--muted);white-space:nowrap;}
 
 /* ---------- blog ---------- */
 .post-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;}
@@ -477,6 +494,11 @@ footer{position:relative;z-index:5;padding:40px var(--shell) 56px;border-top:1px
   .lead-form .lf-row{grid-template-columns:1fr;}
   .lf-actions .btn{flex:1;justify-content:center;}
   .wa-fab{right:16px;bottom:16px;width:52px;height:52px;}
+  .cta-bar{flex-direction:column;gap:10px;padding:11px 16px;text-align:center;}
+  .cta-bar .cta-head{font-size:12.5px;}
+  .cta-bar .btn{width:100%;justify-content:center;}
+  body.has-cta-bar{padding-bottom:124px;}
+  body.has-cta-bar .wa-fab{bottom:136px;}
 }
 @media(max-width:480px){
   .hero h1{font-size:40px;}
