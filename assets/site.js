@@ -304,6 +304,12 @@
 
   /* ---------- stats counters ---------- */
   function animateStats() {
+    // The markup now carries the real figure, so a viewer who asked for reduced
+    // motion simply keeps it rather than watching it count. Skipping is only
+    // safe BECAUSE the value is in the text — when it was seeded at 0 this
+    // would have left them reading zero forever.
+    const still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (still) return;
     $$('.stat .n').forEach(function (el) {
       const target = parseInt(el.getAttribute('data-target'), 10);
       const suffix = el.getAttribute('data-suffix') || '';
