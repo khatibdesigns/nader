@@ -1,8 +1,25 @@
 name: Daily SEO & Traffic Report
 
+# SUPERSEDED, and the schedule is off deliberately.
+#
+# This has failed on every scheduled run. scripts/daily_report.py line 18 reads
+#     SMTP_PORT = int(os.environ.get("SMTP_PORT", "465"))
+# and the workflow passes SMTP_PORT as an EMPTY STRING, so the default never
+# applies — os.environ.get returns '' for a key that exists — and int('') raises.
+# SMTP_USER, SMTP_PASS and SMTP_HOST are empty too, so even past the crash it has
+# no way to send.
+#
+# It is also a duplicate. khatib-report.service on the kwnas homelab produces the
+# same report at 05:11 UTC and emails it through Resend, successfully, every day
+# — the 2026-09-18 run logged "[email] OK" and the report reached the inbox.
+#
+# So the only thing this workflow has produced for some time is a daily failure
+# notification and a red mark on the repo. The schedule is removed rather than the
+# file: workflow_dispatch stays, so it can still be run by hand, and restoring it
+# is uncommenting one line once the SMTP secrets exist.
 on:
-  schedule:
-    - cron: '0 5 * * *'      # 05:00 UTC = 08:00 Kuwait (AST, UTC+3), every day
+  # schedule:
+  #   - cron: '0 5 * * *'    # 05:00 UTC = 08:00 Kuwait — retired 2026-09-18, see above
   workflow_dispatch: {}        # allows manual "Run workflow" from the Actions tab
 
 permissions:

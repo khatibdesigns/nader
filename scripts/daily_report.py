@@ -15,7 +15,10 @@ SITE     = "https://khatibdesigns.com"
 GSC_SITE = os.environ.get("GSC_SITE", "sc-domain:khatibdesigns.com")
 KEYFILE  = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS", os.path.expanduser("~/.khatib/ga4-key.json"))
 SMTP_USER= os.environ.get("SMTP_USER"); SMTP_PASS=os.environ.get("SMTP_PASS")
-SMTP_HOST= os.environ.get("SMTP_HOST","smtp.gmail.com"); SMTP_PORT=int(os.environ.get("SMTP_PORT","465"))
+# `or` rather than a get() default: the workflow passes these as EMPTY
+# STRINGS, and a default only applies to a MISSING key — so int("") raised
+# ValueError on every scheduled run for weeks.
+SMTP_HOST= os.environ.get("SMTP_HOST") or "smtp.gmail.com"; SMTP_PORT=int(os.environ.get("SMTP_PORT") or "465")
 INDEXNOW_KEY = "46c93e9f3befc9978159530178129dc4"
 TODAY = datetime.date.today().isoformat()
 D = {}   # collected data
