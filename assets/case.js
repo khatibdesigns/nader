@@ -72,6 +72,10 @@
       var data = {}; new FormData(form).forEach(function (v, k) { if (k.charAt(0) !== '_') data[k] = v; });
       data._subject = 'New enquiry from ' + location.pathname + ' — khatibdesigns.com';
       data._template = 'table';
+      // Without this the lead reaches the inbox and nothing else. JARVIS reads
+      // nader@ over IMAP; _cc is what lets it see the enquiry, record it and
+      // raise it. A lead nobody is told about is the same as no lead.
+      data._cc = 'nader@khatibdesigns.com';
       data._captcha = 'false';
       fetch('https://formsubmit.co/ajax/studio@khatibdesigns.com', {
         method: 'POST',
