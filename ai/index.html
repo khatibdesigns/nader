@@ -315,6 +315,12 @@
         var data={};new FormData(lf).forEach(function(v,k){if(k.charAt(0)!=='_'||k==='_subject')data[k]=v;});
         data._subject='AI Sprint enquiry — /ai/ page';
         data._template='table';
+        // Copy the mailbox JARVIS polls. The form's own recipient is
+        // unchanged — leads keep arriving exactly where they always have — but
+        // that address was one no agent ever opened, so every enquiry this page
+        // produced landed somewhere nothing was watching. _cc puts a copy where
+        // the reply-handler can see it.
+        data._cc = 'nader@khatibdesigns.com';
         fetch('https://formsubmit.co/ajax/studio@khatibdesigns.com',{
           method:'POST',
           headers:{'Content-Type':'application/json','Accept':'application/json'},

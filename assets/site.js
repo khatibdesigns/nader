@@ -269,6 +269,13 @@
       const data = {}; new FormData(form).forEach(function (v, k) { if (k.charAt(0) !== '_' || k === '_subject') data[k] = v; });
       data._subject = 'New project enquiry — khatibdesigns.com';
       data._template = 'table';
+      // Copy the mailbox JARVIS polls. The form's own recipient is unchanged —
+      // leads keep arriving exactly where they always have — but until now that
+      // address was one no agent, timer or dashboard ever opened, so every
+      // enquiry this site produced landed somewhere nothing was watching.
+      // FormSubmit's _cc puts a copy where the reply-handler can see it, which
+      // is what turns an arriving lead into a phone alert instead of silence.
+      data._cc = 'nader@khatibdesigns.com';
       fetch('https://formsubmit.co/ajax/studio@khatibdesigns.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
