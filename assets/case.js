@@ -113,20 +113,36 @@
 
   // mid-article priced offer card — the articles are the only pages that name no price
   function initArticleOffer() {
-    // English only: /ar/ai/ has no #offer section and carries no prices, so there is nothing to link to
-    if (document.documentElement.lang !== 'en') return;
+    var ar = document.documentElement.lang === 'ar';
+    if (!ar && document.documentElement.lang !== 'en') return;
     var body = document.querySelector('article.article .article-body');
     if (!body || body.querySelector('.khd-inline-offer')) return;
+
+    // Arabic copy and prices are lifted from /ar/ai/#offer so the article and the
+    // offer page can never quote a customer two different numbers.
+    var STR = {
+      head: { en: 'AI Readiness &amp; Governance Sprint', ar: 'تقييم الجاهزية وحوكمة الذكاء الاصطناعي' },
+      price: { en: 'KWD 3,500', ar: '3,500 دينار كويتي' },
+      terms: { en: 'fixed, 3 weeks', ar: 'سعر ثابت، 3 أسابيع' },
+      body: { en: 'A governance model, a ranked roadmap and <strong>one working agent deployed</strong> before we hand over &mdash; ' +
+                  'smaller businesses: a single-workflow version runs <strong>KWD 1,500</strong>.',
+              ar: 'نموذج حوكمة، وخارطة طريق مرتّبة حسب الأولوية، و<strong>وكيل واحد عامل مبنيّ ومنشور</strong> — ' +
+                  'للشركات الأصغر: نسخة بتدفّق عمل واحد بـ<strong>1,500 دينار كويتي</strong>.' },
+      cta: { en: 'See what&rsquo;s included', ar: 'اطّلع على ما يشمله' },
+      // an Arabic reader sent to /ai/#offer lands on an LTR English page
+      href: { en: '/ai/#offer', ar: '/ar/ai/#offer' }
+    };
+    var t = function (k) { return STR[k][ar ? 'ar' : 'en']; };
 
     var card = document.createElement('aside');
     card.className = 'svc-card khd-inline-offer';
     card.setAttribute('style', 'margin:34px 0');
-    card.innerHTML = '<h3>AI Readiness &amp; Governance Sprint</h3>' +
-      '<p style="font-family:var(--display);font-size:26px;color:var(--accent);margin:0 0 12px">KWD 3,500 ' +
-      '<span style="font-size:13px;color:var(--faint);font-family:var(--body)">fixed, 3 weeks</span></p>' +
-      '<p>A governance model, a ranked roadmap and <strong>one working agent deployed</strong> before we hand over &mdash; ' +
-      'smaller businesses: a single-workflow version runs <strong>KWD 1,500</strong>.</p>' +
-      '<a class="btn solid" href="/ai/#offer" style="margin-top:16px">See what&rsquo;s included</a>';
+    card.innerHTML = '<h3>' + t('head') + '</h3>' +
+      '<p style="font-family:var(--display);font-size:26px;color:var(--accent);margin:0 0 12px">' + t('price') + ' ' +
+      '<span style="font-size:13px;color:var(--faint);font-family:var(--body)">' + t('terms') + '</span></p>' +
+      '<p>' + t('body') + '</p>' +
+      // data-cta-location is what makes analytics.js label the view_pricing event
+      '<a class="btn solid" href="' + t('href') + '" data-cta-location="article-offer" style="margin-top:16px">' + t('cta') + '</a>';
 
     var heads = body.querySelectorAll('h2');
     if (heads.length >= 2) heads[1].parentNode.insertBefore(card, heads[1]); else body.appendChild(card);
