@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script src="/assets/analytics.js"></script>
+<title>ShipBroker — Live Freight Quote Engine Demo | Khatib Designs</title>
+<meta name="description" content="A working freight quote engine you can operate in the browser: pick a lane, mode and incoterm and get an indicative USD band, a transit estimate and the documents you need. An in-house demo built by Khatib Designs." />
+<link rel="canonical" href="https://khatibdesigns.com/work/shipbroker/" />
+<link rel="alternate" hreflang="en" href="https://khatibdesigns.com/work/shipbroker/" />
+<link rel="alternate" hreflang="x-default" href="https://khatibdesigns.com/work/shipbroker/" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="theme-color" content="#070611" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Khatib Designs" />
+<meta property="og:title" content="ShipBroker — Live Freight Quote Engine Demo | Khatib Designs" />
+<meta property="og:description" content="A working freight quote engine you can operate in the browser: pick a lane, mode and incoterm and get an indicative USD band, a transit estimate and the documents you need. An in-house demo built by Khatib Designs." />
+<meta property="og:url" content="https://khatibdesigns.com/work/shipbroker/" />
+<meta property="og:image" content="https://khatibdesigns.com/assets/og-image.png" />
+<meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="ShipBroker — Live Freight Quote Engine Demo | Khatib Designs" />
+<meta name="twitter:description" content="A working freight quote engine you can operate in the browser: pick a lane, mode and incoterm and get an indicative USD band, a transit estimate and the documents you need. An in-house demo built by Khatib Designs." />
+<meta name="twitter:image" content="https://khatibdesigns.com/assets/og-image.png" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/assets/icon-180.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css" />
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://khatibdesigns.com/"}, {"@type": "ListItem", "position": 2, "name": "Work", "item": "https://khatibdesigns.com/work/"}, {"@type": "ListItem", "position": 3, "name": "ShipBroker", "item": "https://khatibdesigns.com/work/shipbroker/"}]}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "WebApplication", "name": "ShipBroker freight quote engine", "applicationCategory": "BusinessApplication", "url": "https://khatibdesigns.com/work/shipbroker/", "isAccessibleForFree": true, "inLanguage": "en", "creator": {"@type": "ProfessionalService", "name": "Khatib Designs", "url": "https://khatibdesigns.com/"}}
+</script>
+</head>
+<body>
+  <div id="stars"></div>
+  <div class="bg-neb"></div>
+  <div class="bg-neb two"></div>
+
+  <header class="nav">
+    <a class="brand" href="/"><span class="k">Khatib</span><span class="d">Designs</span></a>
+    <nav class="nav-links" id="nav-links"><a href="/#about">Studio</a><a href="/#services">Services</a><a href="/work/">Work</a><a href="/blog/">Insights</a><a href="/#contact">Contact</a><a href="/ar/" class="lang-switch" hreflang="ar" lang="ar">عربي</a><a href="/#contact" class="btn solid">Start a project</a></nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </header>
+
+  <!-- HERO -->
+  <section class="section" style="padding-top:clamp(120px,16vh,200px)">
+    <div class="reveal" style="max-width:860px">
+      <span class="eyebrow"><span class="dot"></span>Live demo &middot; Logistics &middot; Built in-house</span>
+      <h1 style="font-family:var(--display);font-weight:300;font-size:clamp(40px,6.4vw,84px);line-height:1.04;margin-top:20px">
+        ShipBroker.<br />A freight quote in <em class="grad">one screen</em>.</h1>
+      <p class="lead" style="margin-top:24px">This is an in-house prototype, built by Khatib Designs to show what a productised
+      quoting tool actually looks like when you can operate it instead of reading about it. Pick a lane, a mode and an incoterm and it
+      returns a price band, a transit estimate and the document list for that term. It runs entirely in your browser &mdash; nothing is
+      sent anywhere, and there is no account to make. The figures are indicative model output, not a live carrier tariff.</p>
+      <div class="hero-cta" style="margin-top:30px">
+        <a href="#quote" class="btn solid">Try the engine</a>
+        <a href="#start" class="btn">Build one like it</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE ENGINE -->
+  <section class="section" id="quote">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span>The engine</span>
+      <h2 class="section-title">Quote a shipment.</h2>
+      <p class="lead">Six inputs. Every rate in the model is hard-coded in the page source, so you can read exactly how the
+      number was reached.</p>
+    </div>
+
+    <form class="lead-form reveal" id="quote-form">
+      <label>Lane
+        <select id="q-lane">
+          <option>Shanghai → Kuwait (Shuwaikh)</option>
+          <option>Shanghai → Jebel Ali (UAE)</option>
+          <option>Mumbai → Kuwait (Shuwaikh)</option>
+          <option>Istanbul → Jebel Ali (UAE)</option>
+          <option>Rotterdam → Kuwait (Shuwaikh)</option>
+          <option>Jebel Ali (UAE) → Kuwait (Shuwaikh)</option>
+        </select>
+      </label>
+      <label>Mode
+        <select id="q-mode">
+          <option>Sea LCL</option>
+          <option>Sea FCL 20ft</option>
+          <option>Sea FCL 40ft</option>
+          <option>Air freight</option>
+          <option>Road / cross-border</option>
+        </select>
+      </label>
+      <div class="lf-row">
+        <label>Chargeable weight (kg)
+          <input type="number" id="q-weight" min="1" step="1" value="500" />
+        </label>
+        <label>Volume (CBM)
+          <input type="number" id="q-cbm" min="0.1" step="0.1" value="2" />
+        </label>
+      </div>
+      <div class="lf-row">
+        <label>Incoterm
+          <select id="q-incoterm">
+            <option>EXW</option>
+            <option>FOB</option>
+            <option>CFR</option>
+            <option>CIF</option>
+            <option>DAP</option>
+            <option>DDP</option>
+          </select>
+        </label>
+        <label>Cargo type
+          <select id="q-cargo">
+            <option>General</option>
+            <option>Hazardous (DG)</option>
+            <option>Temperature-controlled</option>
+          </select>
+        </label>
+      </div>
+      <div class="lf-actions">
+        <button type="submit" class="btn solid">Calculate quote</button>
+      </div>
+    </form>
+
+    <div id="quote-result" aria-live="polite" style="max-width:640px;margin:26px auto 0"></div>
+    <p style="max-width:640px;margin:16px auto 0;color:var(--faint);font-size:14px;line-height:1.7">Whatever this screen returns is
+    illustrative model output from a rate table written into the page. It is not a carrier tariff and it is not a binding rate &mdash;
+    a rate you can actually book against needs a live quote from the carrier or forwarder for the day you ship.</p>
+  </section>
+
+  <!-- HOW THIS WAS BUILT -->
+  <section class="section">
+    <div class="section-head reveal">
+      <span class="eyebrow"><span class="dot"></span>How this was built</span>
+      <h2 class="section-title">The pattern, not the page.</h2>
+      <p class="lead">The freight numbers are ours and made up. The structure underneath is the one we use when we turn a
+      manual quoting job into a tool a company can hand to its customers.</p>
+    </div>
+    <div class="svc-grid">
+      <article class="svc-card reveal">
+        <h3>The rate model is data, not code</h3>
+        <p>Lanes, modes, cargo multipliers and incoterms are four plain objects at the top of one script. Repricing a lane is editing a
+        number, not touching the calculation &mdash; which means the person who knows the rates can own them, and the change is one
+        readable line in a diff. Swap those objects for a spreadsheet sync or an API and nothing else moves.</p>
+      </article>
+      <article class="svc-card reveal">
+        <h3>Incoterms drive the documents</h3>
+        <p>The document list is not written per lane; it is derived from the term you picked, with the transport document swapped for
+        the mode. That is the part people get wrong by hand, and it is the part worth encoding once: the rule lives in a single map that
+        a trade compliance person can check without reading any logic.</p>
+      </article>
+      <article class="svc-card reveal">
+        <h3>Written to be bilingual</h3>
+        <p>Every string a user sees is a label or a list item, not baked into the arithmetic, so an Arabic twin is a translation pass
+        rather than a rebuild. We build Arabic-first for the GCC by default, and this demo is laid out so the same engine can serve both
+        sides of the site.</p>
+      </article>
+      <article class="svc-card reveal">
+        <h3>It runs client-side, so it goes anywhere</h3>
+        <p>No server, no build step, no request leaves the browser. That makes a tool like this cheap to embed in a marketing site, a
+        customer portal or a WhatsApp landing page &mdash; and it means a prospect can use it before they ever speak to a salesperson.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="case-cta-band" id="start"><div class="reveal">
+    <h2>Want one of these<br />for your rates?</h2>
+    <p class="cta-price" style="font-size:1.05rem"><strong>The Sprint KWD 3,500 fixed</strong> &middot; <strong>the Build from KWD 7,000</strong> &middot; <strong>AI Operations KWD 2,500/month</strong></p>
+    <p>Tell me what you&rsquo;re building and you&rsquo;ll get scope, timeline and a fixed price back within one business day &mdash; no discovery invoice.</p>
+    <div class="row">
+      <a href="https://wa.me/96550003048?text=Hi%20Nader%20%E2%80%94%20I%20tried%20the%20ShipBroker%20quote%20demo%20and%20I%27d%20like%20a%20tool%20like%20it%20for%20my%20rates." class="btn solid wa-btn" target="_blank" rel="noopener" data-cta="book-call" data-cta-location="shipbroker">Book a 30-min scoping call</a>
+      <a href="mailto:studio@khatibdesigns.com?subject=Scoping%20call%20request&body=What%20I%27m%20building%3A%0ATimeline%3A%0ABudget%20range%3A%0A" class="btn" data-cta="email">Email instead</a>
+    </div>
+  </div></section>
+
+  <footer>
+    <a class="brand" href="/"><span class="k">Khatib</span><span class="d">Designs</span></a>
+    <nav class="foot-links" aria-label="Footer">
+      <a href="/nader/">Nader Al-Khatib</a><a href="/#about">Studio</a><a href="/#services">Services</a><a href="/work/">Work</a><a href="/blog/">Insights</a><a href="/#contact">Contact</a><a href="/ar/" hreflang="ar" lang="ar">عربي</a></nav>
+    <span>&copy; 2015&ndash;<span id="year"></span> Khatib Designs</span>
+  </footer>
+
+  <a class="wa-fab" href="https://wa.me/96550003048?text=Hi%20Khatib%20Designs%2C%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.9c0 1.76.46 3.45 1.32 4.95L2 22l5.3-1.39a9.9 9.9 0 0 0 4.73 1.2h.01c5.46 0 9.9-4.45 9.9-9.9C21.94 6.45 17.5 2 12.04 2Zm5.49 13.86c-.21.58-1.2 1.11-1.68 1.18-.43.06-.97.09-1.56-.1-.36-.11-.82-.26-1.41-.52-2.48-1.07-4.11-3.57-4.23-3.74-.12-.16-1.01-1.34-1.01-2.56 0-1.22.63-1.82.86-2.07.23-.25.5-.31.66-.31l.48.01c.15.01.36-.05.56.43.2.5.7 1.72.76 1.84.06.12.1.26.02.43-.08.16-.12.26-.25.41-.12.14-.26.32-.37.43-.12.12-.25.25-.11.5.14.25.63 1.06 1.38 1.72.94.84 1.74 1.11 1.99 1.23.25.12.4.1.54-.06.15-.17.63-.72.79-.97.17-.25.33-.21.56-.12.22.08 1.44.68 1.69.8.25.12.41.18.47.28.07.11.07.6-.14 1.18Z"/></svg></a>
+
+  <script>
+  /* ShipBroker rate model — illustrative in-house figures, not a carrier tariff.
+     Everything the engine knows lives in these four objects, so a reviewer can read
+     every number without reading any logic. */
+  var LANES = {
+    'Shanghai → Kuwait (Shuwaikh)':        { baseUsd: 420, transitDays: 28, originFeesUsd: 185, destFeesUsd: 240 },
+    'Shanghai → Jebel Ali (UAE)':          { baseUsd: 360, transitDays: 22, originFeesUsd: 185, destFeesUsd: 210 },
+    'Mumbai → Kuwait (Shuwaikh)':          { baseUsd: 260, transitDays: 14, originFeesUsd: 150, destFeesUsd: 240 },
+    'Istanbul → Jebel Ali (UAE)':          { baseUsd: 310, transitDays: 18, originFeesUsd: 165, destFeesUsd: 210 },
+    'Rotterdam → Kuwait (Shuwaikh)':       { baseUsd: 480, transitDays: 26, originFeesUsd: 210, destFeesUsd: 240 },
+    'Jebel Ali (UAE) → Kuwait (Shuwaikh)': { baseUsd: 180, transitDays: 5,  originFeesUsd: 120, destFeesUsd: 190 }
+  };
+
+  var MODES = {
+    'Sea LCL':            { ratePerKgUsd: 0.22, ratePerCbmUsd: 78,  minChargeUsd: 145,  transitMultiplier: 1.00 },
+    'Sea FCL 20ft':       { ratePerKgUsd: 0.09, ratePerCbmUsd: 42,  minChargeUsd: 1150, transitMultiplier: 1.00 },
+    'Sea FCL 40ft':       { ratePerKgUsd: 0.07, ratePerCbmUsd: 34,  minChargeUsd: 1650, transitMultiplier: 1.05 },
+    'Air freight':        { ratePerKgUsd: 3.40, ratePerCbmUsd: 560, minChargeUsd: 240,  transitMultiplier: 0.18 },
+    'Road / cross-border':{ ratePerKgUsd: 0.35, ratePerCbmUsd: 95,  minChargeUsd: 320,  transitMultiplier: 0.55 }
+  };
+
+  var CARGO = {
+    'General': 1.00,
+    'Hazardous (DG)': 1.45,
+    'Temperature-controlled': 1.30
+  };
+
+  /* includes* = the SELLER carries that cost under this term.
+     docs = what the BUYER is responsible for producing or holding.
+     TRANSPORT_DOC is swapped for the mode-specific transport document. */
+  var INCOTERMS = {
+    'EXW': { includesOriginFees: false, includesFreight: false, includesDestFees: false, includesDuty: false,
+      docs: ['Commercial invoice', 'Packing list', 'Export customs declaration at origin', 'TRANSPORT_DOC', 'Certificate of origin', 'Cargo insurance certificate', 'Import customs declaration'] },
+    'FOB': { includesOriginFees: true, includesFreight: false, includesDestFees: false, includesDuty: false,
+      docs: ['Commercial invoice', 'Packing list', 'TRANSPORT_DOC', 'Certificate of origin', 'Cargo insurance certificate', 'Import customs declaration'] },
+    'CFR': { includesOriginFees: true, includesFreight: true, includesDestFees: false, includesDuty: false,
+      docs: ['Commercial invoice', 'Packing list', 'TRANSPORT_DOC', 'Certificate of origin', 'Cargo insurance certificate', 'Import customs declaration', 'Delivery order from the carrier’s agent'] },
+    'CIF': { includesOriginFees: true, includesFreight: true, includesDestFees: false, includesDuty: false,
+      docs: ['Commercial invoice', 'Packing list', 'TRANSPORT_DOC', 'Certificate of origin', 'Copy of the seller’s insurance policy', 'Import customs declaration', 'Delivery order from the carrier’s agent'] },
+    'DAP': { includesOriginFees: true, includesFreight: true, includesDestFees: true, includesDuty: false,
+      docs: ['Commercial invoice', 'Packing list', 'TRANSPORT_DOC (copy)', 'Certificate of origin', 'Import customs declaration', 'Duty and clearance payment receipt'] },
+    'DDP': { includesOriginFees: true, includesFreight: true, includesDestFees: true, includesDuty: true,
+      docs: ['Commercial invoice', 'Packing list', 'TRANSPORT_DOC (copy)', 'Delivery note signed on receipt'] }
+  };
+
+  var TRANSPORT_DOCS = {
+    'Sea LCL': 'Bill of lading',
+    'Sea FCL 20ft': 'Bill of lading',
+    'Sea FCL 40ft': 'Bill of lading',
+    'Air freight': 'Air waybill',
+    'Road / cross-border': 'Road consignment note'
+  };
+
+  function usd(n) {
+    return '$' + String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
+  function row(label, value, note) {
+    return '<div style="display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-top:1px solid var(--line)">' +
+      '<span style="color:var(--muted);font-size:14.5px">' + label +
+      (note ? '<br /><span style="color:var(--faint);font-size:12.5px">' + note + '</span>' : '') +
+      '</span><span style="font-size:14.5px;white-space:nowrap">' + value + '</span></div>';
+  }
+
+  var qf = document.getElementById('quote-form');
+  if (qf) qf.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var out = document.getElementById('quote-result');
+    var laneKey = document.getElementById('q-lane').value;
+    var modeKey = document.getElementById('q-mode').value;
+    var incoKey = document.getElementById('q-incoterm').value;
+    var cargoKey = document.getElementById('q-cargo').value;
+    var lane = LANES[laneKey], mode = MODES[modeKey], inco = INCOTERMS[incoKey];
+    var cargoMult = CARGO[cargoKey];
+    var weight = parseFloat(document.getElementById('q-weight').value);
+    var cbm = parseFloat(document.getElementById('q-cbm').value);
+
+    if (!lane || !mode || !inco || !cargoMult || !(weight > 0) || !(cbm > 0)) {
+      out.innerHTML = '<p style="margin:0;color:var(--magenta);font-size:14.5px">Enter a chargeable weight and a volume greater than zero.</p>';
+      return;
+    }
+
+    /* freight = the highest of the lane floor, the mode minimum, the weight rate and the
+       volume rate — then the cargo multiplier. */
+    var freight = Math.max(lane.baseUsd, mode.minChargeUsd, weight * mode.ratePerKgUsd, cbm * mode.ratePerCbmUsd) * cargoMult;
+    var origin = inco.includesOriginFees ? 0 : lane.originFeesUsd;
+    var dest = inco.includesDestFees ? 0 : lane.destFeesUsd;
+    var total = freight + origin + dest;
+
+    var low = Math.floor(total / 25) * 25;
+    var high = Math.ceil((total * 1.18) / 25) * 25;
+    var days = Math.max(1, Math.round(lane.transitDays * mode.transitMultiplier));
+
+    var transportDoc = TRANSPORT_DOCS[modeKey];
+    var docs = '';
+    for (var i = 0; i < inco.docs.length; i++) {
+      docs += '<li style="margin-bottom:7px">' + inco.docs[i].replace('TRANSPORT_DOC', transportDoc) + '</li>';
+    }
+
+    out.innerHTML =
+      '<div style="border:1px solid var(--line);border-radius:18px;padding:26px 24px;background:rgba(255,255,255,0.02)">' +
+        '<span class="eyebrow"><span class="dot"></span>Indicative band</span>' +
+        '<p style="font-family:var(--display);font-weight:300;font-size:clamp(30px,5vw,48px);line-height:1.05;margin:14px 0 6px;color:var(--accent)">' +
+          usd(low) + ' &ndash; ' + usd(high) + ' <span style="font-size:15px;color:var(--faint);font-family:var(--body)">USD</span></p>' +
+        '<p style="color:var(--muted);font-size:14.5px;margin:0 0 18px">' + modeKey + ' &middot; ' + laneKey + ' &middot; ' + incoKey +
+          ' &middot; ' + cargoKey + ' &middot; about <strong>' + days + (days === 1 ? ' day' : ' days') + '</strong> in transit</p>' +
+        row('Freight (' + modeKey + ', cargo factor &times;' + cargoMult.toFixed(2) + ')', usd(freight),
+            inco.includesFreight ? 'On the seller’s account under ' + incoKey : 'On your account under ' + incoKey) +
+        row('Origin charges', origin ? usd(origin) : '&mdash;',
+            inco.includesOriginFees ? 'Covered by the seller under ' + incoKey : 'Export handling, terminal and documentation at ' + laneKey.split(' → ')[0]) +
+        row('Destination charges', dest ? usd(dest) : '&mdash;',
+            inco.includesDestFees ? 'Covered by the seller under ' + incoKey : 'Terminal handling, delivery order and port fees at ' + laneKey.split(' → ')[1]) +
+        row('Duty &amp; clearance', 'Excluded',
+            inco.includesDuty ? 'Seller-paid under DDP, and still outside this estimate — it depends on your HS code' : 'Depends on your HS code and the destination tariff line') +
+        '<h3 style="font-size:17px;margin:24px 0 10px">Documents you need</h3>' +
+        '<ul style="color:var(--muted);font-size:14.5px;line-height:1.6;padding-left:20px;margin:0">' + docs + '</ul>' +
+      '</div>';
+
+    if (window.khdTrack) window.khdTrack('quote_calculated', { lane: laneKey, mode: modeKey, incoterm: incoKey });
+  });
+  </script>
+
+  <script>
+    document.getElementById('year').textContent=new Date().getFullYear();
+    var nt=document.getElementById('nav-toggle'),nl=document.getElementById('nav-links');
+    if(nt)nt.addEventListener('click',function(){nl.classList.toggle('open');});
+    var ro=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);}});},{threshold:0.12});
+    document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el);});
+  </script>
+</body>
+</html>
