@@ -15,13 +15,16 @@
   }
 
   /* ---------- inline lead form on blog articles (FormSubmit AJAX) ----------
-     case.js also runs on /work/* case studies — they get nothing. */
-  var band = /^\/(ar\/)?blog\//.test(location.pathname) && document.querySelector('.case-cta-band > div');
+     case.js also runs on /work/ and /ar/work/ case studies — they get the same form. */
+  var band = /^\/(ar\/)?(blog|work)\//.test(location.pathname) && document.querySelector('.case-cta-band > div');
   if (band) {
     var ar = document.documentElement.lang === 'ar';
+    var isCase = /^\/(ar\/)?work\//.test(location.pathname);
     var STR = {
       intro: { en: 'Prefer not to message? Tell us about it and we’ll reply with a scope and a price within one business day.',
                ar: 'تفضّل ألا تراسلنا على واتساب؟ أخبرنا عن مشروعك وسنردّ بنطاق العمل والسعر خلال يوم عمل واحد.' },
+      caseIntro: { en: 'Or send the brief here — same reply, one business day.',
+                   ar: 'أو أرسل التفاصيل من هنا — نفس الردّ، خلال يوم عمل واحد.' },
       name: { en: 'Name', ar: 'الاسم' },
       namePh: { en: 'Your name', ar: 'اسمك' },
       email: { en: 'Email', ar: 'البريد الإلكتروني' },
@@ -42,7 +45,7 @@
     var t = function (k) { return STR[k][ar ? 'ar' : 'en']; };
 
     var intro = document.createElement('p');
-    intro.textContent = t('intro');
+    intro.textContent = t(isCase ? 'caseIntro' : 'intro');
     var form = document.createElement('form');
     form.className = 'lead-form'; form.id = 'blog-lead-form'; form.setAttribute('novalidate', '');
     form.innerHTML =
@@ -94,7 +97,7 @@
         form.reset();
         status.className = 'form-status ok';
         status.textContent = t('ok');
-        window.khdTrack && window.khdTrack('generate_lead', { method: 'blog_form', page_path: location.pathname });
+        window.khdTrack && window.khdTrack('generate_lead', { method: (isCase ? 'case_study_form' : 'blog_form'), page_path: location.pathname });
       }).catch(function () {
         status.className = 'form-status err';
         status.textContent = t('err');
