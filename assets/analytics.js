@@ -85,7 +85,7 @@
       cta_location: mail.getAttribute('data-cta-location') || 'inline' }); return; }
     var store = t.closest && t.closest('.store, .store-row a');
     if (store && store.href) { window.khdTrack('store_click', { link_url: store.href }); return; }
-    var price = t.closest && t.closest('a[href*="#offer"]');       // the missing funnel step between the landing view and book_call
+    var price = t.closest && t.closest('a[href*="#offer"], a[href*="#start"]');   // the missing funnel step between the landing view and book_call — #start is the case-study hero CTA, which scrolls to the priced #start band
     if (price) { window.khdTrack('view_pricing', {
       cta_location: price.getAttribute('data-cta-location') || (price.closest('.nav-links') ? 'nav' : 'inline'),
       link_url: price.getAttribute('href') }); return; }
