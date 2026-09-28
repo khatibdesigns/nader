@@ -30,6 +30,13 @@
       phonePh: { en: '+965 0000 0000', ar: '+965 0000 0000' },
       company: { en: 'Company', ar: 'الشركة' },
       companyPh: { en: 'Company (optional)', ar: 'الشركة (اختياري)' },
+      budget: { en: 'Budget', ar: 'الميزانية' },
+      budgetAny: { en: 'Select a range (optional)', ar: 'اختر نطاقًا (اختياري)' },
+      b1: { en: 'Under KWD 1,500', ar: 'أقل من 1,500 د.ك' },
+      b2: { en: 'KWD 1,500 &ndash; 3,500', ar: '1,500 &ndash; 3,500 د.ك' },
+      b3: { en: 'KWD 3,500 &ndash; 7,000', ar: '3,500 &ndash; 7,000 د.ك' },
+      b4: { en: 'KWD 7,000+', ar: 'أكثر من 7,000 د.ك' },
+      b5: { en: 'Not sure yet', ar: 'لست متأكدًا بعد' },
       message: { en: 'Project', ar: 'المشروع' },
       messagePh: { en: 'A few lines is plenty.', ar: 'بضعة أسطر تكفي.' },
       send: { en: 'Send enquiry', ar: 'أرسل طلبك' },
@@ -54,6 +61,16 @@
         '<label>' + t('phone') + '<input name="phone" type="tel" required autocomplete="tel" dir="ltr" placeholder="' + t('phonePh') + '" /></label>' +
         '<label>' + t('company') + '<input name="company" autocomplete="organization" placeholder="' + t('companyPh') + '" /></label>' +
       '</div>' +
+      '<label class="lf-full">' + t('budget') +
+        '<select name="budget">' +
+          '<option value="">' + t('budgetAny') + '</option>' +
+          '<option>' + t('b1') + '</option>' +
+          '<option>' + t('b2') + '</option>' +
+          '<option>' + t('b3') + '</option>' +
+          '<option>' + t('b4') + '</option>' +
+          '<option>' + t('b5') + '</option>' +
+        '</select>' +
+      '</label>' +
       '<label class="lf-full">' + t('message') +
         '<textarea name="message" rows="3" placeholder="' + t('messagePh') + '"></textarea>' +
       '</label>' +
@@ -63,10 +80,27 @@
     band.appendChild(intro); band.appendChild(form);
 
     var status = form.querySelector('#blog-form-status'), btn = form.querySelector('#blog-lead-submit');
+    function track(name, params) {
+      var p = params || {};
+      p.page_path = location.pathname; p.language = ar ? 'ar' : 'en';
+      if (window.khdTrack) window.khdTrack(name, p);
+    }
+    var started = false;                                        // one-shot engagement flag
+    function onEngage(e) {
+      if (started || e.target.name === '_honey') return;
+      started = true;
+      track('form_start', { method: 'blog_form' });
+    }
+    form.addEventListener('input', onEngage);
+    form.addEventListener('change', onEngage);
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (form._honey && form._honey.value) return;             // bot trap
-      if (!form.checkValidity()) { form.reportValidity(); return; }
+      if (!form.checkValidity()) {
+        var invalid = form.querySelector(':invalid');
+        track('lead_submit_blocked', { reason: 'validation', field: (invalid && invalid.name) || 'unknown' });
+        form.reportValidity(); return;
+      }
       status.className = 'form-status'; status.textContent = t('sending');
       btn.disabled = true;
       var data = {}; new FormData(form).forEach(function (v, k) { if (k.charAt(0) !== '_') data[k] = v; });
@@ -94,8 +128,9 @@
         form.reset();
         status.className = 'form-status ok';
         status.textContent = t('ok');
-        window.khdTrack && window.khdTrack('generate_lead', { method: 'blog_form', page_path: location.pathname });
-      }).catch(function () {
+        track('generate_lead', { method: 'blog_form', budget: data.budget || 'unspecified', has_company: data.company ? 'yes' : 'no' });
+      }).catch(function (err) {
+        track('lead_submit_failed', { reason: (err && err.message === 'not ok') ? 'rejected' : 'network' });
         status.className = 'form-status err';
         status.textContent = t('err');
       }).finally(function () { btn.disabled = false; });
