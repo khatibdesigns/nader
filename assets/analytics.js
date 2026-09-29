@@ -110,10 +110,11 @@
   // itself, not only the click that led to the calendar.
   window.addEventListener('message', function (e) {
     if (e.origin !== 'https://calendly.com' || !e.data || typeof e.data.event !== 'string') return;
-    if (e.data.event === 'calendly.date_and_time_selected') window.khdTrack('book_call_time_selected', {});
+    // book.js sets window.khdBookSource, so a booked call reports the page that produced it.
+    if (e.data.event === 'calendly.date_and_time_selected') window.khdTrack('book_call_time_selected', Object.assign({}, window.khdBookSource || {}));
     if (e.data.event === 'calendly.event_scheduled') {
-      window.khdTrack('book_call_scheduled', { lead_source: 'calendly' });
-      window.khdTrack('generate_lead', { lead_source: 'calendly' });   // so every existing lead report counts it
+      window.khdTrack('book_call_scheduled', Object.assign({ lead_source: 'calendly' }, window.khdBookSource || {}));
+      window.khdTrack('generate_lead', Object.assign({ lead_source: 'calendly' }, window.khdBookSource || {}));   // so every existing lead report counts it
     }
   });
 })();

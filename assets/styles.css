@@ -609,6 +609,7 @@ html[dir="rtl"] .khd-dock{right:auto;left:22px;}
 .cal-frame .calendly-inline-widget{position:relative;z-index:1;min-width:280px;height:700px;}
 .cal-frame .calendly-spinner{display:none;}   /* our own loading line sits behind the iframe instead */
 .cal-loading{position:absolute;inset:0;z-index:0;display:grid;place-items:center;margin:0;color:var(--muted);font-size:14px;}
+.cal-loading.cal-failed{align-content:center;gap:14px;padding:24px;text-align:center;color:var(--ink);}
 .cal-noscript{position:absolute;inset:0;z-index:2;display:grid;place-items:center;margin:0;}
 .cal-note{margin:0 0 12px;font-size:13.5px;color:var(--muted);}
 .cal-alt{margin-top:14px;font-size:13px;line-height:1.6;color:var(--muted);}

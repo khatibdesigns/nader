@@ -119,12 +119,8 @@
     document.getElementById('year').textContent=new Date().getFullYear();
     var nt=document.getElementById('nav-toggle'),nl=document.getElementById('nav-links');
     if(nt)nt.addEventListener('click',function(){nl.classList.toggle('open');});
-    // Confirm the booking outside the iframe too, where the visitor is already looking.
-    window.addEventListener('message',function(e){
-      if(e.origin!=='https://calendly.com'||!e.data||e.data.event!=='calendly.event_scheduled')return;
-      var b=document.getElementById('booked');b.hidden=false;b.scrollIntoView({behavior:'smooth',block:'center'});
-    });
   </script>
+  <script src="/assets/book.js"></script>
   <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </body>
 </html>
