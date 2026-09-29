@@ -14,7 +14,8 @@
   var ADS_ID = '';                            // e.g. 'AW-1234567890' ← paste when Ads is set up
   var ADS_LABELS = {                          // per-conversion labels from Google Ads
     generate_lead:     '',                    // contact-form lead   ← primary
-    book_call:         '',                    // "book a call" WhatsApp CTA
+    book_call_scheduled: '',                  // a call actually booked in Calendly ← best signal
+    book_call:         '',                    // "Book a call" click → /book/ (Calendly)
     whatsapp_click:    '',                    // any WhatsApp tap
     email_click:       '',                    // "Email instead" mailto CTA
     cta_start_project: '',                    // "Start a project" click
@@ -70,8 +71,8 @@
   // delegated lead-event tracking (mark these as "key events" in GA4)
   document.addEventListener('click', function (e) {
     var t = e.target;
-    // First, before wa.me: every book-call CTA is itself a wa.me link, so if the
-    // WhatsApp test ran first it would match and return, and book_call would never fire.
+    // First, before wa.me: book-call CTAs open /book/ (Calendly) now, but the booking dock
+    // sits beside a WhatsApp link, so the specific test must win before the generic one.
     var book = t.closest && t.closest('[data-cta="book-call"]');
     if (book) { window.khdTrack('book_call', {
       transport_type: 'beacon',
@@ -104,4 +105,15 @@
       return;
     }
   }, true);
+
+  // Calendly (the /book/ embed) posts its progress to this window. Count the booking
+  // itself, not only the click that led to the calendar.
+  window.addEventListener('message', function (e) {
+    if (e.origin !== 'https://calendly.com' || !e.data || typeof e.data.event !== 'string') return;
+    if (e.data.event === 'calendly.date_and_time_selected') window.khdTrack('book_call_time_selected', {});
+    if (e.data.event === 'calendly.event_scheduled') {
+      window.khdTrack('book_call_scheduled', { lead_source: 'calendly' });
+      window.khdTrack('generate_lead', { lead_source: 'calendly' });   // so every existing lead report counts it
+    }
+  });
 })();
