@@ -1,0 +1,37 @@
+# Khatib Designs
+
+> Khatib Designs is an Arabic-first product and AI studio based in Kuwait, serving Kuwait, the UAE and the wider GCC. It designs and builds mobile apps, web platforms and AI systems — assistants, workflow automation and Arabic chatbots — for businesses. Founded in 2015, with 100+ products shipped across six countries.
+
+- Book a free 30-minute get-to-know call: https://khatibdesigns.com/book/ (Arabic: https://khatibdesigns.com/ar/book/)
+- Email: studio@khatibdesigns.com · WhatsApp: +965 5000 3048
+- Founder: Nader Al-Khatib, enterprise AI consultant — https://khatibdesigns.com/nader/
+- Every page exists in English and Arabic (Arabic under /ar/).
+
+## AI consultancy (priced)
+
+- [AI consultancy in Kuwait & the GCC](https://khatibdesigns.com/ai/): assess → build → support.
+  - AI Readiness & Governance Sprint: KWD 3,500 fixed, 3 weeks — governance model, ranked roadmap and one working agent in production. A single-workflow version for smaller businesses: KWD 1,500.
+  - The Build: from KWD 7,000, typically 6–12 weeks — multiple workflows in production, systems connected.
+  - AI Operations: KWD 2,500/month — monitoring, tuning, new workflows and a monthly plain-language report.
+- [AI for Dubai & the UAE](https://khatibdesigns.com/dubai/): Arabic-first AI for UAE businesses.
+
+## Product design & development
+
+- [Services](https://khatibdesigns.com/#services): iOS, Android and web products, UX/UI design, MVPs.
+- [Case studies](https://khatibdesigns.com/work/)
+  - [Connect Here](https://khatibdesigns.com/work/connect-here/): venue-based social networking app, iOS and Android.
+  - [iWASH](https://khatibdesigns.com/work/iwash/): on-demand car-wash platform, Kuwait.
+  - [Spotly](https://khatibdesigns.com/work/spotly/): bilingual family-outing discovery app for Kuwait with AI place screening.
+  - [Safey](https://khatibdesigns.com/work/safey/): encrypted iOS vault with break-in alerts.
+  - [DWA](https://khatibdesigns.com/work/dwa/): pharmacy delivery platform.
+  - [Coines](https://khatibdesigns.com/work/coines/): peer-to-peer crypto exchange app.
+  - [WCS](https://khatibdesigns.com/work/wcs/): management system for US steel factories.
+  - [PrintIt](https://khatibdesigns.com/work/printit/): on-demand printing marketplace.
+  - [LUMA](https://khatibdesigns.com/work/luma/): puzzle game on the App Store and Google Play.
+
+## Insights
+
+- [Blog (English)](https://khatibdesigns.com/blog/) · [المقالات (Arabic)](https://khatibdesigns.com/ar/blog/)
+- [AI automation companies in Kuwait: a buyer's guide](https://khatibdesigns.com/blog/ai-automation-companies-kuwait/)
+- [AI consulting for Kuwait businesses: where to start](https://khatibdesigns.com/blog/ai-consulting-kuwait-business/)
+- [What an AI project costs in the GCC](https://khatibdesigns.com/blog/what-an-ai-project-costs-gcc/)
