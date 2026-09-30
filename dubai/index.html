@@ -241,6 +241,25 @@
         <a class="btn wa-btn" href="https://wa.me/96550003048?text=Hi%20Khatib%20Designs%2C%20I%27m%20in%20the%20UAE%20and%20I%27d%20like%20to%20talk%20about%20an%20AI%20solution%20%28Arabic%20AI%29%20for%20my%20business." target="_blank" rel="noopener">WhatsApp us</a>
         <a class="btn" data-cta="email" href="mailto:studio@khatibdesigns.com?subject=AI%20for%20our%20UAE%20business&body=What%20we%27d%20want%20automated%3A%0AOur%20industry%3A%0ABest%20number%20to%20reach%20us%3A%0A">Email instead</a>
       </div>
+      <p class="contact-lead">Prefer not to message? Tell us what you&rsquo;d want automated in your UAE business and we&rsquo;ll reply with a scope and a price &mdash; the Sprint is <span data-kwd="3500">KWD 3,500</span> fixed &mdash; within one business day.</p>
+      <form class="lead-form" id="geo-lead-form" novalidate>
+        <div class="lf-row">
+          <label>Name<input name="name" required autocomplete="name" placeholder="Your name" /></label>
+          <label>Email<input name="email" type="email" required autocomplete="email" placeholder="you@company.com" /></label>
+        </div>
+        <div class="lf-row">
+          <label>WhatsApp<input name="phone" type="tel" required inputmode="tel" autocomplete="tel" dir="ltr" placeholder="+971 50 000 0000" /></label>
+          <label>Company<input name="company" autocomplete="organization" placeholder="Company (optional)" /></label>
+        </div>
+        <label class="lf-full">Project
+          <textarea name="message" rows="3" placeholder="What you&rsquo;d want automated. A few lines is plenty."></textarea>
+        </label>
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="lf-honey" />
+        <div class="lf-actions">
+          <button type="submit" class="btn solid" id="geo-lead-submit">Send enquiry</button>
+        </div>
+        <p class="form-status" id="geo-form-status" role="status" aria-live="polite"></p>
+      </form>
     </div>
   </section>
 
@@ -279,5 +298,6 @@
     document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el);});
   </script>
   <script defer src="/assets/pricing.js"></script>
+  <script defer src="/assets/geo-lead.js"></script>
 </body>
 </html>
