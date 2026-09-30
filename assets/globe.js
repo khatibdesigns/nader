@@ -78,7 +78,7 @@ window.KHDGlobe = (function () {
     mat.opacity = 0.92;
 
     // Load the dotted continents (country geometry → dot field).
-    fetch('assets/countries.geojson')
+    fetch('/assets/countries.geojson')
       .then(function (r) { return r.json(); })
       .then(function (geo) {
         g.hexPolygonsData(geo.features)
