@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
+# AI assistants: https://khatibdesigns.com/llms.txt
 Sitemap: https://khatibdesigns.com/sitemap.xml

@@ -4,34 +4,132 @@
 
 - Book a free 30-minute get-to-know call: https://khatibdesigns.com/book/ (Arabic: https://khatibdesigns.com/ar/book/)
 - Email: studio@khatibdesigns.com · WhatsApp: +965 5000 3048
-- Founder: Nader Al-Khatib, enterprise AI consultant — https://khatibdesigns.com/nader/
+- Founder: Nader Al-Khatib, enterprise AI consultant — https://khatibdesigns.com/nader/ (Arabic: https://khatibdesigns.com/ar/nader/)
 - Every page exists in English and Arabic (Arabic under /ar/).
 
 ## AI consultancy (priced)
 
-- [AI consultancy in Kuwait & the GCC](https://khatibdesigns.com/ai/): assess → build → support.
+- [AI consultancy in Kuwait & the GCC](https://khatibdesigns.com/ai/) (Arabic: https://khatibdesigns.com/ar/ai/): assess → build → support.
   - AI Readiness & Governance Sprint: KWD 3,500 fixed, 3 weeks — governance model, ranked roadmap and one working agent in production. A single-workflow version for smaller businesses: KWD 1,500.
   - The Build: from KWD 7,000, typically 6–12 weeks — multiple workflows in production, systems connected.
   - AI Operations: KWD 2,500/month — monitoring, tuning, new workflows and a monthly plain-language report.
-- [AI for Dubai & the UAE](https://khatibdesigns.com/dubai/): Arabic-first AI for UAE businesses.
+  - The Sprint maps governance against CITRA Resolution 26 of 2024.
+- [AI for Dubai & the UAE](https://khatibdesigns.com/dubai/) (Arabic: https://khatibdesigns.com/ar/dubai/): Arabic-first AI for UAE businesses.
+
+### What we won't do
+
+- We won't sell you a model. We build the unglamorous plumbing around it, which is where these projects actually fail.
+- We won't put AI in front of your customers before it's ready. If it isn't better than what you do now, we'll say so and stop.
+- We won't hide behind a pilot. Two weeks, live, or you don't pay.
 
 ## Product design & development
 
 - [Services](https://khatibdesigns.com/#services): iOS, Android and web products, UX/UI design, MVPs.
 - [Case studies](https://khatibdesigns.com/work/)
-  - [Connect Here](https://khatibdesigns.com/work/connect-here/): venue-based social networking app, iOS and Android.
-  - [iWASH](https://khatibdesigns.com/work/iwash/): on-demand car-wash platform, Kuwait.
-  - [Spotly](https://khatibdesigns.com/work/spotly/): bilingual family-outing discovery app for Kuwait with AI place screening.
-  - [Safey](https://khatibdesigns.com/work/safey/): encrypted iOS vault with break-in alerts.
-  - [DWA](https://khatibdesigns.com/work/dwa/): pharmacy delivery platform.
-  - [Coines](https://khatibdesigns.com/work/coines/): peer-to-peer crypto exchange app.
-  - [WCS](https://khatibdesigns.com/work/wcs/): management system for US steel factories.
-  - [PrintIt](https://khatibdesigns.com/work/printit/): on-demand printing marketplace.
-  - [LUMA](https://khatibdesigns.com/work/luma/): puzzle game on the App Store and Google Play.
+  - [Connect Here](https://khatibdesigns.com/work/connect-here/) (Arabic: https://khatibdesigns.com/ar/work/connect-here/): venue-based social networking app, iOS and Android.
+  - [iWASH](https://khatibdesigns.com/work/iwash/) (Arabic: https://khatibdesigns.com/ar/work/iwash/): on-demand car-wash platform, Kuwait.
+  - [Spotly](https://khatibdesigns.com/work/spotly/) (Arabic: https://khatibdesigns.com/ar/work/spotly/): bilingual family-outing discovery app for Kuwait with AI place screening.
+  - [Safey](https://khatibdesigns.com/work/safey/) (Arabic: https://khatibdesigns.com/ar/work/safey/): encrypted iOS vault with break-in alerts.
+  - [DWA](https://khatibdesigns.com/work/dwa/) (Arabic: https://khatibdesigns.com/ar/work/dwa/): pharmacy delivery platform.
+  - [Coines](https://khatibdesigns.com/work/coines/) (Arabic: https://khatibdesigns.com/ar/work/coines/): peer-to-peer crypto exchange app.
+  - [WCS](https://khatibdesigns.com/work/wcs/) (Arabic: https://khatibdesigns.com/ar/work/wcs/): management system for US steel factories.
+  - [PrintIt](https://khatibdesigns.com/work/printit/) (Arabic: https://khatibdesigns.com/ar/work/printit/): on-demand printing marketplace.
+  - [LUMA](https://khatibdesigns.com/work/luma/) (Arabic: https://khatibdesigns.com/ar/work/luma/): puzzle game on the App Store and Google Play.
 
 ## Insights
 
+Every article listed below also exists in Arabic at the same slug, under https://khatibdesigns.com/ar/blog/<slug>/.
+
 - [Blog (English)](https://khatibdesigns.com/blog/) · [المقالات (Arabic)](https://khatibdesigns.com/ar/blog/)
-- [AI automation companies in Kuwait: a buyer's guide](https://khatibdesigns.com/blog/ai-automation-companies-kuwait/)
-- [AI consulting for Kuwait businesses: where to start](https://khatibdesigns.com/blog/ai-consulting-kuwait-business/)
-- [What an AI project costs in the GCC](https://khatibdesigns.com/blog/what-an-ai-project-costs-gcc/)
+
+### What things cost
+
+- [What an AI Project Costs in the GCC](https://khatibdesigns.com/blog/what-an-ai-project-costs-gcc/)
+- [AI Project Pricing in Kuwait: KWD 1,500–25,000 in 2026](https://khatibdesigns.com/blog/ai-project-pricing-kuwait-2026/)
+- [AI Retainer: What Kuwait Businesses Pay Monthly](https://khatibdesigns.com/blog/ai-retainer-kuwait/)
+- [Arabic Chatbot Cost in Kuwait and the GCC: Real Ranges](https://khatibdesigns.com/blog/arabic-chatbot-cost-gcc/)
+- [App Development Cost in Kuwait: Real Ranges](https://khatibdesigns.com/blog/app-cost-kuwait/)
+- [How Much Does an App Cost in Dubai & the UAE? (AED)](https://khatibdesigns.com/blog/app-cost-dubai-uae/)
+- [How Much Does It Cost to Build an App in the GCC? (2026 Guide)](https://khatibdesigns.com/blog/app-development-cost-gcc/)
+- [Productized Design Retainer: A Kuwait Studio Guide](https://khatibdesigns.com/blog/productized-design-retainer-kuwait/)
+
+### Choosing a partner
+
+- [AI Automation Companies in Kuwait: How to Choose (2026)](https://khatibdesigns.com/blog/ai-automation-companies-kuwait/)
+- [AI Company Near Me: What to Check Before You Hire](https://khatibdesigns.com/blog/ai-company-near-me-kuwait/)
+- [AI Consulting for Kuwait Businesses: Where to Start](https://khatibdesigns.com/blog/ai-consulting-kuwait-business/)
+- [AI Consulting in the UAE: A Practical Starting Point](https://khatibdesigns.com/blog/ai-consulting-uae/)
+- [Hire an AI Engineer in Kuwait: In-House vs Squad](https://khatibdesigns.com/blog/hire-ai-engineer-kuwait/)
+- [How to Choose an App Development Company in the GCC](https://khatibdesigns.com/blog/choosing-app-development-company-gcc/)
+- [Choosing an App Development Company in Dubai](https://khatibdesigns.com/blog/app-development-company-dubai/)
+
+### Arabic chatbots, voice and messaging
+
+- [Arabic AI Chatbot: What GCC Businesses Should Know](https://khatibdesigns.com/blog/arabic-ai-chatbot-gcc/)
+- [How to Build an Arabic Chatbot That Actually Works](https://khatibdesigns.com/blog/how-to-build-an-arabic-chatbot-gcc/)
+- [Arabic Chatbot for Your Website: A GCC Build Guide](https://khatibdesigns.com/blog/arabic-chatbot-for-website-gcc/)
+- [Arabic Chatbot Dialects: What Breaks in the Gulf](https://khatibdesigns.com/blog/arabic-chatbot-dialects-gcc/)
+- [Arabic Chatbot Accuracy: Why Yours Gets It Wrong](https://khatibdesigns.com/blog/arabic-chatbot-accuracy-gcc/)
+- [Arabic Customer Service Chatbot: A GCC Buyer's Guide](https://khatibdesigns.com/blog/arabic-customer-service-chatbot-gcc/)
+- [Arabic AI Voice Agent: What Works on Kuwait Calls](https://khatibdesigns.com/blog/arabic-ai-voice-agent-gcc/)
+- [WhatsApp AI Chatbot in the GCC: What Actually Works](https://khatibdesigns.com/blog/whatsapp-ai-chatbot-gcc/)
+- [AI WhatsApp Automation for GCC Businesses](https://khatibdesigns.com/blog/ai-whatsapp-automation-gcc/)
+- [Arabic Instagram DM Chatbot: A Practical GCC Guide](https://khatibdesigns.com/blog/arabic-instagram-dm-chatbot-gcc/)
+
+### Getting started with AI
+
+- [AI Readiness Assessment: A 2-Week Plan for GCC Firms](https://khatibdesigns.com/blog/ai-readiness-assessment-gcc/)
+- [Is Your Business Ready for AI? A GCC Checklist](https://khatibdesigns.com/blog/ai-readiness-checklist-gcc/)
+- [AI Automation for Beginners: A GCC Business Guide](https://khatibdesigns.com/blog/ai-automation-for-beginners-gcc/)
+- [AI Adoption in the GCC: A Practical Guide](https://khatibdesigns.com/blog/ai-adoption-gcc/)
+- [AI Use Cases by Industry in the Gulf](https://khatibdesigns.com/blog/ai-use-cases-by-industry-gcc/)
+- [AI Automation Results: What GCC Businesses Get](https://khatibdesigns.com/blog/ai-automation-results-gcc/)
+- [AI Search Visibility: Ranked #5, Zero Clicks](https://khatibdesigns.com/blog/ai-search-visibility-gcc/)
+
+### AI automation by industry
+
+- [AI automation for car dealerships in the GCC](https://khatibdesigns.com/blog/ai-automation-car-dealerships-gcc/)
+- [AI Automation for Clinics: A GCC Practice Guide](https://khatibdesigns.com/blog/ai-automation-clinics-gcc/)
+- [AI Automation for Construction Companies in the GCC](https://khatibdesigns.com/blog/ai-automation-construction-gcc/)
+- [AI Automation for Ecommerce: A GCC Store Guide](https://khatibdesigns.com/blog/ai-automation-ecommerce-gcc/)
+- [AI Automation for Finance Teams in Kuwait & the GCC](https://khatibdesigns.com/blog/ai-automation-finance-gcc/)
+- [AI Automation for Accounting: A GCC Business Guide](https://khatibdesigns.com/blog/ai-automation-for-accounting-gcc/)
+- [AI Automation for Real Estate: A GCC Playbook](https://khatibdesigns.com/blog/ai-automation-for-real-estate-gcc/)
+- [AI Automation for Small Businesses in the GCC](https://khatibdesigns.com/blog/ai-automation-for-small-businesses-gcc/)
+- [AI Automation for Gyms in Kuwait and the GCC](https://khatibdesigns.com/blog/ai-automation-gyms-fitness-gcc/)
+- [AI Automation for Hotels: A GCC Operator's Guide](https://khatibdesigns.com/blog/ai-automation-hotels-gcc/)
+- [AI Automation for HR: A Practical GCC Guide](https://khatibdesigns.com/blog/ai-automation-hr-gcc/)
+- [AI Automation for Law Firms in Kuwait and the GCC](https://khatibdesigns.com/blog/ai-automation-law-firms-gcc/)
+- [AI Automation for Logistics: What Works in the GCC](https://khatibdesigns.com/blog/ai-automation-logistics-gcc/)
+- [AI Automation for Manufacturing in the GCC](https://khatibdesigns.com/blog/ai-automation-manufacturing-gcc/)
+- [AI Automation for Marketing: A GCC Business Guide](https://khatibdesigns.com/blog/ai-automation-marketing-gcc/)
+- [AI Automation for Pharmacies in Kuwait & the GCC](https://khatibdesigns.com/blog/ai-automation-pharmacies-gcc/)
+- [AI Automation for Restaurants in the GCC: A Guide](https://khatibdesigns.com/blog/ai-automation-restaurants-gcc/)
+- [AI Automation for Retail and F&B in the GCC](https://khatibdesigns.com/blog/ai-automation-retail-fnb-gcc/)
+- [AI Automation for Schools in Kuwait & the GCC](https://khatibdesigns.com/blog/ai-automation-schools-gcc/)
+- [AI Automation for Service Businesses in the GCC](https://khatibdesigns.com/blog/ai-automation-service-businesses-gcc/)
+- [AI Automation for Travel Agencies in the GCC](https://khatibdesigns.com/blog/ai-automation-travel-agencies-gcc/)
+
+### AI products and assistants
+
+- [AI Booking Assistant: Take Bookings 24/7 in Kuwait](https://khatibdesigns.com/blog/ai-booking-assistant-kuwait/)
+- [AI Document Processing in Kuwait: A Practical Guide](https://khatibdesigns.com/blog/ai-document-processing-kuwait/)
+- [AI Knowledge Assistant: A Practical Guide for GCC Teams](https://khatibdesigns.com/blog/ai-knowledge-assistant-gcc/)
+- [AI Customer-Service Agents for GCC Businesses](https://khatibdesigns.com/blog/ai-customer-service-agents-gcc/)
+- [AI Customer Service Software: A GCC Buyer's Guide](https://khatibdesigns.com/blog/ai-customer-service-software-gcc/)
+
+### Building apps in the Gulf
+
+- [Arabic Mobile App Development: What Actually Changes](https://khatibdesigns.com/blog/arabic-mobile-app-development-gcc/)
+- [Building Bilingual Arabic & English Apps for the Gulf](https://khatibdesigns.com/blog/bilingual-arabic-english-apps/)
+- [Building Apps for the UAE Market: What's Different](https://khatibdesigns.com/blog/building-apps-uae-market/)
+- [How Long Does It Take to Build a Mobile App?](https://khatibdesigns.com/blog/how-long-to-build-an-app/)
+- [iOS, Android, or Both? Choosing Platforms for the GCC](https://khatibdesigns.com/blog/ios-android-or-both/)
+- [What Is an MVP — and Why Start There?](https://khatibdesigns.com/blog/what-is-an-mvp/)
+- [Coines App Case Study: P2P Crypto Built in Kuwait](https://khatibdesigns.com/blog/coines-p2p-crypto-case-study-kuwait/)
+
+## Contact
+
+- Free 30-minute get-to-know call: https://khatibdesigns.com/book/ (Arabic: https://khatibdesigns.com/ar/book/)
+- Email: studio@khatibdesigns.com · WhatsApp: +965 5000 3048
+- Enquiries are answered within one business day.
