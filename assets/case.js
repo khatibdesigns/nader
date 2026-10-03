@@ -118,10 +118,32 @@
     var body = document.querySelector('article.article .article-body');
     if (!body || body.querySelector('.khd-inline-offer')) return;
 
+    // App/product readers are the only organic traffic that converts, and a governance
+    // sprint answers a question they never asked — give them the build offer instead.
+    var APP_SLUGS = [
+      'app-cost-kuwait', 'app-cost-dubai-uae', 'app-development-cost-gcc',
+      'app-development-company-dubai', 'arabic-mobile-app-development-gcc',
+      'bilingual-arabic-english-apps', 'building-apps-uae-market',
+      'choosing-app-development-company-gcc', 'how-long-to-build-an-app',
+      'ios-android-or-both', 'what-is-an-mvp',
+      'coines-p2p-crypto-case-study-kuwait', 'productized-design-retainer-kuwait'
+    ];
+    // these pages are served at /blog/<slug>/ — no match (anything else) keeps the AI card
+    var slug = location.pathname.match(/^\/blog\/([a-z0-9-]+)\//);
+    var isApp = !!slug && APP_SLUGS.indexOf(slug[1]) !== -1;
+
+    var appOffer = '<h3>Product &amp; app build</h3>' +
+      '<p style="font-family:var(--display);font-size:26px;color:var(--accent);margin:0 0 12px">from <span data-kwd="3000">KWD 3,000</span> ' +
+      '<span style="font-size:13px;color:var(--faint);font-family:var(--body)">fixed scope, fixed date</span></p>' +
+      '<p>Tell me what you&rsquo;re building and you&rsquo;ll get scope, timeline and a fixed price back ' +
+      'within one business day &mdash; no discovery invoice.</p>' +
+      '<a class="btn solid" href="/book/" data-cta="book-call" data-cta-location="article-offer" style="margin-top:16px">Book a 30-min scoping call</a>' +
+      '<p style="margin:14px 0 0"><a href="/work/#start">See the work and what it costs &rarr;</a></p>';
+
     var card = document.createElement('aside');
     card.className = 'svc-card khd-inline-offer';
     card.setAttribute('style', 'margin:34px 0');
-    card.innerHTML = '<h3>AI Readiness &amp; Governance Sprint</h3>' +
+    card.innerHTML = isApp ? appOffer : '<h3>AI Readiness &amp; Governance Sprint</h3>' +
       '<p style="font-family:var(--display);font-size:26px;color:var(--accent);margin:0 0 12px">KWD 3,500 ' +
       '<span style="font-size:13px;color:var(--faint);font-family:var(--body)">fixed, 3 weeks</span></p>' +
       '<p>A governance model, a ranked roadmap and <strong>one working agent deployed</strong> before we hand over &mdash; ' +
