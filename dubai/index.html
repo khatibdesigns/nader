@@ -241,6 +241,40 @@
         <a class="btn wa-btn" href="https://wa.me/96550003048?text=Hi%20Khatib%20Designs%2C%20I%27m%20in%20the%20UAE%20and%20I%27d%20like%20to%20talk%20about%20an%20AI%20solution%20%28Arabic%20AI%29%20for%20my%20business." target="_blank" rel="noopener">WhatsApp us</a>
         <a class="btn" data-cta="email" href="mailto:studio@khatibdesigns.com?subject=AI%20for%20our%20UAE%20business&body=What%20we%27d%20want%20automated%3A%0AOur%20industry%3A%0ABest%20number%20to%20reach%20us%3A%0A">Email instead</a>
       </div>
+
+      <p class="contact-lead">Rather write? Send the details and we'll reply within one business day.</p>
+
+      <form class="lead-form" id="dubai-lead-form" novalidate>
+        <div class="lf-row">
+          <label>Name<input name="name" required autocomplete="name" placeholder="Your name" /></label>
+          <label>Email<input name="email" type="email" required autocomplete="email" placeholder="you@company.com" /></label>
+        </div>
+        <div class="lf-row">
+          <label>WhatsApp number<input name="phone" type="tel" required inputmode="tel" autocomplete="tel" placeholder="+971 50 000 0000" /></label>
+          <label>Company<input name="company" autocomplete="organization" placeholder="Company (optional)" /></label>
+        </div>
+        <label>Budget
+          <select name="budget">
+            <option value="">Select a range (optional)</option>
+            <option>Under KWD 1,500</option>
+            <option>KWD 1,500 &ndash; 3,500</option>
+            <option>KWD 3,500 &ndash; 7,000</option>
+            <option>KWD 7,000+</option>
+            <option>Not sure yet</option>
+          </select>
+        </label>
+        <label>Project
+          <textarea name="message" required rows="4" placeholder="What would you want AI to handle? A few lines is plenty."></textarea>
+        </label>
+        <input type="hidden" name="_subject" value="New UAE enquiry (/dubai/) — khatibdesigns.com" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="lf-honey" />
+        <div class="lf-actions">
+          <button type="submit" class="btn solid" id="dubai-lead-submit">Send enquiry</button>
+        </div>
+        <p class="form-status" id="dubai-form-status" role="status" aria-live="polite"></p>
+      </form>
     </div>
   </section>
 
@@ -277,6 +311,61 @@
     if(nt)nt.addEventListener('click',function(){nl.classList.toggle('open');});
     var ro=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);}});},{threshold:0.12});
     document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el);});
+
+    /* Lead form (FormSubmit AJAX). This page doesn't load assets/site.js, so the
+       #lead-form handler there never binds here — the logic is ported instead. */
+    (function(){
+      var form=document.getElementById('dubai-lead-form'); if(!form) return;
+      var status=document.getElementById('dubai-form-status'),btn=document.getElementById('dubai-lead-submit');
+      // guarded: a blocked analytics.js must never stop an enquiry from sending
+      function track(name,params){ try{ if(window.khdTrack) window.khdTrack(name,params||{}); }catch(e){} }
+      var started=false;                                          // one-shot engagement flag
+      function onEngage(e){
+        if(started||e.target.name==='_honey') return;
+        started=true;
+        track('form_start',{method:'dubai_form',page_path:location.pathname,language:'en'});
+      }
+      form.addEventListener('input',onEngage);
+      form.addEventListener('change',onEngage);
+      form.addEventListener('submit',function(e){
+        e.preventDefault();
+        if(form._honey&&form._honey.value) return;                // bot trap
+        if(!form.checkValidity()){
+          var invalid=form.querySelector(':invalid');
+          track('lead_submit_blocked',{reason:'validation',field:(invalid&&invalid.name)||'unknown',page_path:location.pathname,language:'en'});
+          form.reportValidity(); return;
+        }
+        status.className='form-status'; status.textContent='Sending…';
+        btn.disabled=true;
+        var data={}; new FormData(form).forEach(function(v,k){ if(k.charAt(0)!=='_'||k==='_subject') data[k]=v; });
+        data._subject='New UAE enquiry (/dubai/) — khatibdesigns.com';
+        data._template='table';
+        data._cc='nader@khatibdesigns.com';                       // the mailbox the reply-handler actually watches
+        fetch('https://formsubmit.co/ajax/studio@khatibdesigns.com',{
+          method:'POST',
+          headers:{'Content-Type':'application/json','Accept':'application/json'},
+          body:JSON.stringify(data)
+        }).then(function(r){
+          // success on any 2xx — the first (pre-activation) submit returns a
+          // non-JSON activation page, so don't depend on parsing the body
+          return r.text().then(function(t){
+            var okBody=false;
+            try{ okBody=String(JSON.parse(t).success).toLowerCase()==='true'; }catch(err){}
+            return r.ok||okBody;
+          });
+        }).then(function(ok){
+          if(!ok) throw new Error('not ok');
+          form.reset();
+          status.className='form-status ok';
+          status.textContent="Thanks — your enquiry is on its way. We'll reply within one business day.";
+          track('generate_lead',{method:'dubai_form',page_path:location.pathname,language:'en',budget:data.budget||'unspecified'});
+        }).catch(function(err){
+          track('lead_submit_failed',{reason:(err&&err.message==='not ok')?'rejected':'network',page_path:location.pathname,language:'en'});
+          status.className='form-status err';
+          status.innerHTML='Something went wrong — please email <a href="mailto:studio@khatibdesigns.com">studio@khatibdesigns.com</a> or message us on WhatsApp.';
+        }).finally(function(){ btn.disabled=false; });
+      });
+    })();
   </script>
   <script defer src="/assets/pricing.js"></script>
 </body>
