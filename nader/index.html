@@ -77,7 +77,7 @@
       </p>
       <div class="hero-cta" style="margin-top:30px">
         <a href="/ai/" class="btn solid">What I do for companies</a>
-        <a href="/#contact" class="btn">Get in touch</a>
+        <a href="#contact" class="btn">Get in touch</a>
       </div>
     </div>
   </section>
@@ -121,6 +121,37 @@
     </div>
   </section>
 
+  <!-- CONTACT -->
+  <section class="section contact" id="contact">
+    <div class="reveal">
+      <span class="eyebrow" style="justify-content:center"><span class="dot"></span>Write to me directly</span>
+      <h2 style="margin-top:24px">Tell me what you<br />are trying to automate.</h2>
+      <p class="contact-lead">Send me a few lines and I will give you a straight read on your AI project &mdash; whether it is worth doing, what I would build first, and what it honestly takes. I reply within one business day.</p>
+
+      <form class="lead-form" id="nader-lead-form" novalidate>
+        <div class="lf-row">
+          <label>Name<input name="name" required autocomplete="name" placeholder="Your name" /></label>
+          <label>Email<input name="email" type="email" required autocomplete="email" placeholder="you@company.com" /></label>
+        </div>
+        <div class="lf-row">
+          <label>Phone<input name="phone" type="tel" required autocomplete="tel" placeholder="+965 5000 3048" /></label>
+          <label>Company<input name="company" autocomplete="organization" placeholder="Company (optional)" /></label>
+        </div>
+        <label class="lf-full">What you want automated
+          <textarea name="message" required rows="4" placeholder="Which workflow eats the most time today? A few lines is plenty."></textarea>
+        </label>
+        <input type="hidden" name="_subject" value="Enquiry from the founder page — /nader/" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="lf-honey" />
+        <div class="lf-actions">
+          <button type="submit" class="btn solid" id="nader-lead-submit">Send enquiry</button>
+        </div>
+        <p class="form-status" id="nader-form-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
   <footer>
     <span class="brand"><span class="k">Khatib</span><span class="d">Designs</span></span>
     <nav class="foot-links" aria-label="Footer">
@@ -148,6 +179,48 @@
     if(nt)nt.addEventListener('click',function(){nl.classList.toggle('open');});
     var ro=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);}});},{threshold:0.12});
     document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el);});
+
+    /* lead form (FormSubmit AJAX) — self-contained, this page doesn't load site.js */
+    var lf=document.getElementById('nader-lead-form');
+    if(lf){
+      var lfStatus=document.getElementById('nader-form-status'),lfBtn=document.getElementById('nader-lead-submit');
+      lf.addEventListener('submit',function(e){
+        e.preventDefault();
+        if(lf._honey&&lf._honey.value)return;                     // bot trap
+        if(!lf.checkValidity()){lf.reportValidity();return;}
+        lfStatus.className='form-status';lfStatus.textContent='Sending…';
+        lfBtn.disabled=true;
+        var data={};new FormData(lf).forEach(function(v,k){if(k.charAt(0)!=='_'||k==='_subject')data[k]=v;});
+        data._subject='Enquiry from the founder page — /nader/';
+        data._template='table';
+        // Copy the mailbox JARVIS polls. The form's own recipient is unchanged —
+        // leads keep arriving where they always have — but _cc puts a copy where
+        // the reply-handler can see it.
+        data._cc = 'nader@khatibdesigns.com';
+        fetch('https://formsubmit.co/ajax/studio@khatibdesigns.com',{
+          method:'POST',
+          headers:{'Content-Type':'application/json','Accept':'application/json'},
+          body:JSON.stringify(data)
+        }).then(function(r){
+          // success on any 2xx — the first (pre-activation) submit returns a
+          // non-JSON activation page, so don't depend on parsing the body
+          return r.text().then(function(t){
+            var okBody=false;
+            try{okBody=String(JSON.parse(t).success).toLowerCase()==='true';}catch(err){}
+            return r.ok||okBody;
+          });
+        }).then(function(ok){
+          if(!ok)throw new Error('not ok');
+          lf.reset();
+          lfStatus.className='form-status ok';
+          lfStatus.textContent='Thanks — your enquiry is on its way. I’ll reply within one business day.';
+          if(window.khdTrack)window.khdTrack('generate_lead',{method:'nader_page_form',page_path:'/nader/'});
+        }).catch(function(){
+          lfStatus.className='form-status err';
+          lfStatus.innerHTML='Something went wrong — please email <a href="mailto:studio@khatibdesigns.com">studio@khatibdesigns.com</a> or message us on WhatsApp.';
+        }).finally(function(){lfBtn.disabled=false;});
+      });
+    }
   </script>
 </body>
 </html>
