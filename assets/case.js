@@ -132,4 +132,62 @@
     if (heads.length >= 2) heads[1].parentNode.insertBefore(card, heads[1]); else body.appendChild(card);
   }
   initArticleOffer();
+
+  /* human byline + author card on blog articles — /nader/ is the studio's
+     strongest proof and the best-converting organic page, yet the articles
+     were bylined to nobody and mostly never linked to it. case.js also runs
+     on the two blog hubs and on /work/* case studies — they get nothing. */
+  function initAuthorCredit() {
+    if (!/^\/(ar\/)?blog\/[^/]+\//.test(location.pathname)) return;
+    var body = document.querySelector('article.article .article-body');
+    if (!body || body.querySelector('.khd-author')) return;
+
+    var ar = document.documentElement.lang === 'ar';
+    var STR = {
+      studio: { en: 'Khatib Designs', ar: 'خطيب ديزاينز' },
+      name: { en: 'Nader Al-Khatib', ar: 'نادر الخطيب' },
+      role: { en: ' — Digital Factory Director, stc Kuwait',
+              ar: ' — مدير المصنع الرقمي، stc الكويت' },
+      cardRole: { en: 'Digital Factory Director, stc Kuwait · Enterprise AI consultant',
+                  ar: 'مدير المصنع الرقمي في stc الكويت · استشاري ذكاء اصطناعي للشركات' },
+      // verbatim from the Person JSON-LD description on /nader/ — no new claim
+      bio: { en: 'Nader Al-Khatib is Digital Factory Director at stc Kuwait and an enterprise AI consultant. He runs Khatib Designs, an Arabic-first design and AI-enablement studio in Kuwait serving the GCC.',
+             ar: 'نادر الخطيب مدير المصنع الرقمي في stc الكويت واستشاري ذكاء اصطناعي للشركات. يدير خطيب ديزاينز، استوديو تصميم وتمكين ذكاء اصطناعي عربي أولًا في الكويت يخدم الخليج.' },
+      more: { en: 'About the author →', ar: 'عن الكاتب ←' }
+    };
+    var t = function (k) { return STR[k][ar ? 'ar' : 'en']; };
+    var href = ar ? '/ar/nader/' : '/nader/';
+
+    // byline: replace only the studio-name text node, keeping <time> and the separators
+    var meta = document.querySelector('.article-meta');
+    if (meta) {
+      var old = null;
+      Array.prototype.forEach.call(meta.childNodes, function (n) {
+        if (!old && n.nodeType === 3 && n.nodeValue.indexOf(t('studio')) > -1) old = n;
+      });
+      if (!old) return;
+      var txt = old.nodeValue, cut = txt.lastIndexOf('·');
+      var lead = cut > -1 ? txt.slice(0, cut + 1) + ' ' : txt.slice(0, txt.indexOf(t('studio')));
+      var link = document.createElement('a');
+      link.setAttribute('href', href);
+      link.setAttribute('rel', 'author');
+      link.textContent = t('name');
+      var role = document.createElement('span');
+      role.textContent = t('role');
+      meta.insertBefore(document.createTextNode(lead), old);
+      meta.insertBefore(link, old);
+      meta.insertBefore(role, old);
+      meta.removeChild(old);
+    }
+
+    var card = document.createElement('aside');
+    card.className = 'svc-card khd-author';
+    card.setAttribute('style', 'margin:34px 0');
+    card.innerHTML = '<h3>' + t('name') + '</h3>' +
+      '<p style="font-family:var(--display);color:var(--faint);margin:0 0 12px">' + t('cardRole') + '</p>' +
+      '<p>' + t('bio') + '</p>' +
+      '<a class="btn" href="' + href + '" style="margin-top:16px">' + t('more') + '</a>';
+    body.appendChild(card);
+  }
+  initAuthorCredit();
 })();
