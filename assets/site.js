@@ -141,10 +141,10 @@
       features = '<ul class="feature-list">' + feats.map(function (f) { return '<li>' + f + '</li>'; }).join('') + '</ul>';
     }
     const st = p.store || {};
+    // '#' in data.js means "not listed yet" — render nothing rather than a dead button
     function storeLink(href, label) {
-      const real = href && href !== '#';
-      const attr = real ? ' href="' + href + '" target="_blank" rel="noopener"' : ' href="#"';
-      return '<a class="store"' + attr + '>' + label + ' ' + EXT + '</a>';
+      if (!href || href === '#') return '';
+      return '<a class="store" href="' + href + '" target="_blank" rel="noopener">' + label + ' ' + EXT + '</a>';
     }
     let stores = '';
     if (st.ios) stores += storeLink(st.ios, 'App Store');
@@ -159,10 +159,18 @@
       '<p class="desc">' + appf(p.id, 'desc', p.desc) + '</p>' +
       features +
       '<div class="modal-meta">' + meta + '</div>' +
-      '<div class="store-row">' + stores + '</div>' +
-      (p.slug ? '<a class="case-link" href="' + (L === 'ar' ? '/ar' : '') + '/work/' + p.slug + '/">' + S('readFullCase') + ' ' + ARROW + '</a>' : '');
+      (stores ? '<div class="store-row">' + stores + '</div>' : '') +
+      (p.slug ? '<a class="case-link" href="' + (L === 'ar' ? '/ar' : '') + '/work/' + p.slug + '/">' + S('readFullCase') + ' ' + ARROW + '</a>' : '') +
+      '<div class="modal-cta">' +
+        '<a class="btn solid" href="' + (L === 'ar' ? '/ar' : '') + '/book/" data-cta="book-call" data-cta-location="project-modal">' + S('bookCall') + '</a>' +
+        '<a class="btn" href="#contact" id="modal-contact">' + S('startSimilar') + '</a>' +
+      '</div>';
 
     $('#modal-x').addEventListener('click', closeModal);
+    // close first, so the scroll lock is released before the browser jumps to #contact.
+    // The drawer goes too — it is usually still open behind the modal, and closeModal
+    // keeps overflow:hidden while it is.
+    $('#modal-contact').addEventListener('click', function () { closeModal(); closeDrawer(); });
     $('#modal-scrim').classList.add('open');
     document.body.style.overflow = 'hidden';
   }

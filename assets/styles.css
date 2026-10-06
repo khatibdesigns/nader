@@ -450,6 +450,7 @@ footer{position:relative;z-index:5;padding:40px var(--shell) 56px;border-top:1px
 .modal-info .case-link{display:inline-flex;align-items:center;gap:8px;margin-top:20px;
   color:var(--accent);font-size:14px;letter-spacing:.02em;transition:.2s;}
 .modal-info .case-link:hover{gap:12px;}
+.modal-info .modal-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px;}
 
 /* reveal-on-scroll */
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1);}
