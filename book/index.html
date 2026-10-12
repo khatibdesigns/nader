@@ -34,7 +34,7 @@
 <link rel="preconnect" href="https://calendly.com" />
 <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/assets/styles.css" />
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://khatibdesigns.com/book/#page","url":"https://khatibdesigns.com/book/","name":"Book a free 30-minute call","description":"A free, no-obligation get-to-know call with Khatib Designs about an AI, app or web project.","inLanguage":"en","about":{"@id":"https://khatibdesigns.com/#studio"},"potentialAction":{"@type":"ReserveAction","name":"Book a free 30-minute get-to-know call","target":"https://calendly.com/khatibdesigns/30min"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://khatibdesigns.com/"},{"@type":"ListItem","position":2,"name":"Book a call","item":"https://khatibdesigns.com/book/"}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://khatibdesigns.com/book/#page","url":"https://khatibdesigns.com/book/","name":"Book a free 30-minute call","description":"A free, no-obligation get-to-know call with Khatib Designs about an AI, app or web project.","inLanguage":"en","about":{"@id":"https://khatibdesigns.com/#studio"},"potentialAction":{"@type":"ReserveAction","name":"Book a free 30-minute get-to-know call","target":"https://calendly.com/khatibdesigns/30min"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://khatibdesigns.com/"},{"@type":"ListItem","position":2,"name":"Book a call","item":"https://khatibdesigns.com/book/"}]},{"@type":"Service","@id":"https://khatibdesigns.com/book/#priced","name":"AI consultancy engagements","provider":{"@id":"https://khatibdesigns.com/#studio"},"inLanguage":"en","hasOfferCatalog":{"@type":"OfferCatalog","name":"AI services","itemListElement":[{"@type":"Offer","name":"AI Readiness &amp; Governance Sprint","price":"3500","priceCurrency":"KWD","itemOffered":{"@type":"Service","name":"AI Readiness &amp; Governance Sprint — governance model, ranked roadmap, one agent deployed"}},{"@type":"Offer","name":"The Build","price":"7000","priceCurrency":"KWD","priceSpecification":{"@type":"PriceSpecification","minPrice":"7000","priceCurrency":"KWD"},"itemOffered":{"@type":"Service","name":"AI build"}},{"@type":"Offer","name":"AI Operations","price":"2500","priceCurrency":"KWD","itemOffered":{"@type":"Service","name":"AI operations retainer (monthly)"}}]}}]}</script>
 </head>
 <body>
   <div id="stars"></div>
@@ -98,6 +98,30 @@
         <p class="book-fallback">No time that works? <a href="https://wa.me/96550003048?text=Hi%20Khatib%20Designs%2C%20I%27d%20like%20a%20call%20but%20none%20of%20the%20booking%20times%20work%20for%20me." target="_blank" rel="noopener">Message us on WhatsApp</a> or email <a href="mailto:studio@khatibdesigns.com">studio@khatibdesigns.com</a> and we&rsquo;ll find one.</p>
       </div>
     </div>
+
+    <section class="book-prices" id="prices" style="max-width:1280px;margin:clamp(64px,8vw,92px) auto 0;padding-top:clamp(40px,5vw,54px);border-top:1px solid var(--line)">
+      <h2 style="font-family:var(--display);font-weight:400;font-size:clamp(22px,2.2vw,28px);line-height:1.2">What an engagement costs, <em class="grad">before you book.</em></h2>
+      <div class="svc-grid" style="margin-top:28px">
+        <article class="svc-card" style="border-color:var(--line-2)">
+          <h3>AI Readiness &amp; Governance Sprint</h3>
+          <p style="font-family:var(--display);font-size:26px;color:var(--accent);margin:0 0 12px"><span data-kwd="3500">KWD 3,500</span> <span style="font-size:13px;color:var(--faint);font-family:var(--body)">fixed, 3 weeks</span></p>
+          <p>Where AI actually pays in your business, what it must not touch, and who signs off. You get a governance model, a ranked roadmap, and <strong>one working agent built and deployed</strong> so the roadmap is proven, not theoretical. Smaller businesses: a single-workflow version runs <strong>KWD 1,500</strong>.</p>
+        </article>
+
+        <article class="svc-card">
+          <h3>The Build</h3>
+          <p style="font-family:var(--display);font-size:26px;color:var(--ink);margin:0 0 12px">from <span data-kwd="7000">KWD 7,000</span></p>
+          <p>The roadmap delivered: multiple workflows in production, your systems connected, governance enforced in the code, and interfaces designed properly. Typically six to twelve weeks.</p>
+        </article>
+
+        <article class="svc-card">
+          <h3>AI Operations</h3>
+          <p style="font-family:var(--display);font-size:26px;color:var(--ink);margin:0 0 12px"><span data-kwd="2500">KWD 2,500</span><span style="font-size:13px;color:var(--faint);font-family:var(--body)">/month</span></p>
+          <p>We run it. Monitoring, tuning against real conversations, new workflows as you find them, and a monthly report in plain language showing what it handled and what it saved you.</p>
+        </article>
+      </div>
+      <p style="margin-top:22px;color:var(--muted);font-size:14px;line-height:1.7">The full scope, and what we won&rsquo;t do: <a href="/ai/#offer" style="color:var(--accent)">the AI engagements in detail</a>.</p>
+    </section>
   </main>
 
   <footer>
@@ -125,6 +149,7 @@
       var b=document.getElementById('booked');b.hidden=false;b.scrollIntoView({behavior:'smooth',block:'center'});
     });
   </script>
+  <script src="/assets/pricing.js" defer></script>
   <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </body>
 </html>
