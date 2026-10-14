@@ -65,6 +65,7 @@
     if (cur === 'KWD' || !RATES[cur]) return; // already in dinars, or nothing to say
     var nodes = document.querySelectorAll('[data-kwd]');
     for (var i = 0; i < nodes.length; i++) {
+      if (nodes[i].querySelector('.fx')) continue; // already converted — re-runs must not stack
       var raw = nodes[i].getAttribute('data-kwd');
       var parts = String(raw).split('-').map(Number).filter(function (n) { return n > 0; });
       if (!parts.length) continue;
@@ -76,6 +77,8 @@
       nodes[i].appendChild(span);
     }
   }
+
+  window.khdPrices = run; // so dynamically-rendered prices (the estimator) can convert too
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
   else run();
