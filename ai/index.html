@@ -323,6 +323,11 @@
         // produced landed somewhere nothing was watching. _cc puts a copy where
         // the reply-handler can see it.
         data._cc = 'nader@khatibdesigns.com';
+        // Instant acknowledgment with the booking link, so the lead can book a
+        // call now rather than sit in silence; _replyto puts Nader's reply on
+        // the lead instead of on the form.
+        data._autoresponse='Thanks — your enquiry reached the studio.\n\nWe’ll reply with a scope and a price within one business day.\n\nDon’t want to wait? Book a free 30-minute call and we can talk it through now: https://khatibdesigns.com/book/\n\nWhatsApp: +965 5000 3048\n\nNader Al-Khatib — Khatib Designs';
+        if(data.email)data._replyto=data.email;
         fetch('https://formsubmit.co/ajax/studio@khatibdesigns.com',{
           method:'POST',
           headers:{'Content-Type':'application/json','Accept':'application/json'},

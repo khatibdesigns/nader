@@ -37,7 +37,9 @@
       ok: { en: 'Thanks — your enquiry is on its way. We’ll reply within one business day.',
             ar: 'شكرًا — طلبك في طريقه إلينا. سنردّ خلال يوم عمل واحد.' },
       err: { en: 'Something went wrong — please email studio@khatibdesigns.com or message us on WhatsApp.',
-             ar: 'حدث خطأ ما — يرجى مراسلتنا على studio@khatibdesigns.com أو عبر واتساب.' }
+             ar: 'حدث خطأ ما — يرجى مراسلتنا على studio@khatibdesigns.com أو عبر واتساب.' },
+      auto: { en: 'Thanks — your enquiry reached the studio.\n\nWe’ll reply with a scope and a price within one business day.\n\nDon’t want to wait? Book a free 30-minute call and we can talk it through now: https://khatibdesigns.com/book/\n\nWhatsApp: +965 5000 3048\n\nNader Al-Khatib — Khatib Designs',
+              ar: 'شكرًا — وصل طلبك إلى الاستوديو.\n\nسنردّ بنطاق العمل والسعر خلال يوم عمل واحد.\n\nلا تريد الانتظار؟ احجز مكالمة تعارف مجانية لمدة 30 دقيقة ولنتحدّث الآن: https://khatibdesigns.com/ar/book/\n\nواتساب: +965 5000 3048\n\nنادر الخطيب — Khatib Designs' }
     };
     var t = function (k) { return STR[k][ar ? 'ar' : 'en']; };
 
@@ -76,6 +78,11 @@
       // nader@ over IMAP; _cc is what lets it see the enquiry, record it and
       // raise it. A lead nobody is told about is the same as no lead.
       data._cc = 'nader@khatibdesigns.com';
+      // Instant branded acknowledgment carrying the booking link, so a reader
+      // who just filled this in can book now instead of waiting; _replyto puts
+      // Nader's reply on the lead rather than on the form.
+      data._autoresponse = t('auto');
+      if (data.email) data._replyto = data.email;
       data._captcha = 'false';
       fetch('https://formsubmit.co/ajax/studio@khatibdesigns.com', {
         method: 'POST',

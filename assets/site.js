@@ -276,6 +276,11 @@
       // FormSubmit's _cc puts a copy where the reply-handler can see it, which
       // is what turns an arriving lead into a phone alert instead of silence.
       data._cc = 'nader@khatibdesigns.com';
+      // Acknowledge the lead instantly with the booking link instead of leaving
+      // them in silence until Nader gets to them; _replyto means his eventual
+      // reply lands on the lead rather than on FormSubmit.
+      data._autoresponse = S('formAuto');
+      if (data.email) data._replyto = data.email;
       fetch('https://formsubmit.co/ajax/studio@khatibdesigns.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },

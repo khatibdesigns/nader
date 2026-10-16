@@ -11,7 +11,9 @@ window.KHD_STR = {
     allRegions: 'All regions',
     formSending: 'Sending…',
     formOk: 'Thanks — your enquiry is on its way. We’ll reply within one business day.',
-    formErr: 'Something went wrong — please email <a href="mailto:studio@khatibdesigns.com">studio@khatibdesigns.com</a> or message us on WhatsApp.'
+    formErr: 'Something went wrong — please email <a href="mailto:studio@khatibdesigns.com">studio@khatibdesigns.com</a> or message us on WhatsApp.',
+    // plain text — FormSubmit mails this straight back to the lead as the body
+    formAuto: 'Thanks — your enquiry reached the studio.\n\nWe’ll reply with a scope and a price within one business day.\n\nDon’t want to wait? Book a free 30-minute call and we can talk it through now: https://khatibdesigns.com/book/\n\nWhatsApp: +965 5000 3048\n\nNader Al-Khatib — Khatib Designs'
   },
   ar: {
     flagship: '★ منتج رئيسي', flagshipProduct: 'منتج رئيسي', product: 'منتج',
@@ -22,7 +24,8 @@ window.KHD_STR = {
     allRegions: 'كل المناطق',
     formSending: 'جارٍ الإرسال…',
     formOk: 'شكرًا — طلبك في طريقه إلينا. سنردّ خلال يوم عمل واحد.',
-    formErr: 'حدث خطأ ما — يرجى مراسلتنا على <a href="mailto:studio@khatibdesigns.com">studio@khatibdesigns.com</a> أو عبر واتساب.'
+    formErr: 'حدث خطأ ما — يرجى مراسلتنا على <a href="mailto:studio@khatibdesigns.com">studio@khatibdesigns.com</a> أو عبر واتساب.',
+    formAuto: 'شكرًا — وصل طلبك إلى الاستوديو.\n\nسنردّ بنطاق العمل والسعر خلال يوم عمل واحد.\n\nلا تريد الانتظار؟ احجز مكالمة تعارف مجانية لمدة 30 دقيقة ولنتحدّث الآن: https://khatibdesigns.com/ar/book/\n\nواتساب: +965 5000 3048\n\nنادر الخطيب — Khatib Designs'
   }
 };
 
