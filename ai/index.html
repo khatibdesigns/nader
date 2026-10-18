@@ -255,6 +255,16 @@
           <label>Phone<input name="phone" type="tel" required autocomplete="tel" placeholder="+965 5000 3048" /></label>
           <label>Company<input name="company" autocomplete="organization" placeholder="Company (optional)" /></label>
         </div>
+        <label class="lf-full">Budget
+          <select name="budget">
+            <option value="">Select a range (optional)</option>
+            <option>Under KWD 1,500</option>
+            <option>KWD 1,500 &ndash; 3,500</option>
+            <option>KWD 3,500 &ndash; 7,000</option>
+            <option>KWD 7,000+</option>
+            <option>Not sure yet</option>
+          </select>
+        </label>
         <label class="lf-full">What you want automated
           <textarea name="message" required rows="4" placeholder="Which workflow eats the most time today? A few lines is plenty."></textarea>
         </label>
@@ -308,15 +318,33 @@
     var lf=document.getElementById('ai-lead-form');
     if(lf){
       var lfStatus=document.getElementById('ai-form-status'),lfBtn=document.getElementById('ai-lead-submit');
+      function track(name,params){
+        var p=params||{};
+        p.page_path='/ai/';p.language='en';
+        if(window.khdTrack)window.khdTrack(name,p);
+      }
+      var lfStarted=false;                                        // one-shot engagement flag
+      function lfEngage(e){
+        if(lfStarted||e.target.name==='_honey')return;
+        lfStarted=true;
+        track('form_start',{method:'ai_page_form'});
+      }
+      lf.addEventListener('input',lfEngage);
+      lf.addEventListener('change',lfEngage);
       lf.addEventListener('submit',function(e){
         e.preventDefault();
         if(lf._honey&&lf._honey.value)return;                     // bot trap
-        if(!lf.checkValidity()){lf.reportValidity();return;}
+        if(!lf.checkValidity()){
+          var invalid=lf.querySelector(':invalid');
+          track('lead_submit_blocked',{reason:'validation',field:(invalid&&invalid.name)||'unknown'});
+          lf.reportValidity();return;
+        }
         lfStatus.className='form-status';lfStatus.textContent='Sending…';
         lfBtn.disabled=true;
         var data={};new FormData(lf).forEach(function(v,k){if(k.charAt(0)!=='_'||k==='_subject')data[k]=v;});
         data._subject='AI Sprint enquiry — /ai/ page';
         data._template='table';
+        data._captcha='false';
         // Copy the mailbox JARVIS polls. The form's own recipient is
         // unchanged — leads keep arriving exactly where they always have — but
         // that address was one no agent ever opened, so every enquiry this page
@@ -340,8 +368,9 @@
           lf.reset();
           lfStatus.className='form-status ok';
           lfStatus.textContent='Thanks — your enquiry is on its way. We’ll reply within one business day.';
-          if(window.khdTrack)window.khdTrack('generate_lead',{method:'ai_page_form',page_path:'/ai/'});
-        }).catch(function(){
+          track('generate_lead',{method:'ai_page_form',budget:data.budget||'unspecified',has_company:data.company?'yes':'no'});
+        }).catch(function(err){
+          track('lead_submit_failed',{reason:(err&&err.message==='not ok')?'rejected':'network'});
           lfStatus.className='form-status err';
           lfStatus.innerHTML='Something went wrong — please email <a href="mailto:studio@khatibdesigns.com">studio@khatibdesigns.com</a> or message us on WhatsApp.';
         }).finally(function(){lfBtn.disabled=false;});
