@@ -11,6 +11,7 @@ window.KHD_STR = {
     allRegions: 'All regions',
     formSending: 'Sending…',
     formOk: 'Thanks — your enquiry is on its way. We’ll reply within one business day.',
+    formOkBook: 'Book your free 30-minute call now',
     formErr: 'Something went wrong — please email <a href="mailto:studio@khatibdesigns.com">studio@khatibdesigns.com</a> or message us on WhatsApp.'
   },
   ar: {
@@ -22,6 +23,7 @@ window.KHD_STR = {
     allRegions: 'كل المناطق',
     formSending: 'جارٍ الإرسال…',
     formOk: 'شكرًا — طلبك في طريقه إلينا. سنردّ خلال يوم عمل واحد.',
+    formOkBook: 'احجز مكالمتك المجانية (٣٠ دقيقة) الآن',
     formErr: 'حدث خطأ ما — يرجى مراسلتنا على <a href="mailto:studio@khatibdesigns.com">studio@khatibdesigns.com</a> أو عبر واتساب.'
   }
 };

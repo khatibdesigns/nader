@@ -294,10 +294,29 @@
         status.className = 'form-status ok';
         status.textContent = S('formOk');
         track('generate_lead', { method: 'contact_form', budget: data.budget || 'unspecified', has_company: data.company ? 'yes' : 'no' });
+        // The confirmation sentence used to be the end of the road: a visitor at
+        // their most interested moment was told to wait for a reply. Hand them
+        // the booking link instead, so the hottest second on the site can
+        // become a scheduled call. Guarded so a second submit reuses the node.
+        if (!$('#form-done')) {
+          var done = document.createElement('div');
+          done.className = 'form-done'; done.id = 'form-done';
+          var book = document.createElement('a');
+          book.className = 'btn solid book-btn';
+          book.href = (L === 'ar') ? '/ar/book/' : '/book/';
+          book.setAttribute('data-cta', 'book-call');
+          book.setAttribute('data-cta-location', 'form_success');
+          book.textContent = S('formOkBook');
+          done.appendChild(book);
+          status.parentNode.insertBefore(done, status.nextSibling);
+        }
       }).catch(function (err) {
         track('lead_submit_failed', { reason: (err && err.message === 'not ok') ? 'rejected' : 'network' });
         status.className = 'form-status err';
         status.innerHTML = S('formErr');
+        // a failed retry must not sit under a stale "it worked, book now" CTA
+        var stale = $('#form-done');
+        if (stale && stale.parentNode) stale.parentNode.removeChild(stale);
       }).finally(function () { btn.disabled = false; });
     });
   }
