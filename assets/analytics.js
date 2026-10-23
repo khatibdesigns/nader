@@ -42,6 +42,19 @@
       if (v) stored[k] = v;
       if (stored[k]) attribution[k] = stored[k];
     });
+    // Two more first-touch values, written once and never overwritten: the page
+    // the session actually landed on, and the host that sent it. A lead that
+    // carries no UTM is still attributable to LinkedIn, a reel or search.
+    if (!stored.landing_page) stored.landing_page = location.pathname;
+    if (!stored.referrer && document.referrer) {
+      try {
+        var host = new URL(document.referrer).hostname;
+        // Internal navigation must never overwrite the real origin.
+        if (host && !/(^|\.)khatibdesigns\.com$/.test(host)) stored.referrer = host;
+      } catch (e2) { /* unparseable referrer → skip */ }
+    }
+    if (stored.landing_page) attribution.landing_page = stored.landing_page;
+    if (stored.referrer) attribution.referrer = stored.referrer;
     sessionStorage.setItem('khd_attr', JSON.stringify(stored));
   } catch (e) { /* no storage → skip */ }
   window.khdAttribution = attribution;        // lead-form can post this along

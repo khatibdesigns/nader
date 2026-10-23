@@ -72,6 +72,15 @@
       var data = {}; new FormData(form).forEach(function (v, k) { if (k.charAt(0) !== '_') data[k] = v; });
       data._subject = 'New enquiry from ' + location.pathname + ' — khatibdesigns.com';
       data._template = 'table';
+      // Where the lead came from, in the email itself — an article reader who
+      // fills this in is otherwise indistinguishable from a direct visitor.
+      var attr = window.khdAttribution || {};
+      data.source = attr.utm_source || attr.referrer || 'direct';
+      var campaign = [attr.utm_campaign, attr.utm_medium, attr.gclid && 'gclid'].filter(Boolean).join(' / ');
+      if (campaign) data.campaign = campaign;
+      data.landing_page = attr.landing_page || location.pathname;
+      data.page = location.pathname;
+      data.language = document.documentElement.lang;
       // Without this the lead reaches the inbox and nothing else. JARVIS reads
       // nader@ over IMAP; _cc is what lets it see the enquiry, record it and
       // raise it. A lead nobody is told about is the same as no lead.

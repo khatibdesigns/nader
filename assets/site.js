@@ -267,8 +267,19 @@
       status.className = 'form-status'; status.textContent = S('formSending');
       btn.disabled = true;
       const data = {}; new FormData(form).forEach(function (v, k) { if (k.charAt(0) !== '_' || k === '_subject') data[k] = v; });
-      data._subject = 'New project enquiry — khatibdesigns.com';
+      data._subject = 'New project enquiry (' + location.pathname + ') — khatibdesigns.com';
       data._template = 'table';
+      // Where the lead came from, in the email itself. Until now the enquiry
+      // arrived anonymous — GA4 knew the campaign, the inbox did not — so no
+      // one could tell which surface to double down on. Plain field names so
+      // FormSubmit's table template prints them beside the name and message.
+      var attr = window.khdAttribution || {};
+      data.source = attr.utm_source || attr.referrer || 'direct';
+      var campaign = [attr.utm_campaign, attr.utm_medium, attr.gclid && 'gclid'].filter(Boolean).join(' / ');
+      if (campaign) data.campaign = campaign;
+      data.landing_page = attr.landing_page || location.pathname;
+      data.page = location.pathname;
+      data.language = L;
       // Copy the mailbox JARVIS polls. The form's own recipient is unchanged —
       // leads keep arriving exactly where they always have — but until now that
       // address was one no agent, timer or dashboard ever opened, so every
