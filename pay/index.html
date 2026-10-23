@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Secure checkout | Khatib Designs</title>
+<meta name="description" content="Secure checkout for KHD software products (MODAX, Marj3), processed by Paddle, our merchant of record." />
+<meta name="robots" content="noindex, follow" />
+<meta name="theme-color" content="#070611" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css" />
+<style>.pay{max-width:620px;margin:0 auto;padding:140px 20px 80px;text-align:center}.pay h1{font-size:clamp(28px,4vw,40px);margin:14px 0}.pay p{color:var(--muted)}.pay .legal-nav{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 18px;margin-top:28px;font-size:13px}.pay .legal-nav a{color:var(--muted)}</style>
+</head>
+<body>
+  <div id="stars"></div><div class="bg-neb"></div><div class="bg-neb two"></div>
+  <header class="nav">
+    <a class="brand" href="/"><span class="k">Khatib</span><span class="d">Designs</span></a>
+  </header>
+  <main class="pay" id="main">
+    <span class="eyebrow"><span class="dot"></span>Secure checkout</span>
+    <h1 id="pay-title">Opening your checkout…</h1>
+    <p id="pay-msg">Payments for KHD products (MODAX, Marj3) are processed by Paddle.com, our merchant of record. If nothing opens, use the link from your email again or contact <a href="mailto:hello@khatibdesigns.com">hello@khatibdesigns.com</a>.</p>
+    <nav class="legal-nav" aria-label="Legal pages"><a href="/legal/terms/">Terms of Service</a><a href="/legal/privacy/">Privacy Policy</a><a href="/legal/refunds/">Refund Policy</a></nav>
+  </main>
+  <!-- Paddle default payment link: Paddle sends buyers here with ?_ptxn=txn_… (renewal emails,
+       card updates, server-created transactions). Paddle.js opens that transaction's checkout
+       by itself once initialised. The token is a public client-side token ("khd-pay"). -->
+  <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+  <script>
+    (function () {
+      var has = /[?&]_ptxn=/.test(location.search);
+      if (!has) {
+        document.getElementById('pay-title').textContent = 'Secure checkout';
+      }
+      Paddle.Initialize({
+        token: 'live_1cc2b9324a7524563ab67e9134e',
+        eventCallback: function (e) {
+          if (e && e.name === 'checkout.completed') {
+            document.getElementById('pay-title').textContent = 'Payment received — thank you';
+            document.getElementById('pay-msg').textContent = 'A receipt from Paddle is on its way to your email. You can close this page.';
+          }
+          if (e && e.name === 'checkout.error') {
+            document.getElementById('pay-title').textContent = 'Checkout could not open';
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
