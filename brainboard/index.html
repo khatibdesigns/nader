@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KHD Brainboard</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jura:wght@500;600;700&family=Tajawal:wght@400;500;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;700&family=Cairo:wght@400;600;700;800&family=Readex+Pro:wght@400;500;700&family=Almarai:wght@400;700;800&family=El+Messiri:wght@400;600;700&family=Changa:wght@400;600;800&display=swap">
+<style>
+/* Layout: a studio desk on a tablet — a tool rail of choices on the left, a live strip of six phones on the right that repaint on every tap, then scope + saved options below. One committed dark look in KHD colours. */
+:root{
+  --night:#0B0A12; --desk:#14131C; --panel:#1C1B26; --line:#2E2C3A; --ink:#F4F1EC; --muted:#ABA6B3; --faint:#7E7988;
+  --ember:#FF9A4D; --ember-ink:#1A0F05;
+  --f-brand:'Jura','Tajawal',Arial,sans-serif; --f-ui:'Tajawal',Arial,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{background:var(--night);color:var(--ink)}
+body{font-family:var(--f-ui);font-size:16px;line-height:1.5;margin:0;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:18px 48px;-webkit-tap-highlight-color:transparent}
+button{font:inherit;color:inherit}
+.wrap{max-width:1560px;margin:0 auto;display:flex;flex-direction:column;gap:26px}
+
+/* top bar */
+.top{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+.idn{display:flex;flex-direction:column;gap:6px;min-width:0}
+.mark{font-family:var(--f-brand);font-weight:700;letter-spacing:.32em;font-size:14px}
+.mark b{color:var(--ember)}
+h1{font-family:var(--f-brand);font-weight:600;font-size:clamp(26px,3vw,40px);line-height:1.1;margin:0;text-wrap:balance}
+.sub{margin:0;color:var(--muted);font-size:16px}
+.tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.seg{display:flex;gap:4px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:4px}
+.seg button{border:0;background:none;cursor:pointer;padding:10px 18px;border-radius:999px;font-weight:700;color:var(--muted);min-height:44px}
+.seg button[aria-pressed="true"]{background:var(--ember);color:var(--ember-ink)}
+.ghost{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:10px 16px;cursor:pointer;font-weight:700;min-height:44px}
+:focus-visible{outline:2px solid var(--ember);outline-offset:3px}
+
+/* desk */
+.desk{display:grid;grid-template-columns:minmax(300px,360px) minmax(0,1fr);gap:22px;align-items:start}
+.rail{background:var(--desk);border:1px solid var(--line);border-radius:24px;padding:20px;display:flex;flex-direction:column;gap:22px}
+.blk{display:flex;flex-direction:column;gap:10px}
+.lbl{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.lbl em{font-style:normal;letter-spacing:0;text-transform:none;font-size:13px;color:var(--ink);font-weight:500}
+[dir="rtl"] .lbl{letter-spacing:0}
+input[type=text]{font:inherit;font-size:17px;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;width:100%;min-height:48px}
+.moods{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.mood{border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:10px 12px;cursor:pointer;text-align:start;display:flex;flex-direction:column;gap:2px;min-height:58px}
+.mood b{font-size:15px}
+.mood small{font-size:12px;color:var(--muted)}
+.mood[aria-pressed="true"]{border-color:var(--ember);box-shadow:inset 0 0 0 1px var(--ember)}
+.sws{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.sw{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:6px;cursor:pointer;display:flex;flex-direction:column;gap:5px}
+.sw .bars{display:flex;height:30px;border-radius:8px;overflow:hidden}
+.sw .bars i{flex:1}
+.sw small{font-size:11px;color:var(--muted);line-height:1.2;text-align:center}
+.sw[aria-pressed="true"]{border-color:var(--ember);box-shadow:inset 0 0 0 1px var(--ember)}
+.custom{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.cc{display:flex;flex-direction:column;gap:4px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px}
+.cc input[type=color]{width:100%;height:38px;border:0;padding:0;background:none;border-radius:8px;cursor:pointer}
+.cc small{font-size:12px;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:9px 15px;cursor:pointer;font-size:15px;min-height:44px}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--night);border-color:var(--ink)}
+.logo-up{display:flex;gap:10px;align-items:center}
+.logo-up label{flex:1;text-align:center;border:1px dashed var(--line);border-radius:12px;padding:12px;cursor:pointer;color:var(--muted);min-height:48px}
+.logo-up input{position:absolute;width:1px;height:1px;opacity:0}
+.logo-up .prev{width:48px;height:48px;border-radius:12px;background:var(--panel) center/contain no-repeat;border:1px solid var(--line);flex:0 0 auto}
+
+/* stage */
+.stage{display:flex;flex-direction:column;gap:12px;min-width:0}
+.stage-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.stage-h h2,.panel h2{font-family:var(--f-brand);font-weight:600;font-size:22px;margin:0}
+.stage-h p{margin:0;color:var(--muted);font-size:14px}
+.strip{display:flex;gap:22px;overflow-x:auto;padding:6px 4px 18px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+figure{margin:0;flex:0 0 auto;display:flex;flex-direction:column;gap:10px;align-items:center;scroll-snap-align:start}
+figcaption{font-size:14px;color:var(--muted);text-align:center;max-width:280px}
+figcaption b{display:block;color:var(--ink);font-size:15px}
+.phone{border:0;background:#05050A;padding:10px;border-radius:44px;width:286px;height:600px;cursor:zoom-in;box-shadow:0 30px 60px -30px rgba(0,0,0,.9);display:block;text-align:initial}
+
+/* app screens — every colour comes from the app's own variables */
+.scr{--p:#7A2E4D;--a:#E8A87C;--bg:#FBF6F1;--card:#FFFFFF;--ink:#2B1A22;--sub:#76707A;--on:#FFFFFF;--r:16px;--fa:'Tajawal';
+  height:100%;border-radius:35px;overflow:hidden;background:var(--bg);color:var(--ink);font-family:var(--fa),Arial,sans-serif;display:flex;flex-direction:column;font-size:13px;line-height:1.35;position:relative}
+.sb{display:flex;justify-content:space-between;align-items:center;padding:12px 24px 4px;font-size:11px;font-weight:700;direction:ltr}
+.sb i{width:64px;height:16px;background:#05050A;border-radius:10px}
+.ah{display:flex;align-items:center;justify-content:space-between;padding:6px 16px 10px;gap:8px;position:relative}
+.ah.pat{padding-bottom:16px}
+.ah.pat::after{content:"";position:absolute;inset:auto 0 0 0;height:8px;background:var(--pat, none)}
+.brandmark{display:flex;align-items:center;gap:8px;font-weight:800;font-size:16px}
+.lg{width:28px;height:28px;border-radius:calc(var(--r) * .45);background:var(--p) center/cover no-repeat;display:grid;place-items:center;color:var(--on);font-size:13px;font-weight:800;flex:0 0 auto}
+.lg.img{background-color:var(--card);background-size:contain;border:1px solid color-mix(in srgb,var(--ink) 10%,transparent)}
+.ico{width:30px;height:30px;border-radius:999px;background:var(--card);display:grid;place-items:center;color:var(--sub);font-size:13px;border:1px solid color-mix(in srgb,var(--ink) 8%,transparent)}
+.bd{flex:1;overflow:hidden;padding:0 14px;display:flex;flex-direction:column;gap:10px}
+.hero{background:var(--p);color:var(--on);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;gap:3px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;bottom:-30px;inset-inline-end:-20px;width:96px;height:96px;border-radius:50%;background:var(--a);opacity:.28}
+.hero b{font-size:15px;position:relative}
+.hero span{opacity:.88;font-size:12px;position:relative}
+.cd{background:var(--card);border-radius:var(--r);padding:11px;border:1px solid color-mix(in srgb,var(--ink) 7%,transparent)}
+.t{font-weight:800;font-size:14px}
+.s{color:var(--sub);font-size:11.5px}
+.pl{display:inline-block;padding:5px 10px;border-radius:999px;background:color-mix(in srgb,var(--p) 13%,var(--card));color:var(--p);font-weight:700;font-size:11px}
+.pls{display:flex;gap:6px;flex-wrap:wrap}
+.days{display:flex;gap:6px}
+.day{flex:1;text-align:center;padding:6px 0;border-radius:calc(var(--r) * .6);background:var(--card);border:1px solid color-mix(in srgb,var(--ink) 8%,transparent);display:flex;flex-direction:column}
+.day small{font-size:10px;color:var(--sub)}
+.day b{font-size:14px}
+.day.on{background:var(--ink);border-color:var(--ink)}
+.day.on small,.day.on b{color:var(--bg)}
+.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.slot{text-align:center;padding:7px 0;border-radius:calc(var(--r) * .55);background:var(--card);border:1px solid color-mix(in srgb,var(--ink) 9%,transparent);font-size:11px;font-weight:700;direction:ltr}
+.slot.on{background:var(--p);color:var(--on);border-color:var(--p)}
+.cta{margin:8px 14px 10px;background:var(--p);color:var(--on);text-align:center;padding:12px;border-radius:var(--r);font-weight:800;font-size:14px}
+.tabs{display:flex;justify-content:space-around;padding:8px 6px 16px;border-top:1px solid color-mix(in srgb,var(--ink) 8%,transparent);background:var(--card);font-size:10px;color:var(--sub)}
+.tab{display:flex;flex-direction:column;align-items:center;gap:3px}
+.tab::before{content:"";width:18px;height:18px;border-radius:6px;background:color-mix(in srgb,var(--sub) 35%,transparent)}
+.tab.on{color:var(--p);font-weight:700}
+.tab.on::before{background:var(--p)}
+.sg{display:flex;background:color-mix(in srgb,var(--ink) 7%,var(--card));border-radius:999px;padding:3px}
+.sg span{flex:1;text-align:center;padding:7px;border-radius:999px;font-weight:700;font-size:12px;color:var(--sub)}
+.sg span.on{background:var(--card);color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.msg{display:flex;gap:8px;align-items:flex-start}
+.av{width:28px;height:28px;border-radius:999px;flex:0 0 auto;display:grid;place-items:center;font-size:11px;font-weight:800;color:#fff}
+.bub{background:var(--card);border-radius:calc(var(--r) * .8);padding:8px 10px;max-width:190px;border:1px solid color-mix(in srgb,var(--ink) 7%,transparent)}
+.bub.me{background:var(--p);color:var(--on);margin-inline-start:auto;border-color:var(--p)}
+.cmp{margin:6px 14px 12px;display:flex;gap:8px;align-items:center}
+.cmp span{flex:1;background:var(--card);border-radius:999px;padding:10px 14px;color:var(--sub);border:1px solid color-mix(in srgb,var(--ink) 9%,transparent)}
+.cmp i{width:36px;height:36px;border-radius:999px;background:var(--p)}
+.pf{display:flex;flex-direction:column;align-items:center;gap:6px;padding-top:4px}
+.big{width:78px;height:78px;border-radius:999px;background:linear-gradient(135deg,var(--p),var(--a));display:grid;place-items:center;color:var(--on);font-size:28px;font-weight:800;border:4px solid var(--card)}
+.fld{background:var(--card);border-radius:calc(var(--r) * .7);padding:9px 11px;border:1px solid color-mix(in srgb,var(--ink) 9%,transparent)}
+.fld small{display:block;color:var(--sub);font-size:10.5px}
+.fld b{font-size:13px}
+.car{display:flex;align-items:center;gap:10px}
+.plate{direction:ltr;font-weight:800;border:2px solid var(--ink);border-radius:6px;padding:2px 8px;font-size:12px}
+.steps{display:flex;flex-direction:column;gap:8px}
+.st{display:flex;gap:10px;align-items:center}
+.st i{width:14px;height:14px;border-radius:999px;border:3px solid color-mix(in srgb,var(--sub) 50%,transparent);flex:0 0 auto}
+.st.done i{background:var(--p);border-color:var(--p)}
+.st.now i{border-color:var(--a);background:var(--a)}
+.here{margin:6px 14px 10px;background:var(--a);color:var(--ink);text-align:center;padding:16px;border-radius:calc(var(--r) * 1.2);font-weight:800;font-size:17px}
+.eta{font-size:30px;font-weight:800;color:var(--p);direction:ltr;display:inline-block}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pr{background:var(--card);border-radius:var(--r);padding:8px;border:1px solid color-mix(in srgb,var(--ink) 7%,transparent);display:flex;flex-direction:column;gap:4px}
+.pr .im{height:66px;border-radius:calc(var(--r) * .7)}
+.pr .pp{color:var(--p);font-weight:800;font-size:12px}
+.sum{display:flex;justify-content:space-between;font-size:12px}
+.sum.tt{font-weight:800;font-size:14px;border-top:1px dashed color-mix(in srgb,var(--ink) 20%,transparent);padding-top:6px}
+.pay{display:flex;gap:6px}
+.pay span{flex:1;text-align:center;padding:8px 0;border-radius:calc(var(--r) * .6);background:var(--card);border:1px solid color-mix(in srgb,var(--ink) 10%,transparent);font-weight:800;font-size:11px;direction:ltr}
+.pay span.on{border:2px solid var(--p)}
+/* home screen */
+.home{flex:1;padding:18px 18px 10px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px 10px;align-content:start;background:linear-gradient(170deg,color-mix(in srgb,var(--p) 55%,#0d0d14),#0d0d14 75%)}
+.app{display:flex;flex-direction:column;align-items:center;gap:5px;color:#fff;font-size:10px}
+.app i{width:52px;height:52px;border-radius:13px;background:rgba(255,255,255,.14);display:block}
+.app.me i{background:var(--p) center/cover no-repeat;display:grid;place-items:center;font-style:normal;font-size:22px;font-weight:800;color:var(--on);box-shadow:0 0 0 2px var(--a)}
+.app.me i.img{background-color:#fff;background-size:70%;background-repeat:no-repeat;background-position:center}
+.dock{margin:0 12px 14px;background:rgba(255,255,255,.16);border-radius:26px;padding:12px;display:flex;justify-content:space-around}
+.dock i{width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.22)}
+
+/* lower */
+.lower{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:22px}
+.panel{background:var(--desk);border:1px solid var(--line);border-radius:24px;padding:22px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.lead{margin:0;color:var(--muted)}
+.feats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.ft{display:block;cursor:pointer;position:relative}
+.ft input{position:absolute;opacity:0;width:1px;height:1px}
+.ft>span{display:flex;gap:12px;align-items:center;padding:13px;border-radius:14px;background:var(--panel);border:1px solid var(--line);min-height:58px}
+.ft>span::before{content:"";width:20px;height:20px;border-radius:6px;border:2px solid var(--muted);flex:0 0 auto}
+.ft input:checked+span{border-color:var(--ember)}
+.ft input:checked+span::before{background:var(--ember);border-color:var(--ember);box-shadow:inset 0 0 0 3px var(--panel)}
+.ft input:focus-visible+span{outline:2px solid var(--ember);outline-offset:2px}
+.ft em{font-style:normal;display:block;font-size:13px;color:var(--muted)}
+.rec{border-radius:18px;padding:20px;background:var(--panel);border:1px solid var(--line);display:flex;flex-direction:column;gap:10px}
+.rec .tag{align-self:flex-start;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:999px;background:var(--ember);color:var(--ember-ink)}
+.rec .price{font-family:var(--f-brand);font-weight:700;font-size:clamp(28px,3vw,38px);line-height:1.1}
+.rec ul{margin:0;padding-inline-start:20px;color:var(--muted)}
+.rec .next{border-top:1px solid var(--line);padding-top:12px}
+.saved{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.opt{border:1px solid var(--line);background:var(--panel);border-radius:14px;padding:10px;display:flex;flex-direction:column;gap:6px;cursor:pointer;text-align:start;min-height:96px}
+.opt .bars{display:flex;height:24px;border-radius:7px;overflow:hidden}
+.opt .bars i{flex:1}
+.opt b{font-size:14px}
+.opt small{color:var(--muted);font-size:12px}
+.opt.empty{border-style:dashed;color:var(--faint);justify-content:center;align-items:center;cursor:default}
+.row2{display:flex;gap:10px;flex-wrap:wrap}
+.btn{border:0;cursor:pointer;background:var(--ember);color:var(--ember-ink);font-weight:800;padding:12px 20px;border-radius:999px;min-height:46px}
+.summary{white-space:pre-wrap;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;font-size:14px;color:var(--muted);margin:0;overflow-wrap:anywhere;font-family:var(--f-ui)}
+.note{font-size:13px;color:var(--muted);margin:0}
+footer{color:var(--faint);font-size:13px;display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
+
+/* zoom */
+.zoom{position:fixed;inset:0;background:rgba(5,5,10,.82);display:grid;place-items:center;z-index:50;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));cursor:zoom-out}
+.zoom .phone{transform:scale(var(--z,1.3));transform-origin:center;cursor:zoom-out}
+.zoom-x{position:fixed;top:calc(16px + env(safe-area-inset-top,0px));right:calc(16px + env(safe-area-inset-right,0px));z-index:51}
+
+@media (max-width: 1020px){ .desk{grid-template-columns:minmax(0,1fr)} .lower{grid-template-columns:minmax(0,1fr)} }
+@media (max-width: 560px){ .feats{grid-template-columns:minmax(0,1fr)} .sws{grid-template-columns:repeat(3,minmax(0,1fr))} .saved{grid-template-columns:minmax(0,1fr)} }
+@media (prefers-reduced-motion: no-preference){ .scr,.hero,.cta,.lg{transition:background-color .3s,color .3s} }
+</style>
+</head>
+<body>
+
+<div class="wrap" id="app" dir="ltr">
+  <header class="top">
+    <div class="idn">
+      <div class="mark">KHATIB <b>DESIGNS</b></div>
+      <h1 data-t="title">Brainboard</h1>
+      <p class="sub" data-t="subtitle">Pick a mood, colours and type. Every screen repaints as you tap.</p>
+    </div>
+    <div class="tools">
+      <div class="seg" role="group" aria-label="Language"><button type="button" id="l-en">English</button><button type="button" id="l-ar">العربية</button></div>
+      <button type="button" class="ghost" id="fs" data-t="fullscreen">Full screen</button>
+    </div>
+  </header>
+
+  <section class="desk">
+    <aside class="rail" aria-label="Design choices">
+      <div class="blk">
+        <label class="lbl" for="brand"><span data-t="brand">Brand name</span></label>
+        <input type="text" id="brand" maxlength="30" autocomplete="off">
+      </div>
+      <div class="blk">
+        <div class="lbl"><span data-t="mood">Mood</span><em id="moodName"></em></div>
+        <div class="moods" id="moods"></div>
+      </div>
+      <div class="blk">
+        <div class="lbl"><span data-t="colours">Colour scheme</span><em id="palName"></em></div>
+        <div class="sws" id="sws"></div>
+        <div class="custom">
+          <label class="cc"><input type="color" id="cP"><small data-t="main">Main</small></label>
+          <label class="cc"><input type="color" id="cA"><small data-t="accent">Accent</small></label>
+          <label class="cc"><input type="color" id="cB"><small data-t="background">Background</small></label>
+        </div>
+      </div>
+      <div class="blk">
+        <div class="lbl"><span data-t="type">Typeface</span></div>
+        <div class="chips" id="fonts"></div>
+      </div>
+      <div class="blk">
+        <div class="lbl"><span data-t="corners">Corners</span></div>
+        <div class="chips" id="corners"></div>
+      </div>
+      <div class="blk">
+        <div class="lbl"><span data-t="pattern">Header pattern</span></div>
+        <div class="chips" id="patterns"></div>
+      </div>
+      <div class="blk">
+        <div class="lbl"><span data-t="mode">App mode</span></div>
+        <div class="chips" id="modes"></div>
+      </div>
+      <div class="blk">
+        <div class="lbl"><span data-t="logo">Logo</span></div>
+        <div class="logo-up"><span class="prev" id="logoPrev"></span><label for="logoFile" data-t="upload">Add a logo image</label><input type="file" id="logoFile" accept="image/*"><button type="button" class="ghost" id="logoClear" data-t="remove">Remove</button></div>
+      </div>
+    </aside>
+
+    <div class="stage">
+      <div class="stage-h"><h2 data-t="screens">Sample screens</h2><p data-t="swipe">Swipe for all six · tap a phone to enlarge</p></div>
+      <div class="strip" id="strip"></div>
+    </div>
+  </section>
+
+  <section class="lower">
+    <div class="panel">
+      <h2 data-t="whatdo">What should the app do?</h2>
+      <p class="lead" data-t="whatdoLead">Tick what you need. The package and starting price update on the right.</p>
+      <div class="feats" id="feats"></div>
+    </div>
+    <div class="panel">
+      <div class="rec" id="rec" aria-live="polite"></div>
+      <h2 data-t="options">Saved options</h2>
+      <div class="saved" id="saved"></div>
+      <div class="row2"><button type="button" class="btn" id="saveOpt" data-t="save">Save this option</button><button type="button" class="ghost" id="copy" data-t="copy">Copy summary</button></div>
+      <p class="note" id="copied" hidden data-t="copied">Copied. Paste it into WhatsApp or email.</p>
+      <pre class="summary" id="summary"></pre>
+      <p class="note" data-t="indicative">Indicative prices. The final quote follows a short scope call.</p>
+    </div>
+  </section>
+
+  <footer><span>Khatib Designs · khatibdesigns.com/apps</span><span data-t="disclaimer">Sample screens for discussion, not final designs</span></footer>
+</div>
+
+<div class="zoom" id="zoom" hidden></div>
+<button type="button" class="ghost zoom-x" id="zoomX" hidden data-t="close">Close</button>
+
+<script>
+(() => {
+'use strict';
+const T = {
+  title:{en:'Brainboard', ar:'لوحة الأفكار'},
+  subtitle:{en:'Pick a mood, colours and type. Every screen repaints as you tap.', ar:'اختر الطابع والألوان والخط وشاهد الشاشات تتغير مع كل لمسة'},
+  fullscreen:{en:'Full screen', ar:'ملء الشاشة'}, brand:{en:'Brand name', ar:'اسم العلامة'}, mood:{en:'Mood', ar:'الطابع'},
+  colours:{en:'Colour scheme', ar:'الألوان'}, main:{en:'Main', ar:'الرئيسي'}, accent:{en:'Accent', ar:'المميز'}, background:{en:'Background', ar:'الخلفية'},
+  type:{en:'Typeface', ar:'الخط'}, corners:{en:'Corners', ar:'الزوايا'}, pattern:{en:'Header pattern', ar:'نقشة الترويسة'}, mode:{en:'App mode', ar:'وضع التطبيق'},
+  logo:{en:'Logo', ar:'الشعار'}, upload:{en:'Add a logo image', ar:'أضف صورة الشعار'}, remove:{en:'Remove', ar:'إزالة'},
+  screens:{en:'Sample screens', ar:'شاشات نموذجية'}, swipe:{en:'Swipe for all six · tap a phone to enlarge', ar:'اسحب لرؤية الست · اضغط على الهاتف لتكبيره'},
+  whatdo:{en:'What should the app do?', ar:'ماذا تريد أن يفعل التطبيق؟'}, whatdoLead:{en:'Tick what you need. The package and starting price update on the right.', ar:'اختر ما تحتاجه وستظهر الباقة والسعر المبدئي'},
+  options:{en:'Saved options', ar:'الخيارات المحفوظة'}, save:{en:'Save this option', ar:'احفظ هذا الخيار'}, copy:{en:'Copy summary', ar:'نسخ الملخص'},
+  copied:{en:'Copied. Paste it into WhatsApp or email.', ar:'تم النسخ، الصقه في واتساب أو البريد'},
+  indicative:{en:'Indicative prices. The final quote follows a short scope call.', ar:'الأسعار استرشادية والعرض النهائي بعد تحديد النطاق'},
+  disclaimer:{en:'Sample screens for discussion, not final designs', ar:'شاشات للنقاش وليست تصاميم نهائية'}, close:{en:'Close', ar:'إغلاق'},
+  empty:{en:'Empty slot', ar:'خانة فارغة'}, custom:{en:'Your colours', ar:'ألوانك'}
+};
+const PAL = [
+  {id:'rose', en:'Rose sand', ar:'وردي رملي', p:'#7A2E4D', a:'#E8A87C', bg:'#FBF6F1', ink:'#2B1A22'},
+  {id:'teal', en:'Gulf teal', ar:'أزرق الخليج', p:'#0E5E6F', a:'#F2B544', bg:'#F2F7F7', ink:'#10282E'},
+  {id:'gold', en:'Night gold', ar:'ذهبي ليلي', p:'#1F1D33', a:'#C9A227', bg:'#F7F5EF', ink:'#18172A'},
+  {id:'olive', en:'Olive', ar:'زيتي', p:'#4E5B31', a:'#D9A441', bg:'#F5F4EC', ink:'#22281A'},
+  {id:'coral', en:'Coral', ar:'مرجاني', p:'#D9503D', a:'#2F3E9E', bg:'#FFF6F1', ink:'#26212E'},
+  {id:'lav', en:'Lavender', ar:'خزامى', p:'#5B4B8A', a:'#8FD3BC', bg:'#F7F6FB', ink:'#221D33'},
+  {id:'sadu', en:'Sadu red', ar:'سدو', p:'#9B2226', a:'#E9C46A', bg:'#FAF3E8', ink:'#2A1B14'},
+  {id:'mint', en:'Fresh mint', ar:'نعناعي', p:'#127A5B', a:'#FFB4A2', bg:'#F1F8F4', ink:'#13261F'},
+  {id:'sky', en:'Sky', ar:'سماوي', p:'#1D6FD9', a:'#FFC53D', bg:'#F3F7FD', ink:'#14213D'},
+  {id:'mocha', en:'Mocha', ar:'موكا', p:'#6B4A3A', a:'#D8B48C', bg:'#F8F3EE', ink:'#2A1E18'},
+  {id:'mono', en:'Monochrome', ar:'أحادي', p:'#1B1B1F', a:'#FF6B35', bg:'#F5F5F3', ink:'#1B1B1F'},
+  {id:'blush', en:'Blush', ar:'زهري', p:'#C2557A', a:'#4A3B5C', bg:'#FDF4F6', ink:'#2D1E2A'},
+];
+const FONTS = [['Tajawal','Tajawal'],['IBM Plex Sans Arabic','Plex Arabic'],['Cairo','Cairo'],['Readex Pro','Readex'],['Almarai','Almarai'],['El Messiri','El Messiri'],['Changa','Changa']];
+const CORNERS = [{id:'soft',en:'Soft',ar:'ناعمة',r:16},{id:'round',en:'Round',ar:'دائرية',r:26},{id:'sharp',en:'Sharp',ar:'حادة',r:6}];
+const PATS = [{id:'none',en:'None',ar:'بدون'},{id:'sadu',en:'Sadu',ar:'سدو'},{id:'dots',en:'Dots',ar:'نقاط'},{id:'wave',en:'Lines',ar:'خطوط'}];
+const MODES = [{id:'light',en:'Light',ar:'فاتح'},{id:'dark',en:'Dark',ar:'داكن'}];
+const MOODS = [
+  {id:'lux', en:'Luxury', ar:'فاخر', den:'Quiet, gold, elegant', dar:'هادئ وذهبي وأنيق', pal:'gold', font:'El Messiri', corner:'sharp', pat:'none', mode:'light'},
+  {id:'play', en:'Playful', ar:'مرح', den:'Bright, round, friendly', dar:'ألوان مبهجة وزوايا دائرية', pal:'coral', font:'Cairo', corner:'round', pat:'dots', mode:'light'},
+  {id:'min', en:'Minimal', ar:'بسيط', den:'Clean, one accent', dar:'نظيف بلون مميز واحد', pal:'mono', font:'IBM Plex Sans Arabic', corner:'soft', pat:'none', mode:'light'},
+  {id:'her', en:'Kuwaiti heritage', ar:'تراث كويتي', den:'Sadu pattern, warm reds', dar:'نقشة السدو وألوان دافئة', pal:'sadu', font:'Almarai', corner:'soft', pat:'sadu', mode:'light'},
+  {id:'well', en:'Wellness', ar:'عافية', den:'Calm, soft, airy', dar:'هادئ وناعم', pal:'lav', font:'Readex Pro', corner:'round', pat:'wave', mode:'light'},
+  {id:'bold', en:'Bold night', ar:'ليلي جريء', den:'Dark, strong, modern', dar:'داكن وقوي وعصري', pal:'sky', font:'Changa', corner:'sharp', pat:'none', mode:'dark'},
+];
+const FEATS = [
+  {id:'booking', g:'B', en:'Bookings', ar:'الحجوزات', den:'Services, staff and time slots', dar:'الخدمات والمختصون والمواعيد'},
+  {id:'shop', g:'O', en:'Shop & checkout', ar:'المتجر والدفع', den:'Products, cart, KNET and Apple Pay', dar:'منتجات وسلة ودفع إلكتروني'},
+  {id:'drive', g:'O', en:'Drive-thru pickup', ar:'الاستلام من السيارة', den:'Order ahead, “I’m here” at the car', dar:'اطلب مسبقاً واستلم من السيارة'},
+  {id:'loyalty', g:'L', en:'Loyalty & membership', ar:'الولاء والعضويات', den:'Points, rewards, member card', dar:'نقاط ومكافآت وبطاقة عضوية'},
+  {id:'profile', g:'', en:'Customer profiles', ar:'ملفات العملاء', den:'Sign-up, photo, interests', dar:'تسجيل وصورة واهتمامات'},
+  {id:'chat', g:'X', en:'Chat, public & private', ar:'محادثات عامة وخاصة', den:'Community channels and direct messages', dar:'قنوات مجتمع ورسائل مباشرة'},
+  {id:'ai', g:'AI', en:'AI features', ar:'مزايا الذكاء الاصطناعي', den:'Smart suggestions, assistant', dar:'اقتراحات ومساعد ذكي'},
+];
+const TPL = {B:{en:'Bookings',ar:'الحجوزات'}, O:{en:'Ordering',ar:'الطلبات'}, L:{en:'Loyalty',ar:'الولاء'}};
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let saved0 = {};
+try { saved0 = JSON.parse(localStorage.getItem('khd-bb2') || '{}') || {}; } catch (e) { saved0 = {}; }
+const st = Object.assign({lang:'en', mood:'her', pal:'sadu', custom:null, font:'Almarai', corner:'soft', pat:'sadu', mode:'light', brand:'Rayah · راية', logo:null, feats:['booking','chat','profile','drive','shop'], opts:[]}, saved0);
+const persist = () => { try { localStorage.setItem('khd-bb2', JSON.stringify(st)); } catch (e) {} };
+const ar = () => st.lang === 'ar';
+const L = o => o[st.lang];
+
+function colours() {
+  const pal = PAL.find(p => p.id === st.pal) || PAL[0];
+  const c = st.custom || {p:pal.p, a:pal.a, bg:pal.bg};
+  const lum = h => { const n = parseInt(h.slice(1), 16); const r = n >> 16 & 255, g = n >> 8 & 255, b = n & 255; return (0.299 * r + 0.587 * g + 0.114 * b) / 255; };
+  const dark = st.mode === 'dark';
+  const ink = st.custom ? (lum(c.bg) > .55 ? '#1E1B22' : '#F4F2F6') : pal.ink;
+  return {
+    p: c.p, a: c.a,
+    bg: dark ? '#111117' : c.bg, card: dark ? '#1C1B25' : (lum(c.bg) > .55 ? '#FFFFFF' : '#2A2833'),
+    ink: dark ? '#F2F1F5' : ink, sub: dark ? '#A3A1AE' : (lum(c.bg) > .55 ? '#77707A' : '#C9C5CE'),
+    on: lum(c.p) > .62 ? '#1A1A1A' : '#FFFFFF', name: st.custom ? L(T.custom) : L(pal)
+  };
+}
+function patternCss(k) {
+  if (k === 'sadu') return 'repeating-linear-gradient(135deg, var(--p) 0 6px, transparent 6px 12px), repeating-linear-gradient(45deg, var(--a) 0 6px, transparent 6px 12px)';
+  if (k === 'dots') return 'radial-gradient(circle, var(--a) 2px, transparent 2.5px) 0 0/12px 8px';
+  if (k === 'wave') return 'repeating-linear-gradient(90deg, var(--p) 0 18px, var(--a) 18px 24px)';
+  return 'none';
+}
+function brandName() {
+  const parts = (st.brand.trim() || 'Your brand').split('·').map(s => s.trim()).filter(Boolean);
+  const en = parts.find(x => /[A-Za-z]/.test(x)) || parts[0];
+  const a = parts.find(x => /[؀-ۿ]/.test(x)) || parts[0];
+  return ar() ? a : en;
+}
+// one helper for bilingual copy inside the screens
+const W = (en, a) => ar() ? a : en;
+
+function screens() {
+  const bn = esc(brandName());
+  const ini = esc(brandName().slice(0, 1).toUpperCase());
+  const lgCls = st.logo ? 'lg img' : 'lg';
+  const lgSty = st.logo ? `style="background-image:url('${st.logo}')"` : '';
+  const lg = `<span class="${lgCls}" ${lgSty}>${st.logo ? '' : ini}</span>`;
+  const pat = st.pat !== 'none' ? ' pat' : '';
+  const tabs = on => `<div class="tabs">${[['Home','الرئيسية'],['Chat','المحادثات'],['Shop','المتجر'],['Me','حسابي']].map((t, i) => `<span class="tab${i === on ? ' on' : ''}">${W(t[0], t[1])}</span>`).join('')}</div>`;
+  const sb = `<div class="sb"><span>13:00</span><i></i><span>5G</span></div>`;
+  const S = [];
+  S.push({cap:[W('Booking','الحجز'), W('Services, staff and time slots','الخدمات والمختصون والمواعيد')], html:`${sb}
+    <div class="ah${pat}"><div class="brandmark">${lg}<span>${bn}</span></div><span class="ico">⌕</span></div>
+    <div class="bd">
+      <div class="hero"><b>${W('20% off your first booking','خصم ٢٠٪ على أول حجز')}</b><span>${W('This week only','هذا الأسبوع فقط')}</span></div>
+      <div class="cd"><div class="t">${W('Signature session · 60 min','جلسة مميزة · ٦٠ دقيقة')}</div><div class="s">${W('With Noura, Dana or anyone available','مع نورة أو دانة أو أي مختصة متاحة')}</div><div class="pls" style="margin-top:8px"><span class="pl">${W('KWD 15.000','١٥٫٠٠٠ د.ك')}</span></div></div>
+      <div class="days">${[[W('Today','اليوم'),26],[W('Tue','الثلاثاء'),27],[W('Wed','الأربعاء'),28],[W('Thu','الخميس'),29]].map((d, i) => `<div class="day${i === 0 ? ' on' : ''}"><small>${d[0]}</small><b>${d[1]}</b></div>`).join('')}</div>
+      <div class="slots">${['1:00','1:30','2:00','2:30','4:00','4:30','5:00','5:30'].map((t, i) => `<span class="slot${i === 1 ? ' on' : ''}">${t}</span>`).join('')}</div>
+    </div>
+    <div class="cta">${W('Confirm booking','تأكيد الحجز')}</div>${tabs(0)}`});
+  S.push({cap:[W('Chat','المحادثات'), W('Public channels and private messages','قنوات عامة ورسائل خاصة')], html:`${sb}
+    <div class="ah${pat}"><div class="brandmark">${lg}<span>${W('Community','المجتمع')}</span></div><span class="ico">＋</span></div>
+    <div class="bd">
+      <div class="sg"><span class="on">${W('Public','عام')}</span><span>${W('Private','خاص')}</span></div>
+      <div class="msg"><span class="av" style="background:#8A6FBF">S</span><div class="bub"><b>${W('Sara','سارة')}</b><div>${W('Anyone tried the new evening class?','أحد جرب الكلاس المسائي الجديد؟')}</div></div></div>
+      <div class="msg"><span class="av" style="background:#3E8E7E">M</span><div class="bub"><b>${W('Maryam','مريم')}</b><div>${W('Yes, loved it. Book early, it fills up.','إيه حلو، احجزي بدري لأنه يمتلي')}</div></div></div>
+      <div class="msg"><div class="bub me">${W('Thanks! Booking for Thursday.','شكراً، بحجز يوم الخميس')}</div></div>
+      <div class="cd"><div class="s">${W('Private · Team','خاص · الفريق')} ${bn}</div><div>${W('Hi! Your Thursday 5:00 slot is confirmed.','أهلاً، موعدك الخميس الساعة ٥ مؤكد')}</div></div>
+    </div>
+    <div class="cmp"><span>${W('Write a message','اكتب رسالة')}</span><i></i></div>${tabs(1)}`});
+  S.push({cap:[W('Profile','الملف الشخصي'), W('Sign up in under a minute','تسجيل في أقل من دقيقة')], html:`${sb}
+    <div class="ah${pat}"><span class="t">${W('Create your profile','أنشئ ملفك')}</span><span class="ico">✕</span></div>
+    <div class="bd">
+      <div class="pf"><div class="big">N</div><span class="s">${W('Change photo','تغيير الصورة')}</span></div>
+      <div class="fld"><small>${W('Name','الاسم')}</small><b>${W('Noor Al-Saleh','نور الصالح')}</b></div>
+      <div class="fld"><small>${W('Username','اسم المستخدم')}</small><b style="direction:ltr;display:inline-block">@noor.kw</b></div>
+      <div class="fld"><small>${W('About you','نبذة عنك')}</small><b>${W('Coffee, pilates and weekend trips','قهوة وبيلاتس ورحلات الويكند')}</b></div>
+      <div class="pls"><span class="pl">${W('Wellness','العافية')}</span><span class="pl">${W('Beauty','التجميل')}</span><span class="pl">${W('Events','الفعاليات')}</span></div>
+    </div>
+    <div class="cta">${W('Save profile','حفظ الملف')}</div>${tabs(3)}`});
+  S.push({cap:[W('Drive-thru (VThru style)','الاستلام من السيارة'), W('Order ahead, tap “I’m here”','اطلب مسبقاً واضغط وصلت')], html:`${sb}
+    <div class="ah${pat}"><span class="t">${W('Drive-thru pickup','الاستلام من السيارة')}</span><span class="ico">⋯</span></div>
+    <div class="bd">
+      <div class="cd" style="text-align:center"><div class="s">${W('Ready in','جاهز خلال')}</div><span class="eta">6 min</span><div class="s">${W('Order #142 · Shuwaikh','طلب رقم ١٤٢ · الشويخ')}</div></div>
+      <div class="cd car"><span class="ico">🚘</span><div style="flex:1"><div class="t">${W('White Land Cruiser','لاندكروزر أبيض')}</div><div class="s">${W('Parking spot 3','موقف رقم ٣')}</div></div><span class="plate">12 | 34567</span></div>
+      <div class="cd steps"><div class="st done"><i></i><span>${W('Order received','استلمنا طلبك')}</span></div><div class="st now"><i></i><span>${W('Preparing','قيد التحضير')}</span></div><div class="st"><i></i><span>${W('Brought to your car','يوصل لسيارتك')}</span></div></div>
+    </div>
+    <div class="here">${W('I’m here','وصلت')}</div>${tabs(2)}`});
+  S.push({cap:[W('Shop & checkout','المتجر والدفع'), W('KNET, Apple Pay, cards','كي نت وأبل باي والبطاقات')], html:`${sb}
+    <div class="ah${pat}"><div class="brandmark">${lg}<span>${W('Shop','المتجر')}</span></div><span class="ico">🛍</span></div>
+    <div class="bd">
+      <div class="g2">
+        <div class="pr"><div class="im" style="background:linear-gradient(135deg,var(--a),var(--p))"></div><b>${W('Hair oil','زيت الشعر')}</b><span class="pp">${W('KWD 6.500','٦٫٥٠٠ د.ك')}</span></div>
+        <div class="pr"><div class="im" style="background:linear-gradient(160deg,var(--p),var(--ink))"></div><b>${W('Gift card','بطاقة هدية')}</b><span class="pp">${W('KWD 20.000','٢٠٫٠٠٠ د.ك')}</span></div>
+      </div>
+      <div class="cd" style="display:flex;flex-direction:column;gap:6px">
+        <div class="sum"><span>${W('Subtotal','المجموع')}</span><span>${W('KWD 26.500','٢٦٫٥٠٠ د.ك')}</span></div>
+        <div class="sum"><span>${W('Delivery','التوصيل')}</span><span>${W('KWD 1.000','١٫٠٠٠ د.ك')}</span></div>
+        <div class="sum tt"><span>${W('Total','الإجمالي')}</span><span>${W('KWD 27.500','٢٧٫٥٠٠ د.ك')}</span></div>
+      </div>
+      <div class="pay"><span class="on">KNET</span><span>Apple Pay</span><span>Visa</span></div>
+    </div>
+    <div class="cta">${W('Pay KWD 27.500','ادفع ٢٧٫٥٠٠ د.ك')}</div>${tabs(2)}`});
+  const appIcon = st.logo ? `<i class="img" style="background-image:url('${st.logo}')"></i>` : `<i>${ini}</i>`;
+  S.push({cap:[W('Your app icon','أيقونة تطبيقك'), W('How it looks on her phone','كيف يظهر على الهاتف')], html:`${sb}
+    <div class="home">${Array.from({length:15}, (_, i) => i === 5 ? `<span class="app me">${appIcon}<span>${bn}</span></span>` : `<span class="app"><i></i><span>&nbsp;</span></span>`).join('')}</div>
+    <div class="dock"><i></i><i></i><i></i><i></i></div>`});
+  return S;
+}
+
+function applyVars(scope) {
+  const c = colours(), r = (CORNERS.find(x => x.id === st.corner) || CORNERS[0]).r;
+  scope.querySelectorAll('.scr').forEach(s => {
+    const dark = st.mode === 'dark';
+    s.style.setProperty('--p', dark ? c.a : c.p); s.style.setProperty('--a', dark ? c.p : c.a);
+    s.style.setProperty('--bg', c.bg); s.style.setProperty('--card', c.card); s.style.setProperty('--ink', c.ink);
+    s.style.setProperty('--sub', c.sub); s.style.setProperty('--on', dark ? '#111117' : c.on);
+    s.style.setProperty('--r', r + 'px'); s.style.setProperty('--fa', `'${st.font}'`);
+    s.style.setProperty('--pat', patternCss(st.pat));
+    s.dir = ar() ? 'rtl' : 'ltr';
+  });
+}
+
+function chips(el, items, key, label, after) {
+  el.innerHTML = '';
+  items.forEach(it => {
+    const id = it.id || it[0];
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'chip'; b.textContent = label(it);
+    if (key === 'font') b.style.fontFamily = `'${it[0]}', Arial, sans-serif`;
+    b.setAttribute('aria-pressed', String(st[key] === id));
+    b.addEventListener('click', () => { st[key] = id; st.mood = null; if (after) after(); render(); });
+    el.appendChild(b);
+  });
+}
+
+function recommend() {
+  const sel = FEATS.filter(f => st.feats.includes(f.id));
+  const groups = [...new Set(sel.map(f => f.g).filter(g => g === 'B' || g === 'O' || g === 'L'))];
+  const custom = sel.some(f => f.g === 'X') || groups.length > 1;
+  const isAi = sel.some(f => f.g === 'AI');
+  if (!sel.length) return {tag:W('Start here','ابدأ هنا'), price:'—', list:[W('Tick at least one feature','اختر مزية واحدة على الأقل')], next:''};
+  if (isAi) return {tag:W('Premium','المتكامل'), price:W('from KWD 9,000','يبدأ من ٩٬٠٠٠ د.ك'), list:[W('Custom design and build','تصميم وبناء خاص'), W('AI, loyalty and integrations','الذكاء الاصطناعي والولاء والربط مع أنظمتك'), W('3 months of care','ثلاثة أشهر رعاية')], next:''};
+  if (!custom) { const t = TPL[groups[0] || 'B']; return {tag:W('Ready App','تطبيق جاهز'), price:W('KWD 500 + KWD 29/month','٥٠٠ د.ك ثم ٢٩ د.ك شهرياً'), list:[W(`${t.en} template in your brand`, `قالب ${t.ar} بعلامتك وألوانك`), W('iPhone and Android, Arabic and English','آيفون وأندرويد بالعربي والإنجليزي'), W('Live in about 2 weeks','جاهز خلال أسبوعين تقريباً')], next:W('12-month minimum','مدة الاشتراك الدنيا ١٢ شهراً')}; }
+  const start = groups.includes('B') ? TPL.B : groups.includes('O') ? TPL.O : groups.includes('L') ? TPL.L : null;
+  return {tag:W('Growth · most chosen','النمو · الأكثر اختياراً'), price:W('from KWD 4,500','يبدأ من ٤٬٥٠٠ د.ك'), list:[W('Custom design across every screen','تصميم خاص لكل الشاشات'), W('Chat, accounts and online payments','محادثات وحسابات ودفع إلكتروني'), W('Admin dashboard and 1 month of care','لوحة تحكم وشهر رعاية')],
+    next: start ? W(`Or start today with the ${start.en} Ready App for KWD 500. It is credited when you upgrade within 6 months.`, `أو ابدأ اليوم بتطبيق ${start.ar} الجاهز بـ ٥٠٠ د.ك، ونحتسب المبلغ عند الترقية خلال ٦ أشهر`) : ''};
+}
+
+function summaryText() {
+  const c = colours(), rc = recommend();
+  const font = (FONTS.find(f => f[0] === st.font) || FONTS[0])[1];
+  const feats = FEATS.filter(f => st.feats.includes(f.id)).map(f => L(f)).join(ar() ? '، ' : ', ');
+  const mood = MOODS.find(m => m.id === st.mood);
+  const lines = [
+    `${L(T.brand)}: ${st.brand}`,
+    `${L(T.mood)}: ${mood ? L(mood) : '—'}`,
+    `${L(T.colours)}: ${c.name} (${c.p}, ${c.a}, ${c.bg})`,
+    `${L(T.type)}: ${font} · ${L(T.corners)}: ${L(CORNERS.find(x => x.id === st.corner))} · ${L(T.pattern)}: ${L(PATS.find(x => x.id === st.pat))} · ${L(T.mode)}: ${L(MODES.find(x => x.id === st.mode))}`,
+    `${W('Features','المزايا')}: ${feats || '—'}`,
+    `${W('Suggested package','الباقة المقترحة')}: ${rc.tag} · ${rc.price}`,
+  ];
+  return lines.join('\n');
+}
+
+function render() {
+  const app = $('#app');
+  app.dir = ar() ? 'rtl' : 'ltr';
+  document.documentElement.lang = st.lang;
+  document.querySelectorAll('[data-t]').forEach(el => { const k = el.getAttribute('data-t'); if (T[k]) el.textContent = L(T[k]); });
+  $('#l-en').setAttribute('aria-pressed', String(!ar())); $('#l-ar').setAttribute('aria-pressed', String(ar()));
+  if (document.activeElement !== $('#brand')) $('#brand').value = st.brand;
+
+  // moods
+  const md = $('#moods'); md.innerHTML = '';
+  MOODS.forEach(m => {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'mood';
+    b.setAttribute('aria-pressed', String(st.mood === m.id));
+    b.innerHTML = `<b>${esc(L(m))}</b><small>${esc(ar() ? m.dar : m.den)}</small>`;
+    b.addEventListener('click', () => { Object.assign(st, {mood:m.id, pal:m.pal, custom:null, font:m.font, corner:m.corner, pat:m.pat, mode:m.mode}); render(); });
+    md.appendChild(b);
+  });
+  const mood = MOODS.find(m => m.id === st.mood);
+  $('#moodName').textContent = mood ? L(mood) : W('Custom','مخصص');
+
+  // swatches
+  const sw = $('#sws'); sw.innerHTML = '';
+  PAL.forEach(pl => {
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'sw';
+    b.setAttribute('aria-pressed', String(!st.custom && st.pal === pl.id));
+    b.setAttribute('aria-label', L(pl));
+    b.innerHTML = `<span class="bars"><i style="background:${pl.p}"></i><i style="background:${pl.a}"></i><i style="background:${pl.bg}"></i></span><small>${esc(L(pl))}</small>`;
+    b.addEventListener('click', () => { st.pal = pl.id; st.custom = null; st.mood = null; render(); });
+    sw.appendChild(b);
+  });
+  const c = colours();
+  $('#palName').textContent = c.name;
+  $('#cP').value = c.p; $('#cA').value = c.a; $('#cB').value = st.custom ? st.custom.bg : (PAL.find(p => p.id === st.pal) || PAL[0]).bg;
+
+  chips($('#fonts'), FONTS, 'font', f => f[1]);
+  chips($('#corners'), CORNERS, 'corner', x => L(x));
+  chips($('#patterns'), PATS, 'pat', x => L(x));
+  chips($('#modes'), MODES, 'mode', x => L(x));
+  $('#logoPrev').style.backgroundImage = st.logo ? `url('${st.logo}')` : 'none';
+  $('#logoClear').hidden = !st.logo;
+
+  // phones
+  const strip = $('#strip'); strip.innerHTML = '';
+  screens().forEach((s, i) => {
+    const f = document.createElement('figure');
+    f.innerHTML = `<button type="button" class="phone" data-i="${i}" aria-label="${esc(s.cap[0])}"><div class="scr">${s.html}</div></button><figcaption><b>${esc(s.cap[0])}</b>${esc(s.cap[1])}</figcaption>`;
+    strip.appendChild(f);
+  });
+  applyVars(strip);
+
+  // features
+  const fe = $('#feats'); fe.innerHTML = '';
+  FEATS.forEach(f => {
+    const lab = document.createElement('label'); lab.className = 'ft';
+    lab.innerHTML = `<input type="checkbox" id="f-${f.id}" ${st.feats.includes(f.id) ? 'checked' : ''}><span><span><b>${esc(L(f))}</b><em>${esc(ar() ? f.dar : f.den)}</em></span></span>`;
+    lab.querySelector('input').addEventListener('change', e => { st.feats = e.target.checked ? [...st.feats, f.id] : st.feats.filter(x => x !== f.id); render(); });
+    fe.appendChild(lab);
+  });
+
+  const rc = recommend();
+  $('#rec').innerHTML = `<span class="tag">${esc(rc.tag)}</span><div class="price">${esc(rc.price)}</div><ul>${rc.list.map(x => `<li>${esc(x)}</li>`).join('')}</ul>${rc.next ? `<div class="next">${esc(rc.next)}</div>` : ''}`;
+
+  // saved options
+  const sv = $('#saved'); sv.innerHTML = '';
+  for (let i = 0; i < 3; i++) {
+    const o = st.opts[i];
+    const b = document.createElement('button'); b.type = 'button';
+    if (!o) { b.className = 'opt empty'; b.disabled = true; b.textContent = `${String.fromCharCode(65 + i)} · ${L(T.empty)}`; sv.appendChild(b); continue; }
+    b.className = 'opt';
+    b.innerHTML = `<span class="bars"><i style="background:${o.c.p}"></i><i style="background:${o.c.a}"></i><i style="background:${o.c.bg}"></i></span><b>${String.fromCharCode(65 + i)} · ${esc(o.label)}</b><small>${esc(o.font)}</small>`;
+    b.addEventListener('click', () => { Object.assign(st, o.state); render(); });
+    sv.appendChild(b);
+  }
+  $('#summary').textContent = summaryText();
+  persist();
+}
+
+// events
+$('#l-en').addEventListener('click', () => { st.lang = 'en'; render(); });
+$('#l-ar').addEventListener('click', () => { st.lang = 'ar'; render(); });
+$('#brand').addEventListener('input', e => { st.brand = e.target.value; render(); });
+const setCustom = () => { st.custom = {p:$('#cP').value, a:$('#cA').value, bg:$('#cB').value}; st.mood = null; render(); };
+['#cP', '#cA', '#cB'].forEach(id => $(id).addEventListener('input', setCustom));
+$('#logoFile').addEventListener('change', e => {
+  const f = e.target.files && e.target.files[0]; if (!f) return;
+  const rd = new FileReader();
+  rd.onload = () => {
+    const img = new Image();
+    img.onload = () => { // shrink so it stays light in storage
+      const k = Math.min(1, 256 / Math.max(img.width, img.height));
+      const cv = document.createElement('canvas'); cv.width = Math.round(img.width * k); cv.height = Math.round(img.height * k);
+      cv.getContext('2d').drawImage(img, 0, 0, cv.width, cv.height);
+      st.logo = cv.toDataURL('image/png'); render();
+    };
+    img.src = rd.result;
+  };
+  rd.readAsDataURL(f);
+});
+$('#logoClear').addEventListener('click', () => { st.logo = null; $('#logoFile').value = ''; render(); });
+$('#saveOpt').addEventListener('click', () => {
+  const c = colours(), mood = MOODS.find(m => m.id === st.mood);
+  const {opts, lang, ...state} = st;
+  const o = {c:{p:c.p, a:c.a, bg:c.bg}, label: mood ? L(mood) : c.name, font:(FONTS.find(f => f[0] === st.font) || FONTS[0])[1], state: JSON.parse(JSON.stringify(state))};
+  st.opts = [...st.opts, o].slice(-3); render();
+});
+$('#copy').addEventListener('click', () => {
+  const txt = st.opts.length ? st.opts.map((o, i) => `${String.fromCharCode(65 + i)} · ${o.label}`).join('\n') + '\n\n' + summaryText() : summaryText();
+  const ok = () => { $('#copied').hidden = false; setTimeout(() => { $('#copied').hidden = true; }, 2500); };
+  const sel = () => { const r = document.createRange(); r.selectNodeContents($('#summary')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+  try { navigator.clipboard.writeText(txt).then(ok, sel); } catch (e) { sel(); }
+});
+$('#fs').addEventListener('click', () => {
+  const d = document.documentElement;
+  try { if (document.fullscreenElement) document.exitFullscreen(); else if (d.requestFullscreen) d.requestFullscreen().catch(() => {}); else if (d.webkitRequestFullscreen) d.webkitRequestFullscreen(); } catch (e) {}
+});
+// zoom a phone
+const zoom = $('#zoom'), zx = $('#zoomX');
+$('#strip').addEventListener('click', e => {
+  const ph = e.target.closest('.phone'); if (!ph) return;
+  zoom.innerHTML = ''; const cl = ph.cloneNode(true); cl.removeAttribute('data-i'); cl.tabIndex = -1;
+  const z = Math.max(1, Math.min(1.6, (window.innerHeight - 60) / 620, (window.innerWidth - 40) / 306));
+  zoom.style.setProperty('--z', z.toFixed(2)); zoom.appendChild(cl); zoom.hidden = false; zx.hidden = false; zx.focus();
+});
+const unzoom = () => { zoom.hidden = true; zx.hidden = true; zoom.innerHTML = ''; };
+zoom.addEventListener('click', unzoom); zx.addEventListener('click', unzoom);
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !zoom.hidden) unzoom(); });
+
+render();
+})();
+</script>
+</body>
+</html>
