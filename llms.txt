@@ -14,6 +14,7 @@
   - The Build: from KWD 7,000, typically 6–12 weeks — multiple workflows in production, systems connected.
   - AI Operations: KWD 2,500/month — monitoring, tuning, new workflows and a monthly plain-language report.
 - [AI for Dubai & the UAE](https://khatibdesigns.com/dubai/): Arabic-first AI for UAE businesses.
+- [AI for Saudi Arabia](https://khatibdesigns.com/saudi/): Arabic-first AI for Saudi businesses — Riyadh, Jeddah and the Eastern Province.
 
 ## Product design & development
 
