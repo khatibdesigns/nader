@@ -18,7 +18,7 @@
 ## Product design & development
 
 - [App development pricing](https://khatibdesigns.com/apps/) (Arabic: https://khatibdesigns.com/ar/apps/) — indicative "from" prices, final quote after a free 30-minute call.
-  - Ready App: from KWD 500 setup + KWD 29/month (12-month minimum) — a ready-made Bookings, Ordering or Loyalty & membership app with the client's branding, Arabic & English, iPhone & Android, live in about 2 weeks, published under the client's own Apple (USD 99/year) and Google (USD 25 one-off) developer accounts. No custom features.
+  - Ready App: from KWD 500 setup + KWD 29/month (12-month minimum) — a ready-made Bookings, Ordering or Loyalty & membership app with the client's branding, Arabic & English, iPhone & Android, live in 4 to 6 weeks, published under the client's own Apple (USD 99/year) and Google (USD 25 one-off) developer accounts. No custom features.
   - Starter: from KWD 1,500 — custom-designed app, up to 5 screens, both stores, 4–6 weeks.
   - Growth: from KWD 4,500 — online payments (KNET, Apple Pay, MyFatoorah, Tap), customer accounts, bookings or orders, admin dashboard, 1 month of care.
   - Premium: from KWD 9,000 — everything in Growth plus AI features, loyalty, multi-branch, integrations, 3 months of care.
