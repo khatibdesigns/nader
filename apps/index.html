@@ -46,7 +46,7 @@
   "availableLanguage":["English","Arabic"],
   "hasOfferCatalog":{"@type":"OfferCatalog","name":"App pricing","itemListElement":[
     {"@type":"Offer","name":"Ready App","description":"A ready-made bookings, ordering or loyalty app with your branding, Arabic and English, iPhone and Android. KWD 500 setup plus KWD 29 per month, 12-month minimum.","priceCurrency":"KWD","price":"500","priceSpecification":[{"@type":"PriceSpecification","name":"Setup","price":"500","priceCurrency":"KWD"},{"@type":"UnitPriceSpecification","name":"Monthly subscription","price":"29","priceCurrency":"KWD","referenceQuantity":{"@type":"QuantitativeValue","value":1,"unitCode":"MON"}}],"itemOffered":{"@type":"Service","name":"Ready App — branded bookings, ordering or loyalty app"}},
-    {"@type":"Offer","name":"Starter","description":"Custom-designed app, up to 5 screens, App Store and Google Play, 4–6 weeks.","priceCurrency":"KWD","priceSpecification":{"@type":"PriceSpecification","minPrice":"1500","priceCurrency":"KWD"},"itemOffered":{"@type":"Service","name":"Custom app — Starter"}},
+    {"@type":"Offer","name":"Starter","description":"Custom-designed app, up to 5 screens, App Store and Google Play, 6–8 weeks.","priceCurrency":"KWD","priceSpecification":{"@type":"PriceSpecification","minPrice":"1500","priceCurrency":"KWD"},"itemOffered":{"@type":"Service","name":"Custom app — Starter"}},
     {"@type":"Offer","name":"Growth","description":"Online payments, customer accounts, bookings or orders, admin dashboard, 1 month of care.","priceCurrency":"KWD","priceSpecification":{"@type":"PriceSpecification","minPrice":"4500","priceCurrency":"KWD"},"itemOffered":{"@type":"Service","name":"Custom app — Growth"}},
     {"@type":"Offer","name":"Premium","description":"Everything in Growth plus AI features, loyalty, multi-branch, integrations, 3 months of care.","priceCurrency":"KWD","priceSpecification":{"@type":"PriceSpecification","minPrice":"9000","priceCurrency":"KWD"},"itemOffered":{"@type":"Service","name":"Custom app — Premium"}},
     {"@type":"Offer","name":"Care plan","description":"Monitoring, OS updates, security and backups for custom apps after launch.","priceCurrency":"KWD","priceSpecification":{"@type":"UnitPriceSpecification","minPrice":"350","priceCurrency":"KWD","referenceQuantity":{"@type":"QuantitativeValue","value":1,"unitCode":"MON"}},"itemOffered":{"@type":"Service","name":"App care plan (monthly)"}}
@@ -63,7 +63,7 @@
  {"@type":"Question","name":"Who owns the app?","acceptedAnswer":{"@type":"Answer","text":"You do. Every app is published under your own Apple and Google developer accounts, so the store listing, the reviews and the customers are yours. On custom apps you also own the design and the code once the project is paid."}},
  {"@type":"Question","name":"What is the monthly fee for on a Ready App?","acceptedAnswer":{"@type":"Answer","text":"KWD 29 a month covers hosting, keeping the app working on every new iOS and Android version, and support. The minimum term is 12 months; after that you can cancel any time."}},
  {"@type":"Question","name":"Can I start with a Ready App and upgrade to a custom app later?","acceptedAnswer":{"@type":"Answer","text":"Yes. Upgrade within 6 months and the full KWD 500 setup fee is credited toward Starter or above. Many businesses start ready, learn what their customers use, then build custom."}},
- {"@type":"Question","name":"How long does it take?","acceptedAnswer":{"@type":"Answer","text":"A Ready App is live in 4 to 6 weeks once we have your logo, colours and content. Starter takes 4–6 weeks; Growth and Premium usually 2–4 months depending on scope."}},
+ {"@type":"Question","name":"How long does it take?","acceptedAnswer":{"@type":"Answer","text":"A Ready App is live in 4 to 6 weeks once we have your logo, colours and content. Starter takes 6–8 weeks, Growth usually 2–3 months and Premium 3–4 months, depending on scope."}},
  {"@type":"Question","name":"Can customers pay inside the app?","acceptedAnswer":{"@type":"Answer","text":"Yes, from Growth up: KNET, Apple Pay, credit cards through MyFatoorah or Tap. Payments go straight to your merchant account."}},
  {"@type":"Question","name":"Is the Arabic done properly?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every app ships in Arabic and English with full right-to-left layout, Arabic typography and copy written by native speakers, not machine-translated."}}]}
 </script>
@@ -112,15 +112,18 @@
     </div>
     <div class="ready reveal">
       <div class="ready-main">
-        <h3>Ready App</h3>
+        <h3>Ready App <span class="tag-fast">Fastest</span></h3>
         <p class="px-price"><span class="from">from</span><span class="grp"><span data-kwd="500">KWD 500</span> <span class="unit">setup</span></span> <span class="plus">+</span> <span class="grp"><span data-kwd="29">KWD 29</span><span class="unit">/month</span></span></p>
+        <p class="px-day">KWD 29 a month is under KWD 1 a day.</p>
         <p>We apply your logo, colours, menu or services and content, publish it to both stores, and keep it running. Live in <strong>4 to 6 weeks</strong>.</p>
+        <p class="ready-anchor">Custom builds start at <strong>KWD 1,500</strong> — a Ready App gets you live for <strong>KWD 500</strong>.</p>
         <ul class="ready-terms">
           <li>Arabic &amp; English · iPhone &amp; Android</li>
           <li>The monthly fee covers <strong>hosting, updates for every new iOS and Android version, and support</strong></li>
           <li>Published under <strong>your own</strong> Apple and Google developer accounts — Apple requires this for template apps. Apple charges USD 99 a year, Google a one-off USD 25; you pay them directly.</li>
           <li>12-month minimum, then cancel any time</li>
         </ul>
+        <p class="ready-credit"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4.5h4.5"/><path d="M12 8v4l2.5 2"/></svg><span><strong>Your 500 is never wasted.</strong> Start at KWD 500 today; if you move to a custom app within 6 months, your 500 is credited in full.</span></p>
         <div class="hero-cta">
           <a href="/book/" class="btn solid book-btn" data-cta="book-call" data-cta-location="ready-app">Book a free call</a>
         </div>
@@ -153,11 +156,11 @@
           <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Up to 5 screens</li>
           <li><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>App Store &amp; Google Play</li>
         </ul>
-        <p class="time">4–6 weeks</p>
+        <p class="time">6–8 weeks</p>
         <a href="/book/" class="btn book-btn" data-cta="book-call" data-cta-location="tier-starter">Book a free call</a>
       </article>
       <article class="tier pick">
-        <span class="badge">Most chosen</span>
+        <span class="badge">Recommended</span>
         <h3>Growth</h3>
         <p class="fit">The app your business runs on — customers pay, book and order in it.</p>
         <p class="px-price"><span class="from">from</span><span data-kwd="4500">KWD 4,500</span></p>
@@ -235,7 +238,7 @@
       <details><summary>Who owns the app?</summary><p>You do. Every app is published under your own Apple and Google developer accounts, so the store listing, the reviews and the customers are yours. On custom apps you also own the design and the code once the project is paid.</p></details>
       <details><summary>What is the monthly fee for on a Ready App?</summary><p>KWD 29 a month covers hosting, keeping the app working on every new iOS and Android version, and support. The minimum term is 12 months; after that you can cancel any time.</p></details>
       <details><summary>Can I start with a Ready App and upgrade later?</summary><p>Yes. Upgrade within 6 months and the full KWD 500 setup fee is credited toward Starter or above. Many businesses start ready, learn what their customers actually use, then build custom.</p></details>
-      <details><summary>How long does it take?</summary><p>A Ready App is live in 4 to 6 weeks once we have your logo, colours and content. Starter takes 4–6 weeks; Growth and Premium usually two to four months, depending on scope.</p></details>
+      <details><summary>How long does it take?</summary><p>A Ready App is live in 4 to 6 weeks once we have your logo, colours and content. Starter takes six to eight weeks, Growth usually two to three months and Premium three to four, depending on scope.</p></details>
       <details><summary>Can customers pay inside the app?</summary><p>Yes, from Growth up: KNET, Apple Pay and cards through MyFatoorah or Tap. Payments go straight to your own merchant account.</p></details>
       <details><summary>Is the Arabic done properly?</summary><p>Yes. Every app ships in Arabic and English with a full right-to-left layout, Arabic typography and copy written by native speakers — never machine-translated.</p></details>
     </div>

@@ -18,12 +18,12 @@
 ## Product design & development
 
 - [App development pricing](https://khatibdesigns.com/apps/) (Arabic: https://khatibdesigns.com/ar/apps/) — indicative "from" prices, final quote after a free 30-minute call.
-  - Ready App: from KWD 500 setup + KWD 29/month (12-month minimum) — a ready-made Bookings, Ordering or Loyalty & membership app with the client's branding, Arabic & English, iPhone & Android, live in 4 to 6 weeks, published under the client's own Apple (USD 99/year) and Google (USD 25 one-off) developer accounts. No custom features.
-  - Starter: from KWD 1,500 — custom-designed app, up to 5 screens, both stores, 4–6 weeks.
-  - Growth: from KWD 4,500 — online payments (KNET, Apple Pay, MyFatoorah, Tap), customer accounts, bookings or orders, admin dashboard, 1 month of care.
-  - Premium: from KWD 9,000 — everything in Growth plus AI features, loyalty, multi-branch, integrations, 3 months of care.
+  - Ready App: from KWD 500 setup + KWD 29/month (12-month minimum) — a ready-made Bookings, Ordering or Loyalty & membership app with the client's branding, Arabic & English, iPhone & Android, live in 4 to 6 weeks, published under the client's own Apple (USD 99/year) and Google (USD 25 one-off) developer accounts. No custom features. The fastest option; KWD 29/month is under KWD 1 a day.
+  - Starter: from KWD 1,500 — custom-designed app, up to 5 screens, both stores, 6–8 weeks.
+  - Growth: from KWD 4,500 — online payments (KNET, Apple Pay, MyFatoorah, Tap), customer accounts, bookings or orders, admin dashboard, 1 month of care, usually 2–3 months. The recommended tier for most businesses.
+  - Premium: from KWD 9,000 — everything in Growth plus AI features, loyalty, multi-branch, integrations, 3 months of care, usually 3–4 months.
   - Care plan: from KWD 350/month after launch for custom apps.
-  - Upgrade path: the Ready App setup fee is credited toward Starter or above within 6 months.
+  - Upgrade path: the Ready App setup fee is credited in full (KWD 500) toward Starter or above if the client upgrades within 6 months.
 - [Services](https://khatibdesigns.com/#services): iOS, Android and web products, UX/UI design, MVPs.
 - [Case studies](https://khatibdesigns.com/work/)
   - [Connect Here](https://khatibdesigns.com/work/connect-here/): venue-based social networking app, iOS and Android.
