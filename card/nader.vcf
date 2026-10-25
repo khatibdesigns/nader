@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Al-Khatib;Nader;;;
+FN:Nader Al-Khatib
+ORG:Khatib Designs
+TITLE:Founder & CEO
+TEL;TYPE=CELL,VOICE:+96550003758
+EMAIL;TYPE=INTERNET,WORK:nader@khatibdesigns.com
+URL:https://khatibdesigns.com
+X-SOCIALPROFILE;TYPE=linkedin:https://www.linkedin.com/in/nader-khatib/
+ADR;TYPE=WORK:;;;Kuwait City;;;Kuwait
+NOTE:Book a free 30-minute call: https://khatibdesigns.com/book/
+END:VCARD
