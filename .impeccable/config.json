@@ -1,0 +1,35 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "apps/index.html"
+        ],
+        "createdAt": "2026-10-25T08:38:20.662Z",
+        "reason": "Claude: false positive — .ready/.ready-side/.care children carry padding:clamp(28px,4vw,48px) and .care padding:22px clamp(22px,3vw,34px) in assets/apps.css; detector misses clamp() insets"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "ar/apps/index.html"
+        ],
+        "createdAt": "2026-10-25T08:38:20.677Z",
+        "reason": "Claude: false positive — .ready/.ready-side/.care children carry padding:clamp(28px,4vw,48px) and .care padding:22px clamp(22px,3vw,34px) in assets/apps.css; detector misses clamp() insets"
+      },
+      {
+        "rule": "all-caps-body",
+        "value": "*",
+        "files": [
+          "card/index.html"
+        ],
+        "createdAt": "2026-10-25T19:49:05.059Z",
+        "reason": "Claude: false positive — uppercase only on two short labels on the business card (\"Scan to save\", \"Together We Venture\" tagline), not body text"
+      }
+    ]
+  }
+}
