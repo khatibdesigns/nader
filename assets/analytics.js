@@ -155,6 +155,10 @@
     if (price) { window.khdTrack('view_pricing', {
       cta_location: price.getAttribute('data-cta-location') || (price.closest('.nav-links') ? 'nav' : 'inline'),
       link_url: price.getAttribute('href') }); return; }
+    var pricing = t.closest && t.closest('[data-cta="see-pricing"]');   // article → /apps/, the step before book_call
+    if (pricing) { window.khdTrack('view_pricing', {
+      cta_location: pricing.getAttribute('data-cta-location') || 'inline',
+      link_url: pricing.getAttribute('href') }); return; }
     // Every #contact link that is a call to action, and none of the ones that are
     // navigation. A `btn` class means CTA wherever it sits — the header's "Start a
     // project" lives inside .nav-links and has to keep counting. Without one it only
