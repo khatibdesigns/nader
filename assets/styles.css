@@ -269,6 +269,9 @@ header.nav.scrolled{background:rgba(7,6,17,0.74);backdrop-filter:blur(14px);
 .svc-card h3{font-family:var(--display);font-weight:500;font-size:20px;letter-spacing:.02em;margin-bottom:10px;}
 .svc-card p{color:var(--muted);font-size:14.5px;line-height:1.65;}
 .svc-card strong{color:var(--ink);font-weight:500;}
+.svc-more{display:inline-block;margin-top:16px;font-size:14px;color:var(--ink);text-decoration:underline;
+  text-decoration-color:var(--accent);text-decoration-thickness:1px;text-underline-offset:4px;}
+.svc-more:hover{color:var(--accent-soft);}
 .svc-cta{margin-top:44px;display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;}
 .svc-cta span{font-size:15px;color:var(--muted);}
 
