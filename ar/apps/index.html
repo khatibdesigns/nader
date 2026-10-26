@@ -253,6 +253,40 @@
         <a href="/ar/book/" class="btn solid book-btn" data-cta="book-call" data-cta-location="cta-band"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4M9.5 15.2l1.8 1.8 3.4-3.6"/></svg>احجز مكالمة مجانية</a>
         <a class="btn wa-btn" href="https://wa.me/96550003048?text=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%20%D8%AE%D8%B7%D9%8A%D8%A8%20%D8%AF%D9%8A%D8%B2%D8%A7%D9%8A%D9%86%D8%B2%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%AD%D8%AF%D9%8A%D8%AB%20%D8%B9%D9%86%20%D8%AA%D8%B7%D8%A8%D9%8A%D9%82%20%D9%84%D8%B9%D9%85%D9%84%D9%8A." target="_blank" rel="noopener" data-cta="whatsapp">راسلنا على واتساب</a>
       </div>
+
+      <form class="lead-form" id="apps-lead-form" novalidate>
+        <div class="lf-row">
+          <label>الاسم<input name="name" required autocomplete="name" placeholder="اسمك" /></label>
+          <label>البريد الإلكتروني<input name="email" type="email" required autocomplete="email" placeholder="you@company.com" /></label>
+        </div>
+        <div class="lf-row">
+          <label>رقم واتساب<input name="phone" type="tel" required inputmode="tel" autocomplete="tel" dir="ltr" placeholder="+965 5000 0000" /></label>
+          <label>الشركة<input name="company" autocomplete="organization" placeholder="الشركة (اختياري)" /></label>
+        </div>
+        <label class="lf-full">ما يناسبك
+          <select name="plan">
+            <option value="">اختر الأقرب &mdash; ونتأكد منه في المكالمة</option>
+            <option value="Ready App &mdash; bookings">التطبيق الجاهز &mdash; الحجوزات</option>
+            <option value="Ready App &mdash; ordering">التطبيق الجاهز &mdash; الطلبات</option>
+            <option value="Ready App &mdash; loyalty">التطبيق الجاهز &mdash; الولاء والعضويات</option>
+            <option value="Custom &mdash; Starter (from KWD 1,500)">مخصّص &mdash; باقة البداية (من 1,500 د.ك)</option>
+            <option value="Custom &mdash; Growth (from KWD 4,500)">مخصّص &mdash; باقة النمو (من 4,500 د.ك)</option>
+            <option value="Custom &mdash; Premium (from KWD 9,000)">مخصّص &mdash; الباقة المتكاملة (من 9,000 د.ك)</option>
+            <option value="Not sure yet">لست متأكدًا بعد</option>
+          </select>
+        </label>
+        <label class="lf-full">تفاصيل المشروع
+          <textarea name="message" required rows="4" placeholder="ما طبيعة عملك، وما الذي تريد أن يتولاه التطبيق؟ بضعة أسطر تكفي."></textarea>
+        </label>
+        <input type="hidden" name="_subject" value="طلب تطبيق جديد — khatibdesigns.com/ar/apps/" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="lf-honey" />
+        <div class="lf-actions">
+          <button type="submit" class="btn solid" id="apps-lead-submit">أرسل الطلب</button>
+        </div>
+        <p class="form-status" id="apps-form-status" role="status" aria-live="polite"></p>
+      </form>
     </div>
   </section>
   </main>
@@ -289,5 +323,6 @@
     document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el);});
   </script>
   <script defer src="/assets/pricing.js"></script>
+  <script defer src="/assets/apps-lead.js"></script>
 </body>
 </html>

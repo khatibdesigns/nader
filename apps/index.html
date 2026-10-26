@@ -253,6 +253,40 @@
         <a href="/book/" class="btn solid book-btn" data-cta="book-call" data-cta-location="cta-band"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4M9.5 15.2l1.8 1.8 3.4-3.6"/></svg>Book a free call</a>
         <a class="btn wa-btn" href="https://wa.me/96550003048?text=Hi%20Khatib%20Designs%2C%20I%27d%20like%20to%20talk%20about%20an%20app%20for%20my%20business." target="_blank" rel="noopener" data-cta="whatsapp">WhatsApp us</a>
       </div>
+
+      <form class="lead-form" id="apps-lead-form" novalidate>
+        <div class="lf-row">
+          <label>Name<input name="name" required autocomplete="name" placeholder="Your name" /></label>
+          <label>Email<input name="email" type="email" required autocomplete="email" placeholder="you@company.com" /></label>
+        </div>
+        <div class="lf-row">
+          <label>WhatsApp number<input name="phone" type="tel" required inputmode="tel" autocomplete="tel" placeholder="+965 5000 0000" /></label>
+          <label>Company<input name="company" autocomplete="organization" placeholder="Company (optional)" /></label>
+        </div>
+        <label class="lf-full">What fits you
+          <select name="plan">
+            <option value="">Pick the closest one &mdash; we&rsquo;ll confirm on the call</option>
+            <option value="Ready App &mdash; bookings">Ready App &mdash; bookings</option>
+            <option value="Ready App &mdash; ordering">Ready App &mdash; ordering</option>
+            <option value="Ready App &mdash; loyalty">Ready App &mdash; loyalty</option>
+            <option value="Custom &mdash; Starter (from KWD 1,500)">Custom &mdash; Starter (from KWD 1,500)</option>
+            <option value="Custom &mdash; Growth (from KWD 4,500)">Custom &mdash; Growth (from KWD 4,500)</option>
+            <option value="Custom &mdash; Premium (from KWD 9,000)">Custom &mdash; Premium (from KWD 9,000)</option>
+            <option value="Not sure yet">Not sure yet</option>
+          </select>
+        </label>
+        <label class="lf-full">Project details
+          <textarea name="message" required rows="4" placeholder="What does your business do, and what should the app handle? A few lines is plenty."></textarea>
+        </label>
+        <input type="hidden" name="_subject" value="New app enquiry — khatibdesigns.com/apps/" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="lf-honey" />
+        <div class="lf-actions">
+          <button type="submit" class="btn solid" id="apps-lead-submit">Send enquiry</button>
+        </div>
+        <p class="form-status" id="apps-form-status" role="status" aria-live="polite"></p>
+      </form>
     </div>
   </section>
   </main>
@@ -290,5 +324,6 @@
     document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el);});
   </script>
   <script defer src="/assets/pricing.js"></script>
+  <script defer src="/assets/apps-lead.js"></script>
 </body>
 </html>
