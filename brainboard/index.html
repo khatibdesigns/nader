@@ -185,6 +185,7 @@ figcaption b{display:block;color:var(--ink);font-size:15px}
 .opt small{color:var(--muted);font-size:12px}
 .opt.empty{border-style:dashed;color:var(--faint);justify-content:center;align-items:center;cursor:default}
 .row2{display:flex;gap:10px;flex-wrap:wrap}
+.row2 a{text-decoration:none;display:inline-flex;align-items:center}
 .btn{border:0;cursor:pointer;background:var(--ember);color:var(--ember-ink);font-weight:800;padding:12px 20px;border-radius:999px;min-height:46px}
 .summary{white-space:pre-wrap;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;font-size:14px;color:var(--muted);margin:0;overflow-wrap:anywhere;font-family:var(--f-ui)}
 .note{font-size:13px;color:var(--muted);margin:0}
@@ -272,14 +273,14 @@ footer{color:var(--faint);font-size:13px;display:flex;flex-wrap:wrap;gap:8px 20p
       <div class="rec" id="rec" aria-live="polite"></div>
       <h2 data-t="options">Saved options</h2>
       <div class="saved" id="saved"></div>
-      <div class="row2"><button type="button" class="btn" id="saveOpt" data-t="save">Save this option</button><button type="button" class="ghost" id="copy" data-t="copy">Copy summary</button></div>
+      <div class="row2"><button type="button" class="btn" id="saveOpt" data-t="save">Save this option</button><button type="button" class="ghost" id="copy" data-t="copy">Copy summary</button><a class="btn" id="send" href="#" target="_blank" rel="noopener" data-t="send">Send to the studio</a><a class="ghost" id="bookcall" href="/book/" target="_blank" rel="noopener" style="color:inherit" data-t="bookcall">Book the scope call</a></div>
       <p class="note" id="copied" hidden data-t="copied">Copied. Paste it into WhatsApp or email.</p>
       <pre class="summary" id="summary"></pre>
       <p class="note" data-t="indicative">Indicative prices. The final quote follows a short scope call.</p>
     </div>
   </section>
 
-  <footer><span>Khatib Designs · khatibdesigns.com/apps</span><span data-t="disclaimer">Sample screens for discussion, not final designs</span></footer>
+  <footer><span>Khatib Designs · <a id="apps" href="/apps/" target="_blank" rel="noopener" style="color:inherit">khatibdesigns.com/apps</a></span><span data-t="disclaimer">Sample screens for discussion, not final designs</span></footer>
 </div>
 
 <div class="zoom" id="zoom" hidden></div>
@@ -298,6 +299,8 @@ const T = {
   screens:{en:'Sample screens', ar:'شاشات نموذجية'}, swipe:{en:'Swipe for all six · tap a phone to enlarge', ar:'اسحب لرؤية الست · اضغط على الهاتف لتكبيره'},
   whatdo:{en:'What should the app do?', ar:'ماذا تريد أن يفعل التطبيق؟'}, whatdoLead:{en:'Tick what you need. The package and starting price update on the right.', ar:'اختر ما تحتاجه وستظهر الباقة والسعر المبدئي'},
   options:{en:'Saved options', ar:'الخيارات المحفوظة'}, save:{en:'Save this option', ar:'احفظ هذا الخيار'}, copy:{en:'Copy summary', ar:'نسخ الملخص'},
+  send:{en:'Send to the studio', ar:'أرسل إلى الاستوديو'}, bookcall:{en:'Book the scope call', ar:'احجز مكالمة تحديد النطاق'},
+  waHead:{en:'Brainboard brief from khatibdesigns.com', ar:'ملخص لوحة الأفكار من khatibdesigns.com'},
   copied:{en:'Copied. Paste it into WhatsApp or email.', ar:'تم النسخ، الصقه في واتساب أو البريد'},
   indicative:{en:'Indicative prices. The final quote follows a short scope call.', ar:'الأسعار استرشادية والعرض النهائي بعد تحديد النطاق'},
   disclaimer:{en:'Sample screens for discussion, not final designs', ar:'شاشات للنقاش وليست تصاميم نهائية'}, close:{en:'Close', ar:'إغلاق'},
@@ -501,6 +504,11 @@ function summaryText() {
   return lines.join('\n');
 }
 
+// the text that leaves the room: saved options first, then the scope
+function briefText() {
+  return st.opts.length ? st.opts.map((o, i) => `${String.fromCharCode(65 + i)} · ${o.label}`).join('\n') + '\n\n' + summaryText() : summaryText();
+}
+
 function render() {
   const app = $('#app');
   app.dir = ar() ? 'rtl' : 'ltr';
@@ -574,6 +582,9 @@ function render() {
     b.addEventListener('click', () => { Object.assign(st, o.state); render(); });
     sv.appendChild(b);
   }
+  $('#send').href = 'https://wa.me/96550003048?text=' + encodeURIComponent(L(T.waHead) + '\n\n' + briefText());
+  $('#bookcall').href = ar() ? '/ar/book/' : '/book/';
+  $('#apps').href = ar() ? '/ar/apps/' : '/apps/';
   $('#summary').textContent = summaryText();
   persist();
 }
@@ -607,7 +618,7 @@ $('#saveOpt').addEventListener('click', () => {
   st.opts = [...st.opts, o].slice(-3); render();
 });
 $('#copy').addEventListener('click', () => {
-  const txt = st.opts.length ? st.opts.map((o, i) => `${String.fromCharCode(65 + i)} · ${o.label}`).join('\n') + '\n\n' + summaryText() : summaryText();
+  const txt = briefText();
   const ok = () => { $('#copied').hidden = false; setTimeout(() => { $('#copied').hidden = true; }, 2500); };
   const sel = () => { const r = document.createRange(); r.selectNodeContents($('#summary')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
   try { navigator.clipboard.writeText(txt).then(ok, sel); } catch (e) { sel(); }
