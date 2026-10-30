@@ -260,6 +260,40 @@
         <a class="btn wa-btn" href="https://wa.me/96550003048?text=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%20%D8%AE%D8%B7%D9%8A%D8%A8%20%D8%AF%D9%8A%D8%B2%D8%A7%D9%8A%D9%86%D8%B2%D8%8C%20%D8%A3%D9%86%D8%A7%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%A5%D9%85%D8%A7%D8%B1%D8%A7%D8%AA%20%D9%88%D8%A3%D9%88%D8%AF%20%D9%85%D9%86%D8%A7%D9%82%D8%B4%D8%A9%20%D8%AD%D9%84%20%D8%B0%D9%83%D8%A7%D8%A1%20%D8%A7%D8%B5%D8%B7%D9%86%D8%A7%D8%B9%D9%8A%20%28%D8%B0%D9%83%D8%A7%D8%A1%20%D8%B9%D8%B1%D8%A8%D9%8A%29%20%D9%84%D9%86%D8%B4%D8%A7%D8%B7%D9%8A." target="_blank" rel="noopener">راسلنا على واتساب</a>
         <a class="btn" data-cta="email" href="mailto:studio@khatibdesigns.com?subject=%D8%A7%D9%84%D8%B0%D9%83%D8%A7%D8%A1%20%D8%A7%D9%84%D8%A7%D8%B5%D8%B7%D9%86%D8%A7%D8%B9%D9%8A%20%D9%84%D9%86%D8%B4%D8%A7%D8%B7%D9%86%D8%A7%20%D9%81%D9%8A%20%D8%A7%D9%84%D8%A5%D9%85%D8%A7%D8%B1%D8%A7%D8%AA&body=%D9%85%D8%A7%20%D9%86%D8%B1%D9%8A%D8%AF%20%D8%A3%D8%AA%D9%85%D8%AA%D8%AA%D9%87%3A%0A%D9%82%D8%B7%D8%A7%D8%B9%D9%86%D8%A7%3A%0A%D8%A3%D9%81%D8%B6%D9%84%20%D8%B1%D9%82%D9%85%20%D9%84%D9%84%D8%AA%D9%88%D8%A7%D8%B5%D9%84%20%D9%85%D8%B9%D9%86%D8%A7%3A%0A">راسلنا بالبريد بدلاً من ذلك</a>
       </div>
+
+      <p class="contact-lead">تفضّل الكتابة على الحجز؟ أرسل التفاصيل وسنردّ خلال يوم عمل واحد.</p>
+
+      <form class="lead-form" id="lead-form" novalidate>
+        <div class="lf-row">
+          <label>الاسم<input name="name" required autocomplete="name" placeholder="اسمك" /></label>
+          <label>البريد الإلكتروني<input name="email" type="email" required autocomplete="email" placeholder="you@company.com" /></label>
+        </div>
+        <div class="lf-row">
+          <label>رقم واتساب<input name="phone" type="tel" required inputmode="tel" autocomplete="tel" dir="ltr" placeholder="+971 50 000 0000" /></label>
+          <label>الشركة<input name="company" autocomplete="organization" placeholder="الشركة (اختياري)" /></label>
+        </div>
+        <label class="lf-full">الميزانية
+          <select name="budget">
+            <option value="">اختر نطاقًا (اختياري)</option>
+            <option>أقل من 1,500 دينار كويتي</option>
+            <option>1,500 &ndash; 3,500 دينار كويتي</option>
+            <option>3,500 &ndash; 7,000 دينار كويتي</option>
+            <option>أكثر من 7,000 دينار كويتي</option>
+            <option>لست متأكدًا بعد</option>
+          </select>
+        </label>
+        <label class="lf-full">ما تريد أتمتته
+          <textarea name="message" required rows="4" placeholder="ما الذي يجب أن يتولّاه الذكاء الاصطناعي؟ بضعة أسطر تكفي."></textarea>
+        </label>
+        <input type="hidden" name="_subject" value="استفسار جديد من الإمارات — khatibdesigns.com/ar/dubai/" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="lf-honey" />
+        <div class="lf-actions">
+          <button type="submit" class="btn solid" id="lead-submit">أرسل الاستفسار</button>
+        </div>
+        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+      </form>
     </div>
   </section>
 
@@ -299,6 +333,68 @@
     if(nt)nt.addEventListener('click',function(){nl.classList.toggle('open');});
     var ro=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);}});},{threshold:0.12});
     document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el);});
+  </script>
+
+  <!-- نموذج الاستفسار المدمج (FormSubmit AJAX) — هذه الصفحة لا تُحمّل site.js، لذا لا يعمل
+       معالج #lead-form العام هنا؛ نفس السلوك، لكن مستقلّ بذاته. -->
+  <script>
+    (function(){
+      var form=document.getElementById('lead-form'); if(!form) return;
+      var status=document.getElementById('form-status'), btn=document.getElementById('lead-submit');
+      function track(name,params){
+        var p=params||{};
+        p.page_path=location.pathname; p.language='ar';
+        if(window.khdTrack) window.khdTrack(name,p);           // قد تكون التحليلات محجوبة — لا توقف الإرسال أبدًا
+      }
+      var started=false;                                        // علم تفاعل لمرّة واحدة
+      function onEngage(e){
+        if(started||e.target.name==='_honey') return;
+        started=true;
+        track('form_start',{method:'dubai_form'});
+      }
+      form.addEventListener('input',onEngage);
+      form.addEventListener('change',onEngage);
+      form.addEventListener('submit',function(e){
+        e.preventDefault();
+        if(form._honey&&form._honey.value) return;              // مصيدة الروبوتات
+        if(!form.checkValidity()){
+          var invalid=form.querySelector(':invalid');
+          track('lead_submit_blocked',{reason:'validation',field:(invalid&&invalid.name)||'unknown'});
+          form.reportValidity(); return;
+        }
+        status.className='form-status'; status.textContent='جارٍ الإرسال…';
+        btn.disabled=true;
+        var data={}; new FormData(form).forEach(function(v,k){ if(k.charAt(0)!=='_'||k==='_subject') data[k]=v; });
+        data._subject='استفسار جديد من الإمارات — khatibdesigns.com/ar/dubai/';
+        data._template='table';
+        // نسخة إلى صندوق البريد الذي يراقبه JARVIS، كي يتحوّل الاستفسار الوارد إلى
+        // تنبيه بدلاً من أن يصل إلى مكان لا يراقبه أحد.
+        data._cc='nader@khatibdesigns.com';
+        fetch('https://formsubmit.co/ajax/studio@khatibdesigns.com',{
+          method:'POST',
+          headers:{'Content-Type':'application/json','Accept':'application/json'},
+          body:JSON.stringify(data)
+        }).then(function(r){
+          // ينجح مع أي 2xx — أول إرسال (قبل التنشيط) يُعيد صفحة تنشيط غير JSON،
+          // لذا لا تعتمد على تحليل محتوى الردّ
+          return r.text().then(function(t){
+            var okBody=false;
+            try{ okBody=String(JSON.parse(t).success).toLowerCase()==='true'; }catch(err){}
+            return r.ok||okBody;
+          });
+        }).then(function(ok){
+          if(!ok) throw new Error('not ok');
+          form.reset();
+          status.className='form-status ok';
+          status.textContent='شكرًا — طلبك في طريقه إلينا. سنردّ خلال يوم عمل واحد.';
+          track('generate_lead',{method:'dubai_form',budget:data.budget||'unspecified',has_company:data.company?'yes':'no'});
+        }).catch(function(err){
+          track('lead_submit_failed',{reason:(err&&err.message==='not ok')?'rejected':'network'});
+          status.className='form-status err';
+          status.innerHTML='حدث خطأ ما — يرجى مراسلتنا على <a href="https://wa.me/96550003048" target="_blank" rel="noopener">واتساب (+965 5000 3048)</a> أو عبر <a href="mailto:studio@khatibdesigns.com">studio@khatibdesigns.com</a>.';
+        }).finally(function(){ btn.disabled=false; });
+      });
+    })();
   </script>
   <script defer src="/assets/pricing.js"></script>
 </body>
