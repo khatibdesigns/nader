@@ -269,6 +269,38 @@
         <a href="/ar/book/" class="btn solid book-btn" data-cta="book-call" data-cta-location="cta-band"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4M9.5 15.2l1.8 1.8 3.4-3.6"/></svg>احجز مكالمة مجانية</a>
         <a class="btn wa-btn" href="https://wa.me/96550003048?text=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%20%D8%AE%D8%B7%D9%8A%D8%A8%20%D8%AF%D9%8A%D8%B2%D8%A7%D9%8A%D9%86%D8%B2%D8%8C%20%D8%A3%D9%88%D8%AF%20%D8%A7%D9%84%D8%AD%D8%AF%D9%8A%D8%AB%20%D8%B9%D9%86%20%D8%AA%D8%B7%D8%A8%D9%8A%D9%82%20%D9%84%D8%B9%D9%85%D9%84%D9%8A." target="_blank" rel="noopener" data-cta="whatsapp">راسلنا على واتساب</a>
       </div>
+
+      <form class="lead-form" id="apps-lead-form" novalidate>
+        <div class="lf-row">
+          <label>الاسم<input name="name" required autocomplete="name" placeholder="اسمك" /></label>
+          <label>البريد الإلكتروني<input name="email" type="email" required autocomplete="email" placeholder="you@company.com" /></label>
+        </div>
+        <div class="lf-row">
+          <label>رقم واتساب<input name="phone" type="tel" required inputmode="tel" autocomplete="tel" dir="ltr" placeholder="+965 5000 0000" /></label>
+          <label>الشركة<input name="company" autocomplete="organization" placeholder="الشركة (اختياري)" /></label>
+        </div>
+        <label class="lf-full">عن أي باقة تسأل
+          <select name="interest" required>
+            <option value="" disabled selected>اختر واحدة</option>
+            <option>التطبيق الجاهز — 500 د.ك تجهيز + 29 د.ك شهريًا</option>
+            <option>البداية — من 1,500 د.ك</option>
+            <option>النمو — من 4,500 د.ك</option>
+            <option>المتكاملة — من 9,000 د.ك</option>
+            <option>لست متأكدًا بعد</option>
+          </select>
+        </label>
+        <label class="lf-full">ما الذي يجب أن يفعله التطبيق
+          <textarea name="message" required rows="4" placeholder="حجوزات، طلبات، ولاء، أو شيء آخر؟ بضعة أسطر تكفي."></textarea>
+        </label>
+        <input type="hidden" name="_subject" value="App enquiry — /ar/apps/ page" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="lf-honey" />
+        <div class="lf-actions">
+          <button type="submit" class="btn solid" id="apps-lead-submit">أرسل الاستفسار</button>
+        </div>
+        <p class="form-status" id="apps-form-status" role="status" aria-live="polite"></p>
+      </form>
     </div>
   </section>
   </main>
@@ -303,6 +335,49 @@
     if(nt)nt.addEventListener('click',function(){nl.classList.toggle('open');});
     var ro=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);}});},{threshold:0.12});
     document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el);});
+
+    /* نموذج الطلب (FormSubmit AJAX) — مستقل، هذه الصفحة لا تحمّل site.js */
+    var lf=document.getElementById('apps-lead-form');
+    if(lf){
+      var lfStatus=document.getElementById('apps-form-status'),lfBtn=document.getElementById('apps-lead-submit');
+      lf.addEventListener('submit',function(e){
+        e.preventDefault();
+        if(lf._honey&&lf._honey.value)return;                     // مصيدة البوتات
+        if(!lf.checkValidity()){lf.reportValidity();return;}
+        lfStatus.className='form-status';lfStatus.textContent='جارٍ الإرسال…';
+        lfBtn.disabled=true;
+        var data={};new FormData(lf).forEach(function(v,k){if(k.charAt(0)!=='_'||k==='_subject')data[k]=v;});
+        data._subject='App enquiry — /ar/apps/ page';
+        data._template='table';
+        // نسخة إلى صندوق البريد الذي يتابعه JARVIS. مستلم النموذج نفسه لم
+        // يتغيّر — الطلبات تصل حيث كانت تصل دائمًا — لكن ذاك العنوان لم يفتحه
+        // أي وكيل، فكل استفسار تنتجه هذه الصفحة كان يهبط في مكان لا يراقبه أحد.
+        // _cc يضع نسخة حيث يستطيع معالج الردود رؤيتها.
+        data._cc = 'nader@khatibdesigns.com';
+        fetch('https://formsubmit.co/ajax/studio@khatibdesigns.com',{
+          method:'POST',
+          headers:{'Content-Type':'application/json','Accept':'application/json'},
+          body:JSON.stringify(data)
+        }).then(function(r){
+          // ناجح مع أي رد 2xx — أول إرسال (قبل التفعيل) يعيد صفحة تفعيل غير
+          // JSON، فلا نعتمد على قراءة المحتوى
+          return r.text().then(function(t){
+            var okBody=false;
+            try{okBody=String(JSON.parse(t).success).toLowerCase()==='true';}catch(err){}
+            return r.ok||okBody;
+          });
+        }).then(function(ok){
+          if(!ok)throw new Error('not ok');
+          lf.reset();
+          lfStatus.className='form-status ok';
+          lfStatus.textContent='شكرًا — طلبك في طريقه إلينا. سنردّ خلال يوم عمل واحد.';
+          window.khdTrack && window.khdTrack('generate_lead',{method:'apps_page_form',page_path:'/ar/apps/'});
+        }).catch(function(){
+          lfStatus.className='form-status err';
+          lfStatus.innerHTML='حدث خطأ ما — يرجى مراسلتنا على <a href="mailto:studio@khatibdesigns.com">studio@khatibdesigns.com</a> أو عبر واتساب.';
+        }).finally(function(){lfBtn.disabled=false;});
+      });
+    }
   </script>
   <script defer src="/assets/pricing.js"></script>
 </body>
