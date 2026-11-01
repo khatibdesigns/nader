@@ -131,5 +131,128 @@
     var heads = body.querySelectorAll('h2');
     if (heads.length >= 2) heads[1].parentNode.insertBefore(card, heads[1]); else body.appendChild(card);
   }
+
+  // reading series nav — the only in-repo reason to come back: three named,
+  // numbered series with the next part one tap above the fold. Every other
+  // article stays a one-off and renders exactly as before.
+  function initSeries() {
+    if (!/^\/(ar\/)?blog\/[^/]+\/$/.test(location.pathname)) return;   // articles only — not the hubs, not /work/*
+
+    var SERIES = [
+      { key: 'ai-buy', en: 'The AI buyer’s path', ar: 'مسار شراء الذكاء الاصطناعي', parts: [
+        { slug: 'ai-readiness-assessment-gcc',
+          en: 'AI Readiness Assessment: A 2-Week Plan for GCC Firms',
+          ar: 'تقييم الجاهزية للذكاء الاصطناعي: خطة أسبوعين' },
+        { slug: 'what-an-ai-project-costs-gcc',
+          en: 'What an AI Project Costs in the GCC',
+          ar: 'كم يكلّف مشروع الذكاء الاصطناعي في الخليج' },
+        { slug: 'ai-automation-companies-kuwait',
+          en: 'AI Automation Companies in Kuwait: How to Choose (2026)',
+          ar: 'شركات الأتمتة بالذكاء الاصطناعي في الكويت: كيف تختار (2026)' },
+        { slug: 'ai-running-costs-monthly-gcc',
+          en: 'AI Running Costs in the GCC: The Real Monthly Bill',
+          ar: 'تكاليف تشغيل الذكاء الاصطناعي: الفاتورة الشهرية' }
+      ] },
+      { key: 'app-build', en: 'Building an app in the Gulf', ar: 'بناء تطبيق في الخليج', parts: [
+        { slug: 'what-is-an-mvp',
+          en: 'What is an MVP — and why start there?',
+          ar: 'ما هو المنتج الأوّلي (MVP) — ولماذا تبدأ به؟' },
+        { slug: 'app-cost-kuwait',
+          en: 'App Development Cost in Kuwait: Real Ranges',
+          ar: 'تكلفة تطوير تطبيق في الكويت: أرقام واقعية' },
+        { slug: 'how-long-to-build-an-app',
+          en: 'How long does it take to build a mobile app?',
+          ar: 'كم يستغرق بناء تطبيق جوال؟' },
+        { slug: 'app-maintenance-cost-gcc',
+          en: 'App Maintenance Cost in Kuwait & the GCC (2026)',
+          ar: 'تكلفة صيانة التطبيقات في الكويت والخليج 2026' }
+      ] },
+      { key: 'arabic-bot', en: 'Arabic AI assistants, end to end', ar: 'مساعدو الذكاء الاصطناعي بالعربية من البداية للنهاية', parts: [
+        { slug: 'how-to-build-an-arabic-chatbot-gcc',
+          en: 'How to Build an Arabic Chatbot That Actually Works',
+          ar: 'كيف تبني شات بوت عربي يعمل فعلياً' },
+        { slug: 'arabic-chatbot-cost-gcc',
+          en: 'Arabic Chatbot Cost in Kuwait and the GCC: Real Ranges',
+          ar: 'تكلفة شات بوت عربي في الكويت والخليج: أرقام واقعية' },
+        { slug: 'arabic-chatbot-dialects-gcc',
+          en: 'Arabic Chatbot Dialects: What Breaks in the Gulf',
+          ar: 'لهجات الشات بوت العربي: ما الذي يفشل في الخليج' },
+        { slug: 'arabic-customer-service-chatbot-gcc',
+          en: 'Arabic Customer Service Chatbot: A GCC Buyer’s Guide',
+          ar: 'شات بوت خدمة عملاء عربي: دليل للشركات الخليجية' }
+      ] }
+    ];
+
+    var slug = location.pathname.replace(/^\/(ar\/)?blog\//, '').replace(/\/$/, '');
+    var series = null, idx = -1;
+    SERIES.forEach(function (s) {
+      s.parts.forEach(function (p, n) { if (p.slug === slug) { series = s; idx = n; } });
+    });
+    if (!series) return;                                  // the other 99 articles are one-offs
+    if (document.querySelector('.khd-series')) return;    // re-entry guard
+
+    var head = document.querySelector('article.article .article-head');
+    if (!head) return;
+
+    var ar = document.documentElement.lang === 'ar';
+    var L = ar ? 'ar' : 'en';
+    var href = function (s) { return (ar ? '/ar/blog/' : '/blog/') + s + '/'; };
+
+    var nav = document.createElement('nav');
+    nav.className = 'khd-series';
+    nav.setAttribute('aria-label', ar ? 'سلسلة مقالات' : 'Article series');
+
+    var eyebrow = document.createElement('p');
+    eyebrow.className = 'ks-head';
+    eyebrow.appendChild(document.createTextNode(
+      ar ? 'الجزء ' + (idx + 1) + ' من 4 · ' : 'Part ' + (idx + 1) + ' of 4 · '));
+    var name = document.createElement('strong');
+    name.textContent = series[L];
+    eyebrow.appendChild(name);
+    nav.appendChild(eyebrow);
+
+    var list = document.createElement('ol');
+    list.className = 'ks-list';
+    series.parts.forEach(function (p, n) {
+      var li = document.createElement('li');
+      var num = document.createElement('b');
+      num.className = 'ks-n';
+      num.textContent = String(n + 1);
+      li.appendChild(num);
+      var label;
+      if (n === idx) {
+        label = document.createElement('span');
+        label.className = 'ks-now';
+        label.setAttribute('aria-current', 'true');
+      } else {
+        label = document.createElement('a');
+        label.href = href(p.slug);
+      }
+      label.textContent = p[L];
+      li.appendChild(label);
+      list.appendChild(li);
+    });
+    nav.appendChild(list);
+
+    var next = series.parts[idx + 1];                     // omitted on part 4
+    if (next) {
+      var cta = document.createElement('a');
+      cta.className = 'ks-next';
+      cta.href = href(next.slug);
+      cta.textContent = (ar ? 'اقرأ التالي: ' : 'Read next: ') + next[L];
+      nav.appendChild(cta);
+    }
+
+    head.parentNode.insertBefore(nav, head.nextSibling);  // above the hero — one tap, no scroll
+
+    nav.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest && e.target.closest('a');
+      if (!a || !nav.contains(a)) return;
+      window.khdTrack && window.khdTrack('series_click', {
+        series: series.key, from_slug: slug, link_url: a.getAttribute('href')
+      });
+    });
+  }
   initArticleOffer();
+  initSeries();
 })();

@@ -373,6 +373,19 @@ body.has-cta-bar{padding-bottom:82px;}
 .faq-item h3{font-family:var(--body);font-weight:600;font-size:16px;color:var(--ink);margin-bottom:8px;}
 .faq-item p{color:var(--muted);font-size:15px;line-height:1.7;}
 
+/* article series nav — injected by assets/case.js */
+.khd-series{border:1px solid var(--line);border-radius:var(--r);background:rgba(255,255,255,0.02);
+  padding:22px 24px;margin-bottom:26px;}
+.ks-head{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+.ks-head strong{font-family:var(--display);font-weight:500;}
+.ks-list{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.ks-list li{display:flex;gap:10px;font-size:14.5px;line-height:1.5;}
+.ks-n{color:var(--faint);font-weight:400;}
+.ks-list a{color:var(--muted);transition:color .2s;}
+.ks-list a:hover{color:var(--accent);}
+.ks-now{color:var(--ink);}
+.ks-next{display:inline-block;margin-top:16px;font-size:13px;letter-spacing:.04em;color:var(--accent);}
+
 @media(max-width:860px){
   .case-grid{grid-template-columns:1fr;gap:36px;}
   .case-visual{order:-1;}
