@@ -113,20 +113,49 @@
 
   // mid-article priced offer card — the articles are the only pages that name no price
   function initArticleOffer() {
-    // English only: /ar/ai/ has no #offer section and carries no prices, so there is nothing to link to
-    if (document.documentElement.lang !== 'en') return;
+    // The app-cost / app-build articles — an AI governance sprint is the wrong
+    // next click on these, so they get the /apps/ prices instead. The AI and
+    // chatbot articles stay on the sprint card deliberately.
+    var APP_SLUGS = ['app-cost-dubai-uae', 'app-cost-kuwait', 'app-development-company-dubai',
+      'app-development-cost-gcc', 'app-maintenance-cost-gcc', 'arabic-mobile-app-development-gcc',
+      'bilingual-arabic-english-apps', 'building-apps-uae-market', 'choosing-app-development-company-gcc',
+      'design-development-pricing-kuwait', 'how-long-to-build-an-app', 'ios-android-or-both',
+      'landing-page-7-days', 'productized-design-retainer-kuwait', 'website-cost-kuwait', 'what-is-an-mvp'];
+    var slug = location.pathname.replace(/^\/(ar\/)?blog\//, '').replace(/\/+$/, '');
+    var ar = document.documentElement.lang === 'ar';
+    var app = APP_SLUGS.indexOf(slug) !== -1;
+    // /ar/ai/ has id="offer" but carries no prices (verified), so an Arabic non-app article has no priced destination to point at
+    if (!app && ar) return;
     var body = document.querySelector('article.article .article-body');
     if (!body || body.querySelector('.khd-inline-offer')) return;
 
     var card = document.createElement('aside');
     card.className = 'svc-card khd-inline-offer';
     card.setAttribute('style', 'margin:34px 0');
-    card.innerHTML = '<h3>AI Readiness &amp; Governance Sprint</h3>' +
-      '<p style="font-family:var(--display);font-size:26px;color:var(--accent);margin:0 0 12px">KWD 3,500 ' +
-      '<span style="font-size:13px;color:var(--faint);font-family:var(--body)">fixed, 3 weeks</span></p>' +
-      '<p>A governance model, a ranked roadmap and <strong>one working agent deployed</strong> before we hand over &mdash; ' +
-      'smaller businesses: a single-workflow version runs <strong>KWD 1,500</strong>.</p>' +
-      '<a class="btn solid" href="/ai/#offer" style="margin-top:16px">See what&rsquo;s included</a>';
+    if (!app) {
+      card.innerHTML = '<h3>AI Readiness &amp; Governance Sprint</h3>' +
+        '<p style="font-family:var(--display);font-size:26px;color:var(--accent);margin:0 0 12px">KWD 3,500 ' +
+        '<span style="font-size:13px;color:var(--faint);font-family:var(--body)">fixed, 3 weeks</span></p>' +
+        '<p>A governance model, a ranked roadmap and <strong>one working agent deployed</strong> before we hand over &mdash; ' +
+        'smaller businesses: a single-workflow version runs <strong>KWD 1,500</strong>.</p>' +
+        '<a class="btn solid" href="/ai/#offer" style="margin-top:16px">See what&rsquo;s included</a>';
+    } else if (ar) {
+      card.innerHTML = '<h3>أسعار تطوير التطبيقات</h3>' +
+        '<p style="font-family:var(--display);font-size:26px;color:var(--accent);margin:0 0 12px">500 د.ك + 29 د.ك/شهر ' +
+        '<span style="font-size:13px;color:var(--faint);font-family:var(--body)">التطبيق الجاهز، متاح خلال أربعة إلى ستة أسابيع</span></p>' +
+        '<p>تطبيق حجوزات أو طلبات أو ولاء جاهز باسمك وهويتك، على المتجرين &mdash; ' +
+        'أو تطبيق مصمّم خصيصًا لك: البداية <strong>من 1,500 د.ك</strong>، والنمو <strong>من 4,500 د.ك</strong>، ' +
+        'والمتكاملة <strong>من 9,000 د.ك</strong>.</p>' +
+        '<a class="btn solid" href="/ar/apps/#ready" data-cta-location="article-offer" style="margin-top:16px">شاهد الباقات الأربع</a>';
+    } else {
+      card.innerHTML = '<h3>App development pricing</h3>' +
+        '<p style="font-family:var(--display);font-size:26px;color:var(--accent);margin:0 0 12px">KWD 500 + KWD 29/month ' +
+        '<span style="font-size:13px;color:var(--faint);font-family:var(--body)">Ready App, live in 4 to 6 weeks</span></p>' +
+        '<p>A bookings, ordering or loyalty app under your own brand, on both stores &mdash; ' +
+        'or designed from a blank page: Starter <strong>from KWD 1,500</strong>, Growth <strong>from KWD 4,500</strong>, ' +
+        'Premium <strong>from KWD 9,000</strong>.</p>' +
+        '<a class="btn solid" href="/apps/#ready" data-cta-location="article-offer" style="margin-top:16px">See the four tiers</a>';
+    }
 
     var heads = body.querySelectorAll('h2');
     if (heads.length >= 2) heads[1].parentNode.insertBefore(card, heads[1]); else body.appendChild(card);
