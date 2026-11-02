@@ -70,3 +70,20 @@
   .kit-why,.kit-steps,.kit-price{grid-template-columns:1fr;}
   .kit-list{grid-template-columns:1fr;}
 }
+
+/* /ai/ai-acceptable-use-policy-template/ — article layout plus the two things blog posts never needed */
+.article-body table{width:100%;border-collapse:collapse;margin:22px 0;font-size:14.5px;line-height:1.55;}
+.article-body th{text-align:left;font-weight:600;color:var(--ink);padding:10px 12px;border-bottom:1px solid color-mix(in oklch,var(--accent),transparent 50%);}
+.article-body td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--muted);}
+.article-body td:first-child{color:var(--ink);font-weight:600;white-space:nowrap;}
+.article-body .tbl{overflow-x:auto;}
+.article-body ol{margin:18px 0;padding-left:22px;display:flex;flex-direction:column;gap:12px;}
+.article-body ol li{font-size:16px;line-height:1.7;color:var(--muted);padding-left:4px;}
+.article-body ol li::before{content:none;}
+.kit-get{display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:22px;align-items:center;margin:30px 0;
+  padding:clamp(20px,3vw,28px);border:1px solid color-mix(in oklch,var(--accent),transparent 50%);border-radius:calc(var(--r) + 4px);
+  background:linear-gradient(160deg,rgba(255,154,77,0.10),rgba(255,154,77,0.02) 50%,var(--panel-solid));}
+.kit-get h2{margin:0 0 6px !important;font-size:clamp(20px,2.2vw,24px) !important;}
+.kit-get p{margin:0 0 16px !important;font-size:15px !important;}
+.kit-get img{width:100%;height:auto;border-radius:4px;background:#fff;transform:rotate(3deg);box-shadow:0 20px 40px -18px rgba(0,0,0,.8);}
+@media (max-width:640px){.kit-get{grid-template-columns:1fr;}.kit-get img{max-width:160px;}}
