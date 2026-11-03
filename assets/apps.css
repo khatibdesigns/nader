@@ -63,6 +63,7 @@ html[dir="rtl"] .ready-side{border-left:0;border-right:1px solid var(--line);}
   background:var(--accent);}
 .ready-terms strong{color:var(--ink);font-weight:600;}
 .ready-out{margin-top:20px;font-size:14px;color:var(--muted);}
+.ready-out+.ready-out{margin-top:6px;}
 .ready-out a,.px-link{color:var(--ink);text-decoration:underline;text-decoration-color:var(--accent);
   text-decoration-thickness:1px;text-underline-offset:4px;}
 .ready-out a:hover,.px-link:hover{color:var(--accent-soft);}
