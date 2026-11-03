@@ -457,6 +457,12 @@ footer{position:relative;z-index:5;padding:40px var(--shell) 56px;border-top:1px
 /* reveal-on-scroll */
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1);}
 .reveal.in{opacity:1;transform:none;}
+/* above-the-fold copy renders immediately — it must not wait for case.js and its observer */
+section.case-hero .reveal,
+body > section.section:first-of-type > .reveal,
+article.article > .article-head.reveal,
+article.article > .article-body.reveal,
+.post-list .post-card.reveal:nth-child(-n+3){opacity:1;transform:none;}
 
 /* ============================================================
    responsive
