@@ -35,6 +35,11 @@
 .tag-fast{display:inline-block;padding:4px 11px;border:1px solid color-mix(in oklch,var(--accent),transparent 35%);border-radius:20px;
   color:var(--accent);font-family:var(--body);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;line-height:1.4;}
 .ready-main .px-day{margin-top:10px;font-size:14px;color:var(--accent-soft);}
+.ropts{display:grid;gap:12px;}
+.ropt{padding:18px 20px 16px;border:1px solid var(--line);border-radius:var(--r);background:rgba(255,255,255,0.025);}
+.ready-main .ropt h3{font-size:clamp(19px,1.8vw,22px);margin-bottom:8px;}
+.ready-main .ropt .px-price{font-size:clamp(26px,2.6vw,32px);color:var(--ink);margin-top:0;}
+.ready-main .ropt-what{margin-top:8px;font-size:14px;line-height:1.6;}
 .ready-main .ready-anchor{padding-inline-start:14px;border-inline-start:2px solid var(--accent);color:var(--muted);}
 .ready-anchor strong{color:var(--ink);font-weight:600;white-space:nowrap;}
 .ready-main .ready-credit{display:grid;grid-template-columns:20px 1fr;gap:12px;align-items:start;margin-top:24px;max-width:none;
