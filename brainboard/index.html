@@ -340,6 +340,7 @@ const FEATS = [
   {id:'profile', g:'', en:'Customer profiles', ar:'ملفات العملاء', den:'Sign-up, photo, interests', dar:'تسجيل وصورة واهتمامات'},
   {id:'chat', g:'X', en:'Chat, public & private', ar:'محادثات عامة وخاصة', den:'Community channels and direct messages', dar:'قنوات مجتمع ورسائل مباشرة'},
   {id:'ai', g:'AI', en:'AI features', ar:'مزايا الذكاء الاصطناعي', den:'Smart suggestions, assistant', dar:'اقتراحات ومساعد ذكي'},
+  {id:'web', g:'W', en:'Website store', ar:'موقع متجر إلكتروني', den:'Your products and bookings on your own website', dar:'منتجاتك وحجوزاتك على موقعك'},
 ];
 const TPL = {B:{en:'Bookings',ar:'الحجوزات'}, O:{en:'Ordering',ar:'الطلبات'}, L:{en:'Loyalty',ar:'الولاء'}};
 
@@ -477,15 +478,19 @@ function chips(el, items, key, label, after) {
 
 function recommend() {
   const sel = FEATS.filter(f => st.feats.includes(f.id));
-  const groups = [...new Set(sel.map(f => f.g).filter(g => g === 'B' || g === 'O' || g === 'L'))];
-  const custom = sel.some(f => f.g === 'X') || groups.length > 1;
-  const isAi = sel.some(f => f.g === 'AI');
+  const chat = sel.some(f => f.g === 'X'), isAi = sel.some(f => f.g === 'AI'), web = sel.some(f => f.g === 'W');
+  const mods = sel.filter(f => f.g === 'B' || f.g === 'O' || f.g === 'L').map(f => L(f));
   if (!sel.length) return {tag:W('Start here','ابدأ هنا'), price:'—', list:[W('Tick at least one feature','اختر مزية واحدة على الأقل')], next:''};
-  if (isAi) return {tag:W('Premium','المتكامل'), price:W('from KWD 9,000','يبدأ من ٩٬٠٠٠ د.ك'), list:[W('Custom design and build','تصميم وبناء خاص'), W('AI, loyalty and integrations','الذكاء الاصطناعي والولاء والربط مع أنظمتك'), W('3 months of care','ثلاثة أشهر رعاية')], next:''};
-  if (!custom) { const t = TPL[groups[0] || 'B']; return {tag:W('Ready App','تطبيق جاهز'), price:W('KWD 500 + KWD 29/month','٥٠٠ د.ك ثم ٢٩ د.ك شهرياً'), fast:true, list:[W(`${t.en} template in your brand`, `قالب ${t.ar} بعلامتك وألوانك`), W('iPhone and Android, Arabic and English','آيفون وأندرويد بالعربي والإنجليزي'), W('Fastest: live in 4 to 6 weeks','الأسرع: جاهز خلال أربعة إلى ستة أسابيع'), W('Under KWD 1 a day','أقل من دينار في اليوم')], next:W('12-month minimum','مدة الاشتراك الدنيا ١٢ شهراً')}; }
-  const start = groups.includes('B') ? TPL.B : groups.includes('O') ? TPL.O : groups.includes('L') ? TPL.L : null;
-  return {tag:W('Growth · recommended','النمو · الأنسب لمعظم الأعمال'), price:W('from KWD 4,500','يبدأ من ٤٬٥٠٠ د.ك'), list:[W('Custom design across every screen','تصميم خاص لكل الشاشات'), W('Chat, accounts and online payments','محادثات وحسابات ودفع إلكتروني'), W('Admin dashboard and 1 month of care','لوحة تحكم وشهر رعاية')],
-    next: start ? W(`Or start today with the ${start.en} Ready App for KWD 500. It is credited when you upgrade within 6 months.`, `أو ابدأ اليوم بتطبيق ${start.ar} الجاهز بـ ٥٠٠ د.ك، ونحتسب المبلغ عند الترقية خلال ٦ أشهر`) : ''};
+  if (isAi) return {tag:W('Premium','المتكاملة'), price:W('from KWD 9,000','يبدأ من ٩٬٠٠٠ د.ك'), list:[W('Custom design and build','تصميم وبناء خاص'), W('AI, loyalty and integrations','الذكاء الاصطناعي والولاء والربط مع أنظمتك'), W('3 to 4 months','من ثلاثة إلى أربعة أشهر')], next:''};
+  if (!chat) {
+    const what = mods.length ? mods.join(ar() ? ' + ' : ' + ') : W('Your app','تطبيقك');
+    return {tag: web ? W('Ready App + Website · fastest','التطبيق الجاهز + الموقع · الأسرع') : W('Ready App · fastest','التطبيق الجاهز · الأسرع'),
+      price: web ? W('KWD 1,000 + KWD 29/month','١٬٠٠٠ د.ك ثم ٢٩ د.ك شهرياً') : W('KWD 500 + KWD 29/month','٥٠٠ د.ك ثم ٢٩ د.ك شهرياً'),
+      list:[W(`${what}, in your brand`, `${what} بهويتك`), web ? W('iPhone + Android app and your website store','تطبيق آيفون وأندرويد وموقع متجرك') : W('iPhone and Android, Arabic and English','آيفون وأندرويد بالعربي والإنجليزي'), W('Live in 4 to 6 weeks · under KWD 1 a day','جاهز خلال أربعة إلى ستة أسابيع · أقل من دينار في اليوم')],
+      next: web ? W('12-month minimum. Your setup fee is credited if you upgrade to a custom app within 6 months.','الحد الأدنى ١٢ شهراً، ونحتسب رسوم التجهيز عند الترقية لتطبيق مخصّص خلال ستة أشهر') : W('Add your website store for KWD 1,000 instead of 500. 12-month minimum.','أضف موقع متجرك بـ ١٬٠٠٠ د.ك بدل ٥٠٠. الحد الأدنى ١٢ شهراً')};
+  }
+  return {tag:W('Growth · recommended','النمو · الأنسب لمعظم الأعمال'), price:W('from KWD 4,500','يبدأ من ٤٬٥٠٠ د.ك'), list:[W('Custom design across every screen','تصميم خاص لكل الشاشات'), W('Chat, accounts and online payments','محادثات وحسابات ودفع إلكتروني'), W('2 to 3 months','من شهرين إلى ثلاثة أشهر')],
+    next: W(`Or start today with a Ready App from KWD 500 (KWD 1,000 with a website), chat added later. Your setup fee is credited within 6 months.`, `أو ابدأ اليوم بالتطبيق الجاهز من ٥٠٠ د.ك (١٬٠٠٠ د.ك مع الموقع)، والمحادثات لاحقاً، ونحتسب رسوم التجهيز خلال ستة أشهر`)};
 }
 
 function summaryText() {
