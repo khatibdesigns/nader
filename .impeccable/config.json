@@ -29,6 +29,24 @@
         ],
         "createdAt": "2026-10-25T19:49:05.059Z",
         "reason": "Claude: false positive — uppercase only on two short labels on the business card (\"Scan to save\", \"Together We Venture\" tagline), not body text"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "scripts/v2/src/en/apps.html"
+        ],
+        "createdAt": "2026-11-08T14:34:42.623Z",
+        "reason": "lead: .care has padding clamp(24px,3vw,36px); detector misreads clamp()"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "scripts/v2/src/de/book.html"
+        ],
+        "createdAt": "2026-11-08T14:34:42.640Z",
+        "reason": "lead: .path has padding clamp(28px,4vw,52px); only the decorative ribbon SVG bleeds to the edge"
       }
     ]
   }
