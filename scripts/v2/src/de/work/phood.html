@@ -1,0 +1,100 @@
+<!--meta {"title": "Fallstudie Phood Solutions · Khatib Designs", "description": "Wie Khatib Designs Phood 2.0 für ein US-Start-up gegen Lebensmittelverschwendung gebaut hat: eine Android-App auf einer industriellen Touch-Waage, ein ResNet-20-Klassifikator auf AWS Lambda und eine Node.js-API für Abfallberichte aus der Küche.", "crumb": "Phood Solutions"} -->
+<style>
+.prose ul { padding-left: 1.2em; }
+.prose li { margin-bottom: 10px; }
+.figure { margin: 48px 0 0; background: var(--white); border: 1px solid var(--hair); border-radius: 20px; padding: clamp(20px, 4vw, 48px); }
+.figure figcaption { margin-top: 16px; color: var(--muted); font-size: var(--s1); }
+.steps { list-style: none; margin: 0; padding: 0; }
+.steps li { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 24px; padding: 16px 0; border-bottom: 1px solid var(--hair); }
+.steps span { color: var(--deck); }
+.results { margin-top: 48px; min-height: 160px; }
+@media (max-width: 560px) { .steps li { grid-template-columns: 1fr; gap: 4px; } }
+</style>
+<main id="main">
+  <section class="page-head" aria-labelledby="page-h">
+    <div>
+      <nav class="breadcrumb" aria-label="Brotkrümelnavigation"><a href="/de/work/">Projekte</a> / Phood Solutions</nav>
+      <h1 id="page-h">Eine smarte Waage, die Lebensmittelabfall erkennt.</h1>
+    </div>
+    <p class="deck">Für Phood Solutions in den USA haben wir Phood 2.0 gebaut: eine Waage, eine Kamera und einen Lebensmittel-Klassifikator, die aus allem, was eine Küche wegwirft, einen Datensatz machen.</p>
+  </section>
+
+  <div class="wrap">
+    <div class="facts">
+      <div><span>Kunde</span><b>Phood Solutions</b></div>
+      <div><span>Land</span><b>USA</b></div>
+      <div><span>Jahre</span><b class="num">2017, 2019</b></div>
+      <div><span>Disziplin</span><b>Computer Vision, Mobile, API</b></div>
+    </div>
+  </div>
+
+  <section class="section" aria-labelledby="problem-h">
+    <div class="wrap prose">
+      <h2 id="problem-h">Das Problem</h2>
+      <p>Eine Küche kann keinen Abfall reduzieren, den sie nicht misst. Den ganzen Tag landen an jeder Station Lebensmittel im Müll, und niemand hält inne, um aufzuschreiben, was es war, wie viel es wog oder warum es weggeworfen wurde.</p>
+      <p>Phood 2.0 musste diesen Eintrag genau im Moment der Entsorgung erfassen, fast ohne Mehraufwand für den Koch mit der Pfanne in der Hand.</p>
+
+      <h2 id="built-h">Was wir gebaut haben</h2>
+      <p>Drei Teile, jeder mit einer Aufgabe.</p>
+      <ul>
+        <li>Eine Android-App auf einer industriellen Touch-Waage. Sie las das Gewicht über das serielle Protokoll der Waage aus und machte von jedem Teil ein Foto.</li>
+        <li>Ein Lebensmittel-Klassifikator: ein in Keras gebautes ResNet-20-Modell auf AWS Lambda, das das Lebensmittel auf dem Foto bestimmte.</li>
+        <li>Eine API mit Node.js und Express, die die Welt der Küche abbildete: Organisationen, Standorte, Stationen, Behälter, Lebensmittel-Logs, Abfallberichte, Verlustgründe, Menüs, Bestand und Rollen. Validierung, Authentifizierung und Caching liefen als Middleware vor jeder Route.</li>
+      </ul>
+    </div>
+    <div class="wrap">
+      <figure class="figure">
+        <svg class="diagram" viewBox="0 0 560 300" role="img" aria-label="Phood-System: Waage und Android-App senden Gewicht und Foto an einen Klassifikator auf AWS Lambda, von dort an die API und die Küchenberichte">
+          <g font-family="Figtree, sans-serif" font-size="14" fill="#141a33">
+            <rect x="10" y="30" width="160" height="70" rx="12" fill="#fff" stroke="#e4e6ee"/><text x="26" y="60" font-weight="600">Touch-Waage</text><text x="26" y="80" fill="#5d6378">Gewicht, seriell</text>
+            <rect x="10" y="200" width="160" height="70" rx="12" fill="#fff" stroke="#e4e6ee"/><text x="26" y="230" font-weight="600">Android-App</text><text x="26" y="250" fill="#5d6378">Foto + Gewicht</text>
+            <rect x="210" y="115" width="160" height="70" rx="12" fill="#5b4fd6"/><text x="226" y="145" font-weight="600" fill="#fff">Klassifikator</text><text x="226" y="165" fill="#eeecfc">ResNet-20 · Lambda</text>
+            <rect x="410" y="30" width="140" height="70" rx="12" fill="#fff" stroke="#e4e6ee"/><text x="426" y="60" font-weight="600">Node.js-API</text><text x="426" y="80" fill="#5d6378">Logs, Menüs, Rollen</text>
+            <rect x="410" y="200" width="140" height="70" rx="12" fill="#fff" stroke="#e4e6ee"/><text x="426" y="230" font-weight="600">Abfallberichte</text><text x="426" y="250" fill="#5d6378">pro Küche</text>
+          </g>
+          <g fill="none" stroke="#141a33" stroke-width="1.25"><path d="M90 100 V200"/><path d="M170 235 H190 V150 H210"/><path d="M370 150 H390 V65 H410"/><path d="M480 100 V200"/></g>
+          <g fill="#141a33"><path d="M86 192 L90 200 L94 192Z"/><path d="M202 146 L210 150 L202 154Z"/><path d="M402 61 L410 65 L402 69Z"/><path d="M476 192 L480 200 L484 192Z"/></g>
+        </svg>
+        <figcaption>Gewicht und Foto gehen von der Waage an den Klassifikator, dann an die API und in die Berichte der Küche.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section section--white" aria-labelledby="flow-h">
+    <div class="wrap">
+      <div class="head"><h2 id="flow-h">So lief es in der Küche.</h2><p>Fünf Schritte für jedes Teil, die meisten davon automatisch.</p></div>
+      <ol class="timeline steps">
+        <li><b>1. Wiegen</b><span>Der Koch stellt die Pfanne oder das Teil auf die Waage. Die App liest das Gewicht über die serielle Verbindung.</span></li>
+        <li><b>2. Fotografieren</b><span>Die App macht ein Foto des Teils auf der Waage.</span></li>
+        <li><b>3. Klassifizieren</b><span>Das Foto geht an den ResNet-20-Klassifikator auf AWS Lambda, der das Lebensmittel bestimmt.</span></li>
+        <li><b>4. Erfassen</b><span>Die API speichert einen Eintrag mit Gewicht, Lebensmittel, Station und Verlustgrund.</span></li>
+        <li><b>5. Berichten</b><span>Die Einträge fließen in Abfallberichte für jeden Standort, bereit für die Küchenleitung.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="today-h">
+    <div class="wrap prose">
+      <h2 id="today-h">Was wir heute anders machen würden</h2>
+      <p>Das ist unsere Einschätzung im Rückblick. 2017 war ein kleiner, eigens entwickelter Klassifikator in der Cloud die praktikable Wahl. Heute würden wir zuerst zwei Dinge ausprobieren.</p>
+      <p>Wir würden ein kompaktes Modell direkt auf dem Gerät laufen lassen, damit die Waage weiterarbeitet, wenn das Netz der Küche ausfällt, und ein Foto das Haus nur verlassen muss, wenn es nötig ist.</p>
+      <p>Für schwierige Fälle würden wir ein modernes Vision-Modell testen, bevor wir ein eigenes trainieren. Es kann ein Gericht benennen, das es nie gesehen hat, und beschreiben, was in einer gemischten Pfanne liegt. Eine feste Liste von Klassen kann das nicht.</p>
+      <p>Behalten würden wir die Grundform des Systems: ein Handgriff am Abfalleimer, alles andere automatisch, und Berichte, mit denen eine Küchenleitung arbeiten kann.</p>
+    </div>
+    <div class="wrap">
+      <p class="after">Phood hat seine Computer-Vision-Plattform inzwischen zu PHOOD X ausgebaut und nach eigenen Angaben 1,8 Milliarden Pfund Lebensmittel analysiert. <a class="link" href="https://www.phood.com" rel="noopener">phood.com</a></p>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="close-h">
+    <div class="closing">
+      <svg class="ribbon" viewBox="0 0 760 640" aria-hidden="true"><defs><linearGradient id="rg-phood" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#8fdcd3"/><stop offset=".55" stop-color="#cbbdf2"/><stop offset="1" stop-color="#5b4fd6"/></linearGradient></defs><path d="M220 800 C 270 600, 300 440, 430 340 S 700 190, 900 -160" data-d="M220 800 C 270 600, 300 440, {430,340} S 700 190, 900 -160" fill="none" stroke="url(#rg-phood)" stroke-width="110" stroke-linecap="butt" opacity=".8"/></svg>
+      <div>
+        <h2 id="close-h">Sagen Sie uns, was Sie lösen wollen.</h2>
+        <p>Ein 30-minütiges Gespräch mit Nader. Sie gehen mit einem klaren nächsten Schritt hinaus, ob wir zusammenarbeiten oder nicht.</p>
+        <div class="cta"><a class="btn btn--ink" href="/de/book/">Gespräch buchen</a><a class="btn btn--line" href="/de/speaking/">Nader als Speaker anfragen</a></div>
+      </div>
+      <div class="contact-lines"><a href="mailto:nader@khatibdesigns.com">nader@khatibdesigns.com</a><a href="tel:+359876375875">+359 87 637 5875</a><a href="tel:+96550003048">+965 5000 3048</a></div>
+    </div>
+  </section>
+</main>

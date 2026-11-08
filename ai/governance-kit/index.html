@@ -1,307 +1,266 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<script src="/assets/analytics.js"></script>
-<title>AI Governance Starter Kit — 12 Editable Templates + Playbook | Khatib Designs</title>
-<meta name="description" content="Stand up AI governance in 90 days: 12 editable templates (AI use policy, inventory, risk classification, impact assessment, vendor questionnaire, incident playbook) aligned with ISO/IEC 42001, the NIST AI RMF and the EU AI Act. Free AI use policy template." />
-<link rel="canonical" href="https://khatibdesigns.com/ai/governance-kit/" />
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
-<meta name="theme-color" content="#070611" />
-<meta property="og:type" content="product" />
-<meta property="og:site_name" content="Khatib Designs" />
-<meta property="og:title" content="AI Governance Starter Kit — 12 templates. 90 days." />
-<meta property="og:description" content="Editable AI governance templates aligned with ISO/IEC 42001, the NIST AI RMF and the EU AI Act, plus a 60-page playbook. Start with the free AI use policy." />
-<meta property="og:url" content="https://khatibdesigns.com/ai/governance-kit/" />
-<meta property="og:image" content="https://khatibdesigns.com/assets/img/kit/cover-templates.jpg" />
-<meta property="og:image:width" content="1280" />
-<meta property="og:image:height" content="720" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="AI Governance Starter Kit — 12 templates. 90 days." />
-<meta name="twitter:description" content="Editable AI governance templates aligned with ISO/IEC 42001, the NIST AI RMF and the EU AI Act." />
-<meta name="twitter:image" content="https://khatibdesigns.com/assets/img/kit/cover-templates.jpg" />
-<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-<link rel="apple-touch-icon" href="/assets/icon-180.png" />
-<link rel="manifest" href="/site.webmanifest" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="/assets/styles.css" />
-<link rel="stylesheet" href="/assets/kit.css" />
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Product",
- "name":"AI Governance Starter Kit",
- "url":"https://khatibdesigns.com/ai/governance-kit/",
- "image":"https://khatibdesigns.com/assets/img/kit/cover-templates.jpg",
- "description":"Twelve editable AI governance templates aligned with ISO/IEC 42001, the NIST AI RMF and the EU AI Act, with an optional 60-page implementation playbook.",
- "brand":{"@type":"Brand","name":"Khatib Designs"},
- "author":{"@type":"Person","name":"Nader Alkhatib","url":"https://khatibdesigns.com/nader/"},
- "offers":[
-  {"@type":"Offer","name":"Free AI Acceptable Use Policy template","price":"0","priceCurrency":"EUR","availability":"https://schema.org/InStock","url":"https://khatibdesigns.gumroad.com/l/ai-use-policy"},
-  {"@type":"Offer","name":"12 Templates","price":"49","priceCurrency":"EUR","availability":"https://schema.org/InStock","url":"https://khatibdesigns.gumroad.com/l/ai-governance-kit"},
-  {"@type":"Offer","name":"Complete: Templates + Playbook","price":"149","priceCurrency":"EUR","availability":"https://schema.org/InStock","url":"https://khatibdesigns.gumroad.com/l/ai-governance-kit-complete"}]}
-</script>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
- {"@type":"ListItem","position":1,"name":"Home","item":"https://khatibdesigns.com/"},
- {"@type":"ListItem","position":2,"name":"AI","item":"https://khatibdesigns.com/ai/"},
- {"@type":"ListItem","position":3,"name":"AI Governance Starter Kit","item":"https://khatibdesigns.com/ai/governance-kit/"}]}
-</script>
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
- {"@type":"Question","name":"Which frameworks are the templates aligned with?","acceptedAnswer":{"@type":"Answer","text":"ISO/IEC 42001:2023, the NIST AI Risk Management Framework (with its Generative AI Profile) and the EU AI Act as amended in 2026, with GDPR touchpoints. Every template ends with a table mapping each section to the relevant clause, function or article. Aligned with does not mean certified: certification is an audit of how you run the system, not of your documents."}},
- {"@type":"Question","name":"What format are the files?","acceptedAnswer":{"@type":"Answer","text":"Editable Microsoft Word documents (.docx) that also open in Google Docs, Pages and LibreOffice. The playbook is a PDF."}},
- {"@type":"Question","name":"We are not in the EU. Is this still useful?","acceptedAnswer":{"@type":"Answer","text":"Yes. ISO/IEC 42001 and the NIST AI RMF are international and voluntary, and the templates are written for any organisation. The EU AI Act sections tell you when it applies to you, for example if you sell AI-enabled products or services into the EU."}},
- {"@type":"Question","name":"Can I use the kit for my clients?","acceptedAnswer":{"@type":"Answer","text":"The licence covers internal use by the purchasing organisation. Consultants who want to adapt the kit for clients should get in touch for a practitioner licence."}},
- {"@type":"Question","name":"Is this legal advice?","acceptedAnswer":{"@type":"Answer","text":"No. The templates are a practical starting point. Have qualified counsel review them against the laws that apply to you before adoption."}},
- {"@type":"Question","name":"What if it is not right for us?","acceptedAnswer":{"@type":"Answer","text":"Email within 14 days of purchase and you get a full refund, no questions asked."}}]}
-</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/assets/analytics.js" defer></script>
+<title>AI Governance Starter Kit, 12 editable templates + playbook · Khatib Designs</title>
+<meta name="description" content="Stand up AI governance in 90 days: 12 editable templates (AI use policy, inventory, risk classification, impact assessment, vendor questionnaire, incident playbook) aligned with ISO/IEC 42001, the NIST AI RMF and the EU AI Act. Free AI use policy template.">
+<link rel="canonical" href="https://khatibdesigns.com/ai/governance-kit/">
+<link rel="alternate" hreflang="en" href="https://khatibdesigns.com/ai/governance-kit/">
+<link rel="alternate" hreflang="x-default" href="https://khatibdesigns.com/ai/governance-kit/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#f8f8fb">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Khatib Designs">
+<meta property="og:title" content="AI Governance Starter Kit, 12 editable templates + playbook · Khatib Designs">
+<meta property="og:description" content="Stand up AI governance in 90 days: 12 editable templates (AI use policy, inventory, risk classification, impact assessment, vendor questionnaire, incident playbook) aligned with ISO/IEC 42001, the NIST AI RMF and the EU AI Act. Free AI use policy template.">
+<meta property="og:url" content="https://khatibdesigns.com/ai/governance-kit/">
+<meta property="og:image" content="https://khatibdesigns.com/assets/img/kit/cover-templates.jpg">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Governance Starter Kit, 12 editable templates + playbook · Khatib Designs">
+<meta name="twitter:description" content="Stand up AI governance in 90 days: 12 editable templates (AI use policy, inventory, risk classification, impact assessment, vendor questionnaire, incident playbook) aligned with ISO/IEC 42001, the NIST AI RMF and the EU AI Act. Free AI use policy template.">
+<meta name="twitter:image" content="https://khatibdesigns.com/assets/img/kit/cover-templates.jpg">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/icon-180.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/assets/v2/fonts/figtree-latin-7073ac.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/v2/site.css?v=f8a0e3a5">
+<style>
+  .pages { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 2vw, 24px); margin-top: clamp(32px, 4vw, 48px); }
+  .pages img { display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--hair); box-shadow: var(--shadow); background: var(--white); }
+  .pages img:nth-child(2) { transform: translateY(18px); }
+  .rows { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink); }
+  .rows li { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 8px clamp(24px, 4vw, 56px); padding: 22px 0; border-bottom: 1px solid var(--hair); }
+  .rows b { font-size: var(--s3); font-weight: 600; letter-spacing: -0.01em; line-height: 1.3; }
+  .rows p { color: var(--deck); margin: 0; }
+  .rows .n { color: var(--violet); font-variant-numeric: tabular-nums; margin-right: 10px; }
+  .tiers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2.4vw, 28px); }
+  .tier { position: relative; display: flex; flex-direction: column; background: var(--white); border: 1px solid var(--hair); border-radius: 20px; padding: clamp(24px, 3vw, 36px); }
+  .tier--pick { border: 2px solid var(--violet); }
+  .tier h3 { font-size: var(--s4); margin: 0 0 8px; }
+  .tier p { color: var(--deck); }
+  .tier ul { list-style: none; margin: 8px 0 24px; padding: 0; border-top: 1px solid var(--hair); }
+  .tier li { padding: 10px 0; border-bottom: 1px solid var(--hair); color: var(--deck); font-size: var(--s1); }
+  .tier .btn { margin-top: auto; align-self: flex-start; }
+  .badge { display: inline-block; font-size: 12px; font-weight: 600; color: var(--white); background: var(--violet); border-radius: 999px; padding: 4px 10px; margin-bottom: 12px; align-self: flex-start; }
+  .price { font-size: var(--s5); font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; margin: 4px 0 12px; color: var(--ink) !important; font-variant-numeric: tabular-nums; }
+  .feature .cta { margin-top: 24px; }
+  @media (max-width: 900px) { .tiers { grid-template-columns: 1fr; } }
+  @media (max-width: 700px) { .rows li { grid-template-columns: 1fr; } }
+  @media (min-width: 1001px) { .rel-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Product", "name": "AI Governance Starter Kit", "url": "https://khatibdesigns.com/ai/governance-kit/", "image": "https://khatibdesigns.com/assets/img/kit/cover-templates.jpg", "description": "Twelve editable AI governance templates aligned with ISO/IEC 42001, the NIST AI RMF and the EU AI Act, with an optional 60-page implementation playbook.", "brand": {"@type": "Brand", "name": "Khatib Designs"}, "manufacturer": {"@id": "https://khatibdesigns.com/#studio"}, "author": {"@id": "https://khatibdesigns.com/nader/#nader"}, "offers": [{"@type": "Offer", "name": "Free AI Acceptable Use Policy template", "price": "0", "priceCurrency": "EUR", "availability": "https://schema.org/InStock", "url": "https://khatibdesigns.gumroad.com/l/ai-use-policy"}, {"@type": "Offer", "name": "12 Templates", "price": "49", "priceCurrency": "EUR", "availability": "https://schema.org/InStock", "url": "https://khatibdesigns.gumroad.com/l/ai-governance-kit"}, {"@type": "Offer", "name": "Complete: Templates + Playbook", "price": "149", "priceCurrency": "EUR", "availability": "https://schema.org/InStock", "url": "https://khatibdesigns.gumroad.com/l/ai-governance-kit-complete"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://khatibdesigns.com/"}, {"@type": "ListItem", "position": 2, "name": "AI Governance Starter Kit", "item": "https://khatibdesigns.com/ai/governance-kit/"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which frameworks are the templates aligned with?", "acceptedAnswer": {"@type": "Answer", "text": "ISO/IEC 42001:2023, the NIST AI Risk Management Framework (with its Generative AI Profile) and the EU AI Act as amended in 2026, with GDPR touchpoints. Every template ends with a table mapping each section to the relevant clause, function or article. Aligned with does not mean certified: certification is an audit of how you run the system, not of your documents."}}, {"@type": "Question", "name": "What format are the files?", "acceptedAnswer": {"@type": "Answer", "text": "Editable Microsoft Word documents (.docx) that also open in Google Docs, Pages and LibreOffice. The playbook is a PDF."}}, {"@type": "Question", "name": "We are not in the EU. Is this still useful?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. ISO/IEC 42001 and the NIST AI RMF are international and voluntary, and the templates are written for any organisation. The EU AI Act sections tell you when it applies to you, for example if you sell AI-enabled products or services into the EU."}}, {"@type": "Question", "name": "Can I use the kit for my clients?", "acceptedAnswer": {"@type": "Answer", "text": "The licence covers internal use by the purchasing organisation. Consultants who want to adapt the kit for clients should get in touch for a practitioner licence."}}, {"@type": "Question", "name": "Is this legal advice?", "acceptedAnswer": {"@type": "Answer", "text": "No. The templates are a practical starting point. Have qualified counsel review them against the laws that apply to you before adoption."}}, {"@type": "Question", "name": "What if it is not right for us?", "acceptedAnswer": {"@type": "Answer", "text": "Email within 14 days of purchase and you get a full refund, no questions asked."}}]}</script>
 </head>
 <body>
-  <div id="stars"></div>
-  <div class="bg-neb"></div>
-  <div class="bg-neb two"></div>
-
-  <header class="nav">
-    <a class="brand" href="/"><span class="k">Khatib</span><span class="d">Designs</span></a>
-    <nav class="nav-links" id="nav-links">
-      <a href="/#about">Studio</a>
-      <a href="/#services">Services</a>
-      <a href="/ai/">AI</a>
-      <a href="/work/">Work</a>
-      <a href="/blog/">Insights</a>
-      <a href="/#contact">Contact</a>
-      <a href="/book/" class="btn solid" data-cta="book-call" data-cta-location="nav">Book a call</a>
+<a class="skip" href="#main">Skip to content</a>
+<header class="bar">
+  <div class="bar__in">
+    <a class="brand" href="/" aria-label="Khatib Designs, home"><img src="/assets/v2/kmark.png" alt="" width="36" height="72"><span>Khatib Designs</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="/ai/" aria-current="page">AI</a><a href="/digital-transformation/">Transformation</a><a href="/speaking/">Speaking</a><a href="/work/">Work</a><a href="/blog/">Insights</a><a href="/company/">Company</a>
     </nav>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-    </button>
-  </header>
-
-  <main>
-  <!-- HERO -->
-  <section class="section kit-hero">
-    <div class="reveal">
-      <div class="kit-kicker">AI Governance Starter Kit</div>
-      <h1>AI governance in <em>90 days</em>, not nine months.</h1>
-      <p class="lead">Twelve editable templates that take you from &ldquo;people are using ChatGPT and nobody owns it&rdquo; to a working governance programme: policy, inventory, risk method, impact assessments, vendor checks and incident response. Aligned with ISO/IEC&nbsp;42001, the NIST&nbsp;AI&nbsp;RMF and the EU&nbsp;AI&nbsp;Act.</p>
-      <div class="hero-cta">
-        <a href="#pricing" class="btn solid">Get the kit · from €49</a>
-        <a href="https://khatibdesigns.gumroad.com/l/ai-use-policy" class="btn" data-kit="free" data-kit-location="hero">Free AI use policy</a>
-      </div>
-      <p class="kit-note">Instant download · editable Word files · 14-day refund</p>
+    <div class="bar__end">
+      <details class="lang">
+        <summary aria-label="EN, Language: English"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg><span>EN</span></summary>
+        <ul><li><a href="/ai/governance-kit/" lang="en" hreflang="en" aria-current="true">English <small>EN</small></a></li><li><a href="/ar/" lang="ar" hreflang="ar">العربية <small>AR</small></a></li><li><a href="/de/" lang="de" hreflang="de">Deutsch <small>DE</small></a></li><li><a href="/fr/" lang="fr" hreflang="fr">Français <small>FR</small></a></li></ul>
+      </details>
+      <a class="btn btn--ink btn--sm" href="/book/">Book a conversation</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></button>
     </div>
-    <div class="kit-pages reveal" aria-hidden="true">
-      <img src="/assets/img/kit/page-aup.jpg" alt="" width="695" height="900" loading="eager" fetchpriority="high" decoding="async" />
-      <img src="/assets/img/kit/page-risk.jpg" alt="" width="695" height="900" loading="lazy" decoding="async" />
-      <img src="/assets/img/kit/page-playbook.jpg" alt="" width="635" height="900" loading="lazy" decoding="async" />
+  </div>
+</header>
+<main id="main">
+  <section class="page-head" aria-labelledby="page-h">
+    <div>
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/ai/">AI</a> / Governance kit</nav>
+      <h1 id="page-h">AI governance in <span>90 days</span>, not nine months.</h1>
+    </div>
+    <div>
+      <p class="deck">The AI Governance Starter Kit: twelve editable templates that take you from "people are using ChatGPT and nobody owns it" to a working governance programme. Policy, inventory, risk method, impact assessments, vendor checks and incident response, aligned with ISO/IEC&nbsp;42001, the NIST&nbsp;AI&nbsp;RMF and the EU&nbsp;AI&nbsp;Act.</p>
+      <div class="cta"><a class="btn btn--ink" href="#pricing">Get the kit · from €49</a><a class="btn btn--line" href="https://khatibdesigns.gumroad.com/l/ai-use-policy" data-kit="free" data-kit-location="hero">Free AI use policy</a></div>
     </div>
   </section>
 
-  <!-- WHY NOW -->
-  <section class="section kit-block" aria-labelledby="why-h">
-    <div class="reveal">
-      <h2 class="kit-h2" id="why-h">Your organisation already runs on AI. Who governs it?</h2>
-      <p class="kit-sub">Most organisations skipped the paperwork and went straight to the tools. That gap is now a risk you can name.</p>
+  <div class="wrap">
+    <div class="facts">
+      <div><span>Templates</span><b class="num">12</b></div>
+      <div><span>Format</span><b>Editable Word</b></div>
+      <div><span>Delivery</span><b>Instant download</b></div>
+      <div><span>Refund</span><b>14 days</b></div>
     </div>
-    <div class="kit-why reveal">
-      <article>
-        <h3>Your people are already using it</h3>
-        <p>Staff paste contracts, customer data and code into chat assistants every day, often on personal accounts. Without a policy, nobody knows what is allowed or who is accountable.</p>
+    <div class="pages" aria-hidden="true">
+      <img src="/assets/img/kit/page-aup.jpg" alt="" width="695" height="900" decoding="async">
+      <img src="/assets/img/kit/page-risk.jpg" alt="" width="695" height="900" loading="lazy" decoding="async">
+      <img src="/assets/img/kit/page-playbook.jpg" alt="" width="635" height="900" loading="lazy" decoding="async">
+    </div>
+  </div>
+
+  <section class="section" aria-labelledby="why-h">
+    <div class="wrap">
+      <div class="head"><h2 id="why-h">Your organisation already runs on AI. Who governs it?</h2><p>Most organisations skipped the paperwork and went straight to the tools. That gap is now a risk you can name.</p></div>
+      <ul class="rows">
+        <li><b>Your people are already using it</b><p>Staff paste contracts, customer data and code into chat assistants every day, often on personal accounts. Without a policy, nobody knows what is allowed or who is accountable.</p></li>
+        <li><b>The law has started</b><p>The EU AI Act's prohibitions and AI-literacy duty apply now, transparency rules since August 2026, and high-risk obligations from December 2027. ISO/IEC 42001 has made AI governance something auditors ask about.</p></li>
+        <li><b>Customers ask before they buy</b><p>Enterprise buyers and procurement teams now send AI questionnaires. "We're working on it" loses deals. A documented programme wins them.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--white" id="inside" aria-labelledby="inside-h">
+    <div class="wrap">
+      <div class="head"><h2 id="inside-h">What's inside.</h2><p>Every document your first year of AI governance needs, in the order you'll use them.</p></div>
+      <ol class="rows">
+        <li><b><span class="n">01</span>AI Acceptable Use Policy</b><p>Approved tools in three tiers, the data that never goes into a prompt, disclosure and personal accounts.</p></li>
+        <li><b><span class="n">02</span>AI Governance Policy</b><p>Principles, roles, the risk-based approach and how exceptions are handled.</p></li>
+        <li><b><span class="n">03</span>Committee Charter and RACI</b><p>Who decides what, how often the committee meets, and decision rights by risk tier.</p></li>
+        <li><b><span class="n">04</span>AI System Inventory and Register</b><p>The fields to capture for every AI system, with worked example rows.</p></li>
+        <li><b><span class="n">05</span>Risk Classification and Assessment</b><p>EU AI Act screening, a seven-factor tiering score and a likelihood × impact matrix.</p></li>
+        <li><b><span class="n">06</span>AI Impact Assessment</b><p>Full and short forms, including fundamental-rights questions and affected groups.</p></li>
+        <li><b><span class="n">07</span>Vendor Due-Diligence Questionnaire</b><p>Scored questions for buying AI, with GenAI-specific checks and contract clauses.</p></li>
+        <li><b><span class="n">08</span>Data and Privacy Standard for AI</b><p>Training data, prompts, personal data, retention and when a DPIA is triggered.</p></li>
+        <li><b><span class="n">09</span>Lifecycle and Human Oversight Procedure</b><p>Intake to retirement, with approval gates and monitoring by tier.</p></li>
+        <li><b><span class="n">10</span>AI Incident Response Playbook</b><p>Severity levels, roles, timelines, communications and serious-incident reporting.</p></li>
+        <li><b><span class="n">11</span>AI Literacy and Training Plan</b><p>A role-based curriculum, from all staff to developers and the board.</p></li>
+        <li><b><span class="n">12</span>90-Day Roadmap and Framework Crosswalk</b><p>A week-by-week plan, and a map of ISO/IEC 42001 ↔ NIST AI RMF ↔ EU AI Act to each template.</p></li>
+      </ol>
+      <p class="note"><b>Every template includes</b> how-to-use notes, a document-control block, example rows, adjustable thresholds, a sign-off table, and a framework-alignment table you can hand to an auditor.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="how-h">
+    <div class="wrap">
+      <div class="head"><h2 id="how-h">How the 90 days go.</h2><p>Three stages of thirty days. The roadmap in template 12 breaks them down week by week.</p></div>
+      <div class="engage" style="grid-template-columns: repeat(3, minmax(0, 1fr))">
+        <div><h3>Set the rules</h3><span class="when">Days 1–30</span><p>Publish the acceptable use policy, appoint an owner, stand up the committee and start the inventory.</p></div>
+        <div><h3>Know your risk</h3><span class="when">Days 31–60</span><p>Tier every system, run impact assessments on the ones that matter, and put vendors and data under control.</p></div>
+        <div><h3>Make it run</h3><span class="when">Days 61–90</span><p>Oversight and monitoring live, incident playbook tested, training delivered, and your first report to leadership.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white" id="pricing" aria-labelledby="pricing-h">
+    <div class="wrap">
+      <div class="head"><h2 id="pricing-h">Choose your kit.</h2><p>One payment, instant download, yours to edit. Checkout handles tax for your country.</p></div>
+      <div class="tiers">
+        <article class="tier">
+          <h3>Free policy</h3>
+          <p class="price">€0</p>
+          <p>Start today with the template every organisation needs first. <a class="link" href="/ai/ai-acceptable-use-policy-template/">See what's in it</a>.</p>
+          <ul>
+            <li>AI Acceptable Use Policy (template 01)</li>
+            <li>One-page staff summary</li>
+            <li>Staff acknowledgement form</li>
+          </ul>
+          <a class="btn btn--line" href="https://khatibdesigns.gumroad.com/l/ai-use-policy" data-kit="free" data-kit-location="pricing">Get it free</a>
+        </article>
+        <article class="tier">
+          <h3>12 Templates</h3>
+          <p class="price">€49</p>
+          <p>The full set of documents, ready to adapt.</p>
+          <ul>
+            <li>All 12 editable Word templates</li>
+            <li>Framework-alignment table in each</li>
+            <li>90-day roadmap and crosswalk</li>
+          </ul>
+          <a class="btn btn--line" href="https://khatibdesigns.gumroad.com/l/ai-governance-kit" data-kit="templates" data-kit-location="pricing">Buy templates</a>
+        </article>
+        <article class="tier tier--pick">
+          <span class="badge">Best value</span>
+          <h3>Complete</h3>
+          <p class="price">€149</p>
+          <p>The templates plus the guide that shows you how to use them.</p>
+          <ul>
+            <li>Everything in 12 Templates</li>
+            <li>The AI Governance Playbook, a 60-page guide</li>
+            <li>30-question readiness checklist and maturity model</li>
+            <li>Walkthrough video (free update)</li>
+          </ul>
+          <a class="btn btn--ink" href="https://khatibdesigns.gumroad.com/l/ai-governance-kit-complete" data-kit="complete" data-kit-location="pricing">Buy the complete kit</a>
+        </article>
+      </div>
+      <p class="note">14-day full refund · licensed for internal use by the purchasing organisation · not legal advice</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="author-h">
+    <div class="wrap">
+      <article class="feature">
+        <div>
+          <h2 id="author-h" class="feature__title">Written by a practitioner.</h2>
+          <p><a class="link" href="/nader/">Nader Alkhatib</a> is the founder of Khatib Designs and advises organisations on AI governance and digital transformation. He has more than 13 years in engineering and technology leadership, and has written AI governance frameworks for large organisations.</p>
+          <p>The kit is what he wished existed the first time: documents a risk or IT lead can adopt in an afternoon, not a 200-page framework nobody reads.</p>
+        </div>
+        <div>
+          <h3>Rather have it done with you?</h3>
+          <p>The AI readiness and governance sprint puts the kit in place for your organisation in three weeks: governance model, ranked roadmap, and one AI use case deployed safely.</p>
+          <div class="cta"><a class="btn btn--ink" href="/book/" data-cta="book-call" data-cta-location="kit-sprint">Book a free call</a><a class="btn btn--line" href="/ai/">About the sprint</a></div>
+        </div>
       </article>
-      <article>
-        <h3>The law has started</h3>
-        <p>The EU AI Act&rsquo;s prohibitions and AI-literacy duty apply now, transparency rules since August 2026, and high-risk obligations from December 2027. ISO/IEC 42001 has made AI governance something auditors ask about.</p>
-      </article>
-      <article>
-        <h3>Customers ask before they buy</h3>
-        <p>Enterprise buyers and procurement teams now send AI questionnaires. &ldquo;We&rsquo;re working on it&rdquo; loses deals. A documented programme wins them.</p>
-      </article>
     </div>
   </section>
 
-  <!-- WHAT'S INSIDE -->
-  <section class="section kit-block" id="inside" aria-labelledby="inside-h">
-    <div class="reveal">
-      <h2 class="kit-h2" id="inside-h">What&rsquo;s inside</h2>
-      <p class="kit-sub">Every document your first year of AI governance needs, in the order you&rsquo;ll use them.</p>
-    </div>
-    <ol class="kit-list reveal">
-      <li><strong>AI Acceptable Use Policy</strong><span>Approved tools in three tiers, the data that never goes into a prompt, disclosure and personal accounts.</span></li>
-      <li><strong>AI Governance Policy</strong><span>Principles, roles, the risk-based approach and how exceptions are handled.</span></li>
-      <li><strong>Committee Charter &amp; RACI</strong><span>Who decides what, how often the committee meets, and decision rights by risk tier.</span></li>
-      <li><strong>AI System Inventory &amp; Register</strong><span>The fields to capture for every AI system, with worked example rows.</span></li>
-      <li><strong>Risk Classification &amp; Assessment</strong><span>EU AI Act screening, a seven-factor tiering score and a likelihood × impact matrix.</span></li>
-      <li><strong>AI Impact Assessment</strong><span>Full and short forms, including fundamental-rights questions and affected groups.</span></li>
-      <li><strong>Vendor Due-Diligence Questionnaire</strong><span>Scored questions for buying AI, with GenAI-specific checks and contract clauses.</span></li>
-      <li><strong>Data &amp; Privacy Standard for AI</strong><span>Training data, prompts, personal data, retention and when a DPIA is triggered.</span></li>
-      <li><strong>Lifecycle &amp; Human Oversight Procedure</strong><span>Intake to retirement, with approval gates and monitoring by tier.</span></li>
-      <li><strong>AI Incident Response Playbook</strong><span>Severity levels, roles, timelines, communications and serious-incident reporting.</span></li>
-      <li><strong>AI Literacy &amp; Training Plan</strong><span>A role-based curriculum, from all staff to developers and the board.</span></li>
-      <li><strong>90-Day Roadmap &amp; Framework Crosswalk</strong><span>A week-by-week plan, and a map of ISO/IEC 42001 ↔ NIST AI RMF ↔ EU AI Act to each template.</span></li>
-    </ol>
-    <p class="kit-every reveal"><strong>Every template includes</strong> how-to-use notes, a document-control block, example rows, adjustable thresholds, a sign-off table, and a framework-alignment table you can hand to an auditor.</p>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section class="section kit-block" aria-labelledby="how-h">
-    <div class="reveal">
-      <h2 class="kit-h2" id="how-h">How the 90 days go</h2>
-    </div>
-    <div class="kit-steps reveal">
-      <div><b>Days 1–30</b><h3>Set the rules</h3><p>Publish the acceptable use policy, appoint an owner, stand up the committee and start the inventory.</p></div>
-      <div><b>Days 31–60</b><h3>Know your risk</h3><p>Tier every system, run impact assessments on the ones that matter, and put vendors and data under control.</p></div>
-      <div><b>Days 61–90</b><h3>Make it run</h3><p>Oversight and monitoring live, incident playbook tested, training delivered, and your first report to leadership.</p></div>
-    </div>
-  </section>
-
-  <!-- PRICING -->
-  <section class="section kit-block" id="pricing" aria-labelledby="pricing-h">
-    <div class="reveal">
-      <h2 class="kit-h2" id="pricing-h">Choose your kit</h2>
-      <p class="kit-sub">One payment, instant download, yours to edit. Prices in euros; checkout handles tax for your country.</p>
-    </div>
-    <div class="kit-price reveal">
-      <div class="kit-tier">
-        <h3>Free policy</h3>
-        <p class="kit-amt">€0</p>
-        <p>Start today with the template every organisation needs first. <a href="/ai/ai-acceptable-use-policy-template/" style="color:var(--accent)">See what&rsquo;s in it</a>.</p>
-        <ul>
-          <li>AI Acceptable Use Policy (template 01)</li>
-          <li>One-page staff summary</li>
-          <li>Staff acknowledgement form</li>
-        </ul>
-        <a class="btn" href="https://khatibdesigns.gumroad.com/l/ai-use-policy" data-kit="free" data-kit-location="pricing">Get it free</a>
-      </div>
-      <div class="kit-tier">
-        <h3>12 Templates</h3>
-        <p class="kit-amt">€49</p>
-        <p>The full set of documents, ready to adapt.</p>
-        <ul>
-          <li>All 12 editable Word templates</li>
-          <li>Framework-alignment table in each</li>
-          <li>90-day roadmap &amp; crosswalk</li>
-        </ul>
-        <a class="btn" href="https://khatibdesigns.gumroad.com/l/ai-governance-kit" data-kit="templates" data-kit-location="pricing">Buy templates</a>
-      </div>
-      <div class="kit-tier best">
-        <h3>Complete <span class="kit-tag">Best value</span></h3>
-        <p class="kit-amt">€149</p>
-        <p>The templates plus the guide that shows you how to use them.</p>
-        <ul>
-          <li>Everything in 12 Templates</li>
-          <li>The AI Governance Playbook, a 60-page guide</li>
-          <li>30-question readiness checklist &amp; maturity model</li>
-          <li>Walkthrough video (free update)</li>
-        </ul>
-        <a class="btn solid" href="https://khatibdesigns.gumroad.com/l/ai-governance-kit-complete" data-kit="complete" data-kit-location="pricing">Buy the complete kit</a>
-      </div>
-    </div>
-    <p class="kit-fine reveal">14-day full refund · licensed for internal use by the purchasing organisation · not legal advice</p>
-  </section>
-
-  <!-- AUTHOR + DONE-FOR-YOU -->
-  <section class="section kit-block kit-author" aria-labelledby="author-h">
-    <div class="reveal">
-      <h2 class="kit-h2" id="author-h">Written by a practitioner</h2>
-      <p><a href="/nader/">Nader Alkhatib</a> is an AI governance and digital transformation advisor and the founder of Khatib Designs. He has spent more than 15 years delivering enterprise digital programmes across Europe and the Gulf, and has written AI governance frameworks for large organisations.</p>
-      <p>The kit is what he wished existed the first time: documents that a risk or IT lead can adopt in an afternoon, not a 200-page framework nobody reads.</p>
-    </div>
-    <div class="kit-dfy reveal">
-      <h3>Rather have it done with you?</h3>
-      <p>The AI Readiness &amp; Governance Sprint puts the kit in place for your organisation in three weeks: governance model, ranked roadmap, and one AI use case deployed safely.</p>
-      <div class="hero-cta">
-        <a href="/book/" class="btn solid book-btn" data-cta="book-call" data-cta-location="kit-sprint">Book a free call</a>
-        <a href="/ai/" class="btn">About the Sprint</a>
+  <section class="section section--white" aria-labelledby="read-h">
+    <div class="wrap">
+      <div class="head"><h2 id="read-h">Read before you adopt.</h2><p>The templates assume a few decisions are already made. These articles walk through them: readiness, privacy, training and the reasons programmes stall.</p></div>
+      <div class="rel-grid">
+        <a class="rel" href="/blog/ai-readiness-checklist-gcc/"><span class="rel__cat">AI</span><b>Is your business ready for AI? A GCC checklist</b><span>The data, process and team signals that decide whether an AI project pays off.</span></a>
+        <a class="rel" href="/blog/ai-readiness-assessment-gcc/"><span class="rel__cat">AI</span><b>AI readiness assessment: a 2-week plan</b><span>What to check in two weeks, the blockers that kill projects, and how to decide go or no-go.</span></a>
+        <a class="rel" href="/blog/ai-data-privacy-gcc/"><span class="rel__cat">AI</span><b>AI data privacy for business: a GCC field guide</b><span>What the law expects, where your prompts go, and seven questions to ask first. The groundwork for template 08.</span></a>
+        <a class="rel" href="/blog/ai-training-for-employees-gcc/"><span class="rel__cat">AI</span><b>AI training for employees: a 4-week playbook</b><span>What to teach by role, a four-week plan, and what to measure after.</span></a>
+        <a class="rel" href="/blog/why-ai-projects-fail-gcc/"><span class="rel__cat">AI</span><b>Why AI projects fail, and what works</b><span>The four patterns that stall pilots, and the fixes that get one into production.</span></a>
+        <a class="rel" href="/blog/ai-adoption-gcc/"><span class="rel__cat">AI</span><b>AI adoption in the GCC: a practical guide</b><span>The real drivers, the common pitfalls, and a step-by-step path.</span></a>
       </div>
     </div>
   </section>
 
-  <!-- READ NEXT -->
-  <section class="section kit-block" aria-labelledby="read-h">
-    <div class="reveal">
-      <h2 class="kit-h2" id="read-h">Read before you adopt</h2>
-      <p class="kit-sub">The templates assume a few decisions are already made. These six articles walk through them &mdash; readiness, privacy, training and the reasons programmes stall &mdash; and they are free to read in <a href="/blog/">Insights</a>.</p>
-    </div>
-    <div class="related-grid reveal">
-      <a class="related-card" href="/blog/ai-readiness-checklist-gcc/">
-        <span class="rc-cat">AI</span>
-        <h4>Is Your Business Ready for AI? A GCC Checklist</h4>
-        <p>A practical AI-readiness checklist for Gulf companies &mdash; the data, process and team signals that decide whether an AI project actually pays off.</p>
-      </a>
-      <a class="related-card" href="/blog/ai-readiness-assessment-gcc/">
-        <span class="rc-cat">AI</span>
-        <h4>AI Readiness Assessment: A 2-Week Plan for GCC Firms</h4>
-        <p>An AI readiness assessment for Kuwait and GCC businesses: what to check in two weeks, the blockers that kill projects, and how to decide go or no-go.</p>
-      </a>
-      <a class="related-card" href="/blog/ai-data-privacy-gcc/">
-        <span class="rc-cat">AI</span>
-        <h4>AI Data Privacy for Business: a GCC Field Guide</h4>
-        <p>What the law expects, where your prompts actually go, and the seven questions to ask before you connect a system &mdash; the groundwork for template 08.</p>
-      </a>
-      <a class="related-card" href="/blog/ai-training-for-employees-gcc/">
-        <span class="rc-cat">AI</span>
-        <h4>AI Training for Employees: A 4-Week GCC Playbook</h4>
-        <p>AI training for employees that changes how work actually gets done: what to teach by role, a four-week plan for GCC teams, and what to measure after.</p>
-      </a>
-      <a class="related-card" href="/blog/why-ai-projects-fail-gcc/">
-        <span class="rc-cat">AI</span>
-        <h4>Why AI Projects Fail in the GCC &mdash; and What Works</h4>
-        <p>Why AI projects fail is rarely a model problem. The four patterns that stall Gulf pilots, and the fixes that get one into production.</p>
-      </a>
-      <a class="related-card" href="/blog/ai-adoption-gcc/">
-        <span class="rc-cat">AI</span>
-        <h4>AI Adoption in the GCC: A Practical Guide</h4>
-        <p>How Gulf companies are putting AI to work &mdash; the real drivers, the common pitfalls, and a step-by-step path to adopting AI without the hype.</p>
-      </a>
+  <section class="section" aria-labelledby="faq-h">
+    <div class="wrap">
+      <div class="head"><h2 id="faq-h">Questions.</h2><p>Anything else, email <a class="link" href="mailto:nader@khatibdesigns.com">nader@khatibdesigns.com</a>.</p></div>
+      <div class="qa">
+        <details><summary>Which frameworks are the templates aligned with?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg></summary><p>ISO/IEC 42001:2023, the NIST AI Risk Management Framework (with its Generative AI Profile) and the EU AI Act as amended in 2026, with GDPR touchpoints. Every template ends with a table mapping each section to the relevant clause, function or article. Aligned with does not mean certified: certification is an audit of how you run the system, not of your documents.</p></details>
+        <details><summary>What format are the files?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg></summary><p>Editable Microsoft Word documents (.docx) that also open in Google Docs, Pages and LibreOffice. The playbook is a PDF.</p></details>
+        <details><summary>We are not in the EU. Is this still useful?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg></summary><p>Yes. ISO/IEC 42001 and the NIST AI RMF are international and voluntary, and the templates are written for any organisation. The EU AI Act sections tell you when it applies to you, for example if you sell AI-enabled products or services into the EU.</p></details>
+        <details><summary>Can I use the kit for my clients?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg></summary><p>The licence covers internal use by the purchasing organisation. Consultants who want to adapt the kit for clients should <a class="link" href="mailto:nader@khatibdesigns.com">get in touch</a> for a practitioner licence.</p></details>
+        <details><summary>Is this legal advice?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg></summary><p>No. The templates are a practical starting point. Have qualified counsel review them against the laws that apply to you before adoption.</p></details>
+        <details><summary>What if it is not right for us?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg></summary><p>Email within 14 days of purchase and you get a full refund, no questions asked.</p></details>
+      </div>
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section class="section kit-block" aria-labelledby="faq-h">
-    <div class="reveal"><h2 class="kit-h2" id="faq-h">Questions</h2></div>
-    <div class="kit-faq reveal">
-      <div class="faq-item"><h3>Which frameworks are the templates aligned with?</h3><p>ISO/IEC 42001:2023, the NIST AI Risk Management Framework (with its Generative AI Profile) and the EU AI Act as amended in 2026, with GDPR touchpoints. Every template ends with a table mapping each section to the relevant clause, function or article. Aligned with does not mean certified: certification is an audit of how you run the system, not of your documents.</p></div>
-      <div class="faq-item"><h3>What format are the files?</h3><p>Editable Microsoft Word documents (.docx) that also open in Google Docs, Pages and LibreOffice. The playbook is a PDF.</p></div>
-      <div class="faq-item"><h3>We are not in the EU. Is this still useful?</h3><p>Yes. ISO/IEC 42001 and the NIST AI RMF are international and voluntary, and the templates are written for any organisation. The EU AI Act sections tell you when it applies to you, for example if you sell AI-enabled products or services into the EU.</p></div>
-      <div class="faq-item"><h3>Can I use the kit for my clients?</h3><p>The licence covers internal use by the purchasing organisation. Consultants who want to adapt the kit for clients should <a href="mailto:nader@khatibdesigns.com">get in touch</a> for a practitioner licence.</p></div>
-      <div class="faq-item"><h3>Is this legal advice?</h3><p>No. The templates are a practical starting point. Have qualified counsel review them against the laws that apply to you before adoption.</p></div>
-      <div class="faq-item"><h3>What if it is not right for us?</h3><p>Email within 14 days of purchase and you get a full refund, no questions asked.</p></div>
+  <section class="wrap" aria-labelledby="close-h">
+    <div class="closing">
+      <svg class="ribbon" viewBox="0 0 760 640" aria-hidden="true"><defs><linearGradient id="rg-kit" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#8fdcd3"/><stop offset=".55" stop-color="#cbbdf2"/><stop offset="1" stop-color="#5b4fd6"/></linearGradient></defs><path d="M220 800 C 270 600, 300 440, 430 340 S 700 190, 900 -160" data-d="M220 800 C 270 600, 300 440, {430,340} S 700 190, 900 -160" fill="none" stroke="url(#rg-kit)" stroke-width="110" stroke-linecap="butt" opacity=".8"/></svg>
+      <div>
+        <h2 id="close-h">Start with the free policy.</h2>
+        <p>Or talk it through with Nader in 30 minutes. You leave knowing what your first 90 days should cover.</p>
+        <div class="cta"><a class="btn btn--ink" href="/book/" data-cta="book-call" data-cta-location="closing">Book a conversation</a><a class="btn btn--line" href="https://khatibdesigns.gumroad.com/l/ai-use-policy" data-kit="free" data-kit-location="closing">Get the free policy</a></div>
+      </div>
+      <div class="contact-lines"><a href="mailto:nader@khatibdesigns.com">nader@khatibdesigns.com</a><a href="tel:+359876375875">+359 87 637 5875</a><a href="tel:+96550003048">+965 5000 3048</a></div>
     </div>
   </section>
-  </main>
-
-  <footer>
-    <span class="brand"><span class="k">Khatib</span><span class="d">Designs</span></span>
-    <nav class="foot-links" aria-label="Footer">
-      <a href="/nader/">Nader Alkhatib</a>
-      <a href="/#about">Studio</a>
-      <a href="/ai/">AI</a>
-      <a href="/ai/governance-kit/">AI Governance Kit</a>
-      <a href="/work/">Work</a>
-      <a href="/blog/">Insights</a>
-      <a href="/legal/terms/">Terms</a>
-      <a href="/legal/privacy/">Privacy</a>
-      <a href="/legal/refunds/">Refunds</a>
-    </nav>
-    <span>&copy; 2015&ndash;<span id="year"></span> Khatib Designs &middot; Together We Venture</span>
-  </footer>
-
   <script src="https://gumroad.com/js/gumroad.js" defer></script>
   <script>
-    document.getElementById('year').textContent=new Date().getFullYear();
-    var nt=document.getElementById('nav-toggle'),nl=document.getElementById('nav-links');
-    if(nt)nt.addEventListener('click',function(){nl.classList.toggle('open');});
-    var ro=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);}});},{threshold:0.12});
-    document.querySelectorAll('.reveal').forEach(function(el){ro.observe(el);});
-    // one GA4 event per checkout click, so the scorecard can see which tier and which button sells
-    document.querySelectorAll('[data-kit]').forEach(function(a){
-      a.addEventListener('click',function(){
-        window.khdTrack && window.khdTrack(a.dataset.kit==='free'?'generate_lead':'begin_checkout',
-          {item_name:'ai_governance_kit_'+a.dataset.kit,cta_location:a.dataset.kitLocation,page_path:'/ai/governance-kit/'});
+    document.querySelectorAll('[data-kit]').forEach(function (a) {
+      a.addEventListener('click', function () {
+        window.khdTrack && window.khdTrack(a.dataset.kit === 'free' ? 'generate_lead' : 'begin_checkout',
+          { item_name: 'ai_governance_kit_' + a.dataset.kit, cta_location: a.dataset.kitLocation, page_path: '/ai/governance-kit/' });
       });
     });
   </script>
+</main>
+<footer class="foot">
+  <div class="foot__in">
+    <div><img src="/assets/v2/wordmark-black.svg" alt="Khatib Designs" width="33" height="40" loading="lazy"><p>Khatib Designs Ltd (ХАТИБ ДИЗАЙНС ООД)<br>Registered in Sofia, Bulgaria · Est. 2015<br>AI and digital transformation consultancy, serving clients worldwide.</p></div>
+    <div><h3>Services</h3><ul><li><a href="/ai/">AI consulting</a></li><li><a href="/digital-transformation/">Digital transformation</a></li><li><a href="/speaking/">Speaking &amp; education</a></li><li><a href="/work/">Product &amp; engineering</a></li><li><a href="/apps/">App pricing</a></li></ul></div>
+    <div><h3>Company</h3><ul><li><a href="/company/">About</a></li><li><a href="/nader/">Nader Alkhatib</a></li><li><a href="/blog/">Insights</a></li><li><a href="/book/">Contact</a></li></ul></div>
+    <div><h3>Contact</h3><ul><li><a href="mailto:nader@khatibdesigns.com">nader@khatibdesigns.com</a></li><li><a href="tel:+359876375875" dir="ltr">+359 87 637 5875</a></li><li><a href="tel:+96550003048" dir="ltr">+965 5000 3048</a></li><li><a href="https://www.linkedin.com/in/nader-khatib/" rel="noopener">LinkedIn</a></li></ul></div>
+  </div>
+  <div class="foot__legal"><span>© 2015–2026 Khatib Designs Ltd</span><span><a href="/legal/terms/">Terms</a> · <a href="/legal/privacy/">Privacy</a> · <a href="/legal/refunds/">Refunds</a></span></div>
+</footer>
+<script src="/assets/v2/site.js?v=f8a0e3a5" defer></script>
 </body>
 </html>

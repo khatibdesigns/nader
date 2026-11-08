@@ -1,0 +1,106 @@
+<!--meta {"title": "Contact · Khatib Designs", "description": "Réservez un échange de 30 minutes avec Nader Alkhatib, invitez-le à intervenir, ou envoyez une demande à Khatib Designs."} -->
+<style>
+  .paths { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  .path { position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: flex-start; background: var(--white); border: 1px solid var(--hair); border-radius: 20px; padding: clamp(28px, 4vw, 52px); }
+  .path h2 { font-size: var(--s4); }
+  .path p { color: var(--deck); margin: 14px 0 28px; }
+  .path .btn { margin-top: auto; }
+  .path .ribbon { right: -30%; top: -40%; width: 70%; height: 120%; opacity: 0.55; }
+  .path > :not(.ribbon) { position: relative; z-index: 1; }
+  .form-wrap { max-width: 880px; }
+  .cal { min-height: 160px; padding: 24px; border: 1px solid var(--hair); border-radius: 20px; background: var(--white); overflow: hidden; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: center; }
+  .cal[data-loaded] { padding: 0; display: block; }
+  .cal iframe { width: 100%; height: 700px; border: 0; display: block; }
+  .form-note { color: var(--muted); font-size: var(--s1); margin: 0; }
+  .company { font-size: var(--s3); color: var(--deck); margin-top: 18px; }
+  @media (max-width: 900px) { .paths { grid-template-columns: 1fr; } }
+</style>
+<main id="main">
+  <section class="page-head" aria-labelledby="page-h">
+    <h1 id="page-h">Parlez à Khatib Designs.</h1>
+    <p class="deck">Réservez un appel avec Nader, invitez-le à intervenir, ou écrivez-nous ci-dessous.</p>
+  </section>
+
+  <div class="wrap paths">
+    <section class="path" aria-labelledby="book-h">
+      <svg class="ribbon" viewBox="0 0 760 640" aria-hidden="true"><defs><linearGradient id="rg-ctc1" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#8fdcd3"/><stop offset=".55" stop-color="#cbbdf2"/><stop offset="1" stop-color="#5b4fd6"/></linearGradient></defs><path d="M220 800 C 270 600, 300 440, 430 340 S 700 190, 900 -160" data-d="M220 800 C 270 600, 300 440, {430,340} S 700 190, 900 -160" fill="none" stroke="url(#rg-ctc1)" stroke-width="110" stroke-linecap="butt" opacity=".8"/></svg>
+      <h2 id="book-h">Réserver un échange</h2>
+      <p>30&nbsp;minutes avec Nader. Exposez-lui ce que vous cherchez à résoudre et repartez avec une prochaine étape claire, que nous travaillions ensemble ou non.</p>
+      <a class="btn btn--ink" href="#calendar">Choisir un créneau <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </section>
+    <section class="path" aria-labelledby="speak-h">
+      <h2 id="speak-h">Inviter Nader à intervenir</h2>
+      <p>Keynotes, cours à l’université, ateliers pour dirigeants et mentorat sur l’IA appliquée. Indiquez-nous l’événement et le public.</p>
+      <a class="btn btn--line" href="/fr/speaking/#enquiry">Demande d’intervention <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </section>
+  </div>
+
+
+  <section class="section" id="calendar" aria-labelledby="cal-h">
+    <div class="wrap">
+      <div class="head"><h2 id="cal-h">Choisissez un créneau.</h2><p>30&nbsp;minutes en visioconférence. Vous recevez immédiatement une invitation dans votre agenda.</p></div>
+      <div class="cal" data-url="https://calendly.com/khatibdesigns/30min?hide_event_type_details=1&amp;hide_gdpr_banner=1&amp;primary_color=5b4fd6"><button class="btn btn--ink" type="button">Voir les créneaux disponibles</button><a class="btn btn--line" href="https://calendly.com/khatibdesigns/30min" rel="noopener">Ouvrir le calendrier</a></div>
+    </div>
+  </section>
+
+  <section class="section section--white" aria-labelledby="enq-h">
+    <div class="wrap">
+      <div class="head"><h2 id="enq-h">Ou écrivez-nous.</h2><p>Quelques lignes sur votre besoin suffisent. Nous répondons par e-mail.</p></div>
+      <div class="form-wrap">
+        <form class="form" data-subject="Website enquiry" novalidate aria-labelledby="enq-h">
+          <div class="field">
+            <label for="c-name">Nom</label>
+            <input id="c-name" name="name" type="text" autocomplete="name" required aria-describedby="c-name-err">
+            <span class="err" id="c-name-err">Indiquez votre nom.</span>
+          </div>
+          <div class="field">
+            <label for="c-email">E-mail</label>
+            <input id="c-email" name="email" type="email" autocomplete="email" required aria-describedby="c-email-err">
+            <span class="err" id="c-email-err">Indiquez une adresse e-mail, par exemple nom@entreprise.com.</span>
+          </div>
+          <div class="field">
+            <label for="c-company">Entreprise <small>(facultatif)</small></label>
+            <input id="c-company" name="company" type="text" autocomplete="organization">
+          </div>
+          <div class="field">
+            <label for="c-country">Pays <small>(facultatif)</small></label>
+            <input id="c-country" name="country" type="text" autocomplete="country-name">
+          </div>
+          <div class="field field--wide">
+            <label for="c-budget">Budget <small>(facultatif)</small></label>
+            <select id="c-budget" name="budget">
+              <option>Pas encore défini</option>
+              <option>Petit projet</option>
+              <option>Mission</option>
+              <option>Partenariat dans la durée</option>
+            </select>
+          </div>
+          <div class="field field--wide">
+            <label for="c-msg">Message</label>
+            <textarea id="c-msg" name="message" required aria-describedby="c-msg-err" placeholder="Ce que vous cherchez à résoudre, et pour quand."></textarea>
+            <span class="err" id="c-msg-err">Décrivez brièvement votre besoin.</span>
+          </div>
+          <div class="form__end">
+            <p class="form-error" role="alert" hidden>L’envoi n’a pas abouti. Veuillez réessayer, ou écrivez à nader@khatibdesigns.com.</p>
+            <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+            <button class="btn btn--ink" type="submit">Envoyer le message</button>
+            <p class="form-note">Nous répondons par e-mail.</p>
+          </div>
+        </form>
+        <div class="form__ok" role="status">Merci. Votre message nous est bien parvenu&nbsp;; nous vous répondrons par e-mail.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="close-h">
+    <div class="closing">
+      <svg class="ribbon" viewBox="0 0 760 640" aria-hidden="true"><defs><linearGradient id="rg-ctc2" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#8fdcd3"/><stop offset=".55" stop-color="#cbbdf2"/><stop offset="1" stop-color="#5b4fd6"/></linearGradient></defs><path d="M220 800 C 270 600, 300 440, 430 340 S 700 190, 900 -160" data-d="M220 800 C 270 600, 300 440, {430,340} S 700 190, 900 -160" fill="none" stroke="url(#rg-ctc2)" stroke-width="110" stroke-linecap="butt" opacity=".8"/></svg>
+      <div>
+        <h2 id="close-h">Khatib Designs Ltd</h2>
+        <p class="company"><span lang="bg">ХАТИБ ДИЗАЙНС ООД</span><br>Sofia, Bulgarie · Fondée en 2015</p>
+        <p>Un cabinet de conseil en IA et en technologie, au service de clients du monde entier.</p>
+      </div>
+      <div class="contact-lines"><a href="mailto:nader@khatibdesigns.com">nader@khatibdesigns.com</a><a href="tel:+359876375875">+359 87 637 5875</a><a href="tel:+96550003048">+965 5000 3048</a><a href="https://www.linkedin.com/in/nader-khatib/">LinkedIn</a></div>
+    </div>
+  </section>
+</main>

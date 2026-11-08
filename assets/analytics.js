@@ -55,9 +55,12 @@
   }
   function banner() {
     if (document.getElementById('khd-consent')) return;
-    var ar = (document.documentElement.lang || '').indexOf('ar') === 0;
+    var lang2 = (document.documentElement.lang || '').slice(0, 2);
+    var ar = lang2 === 'ar';
     var t = ar
       ? { msg: 'نستخدم ملفات تعريف الارتباط من Google Analytics لفهم استخدام الموقع. لن نفعّلها إلا بموافقتك.', more: 'سياسة الخصوصية', yes: 'موافق', no: 'رفض' }
+      : lang2 === 'de' ? { msg: 'Wir verwenden Cookies von Google Analytics, um zu verstehen, wie diese Website genutzt wird. Sie bleiben aus, solange Sie nicht zustimmen.', more: 'Datenschutz', yes: 'Akzeptieren', no: 'Ablehnen' }
+      : lang2 === 'fr' ? { msg: 'Nous utilisons les cookies de Google Analytics pour comprendre l\u2019usage de ce site. Ils restent désactivés sans votre accord.', more: 'Confidentialité', yes: 'Accepter', no: 'Refuser' }
       : { msg: 'We use Google Analytics cookies to understand how this site is used. They stay off unless you agree.', more: 'Privacy policy', yes: 'Accept', no: 'Reject' };
     var d = document.createElement('div');
     d.id = 'khd-consent';
@@ -65,21 +68,21 @@
     d.setAttribute('aria-label', ar ? 'ملفات تعريف الارتباط' : 'Cookies');
     d.dir = ar ? 'rtl' : 'ltr';
     d.style.cssText = 'position:fixed;left:16px;right:16px;bottom:16px;z-index:2147483000;max-width:640px;margin:0 auto;' +
-      'background:#111;color:#f5f5f5;border:1px solid #333;border-radius:12px;padding:14px 16px;box-shadow:0 8px 30px rgba(0,0,0,.35);' +
-      'font:14px/1.5 system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;display:flex;flex-wrap:wrap;gap:10px;align-items:center';
+      'background:#fff;color:#141a33;border:1px solid #e4e6ee;border-radius:16px;padding:16px 18px;box-shadow:0 12px 40px rgba(20,26,51,.14);' +
+      'font:14px/1.5 Figtree,"IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;display:flex;flex-wrap:wrap;gap:10px;align-items:center';
     var p = document.createElement('p');
     p.style.cssText = 'margin:0;flex:1 1 260px';
     p.appendChild(document.createTextNode(t.msg + ' '));
     var a = document.createElement('a');
     a.href = '/legal/privacy/'; a.textContent = t.more;
-    a.style.cssText = 'color:#ff9a4d;text-decoration:underline';
+    a.style.cssText = 'color:#4a3fc0;text-decoration:underline';
     p.appendChild(a);
     d.appendChild(p);
     [[t.no, 'denied'], [t.yes, 'granted']].forEach(function (x) {
       var btn = document.createElement('button');
       btn.type = 'button'; btn.textContent = x[0];
       btn.style.cssText = 'font:inherit;font-weight:600;padding:8px 16px;border-radius:8px;cursor:pointer;min-height:40px;' +
-        'border:1px solid #ff9a4d;' + (x[1] === 'granted' ? 'background:#ff9a4d;color:#111' : 'background:transparent;color:#f5f5f5');
+        'border:1px solid #141a33;' + (x[1] === 'granted' ? 'background:#141a33;color:#fff' : 'background:#fff;color:#141a33');
       btn.addEventListener('click', function () { choose(x[1]); });
       d.appendChild(btn);
     });

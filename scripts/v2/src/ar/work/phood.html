@@ -1,0 +1,100 @@
+<!--meta {"title": "دراسة حالة Phood Solutions: ميزان ذكي بالرؤية الحاسوبية · خطيب ديزاينز", "description": "كيف بنت خطيب ديزاينز نظام Phood 2.0 لشركة أمريكية ناشئة في مجال الحد من هدر الطعام: تطبيق Android على ميزان لمسي صناعي، ومصنِّف أطعمة ResNet-20 على AWS Lambda، وواجهة برمجية بـ Node.js لتقارير هدر المطابخ.", "crumb": "Phood Solutions"} -->
+<style>
+.prose ul { padding-inline-start: 1.2em; }
+.prose li { margin-bottom: 10px; }
+.figure { margin: 48px 0 0; background: var(--white); border: 1px solid var(--hair); border-radius: 20px; padding: clamp(20px, 4vw, 48px); }
+.figure figcaption { margin-top: 16px; color: var(--muted); font-size: var(--s1); }
+.steps { list-style: none; margin: 0; padding: 0; }
+.steps li { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 24px; padding: 16px 0; border-bottom: 1px solid var(--hair); }
+.steps span { color: var(--deck); }
+.results { margin-top: 48px; min-height: 160px; }
+@media (max-width: 560px) { .steps li { grid-template-columns: 1fr; gap: 4px; } }
+</style>
+<main id="main">
+  <section class="page-head" aria-labelledby="page-h">
+    <div>
+      <nav class="breadcrumb" aria-label="مسار التنقل"><a href="/ar/work/">أعمالنا</a> / Phood Solutions</nav>
+      <h1 id="page-h">ميزان ذكي يرى هدر الطعام.</h1>
+    </div>
+    <p class="deck">بنينا لشركة Phood Solutions في الولايات المتحدة نظام Phood 2.0: ميزان وكاميرا ومصنِّف للأطعمة، يحوّل كل صنف يتخلص منه المطبخ إلى سجل.</p>
+  </section>
+
+  <div class="wrap">
+    <div class="facts">
+      <div><span>العميل</span><b>Phood Solutions</b></div>
+      <div><span>البلد</span><b>الولايات المتحدة</b></div>
+      <div><span>السنوات</span><b class="num">2017، 2019</b></div>
+      <div><span>التخصص</span><b>الرؤية الحاسوبية، تطبيقات الجوال، واجهة برمجية</b></div>
+    </div>
+  </div>
+
+  <section class="section" aria-labelledby="problem-h">
+    <div class="wrap prose">
+      <h2 id="problem-h">المشكلة</h2>
+      <p>لا يستطيع المطبخ أن يقلّل هدرًا لا يقيسه. يُرمى الطعام في سلة المهملات طوال اليوم، وفي كل محطة، ولا يتوقف أحد ليدوّن ما هو، وكم يزن، ولماذا رُمي.</p>
+      <p>كان على Phood 2.0 أن يلتقط هذا السجل لحظة التخلص من الطعام، دون أن يكاد يضيف عملًا على الطاهي الذي يحمل الوعاء.</p>
+
+      <h2 id="built-h">ما الذي بنيناه</h2>
+      <p>ثلاثة أجزاء، لكل منها مهمة واحدة.</p>
+      <ul>
+        <li>تطبيق Android يعمل على ميزان لمسي صناعي. يقرأ الوزن من الميزان عبر بروتوكوله التسلسلي، ويلتقط صورة لكل صنف.</li>
+        <li>مصنِّف للأطعمة: نموذج ResNet-20 مبني بمكتبة Keras ويعمل على AWS Lambda، يتعرّف على الطعام الظاهر في الصورة.</li>
+        <li>واجهة برمجية مبنية بـ Node.js وExpress تحمل عالم المطبخ كله: المؤسسات، والفروع، والمحطات، والأوعية، وسجلات الطعام، وتقارير الهدر، وأسباب الفاقد، وقوائم الطعام، والمخزون، والأدوار. وكانت عمليات التحقق والمصادقة والتخزين المؤقت تعمل كطبقات وسيطة أمام كل مسار.</li>
+      </ul>
+    </div>
+    <div class="wrap">
+      <figure class="figure">
+        <svg class="diagram" viewBox="0 0 560 300" role="img" aria-label="نظام Phood: يرسل الميزان وتطبيق Android الوزن والصورة إلى مصنِّف على AWS Lambda، ثم إلى الواجهة البرمجية وتقارير المطبخ">
+          <g font-family="IBM Plex Sans Arabic, Figtree, sans-serif" font-size="14" fill="#141a33" direction="rtl">
+            <rect x="10" y="30" width="160" height="70" rx="12" fill="#fff" stroke="#e4e6ee"/><text x="158" y="60" font-weight="600">ميزان لمسي</text><text x="158" y="80" fill="#5d6378">الوزن عبر منفذ تسلسلي</text>
+            <rect x="10" y="200" width="160" height="70" rx="12" fill="#fff" stroke="#e4e6ee"/><text x="158" y="230" font-weight="600">تطبيق Android</text><text x="158" y="250" fill="#5d6378">صورة + وزن</text>
+            <rect x="210" y="115" width="160" height="70" rx="12" fill="#5b4fd6"/><text x="358" y="145" font-weight="600" fill="#fff">المصنِّف</text><text x="358" y="165" fill="#eeecfc">ResNet-20 · Lambda</text>
+            <rect x="410" y="30" width="140" height="70" rx="12" fill="#fff" stroke="#e4e6ee"/><text x="538" y="60" font-weight="600">واجهة Node.js</text><text x="538" y="80" fill="#5d6378">سجلات، قوائم، أدوار</text>
+            <rect x="410" y="200" width="140" height="70" rx="12" fill="#fff" stroke="#e4e6ee"/><text x="538" y="230" font-weight="600">تقارير الهدر</text><text x="538" y="250" fill="#5d6378">لكل مطبخ</text>
+          </g>
+          <g fill="none" stroke="#141a33" stroke-width="1.25"><path d="M90 100 V200"/><path d="M170 235 H190 V150 H210"/><path d="M370 150 H390 V65 H410"/><path d="M480 100 V200"/></g>
+          <g fill="#141a33"><path d="M86 192 L90 200 L94 192Z"/><path d="M202 146 L210 150 L202 154Z"/><path d="M402 61 L410 65 L402 69Z"/><path d="M476 192 L480 200 L484 192Z"/></g>
+        </svg>
+        <figcaption>ينتقل الوزن والصورة من الميزان إلى المصنِّف، ثم إلى الواجهة البرمجية وتقارير المطبخ.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section section--white" aria-labelledby="flow-h">
+    <div class="wrap">
+      <div class="head"><h2 id="flow-h">كيف عمل داخل المطبخ.</h2><p>خمس خطوات لكل صنف، معظمها تلقائي.</p></div>
+      <ol class="timeline steps">
+        <li><b>1. الوزن</b><span>يضع الطاهي الوعاء أو الصنف على الميزان، ويقرأ التطبيق الوزن عبر الاتصال التسلسلي.</span></li>
+        <li><b>2. التصوير</b><span>يلتقط التطبيق صورة للصنف الموضوع على الميزان.</span></li>
+        <li><b>3. التصنيف</b><span>تُرسل الصورة إلى مصنِّف ResNet-20 على AWS Lambda، فيتعرّف على نوع الطعام.</span></li>
+        <li><b>4. التسجيل</b><span>تحفظ الواجهة البرمجية سجلًا للطعام يتضمن الوزن والصنف والمحطة وسبب الفاقد.</span></li>
+        <li><b>5. التقرير</b><span>تُجمَع السجلات في تقارير هدر لكل فرع، جاهزة لمدير المطبخ.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="today-h">
+    <div class="wrap prose">
+      <h2 id="today-h">ما الذي كنا سنفعله اليوم</h2>
+      <p>هذا رأينا بالنظر إلى الوراء. في 2017 كان مصنِّف صغير مخصص يعمل في السحابة هو الخيار العملي. أما اليوم فسنجرّب أمرين أولًا.</p>
+      <p>سنشغّل نموذجًا مدمجًا على الجهاز نفسه، كي يستمر الميزان في العمل حين تنقطع شبكة المطبخ، ولا تغادر أي صورة المبنى إلا عند الحاجة.</p>
+      <p>وللحالات الصعبة سنختبر نموذج رؤية حديثًا قبل أن ندرّب نموذجنا الخاص. فهو يستطيع التعرّف على طبق لم يره من قبل، ووصف محتويات وعاء مختلط، وهو ما لا تقدر عليه قائمة ثابتة من الفئات.</p>
+      <p>أما ما سنحتفظ به فهو بنية النظام: إجراء واحد عند سلة المهملات، وكل ما عداه تلقائي، وتقارير يستطيع مدير المطبخ أن يتصرف بناءً عليها.</p>
+    </div>
+    <div class="wrap">
+      <p class="after">طوّرت Phood منذ ذلك الحين منصتها للرؤية الحاسوبية لتصبح PHOOD X، وبحسب أرقامها، حلّلت 1.8 مليار رطل من الطعام. <a class="link" href="https://www.phood.com" rel="noopener">phood.com</a></p>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="close-h">
+    <div class="closing">
+      <svg class="ribbon" viewBox="0 0 760 640" aria-hidden="true"><defs><linearGradient id="rg-phood" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#8fdcd3"/><stop offset=".55" stop-color="#cbbdf2"/><stop offset="1" stop-color="#5b4fd6"/></linearGradient></defs><path d="M220 800 C 270 600, 300 440, 430 340 S 700 190, 900 -160" data-d="M220 800 C 270 600, 300 440, {430,340} S 700 190, 900 -160" fill="none" stroke="url(#rg-phood)" stroke-width="110" stroke-linecap="butt" opacity=".8"/></svg>
+      <div>
+        <h2 id="close-h">أخبرنا بالمشكلة التي تريد حلّها.</h2>
+        <p>محادثة مدتها 30 دقيقة مع نادر، تخرج منها بخطوة تالية واضحة، سواء عملنا معًا أم لا.</p>
+        <div class="cta"><a class="btn btn--ink" href="/ar/book/">احجز مكالمة</a><a class="btn btn--line" href="/ar/speaking/">ادعُ نادر للتحدث</a></div>
+      </div>
+      <div class="contact-lines"><a href="mailto:nader@khatibdesigns.com">nader@khatibdesigns.com</a><a href="tel:+359876375875" dir="ltr">+359 87 637 5875</a><a href="tel:+96550003048" dir="ltr">+965 5000 3048</a></div>
+    </div>
+  </section>
+</main>

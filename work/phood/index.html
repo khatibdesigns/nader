@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/assets/analytics.js" defer></script>
+<title>Phood Solutions case study · Khatib Designs</title>
+<meta name="description" content="How Khatib Designs built Phood 2.0 for a US food-waste startup: an Android app on an industrial touch scale, a ResNet-20 food classifier on AWS Lambda and a Node.js API for kitchen waste reports.">
+<link rel="canonical" href="https://khatibdesigns.com/work/phood/">
+<link rel="alternate" hreflang="en" href="https://khatibdesigns.com/work/phood/">
+<link rel="alternate" hreflang="ar" href="https://khatibdesigns.com/ar/work/phood/">
+<link rel="alternate" hreflang="de" href="https://khatibdesigns.com/de/work/phood/">
+<link rel="alternate" hreflang="fr" href="https://khatibdesigns.com/fr/work/phood/">
+<link rel="alternate" hreflang="x-default" href="https://khatibdesigns.com/work/phood/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#f8f8fb">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Khatib Designs">
+<meta property="og:title" content="Phood Solutions case study · Khatib Designs">
+<meta property="og:description" content="How Khatib Designs built Phood 2.0 for a US food-waste startup: an Android app on an industrial touch scale, a ResNet-20 food classifier on AWS Lambda and a Node.js API for kitchen waste reports.">
+<meta property="og:url" content="https://khatibdesigns.com/work/phood/">
+<meta property="og:image" content="https://khatibdesigns.com/assets/v2/og.jpg">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Phood Solutions case study · Khatib Designs">
+<meta name="twitter:description" content="How Khatib Designs built Phood 2.0 for a US food-waste startup: an Android app on an industrial touch scale, a ResNet-20 food classifier on AWS Lambda and a Node.js API for kitchen waste reports.">
+<meta name="twitter:image" content="https://khatibdesigns.com/assets/v2/og.jpg">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/icon-180.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/assets/v2/fonts/figtree-latin-7073ac.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/v2/site.css?v=f8a0e3a5">
+<style>
+.prose ul { padding-left: 1.2em; }
+.prose li { margin-bottom: 10px; }
+.figure { margin: 48px 0 0; background: var(--white); border: 1px solid var(--hair); border-radius: 20px; padding: clamp(20px, 4vw, 48px); }
+.figure figcaption { margin-top: 16px; color: var(--muted); font-size: var(--s1); }
+.steps { list-style: none; margin: 0; padding: 0; }
+.steps li { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 24px; padding: 16px 0; border-bottom: 1px solid var(--hair); }
+.steps span { color: var(--deck); }
+.results { margin-top: 48px; min-height: 160px; }
+@media (max-width: 560px) { .steps li { grid-template-columns: 1fr; gap: 4px; } }
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://khatibdesigns.com/"}, {"@type": "ListItem", "position": 2, "name": "Phood Solutions case study", "item": "https://khatibdesigns.com/work/phood/"}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="bar">
+  <div class="bar__in">
+    <a class="brand" href="/" aria-label="Khatib Designs, home"><img src="/assets/v2/kmark.png" alt="" width="36" height="72"><span>Khatib Designs</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="/ai/">AI</a><a href="/digital-transformation/">Transformation</a><a href="/speaking/">Speaking</a><a href="/work/" aria-current="page">Work</a><a href="/blog/">Insights</a><a href="/company/">Company</a>
+    </nav>
+    <div class="bar__end">
+      <details class="lang">
+        <summary aria-label="EN, Language: English"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg><span>EN</span></summary>
+        <ul><li><a href="/work/phood/" lang="en" hreflang="en" aria-current="true">English <small>EN</small></a></li><li><a href="/ar/work/phood/" lang="ar" hreflang="ar">العربية <small>AR</small></a></li><li><a href="/de/work/phood/" lang="de" hreflang="de">Deutsch <small>DE</small></a></li><li><a href="/fr/work/phood/" lang="fr" hreflang="fr">Français <small>FR</small></a></li></ul>
+      </details>
+      <a class="btn btn--ink btn--sm" href="/book/">Book a conversation</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></button>
+    </div>
+  </div>
+</header>
+<main id="main">
+  <section class="page-head" aria-labelledby="page-h">
+    <div>
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/work/">Work</a> / Phood Solutions</nav>
+      <h1 id="page-h">A smart scale that sees food waste.</h1>
+    </div>
+    <p class="deck">For Phood Solutions in the United States we built Phood 2.0: a scale, a camera and a food classifier that turn every item a kitchen throws away into a record.</p>
+  </section>
+
+  <div class="wrap">
+    <div class="facts">
+      <div><span>Client</span><b>Phood Solutions</b></div>
+      <div><span>Country</span><b>United States</b></div>
+      <div><span>Years</span><b class="num">2017, 2019</b></div>
+      <div><span>Discipline</span><b>Computer vision, mobile, API</b></div>
+    </div>
+  </div>
+
+  <section class="section" aria-labelledby="problem-h">
+    <div class="wrap prose">
+      <h2 id="problem-h">The problem</h2>
+      <p>A kitchen cannot cut waste it does not measure. Food goes in the bin all day, at every station, and nobody stops to write down what it was, how much it weighed or why it was thrown away.</p>
+      <p>Phood 2.0 had to capture that record at the moment of disposal, with almost no extra work for the cook holding the pan.</p>
+
+      <h2 id="built-h">What we built</h2>
+      <p>Three parts, each doing one job.</p>
+      <ul>
+        <li>An Android app running on an industrial touch scale. It read the weight from the scale over its serial protocol and captured a photo of each item.</li>
+        <li>A food classifier: a ResNet-20 model built in Keras, running on AWS Lambda, that named the food in the photo.</li>
+        <li>A Node.js and Express API that held the kitchen's world: organisations, locations, stations, pans, food logs, waste reports, loss reasons, menus, inventory and roles. Validation, authentication and caching ran as middleware in front of every route.</li>
+      </ul>
+    </div>
+    <div class="wrap">
+      <figure class="figure">
+        <svg class="diagram" viewBox="0 0 560 300" role="img" aria-label="Phood system: scale and Android app send weight and photo to a classifier on AWS Lambda, then to the API and kitchen reports">
+          <g font-family="Figtree, sans-serif" font-size="14" fill="#141a33">
+            <rect x="10" y="30" width="160" height="70" rx="12" fill="#fff" stroke="#e4e6ee"/><text x="26" y="60" font-weight="600">Touch scale</text><text x="26" y="80" fill="#5d6378">weight over serial</text>
+            <rect x="10" y="200" width="160" height="70" rx="12" fill="#fff" stroke="#e4e6ee"/><text x="26" y="230" font-weight="600">Android app</text><text x="26" y="250" fill="#5d6378">photo + weight</text>
+            <rect x="210" y="115" width="160" height="70" rx="12" fill="#5b4fd6"/><text x="226" y="145" font-weight="600" fill="#fff">Classifier</text><text x="226" y="165" fill="#eeecfc">ResNet-20 · Lambda</text>
+            <rect x="410" y="30" width="140" height="70" rx="12" fill="#fff" stroke="#e4e6ee"/><text x="426" y="60" font-weight="600">Node.js API</text><text x="426" y="80" fill="#5d6378">logs, menus, roles</text>
+            <rect x="410" y="200" width="140" height="70" rx="12" fill="#fff" stroke="#e4e6ee"/><text x="426" y="230" font-weight="600">Waste reports</text><text x="426" y="250" fill="#5d6378">per kitchen</text>
+          </g>
+          <g fill="none" stroke="#141a33" stroke-width="1.25"><path d="M90 100 V200"/><path d="M170 235 H190 V150 H210"/><path d="M370 150 H390 V65 H410"/><path d="M480 100 V200"/></g>
+          <g fill="#141a33"><path d="M86 192 L90 200 L94 192Z"/><path d="M202 146 L210 150 L202 154Z"/><path d="M402 61 L410 65 L402 69Z"/><path d="M476 192 L480 200 L484 192Z"/></g>
+        </svg>
+        <figcaption>Weight and photo go from the scale to the classifier, then to the API and the kitchen's reports.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section section--white" aria-labelledby="flow-h">
+    <div class="wrap">
+      <div class="head"><h2 id="flow-h">How it worked in a kitchen.</h2><p>Five steps for every item, most of them automatic.</p></div>
+      <ol class="timeline steps">
+        <li><b>1. Weigh</b><span>The cook sets the pan or item on the scale. The app reads the weight over the serial connection.</span></li>
+        <li><b>2. Photograph</b><span>The app captures a photo of the item on the scale.</span></li>
+        <li><b>3. Classify</b><span>The photo goes to the ResNet-20 classifier on AWS Lambda, which names the food.</span></li>
+        <li><b>4. Log</b><span>The API stores a food log with the weight, the food, the station and the loss reason.</span></li>
+        <li><b>5. Report</b><span>Logs roll up into waste reports for each location, ready for the kitchen manager.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="today-h">
+    <div class="wrap prose">
+      <h2 id="today-h">What we'd do today</h2>
+      <p>This is our opinion, looking back. In 2017 a small custom classifier in the cloud was the practical choice. Today we would try two things first.</p>
+      <p>We would run a compact model on the device itself, so the scale keeps working when the kitchen's network does not, and a photo never has to leave the building unless it needs to.</p>
+      <p>For the hard cases we would test a modern vision model before training our own. It can name a dish it has never seen and describe what is in a mixed pan, which a fixed list of classes cannot.</p>
+      <p>What we would keep is the shape of the system: one action at the bin, everything else automatic, and reports a kitchen manager can act on.</p>
+    </div>
+    <div class="wrap">
+      <p class="after">Phood has since grown its computer-vision platform into PHOOD X and, by its own figures, has analysed 1.8 billion pounds of food. <a class="link" href="https://www.phood.com" rel="noopener">phood.com</a></p>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="close-h">
+    <div class="closing">
+      <svg class="ribbon" viewBox="0 0 760 640" aria-hidden="true"><defs><linearGradient id="rg-phood" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#8fdcd3"/><stop offset=".55" stop-color="#cbbdf2"/><stop offset="1" stop-color="#5b4fd6"/></linearGradient></defs><path d="M220 800 C 270 600, 300 440, 430 340 S 700 190, 900 -160" data-d="M220 800 C 270 600, 300 440, {430,340} S 700 190, 900 -160" fill="none" stroke="url(#rg-phood)" stroke-width="110" stroke-linecap="butt" opacity=".8"/></svg>
+      <div>
+        <h2 id="close-h">Tell us what you're trying to solve.</h2>
+        <p>A 30-minute conversation with Nader. You leave with a clear next step, whether or not we work together.</p>
+        <div class="cta"><a class="btn btn--ink" href="/book/">Book a conversation</a><a class="btn btn--line" href="/speaking/">Invite Nader to speak</a></div>
+      </div>
+      <div class="contact-lines"><a href="mailto:nader@khatibdesigns.com">nader@khatibdesigns.com</a><a href="tel:+359876375875">+359 87 637 5875</a><a href="tel:+96550003048">+965 5000 3048</a></div>
+    </div>
+  </section>
+</main>
+<footer class="foot">
+  <div class="foot__in">
+    <div><img src="/assets/v2/wordmark-black.svg" alt="Khatib Designs" width="33" height="40" loading="lazy"><p>Khatib Designs Ltd (ХАТИБ ДИЗАЙНС ООД)<br>Registered in Sofia, Bulgaria · Est. 2015<br>AI and digital transformation consultancy, serving clients worldwide.</p></div>
+    <div><h3>Services</h3><ul><li><a href="/ai/">AI consulting</a></li><li><a href="/digital-transformation/">Digital transformation</a></li><li><a href="/speaking/">Speaking &amp; education</a></li><li><a href="/work/">Product &amp; engineering</a></li><li><a href="/apps/">App pricing</a></li></ul></div>
+    <div><h3>Company</h3><ul><li><a href="/company/">About</a></li><li><a href="/nader/">Nader Alkhatib</a></li><li><a href="/blog/">Insights</a></li><li><a href="/book/">Contact</a></li></ul></div>
+    <div><h3>Contact</h3><ul><li><a href="mailto:nader@khatibdesigns.com">nader@khatibdesigns.com</a></li><li><a href="tel:+359876375875" dir="ltr">+359 87 637 5875</a></li><li><a href="tel:+96550003048" dir="ltr">+965 5000 3048</a></li><li><a href="https://www.linkedin.com/in/nader-khatib/" rel="noopener">LinkedIn</a></li></ul></div>
+  </div>
+  <div class="foot__legal"><span>© 2015–2026 Khatib Designs Ltd</span><span><a href="/legal/terms/">Terms</a> · <a href="/legal/privacy/">Privacy</a> · <a href="/legal/refunds/">Refunds</a></span></div>
+</footer>
+<script src="/assets/v2/site.js?v=f8a0e3a5" defer></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!--meta {"title": "Secure checkout · Khatib Designs", "description": "Secure checkout for KHD software products (MODAX, Marj3), processed by Paddle, our merchant of record.", "crumb": "Checkout", "robots": "noindex, follow"} -->
+<style>
+  .pay-nav { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 24px; font-size: var(--s1); }
+  .pay-nav a { color: var(--deck); }
+  .pay { min-height: 40vh; }
+</style>
+<main id="main">
+  <section class="page-head pay" aria-labelledby="pay-title">
+    <h1 id="pay-title">Opening your checkout…</h1>
+    <div>
+      <p class="deck" id="pay-msg">Payments for KHD products (MODAX, Marj3) are processed by Paddle.com, our merchant of record. If nothing opens, use the link from your email again or contact <a class="link" href="mailto:nader@khatibdesigns.com">nader@khatibdesigns.com</a>.</p>
+      <nav class="pay-nav" aria-label="Legal pages"><a href="/legal/terms/">Terms of Service</a><a href="/legal/privacy/">Privacy Policy</a><a href="/legal/refunds/">Refund Policy</a></nav>
+    </div>
+  </section>
+  <!-- Paddle default payment link: Paddle sends buyers here with ?_ptxn=txn_… (renewal emails,
+       card updates, server-created transactions). Paddle.js opens that transaction's checkout
+       by itself once initialised. The token is a public client-side token ("khd-pay"). -->
+  <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+  <script>
+    (function () {
+      var has = /[?&]_ptxn=/.test(location.search);
+      if (!has) {
+        document.getElementById('pay-title').textContent = 'Secure checkout';
+      }
+      Paddle.Initialize({
+        token: 'live_1cc2b9324a7524563ab67e9134e',
+        eventCallback: function (e) {
+          if (e && e.name === 'checkout.completed') {
+            document.getElementById('pay-title').textContent = 'Payment received. Thank you.';
+            document.getElementById('pay-msg').textContent = 'A receipt from Paddle is on its way to your email. You can close this page.';
+          }
+          if (e && e.name === 'checkout.error') {
+            document.getElementById('pay-title').textContent = 'Checkout could not open';
+          }
+        }
+      });
+    })();
+  </script>
+</main>

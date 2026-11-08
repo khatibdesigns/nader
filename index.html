@@ -1,404 +1,227 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<script src="/assets/analytics.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/assets/analytics.js" defer></script>
+<title>Khatib Designs · AI and digital transformation consultancy since 2015</title>
+<meta name="description" content="Khatib Designs is an AI and digital transformation consultancy founded in 2015 in Sofia, serving companies worldwide. Led by Nader Alkhatib, lecturer and speaker on applied AI.">
+<link rel="canonical" href="https://khatibdesigns.com/">
+<link rel="alternate" hreflang="en" href="https://khatibdesigns.com/">
+<link rel="alternate" hreflang="ar" href="https://khatibdesigns.com/ar/">
+<link rel="alternate" hreflang="de" href="https://khatibdesigns.com/de/">
+<link rel="alternate" hreflang="fr" href="https://khatibdesigns.com/fr/">
+<link rel="alternate" hreflang="x-default" href="https://khatibdesigns.com/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#f8f8fb">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Khatib Designs">
+<meta property="og:title" content="Khatib Designs · AI and digital transformation consultancy since 2015">
+<meta property="og:description" content="Khatib Designs is an AI and digital transformation consultancy founded in 2015 in Sofia, serving companies worldwide. Led by Nader Alkhatib, lecturer and speaker on applied AI.">
+<meta property="og:url" content="https://khatibdesigns.com/">
+<meta property="og:image" content="https://khatibdesigns.com/assets/v2/og.jpg">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Khatib Designs · AI and digital transformation consultancy since 2015">
+<meta name="twitter:description" content="Khatib Designs is an AI and digital transformation consultancy founded in 2015 in Sofia, serving companies worldwide. Led by Nader Alkhatib, lecturer and speaker on applied AI.">
+<meta name="twitter:image" content="https://khatibdesigns.com/assets/v2/og.jpg">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/icon-180.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/assets/v2/fonts/figtree-latin-7073ac.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/v2/site.css?v=f8a0e3a5">
 
-<title>Khatib Designs — App Development &amp; AI Consultancy in Kuwait &amp; the GCC</title>
-<meta name="description" content="Khatib Designs builds premium iOS, Android &amp; web apps and delivers AI consultancy across Kuwait, Dubai &amp; the UAE, and the wider GCC. AI experts for years — strategy, custom AI &amp; LLM solutions, automation and ongoing support. 100+ products shipped since 2015." />
-<link rel="canonical" href="https://khatibdesigns.com/" />
-<link rel="alternate" hreflang="en" href="https://khatibdesigns.com/" />
-<link rel="alternate" hreflang="ar" href="https://khatibdesigns.com/ar/" />
-<link rel="alternate" hreflang="x-default" href="https://khatibdesigns.com/" />
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
-<meta name="author" content="Khatib Designs" />
-<meta name="keywords" content="AI consultancy Kuwait, AI consulting GCC, AI solutions Kuwait, AI experts Kuwait, machine learning Kuwait, LLM development Gulf, AI automation Kuwait, app development GCC, mobile app development Kuwait, iOS Android app developers Gulf, UI UX design studio GCC, software development company Gulf" />
-<meta name="theme-color" content="#070611" />
-
-<!-- Open Graph -->
-<meta property="og:type" content="website" />
-<meta property="og:site_name" content="Khatib Designs" />
-<meta property="og:title" content="Khatib Designs — Apps &amp; AI Consultancy in Kuwait &amp; the GCC" />
-<meta property="og:description" content="Premium apps and AI consultancy for the GCC. AI experts for years — strategy, custom AI &amp; LLM solutions, automation &amp; support. 100+ products shipped since 2015. Together We Venture." />
-<meta property="og:url" content="https://khatibdesigns.com/" />
-<meta property="og:image" content="https://khatibdesigns.com/assets/og-image.png" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Khatib Designs — app design & build for the GCC" />
-<meta property="og:locale" content="en_US" />
-
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Khatib Designs — App Design &amp; Development Studio in the GCC" />
-<meta name="twitter:description" content="Premium iOS, Android &amp; web apps for the GCC and beyond. 100+ products shipped since 2015." />
-<meta name="twitter:image" content="https://khatibdesigns.com/assets/og-image.png" />
-
-<!-- icons / manifest -->
-<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-<link rel="apple-touch-icon" href="/assets/icon-180.png" />
-<link rel="manifest" href="/site.webmanifest" />
-
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preconnect" href="https://unpkg.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="assets/styles.css" />
-
-<!-- Structured data -->
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","@id":"https://khatibdesigns.com/#studio","address":{"@type":"PostalAddress","addressCountry":"KW"},"founder":{"@id":"https://khatibdesigns.com/nader/#nader"},"name":"Khatib Designs","alternateName":"Khatib Designs Studio","url":"https://khatibdesigns.com/","logo":"https://khatibdesigns.com/assets/icon-512.png","image":"https://khatibdesigns.com/assets/og-image.png","description":"Khatib Designs is a design and development studio building premium iOS, Android and web applications for clients across the GCC and worldwide. 100+ products shipped since 2015.","slogan":"Together We Venture","foundingDate":"2015","email":"studio@khatibdesigns.com","telephone":"+96550003048","priceRange":"$$","knowsLanguage":["en","ar"],"areaServed":[{"@type":"Place","name":"GCC"},{"@type":"Country","name":"Kuwait"},{"@type":"Country","name":"Saudi Arabia"},{"@type":"Country","name":"United Arab Emirates"},{"@type":"Country","name":"Qatar"},{"@type":"Country","name":"Bahrain"},{"@type":"Country","name":"Oman"},{"@type":"Country","name":"United Kingdom"},{"@type":"Country","name":"United States"}],"knowsAbout":["Artificial intelligence consulting","AI strategy","Machine learning","Large language models","Generative AI","Computer vision","AI automation","Data science","Mobile app development","iOS development","Android development","UI/UX design","Web app development","Fintech apps","On-demand & delivery apps","Enterprise software"],"contactPoint":{"@type":"ContactPoint","contactType":"sales","email":"studio@khatibdesigns.com","telephone":"+96550003048","availableLanguage":["English","Arabic"]},"sameAs":["https://apps.apple.com/kw/app/connect-here/id6502897211","https://play.google.com/store/apps/details?id=com.khd.CH","https://www.instagram.com/khatibdesigns/","https://www.crunchbase.com/organization/khatib-designs"],"hasOfferCatalog":{"@type":"OfferCatalog","name":"Services","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"AI consultancy & strategy","description":"AI readiness assessment, roadmap and advisory for established businesses in Kuwait and the GCC."}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Custom AI & LLM solutions","description":"Generative AI, chatbots, computer vision, forecasting and automation built into your operations."}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"AI support & managed retainers","description":"Ongoing AI operations, monitoring, tuning and support."}},{"@type":"Offer","url":"https://khatibdesigns.com/apps/","priceCurrency":"KWD","priceSpecification":{"@type":"PriceSpecification","minPrice":"500","priceCurrency":"KWD"},"itemOffered":{"@type":"Service","name":"Mobile app design & development (iOS & Android)","description":"Ready-made apps under your brand from KWD 500 + KWD 29/month; custom-designed apps from KWD 1,500."}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Web app design & development"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"UI/UX product design"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"MVP & startup product builds"}}]},"potentialAction":{"@type":"ReserveAction","name":"Book a free 30-minute call","target":"https://khatibdesigns.com/book/"}}</script>
+<link rel="preload" as="image" href="/assets/v2/img/nader-studio-720.webp" imagesrcset="/assets/v2/img/nader-studio-480.webp 480w, /assets/v2/img/nader-studio-720.webp 720w, /assets/v2/img/nader-studio-960.webp 960w" imagesizes="(max-width: 900px) 88vw, 440px" fetchpriority="high">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": ["Organization", "ProfessionalService"], "@id": "https://khatibdesigns.com/#studio", "name": "Khatib Designs", "legalName": "Khatib Designs Ltd", "alternateName": "ХАТИБ ДИЗАЙНС ООД", "url": "https://khatibdesigns.com/", "logo": "https://khatibdesigns.com/assets/icon-512.png", "image": "https://khatibdesigns.com/assets/v2/og.jpg", "foundingDate": "2015", "founder": {"@id": "https://khatibdesigns.com/nader/#nader"}, "address": {"@type": "PostalAddress", "addressLocality": "Sofia", "addressCountry": "BG"}, "areaServed": "Worldwide", "email": "nader@khatibdesigns.com", "telephone": ["+359876375875", "+96550003048"], "knowsAbout": ["AI consulting", "AI governance", "Digital transformation", "AI agents and automation", "Mobile and web development"], "sameAs": ["https://www.linkedin.com/in/nader-khatib/"]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "@id": "https://khatibdesigns.com/#website", "url": "https://khatibdesigns.com/", "name": "Khatib Designs", "publisher": {"@id": "https://khatibdesigns.com/#studio"}, "inLanguage": ["en", "ar", "de", "fr"]}</script>
 </head>
 <body>
-
-  <div id="stars"></div>
-  <div class="bg-neb"></div>
-  <div class="bg-neb two"></div>
-
-  <!-- NAV -->
-  <header class="nav">
-    <a class="brand" href="#top"><span class="k">Khatib</span><span class="d">Designs</span></a>
-    <nav class="nav-links" id="nav-links">
-      <a href="#about">Studio</a>
-      <a href="#services">Services</a>
-      <a href="/ai/">AI</a>
-      <a href="/dubai/">Dubai</a>
-      <a href="#work">Work</a>
-      <a href="/blog/">Insights</a>
-      <a href="#contact">Contact</a>
-      <a href="/ar/" class="lang-switch" hreflang="ar" lang="ar">عربي</a>
-      <a href="/book/" class="btn solid" data-cta="book-call" data-cta-location="nav">Book a call</a>
+<a class="skip" href="#main">Skip to content</a>
+<header class="bar">
+  <div class="bar__in">
+    <a class="brand" href="/" aria-label="Khatib Designs, home"><img src="/assets/v2/kmark.png" alt="" width="36" height="72"><span>Khatib Designs</span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="/ai/">AI</a><a href="/digital-transformation/">Transformation</a><a href="/speaking/">Speaking</a><a href="/work/">Work</a><a href="/blog/">Insights</a><a href="/company/">Company</a>
     </nav>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-    </button>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero" id="top">
-    <div id="globe"></div>
-
-    <div class="hero-copy">
-      <span class="eyebrow"><span class="dot"></span>Together we venture</span>
-      <h1>Software, designed<br />for <em class="grad">every corner</em><br />of the map.</h1>
-      <p class="hero-sub">A worldwide design &amp; development studio shipping products across six countries — from Kuwait to Bulgaria, the UK to the USA. Every glowing point is a launch.</p>
-      <div class="hero-cta">
-        <a href="/book/" class="btn solid book-btn" data-cta="book-call" data-cta-location="hero"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4M9.5 15.2l1.8 1.8 3.4-3.6"/></svg>Book a free call</a>
-        <a href="/ai/#offer" class="btn" data-cta-location="hero">See pricing</a>
-        <a href="#work" class="btn">Explore the work</a>
-      </div>
-      <div class="explore">
-        <span class="hint">Tap a glowing point — or a region — to dive in</span>
-        <div class="chips" id="chips"></div>
-      </div>
-    </div>
-
-    <div class="scroll-cue"><span class="ln"></span>Scroll to explore</div>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="section" id="about">
-    <div class="about-grid">
-      <div class="about-copy reveal">
-        <span class="eyebrow"><span class="dot"></span>About the studio</span>
-        <h2 class="section-title" style="margin-top:20px">A family of specialists, spread across the map.</h2>
-        <p>At Khatib Designs we design and build mobile &amp; web apps — iOS, Android and web — for clients across the GCC and around the world. Our team is formed by specialists from all over, yet we work as one family, proud to deliver world-class quality wherever a project lives.</p>
-        <p>Our story started in 2015, when the founders opened their own design and development company — one that keeps work values high and delivers exclusive, considered products to every client.</p>
-        <p>Today the studio is a constantly growing family of team members and happy clients who all believe in one thing:</p>
-        <div class="venture grad">Together We Venture.</div>
-      </div>
-      <div class="about-side reveal">
-        <div class="fact"><div class="n grad">2015</div><div class="l">The year the studio was founded</div></div>
-        <div class="fact"><div class="n grad">6</div><div class="l">Countries we&rsquo;ve shipped products into</div></div>
-        <div class="fact"><div class="n grad">100+</div><div class="l">Apps &amp; platforms designed and built</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section class="section" id="services">
-    <div class="section-head reveal">
-      <span class="eyebrow"><span class="dot"></span>What we do</span>
-      <h2 class="section-title" style="margin-top:20px">App design &amp; development<br />for the GCC and beyond.</h2>
-      <p class="lead">From first idea to launch and beyond, we design and build the software your business runs on — native iOS &amp; Android apps, fast web apps, and the product design behind them. One studio, end to end.</p>
-    </div>
-    <div class="svc-grid">
-      <article class="svc-card reveal">
-        <div class="svc-ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg>
-        </div>
-        <h3>Mobile app development</h3>
-        <p>Native <strong>iOS &amp; Android apps</strong> built for performance and scale — on-demand, fintech, health, social, marketplace and enterprise products.</p>
-        <a class="svc-more" href="/apps/">See app pricing — from <span data-kwd="500">KWD 500</span></a>
-      </article>
-      <article class="svc-card reveal">
-        <div class="svc-ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 8h18M8 21h8"/></svg>
-        </div>
-        <h3>Web app development</h3>
-        <p>Responsive <strong>web apps and dashboards</strong> — customer portals, booking systems, CRMs and internal tools that work on every screen.</p>
-      </article>
-      <article class="svc-card reveal">
-        <div class="svc-ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18" opacity=".5"/><circle cx="12" cy="12" r="3.2"/></svg>
-        </div>
-        <h3>UI/UX product design</h3>
-        <p>Research, UX and interface design that turns complex flows into <strong>products people love to use</strong> — and that convert.</p>
-      </article>
-      <article class="svc-card reveal">
-        <div class="svc-ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-4Z"/><path d="m9.5 12 1.8 1.8 3.5-3.6"/></svg>
-        </div>
-        <h3>MVP &amp; startup builds</h3>
-        <p>Lean, investor-ready <strong>MVPs</strong> that get your idea into users&rsquo; hands fast — then iterate toward product-market fit.</p>
-      </article>
-    </div>
-    <div class="svc-cta reveal">
-      <span>Have something in mind?</span>
-      <a href="#contact" class="btn solid">Start a project</a>
-    </div>
-  </section>
-
-  <!-- AI CONSULTANCY -->
-  <section class="section ai-band" id="ai">
-    <div class="ai-glow" aria-hidden="true"></div>
-    <div class="section-head reveal">
-      <span class="eyebrow"><span class="dot"></span>New · AI Consultancy</span>
-      <h2 class="section-title" style="margin-top:20px">We're AI experts.<br /><em class="grad">Now it's a service.</em></h2>
-      <p class="lead">We've been building AI for years — long before the hype. Khatib Designs now brings that expertise to established companies across Kuwait &amp; the GCC as a dedicated <strong>AI consultancy</strong>: we assess where AI moves the needle, build it into your operations, and support it for the long run.</p>
-    </div>
-
-    <div class="svc-grid">
-      <article class="svc-card reveal">
-        <div class="svc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><circle cx="12" cy="12" r="3.4"/></svg></div>
-        <h3>AI strategy &amp; assessment</h3>
-        <p>A clear-eyed audit of where AI creates real ROI in your business — a prioritised <strong>roadmap</strong>, not hype.</p>
-      </article>
-      <article class="svc-card reveal">
-        <div class="svc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h6v6H9zM4 10h-1M4 14h-1M21 10h-1M21 14h-1M10 4V3M14 4V3M10 21v-1M14 21v-1"/></svg></div>
-        <h3>Custom AI &amp; LLM solutions</h3>
-        <p>Generative AI, chatbots &amp; copilots, document &amp; OCR pipelines — <strong>built into your products</strong> and tools.</p>
-      </article>
-      <article class="svc-card reveal">
-        <div class="svc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v4M12 18v4"/><circle cx="12" cy="12" r="3"/><path d="M5 7a9 9 0 0 0 0 10M19 7a9 9 0 0 1 0 10"/></svg></div>
-        <h3>Process automation</h3>
-        <p>Automate the repetitive — support, back-office, reporting — so your team spends time where it <strong>counts</strong>.</p>
-      </article>
-      <article class="svc-card reveal">
-        <div class="svc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6Z"/><circle cx="12" cy="12" r="3"/></svg></div>
-        <h3>Computer vision</h3>
-        <p>Quality control, recognition, counting &amp; inspection from imagery &amp; video — <strong>eyes on everything</strong>.</p>
-      </article>
-      <article class="svc-card reveal">
-        <div class="svc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19V5M4 19h16M8 16l3-4 3 3 4-6"/></svg></div>
-        <h3>Data &amp; forecasting</h3>
-        <p>Demand, pricing &amp; risk models that turn your data into <strong>decisions you can act on</strong>.</p>
-      </article>
-      <article class="svc-card reveal">
-        <div class="svc-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-4Z"/><path d="M12 8v4l2.5 1.5"/></svg></div>
-        <h3>AI support &amp; retainers</h3>
-        <p>We don't disappear at launch — <strong>monitoring, tuning &amp; managed AI</strong> support that keeps models sharp.</p>
-      </article>
-    </div>
-
-    <div class="ai-steps reveal">
-      <div class="step"><span class="sn">01</span><h4>Assess</h4><p>We map your workflows and find where AI pays off first.</p></div>
-      <div class="step"><span class="sn">02</span><h4>Build</h4><p>We design, build &amp; integrate the solution into your stack.</p></div>
-      <div class="step"><span class="sn">03</span><h4>Support</h4><p>We monitor, tune &amp; scale it — as a long-term partner.</p></div>
-    </div>
-
-    <p class="lead reveal" style="margin-top:56px">Three ways to start &mdash; fixed price, fixed date, written down before we begin.</p>
-
-    <div class="svc-grid" style="margin-top:36px">
-      <article class="svc-card reveal">
-        <div class="svc-ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="4.2"/></svg>
-        </div>
-        <h3>AI Readiness &amp; Governance Sprint</h3>
-        <p style="font-family:var(--display);font-size:26px;color:var(--accent);margin:0 0 12px"><span data-kwd="3500">KWD 3,500</span> <span style="font-size:13px;color:var(--faint);font-family:var(--body)">fixed, 3 weeks</span></p>
-        <p>Where AI actually pays in your business, what it must not touch, and who signs off. You get a governance model, a ranked roadmap, and <strong>one working agent built and deployed</strong> so the roadmap is proven, not theoretical.</p>
-        <p><a href="/ai/#offer"><strong>What&rsquo;s included &rarr;</strong></a></p>
-      </article>
-      <article class="svc-card reveal">
-        <div class="svc-ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 21h8"/></svg>
-        </div>
-        <h3>The Build</h3>
-        <p style="font-family:var(--display);font-size:26px;color:var(--ink);margin:0 0 12px">from <span data-kwd="7000">KWD 7,000</span></p>
-        <p>The roadmap delivered: multiple workflows in production, your systems connected, governance enforced in the code, and interfaces designed properly &mdash; because an AI tool your team avoids is worth nothing. Typically six to twelve weeks.</p>
-        <p><a href="/ai/#offer"><strong>What&rsquo;s included &rarr;</strong></a></p>
-      </article>
-      <article class="svc-card reveal">
-        <div class="svc-ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3a9 9 0 1 1-9 9"/><path d="M12 7v5l3.5 2"/></svg>
-        </div>
-        <h3>AI Operations</h3>
-        <p style="font-family:var(--display);font-size:26px;color:var(--ink);margin:0 0 12px"><span data-kwd="2500">KWD 2,500</span><span style="font-size:13px;color:var(--faint);font-family:var(--body)">/month</span></p>
-        <p>We run it. Monitoring, tuning against real conversations, new workflows as you find them, and a monthly report in plain language showing what it handled and what it saved you.</p>
-        <p><a href="/ai/#offer"><strong>What&rsquo;s included &rarr;</strong></a></p>
-      </article>
-    </div>
-
-    <div class="svc-cta reveal">
-      <span>Not sure which one you need?</span>
-      <a href="/ai/#offer" class="btn solid">See full pricing</a>
-      <a href="/book/" class="btn" data-cta="book-call">Book an AI assessment</a>
-    </div>
-  </section>
-
-  <!-- FEATURED -->
-  <section class="section" id="work">
-    <div class="section-head reveal">
-      <span class="eyebrow"><span class="dot"></span>Flagship work</span>
-      <h2 class="section-title" style="margin-top:20px">Six products we&rsquo;re proud of.</h2>
-      <p class="lead">Deep dives into our flagship launches — from a US social-networking app to a Bulgarian crypto exchange. Open any case for the full story, or spin the globe to explore by region.</p>
-    </div>
-    <div class="feat-list" id="featured-list"></div>
-  </section>
-
-  <!-- OTHERS -->
-  <section class="section" id="regions">
-    <div class="section-head reveal">
-      <span class="eyebrow"><span class="dot"></span>The wider catalogue</span>
-      <h2 class="section-title" style="margin-top:20px">Twenty-one more, around the world.</h2>
-      <p class="lead">Shopping, fintech, education, utilities, games and more — filter by region, or tap any card for details.</p>
-    </div>
-    <div class="filter-row" id="others-filter"></div>
-    <div class="others-grid" id="others-grid"></div>
-  </section>
-
-  <!-- INSIGHTS (homepage teaser → direct links to posts for crawl priority) -->
-  <section class="section" id="insights-home">
-    <div class="section-head reveal">
-      <span class="eyebrow"><span class="dot"></span>Insights</span>
-      <h2 class="section-title" style="margin-top:20px">Notes on building apps<br />for the GCC.</h2>
-      <p class="lead">Straight answers to what founders ask us most — costs, timelines, platforms, MVPs and choosing the right partner. <a href="/blog/" style="color:var(--accent)">Read all insights →</a></p>
-    </div>
-    <div class="post-list reveal">
-      <a class="post-card" href="/blog/app-development-cost-gcc/"><span class="pc-tag">Pricing</span><h2>How much does it cost to build an app in the GCC?</h2><p>What really drives the price — and how to get more for your budget.</p></a>
-      <a class="post-card" href="/blog/how-long-to-build-an-app/"><span class="pc-tag">Process</span><h2>How long does it take to build a mobile app?</h2><p>A realistic look at app timelines and what speeds a build up or slows it down.</p></a>
-      <a class="post-card" href="/blog/ios-android-or-both/"><span class="pc-tag">Strategy</span><h2>iOS, Android, or both? Choosing platforms for the GCC</h2><p>How the Gulf device landscape and your budget should shape the decision.</p></a>
-      <a class="post-card" href="/blog/what-is-an-mvp/"><span class="pc-tag">Strategy</span><h2>What is an MVP — and why start there?</h2><p>Why starting lean beats building everything at once.</p></a>
-      <a class="post-card" href="/blog/choosing-app-development-company-gcc/"><span class="pc-tag">Guides</span><h2>How to choose an app development company in the GCC</h2><p>What to look for, the questions to ask, and the red flags to avoid.</p></a>
-      <a class="post-card" href="/blog/bilingual-arabic-english-apps/"><span class="pc-tag">Design</span><h2>Building bilingual Arabic &amp; English apps for the Gulf</h2><p>Going beyond translation to apps that feel native in both languages.</p></a>
-    </div>
-  </section>
-
-  <!-- STATS -->
-  <section class="stats reveal" id="stats">
-    <div class="stat"><div class="n" data-target="100" data-suffix="+">100+</div><div class="l">Products shipped</div></div>
-    <div class="stat"><div class="n" data-target="6">6</div><div class="l">Countries</div></div>
-    <div class="stat"><div class="n" data-target="11">11</div><div class="l">Years venturing</div></div>
-    <div class="stat"><div class="n" data-target="6">6</div><div class="l">Flagship platforms</div></div>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="section contact" id="contact">
-    <div class="reveal">
-      <span class="eyebrow" style="justify-content:center"><span class="dot"></span>Let&rsquo;s venture together</span>
-      <h2 style="margin-top:24px">Got a project<br />in mind?</h2>
-      <p class="contact-lead">The fastest way in is a free 30-minute call &mdash; pick a time that suits you. Rather write? Send the details below and we&rsquo;ll reply within one business day.</p>
-      <div class="contact-book"><a href="/book/" class="btn solid book-btn" data-cta="book-call" data-cta-location="contact"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4M9.5 15.2l1.8 1.8 3.4-3.6"/></svg>Book a free call</a></div>
-
-      <form class="lead-form" id="lead-form" novalidate>
-        <div class="lf-row">
-          <label>Name<input name="name" required autocomplete="name" placeholder="Your name" /></label>
-          <label>Email<input name="email" type="email" required autocomplete="email" placeholder="you@company.com" /></label>
-        </div>
-        <div class="lf-row">
-          <label>WhatsApp number<input name="phone" type="tel" required inputmode="tel" autocomplete="tel" placeholder="+965 5000 0000" /></label>
-          <label>Company<input name="company" autocomplete="organization" placeholder="Company (optional)" /></label>
-        </div>
-        <label class="lf-full">Budget
-          <select name="budget">
-            <option value="">Select a range (optional)</option>
-            <option>Under KWD 1,500</option>
-            <option>KWD 1,500 &ndash; 3,500</option>
-            <option>KWD 3,500 &ndash; 7,000</option>
-            <option>KWD 7,000+</option>
-            <option>Not sure yet</option>
-          </select>
-        </label>
-        <label class="lf-full">Project
-          <textarea name="message" required rows="4" placeholder="What are you building? A few lines is plenty."></textarea>
-        </label>
-        <input type="hidden" name="_subject" value="New project enquiry — khatibdesigns.com" />
-        <input type="hidden" name="_template" value="table" />
-        <input type="hidden" name="_captcha" value="false" />
-        <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="lf-honey" />
-        <div class="lf-actions">
-          <button type="submit" class="btn solid" id="lead-submit">Send enquiry</button>
-          <a class="btn wa-btn" href="https://wa.me/96550003048?text=Hi%20Khatib%20Designs%2C%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.9c0 1.76.46 3.45 1.32 4.95L2 22l5.3-1.39a9.9 9.9 0 0 0 4.73 1.2h.01c5.46 0 9.9-4.45 9.9-9.9C21.94 6.45 17.5 2 12.04 2Zm0 18.02h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.1.81.83-3.02-.2-.31a8.2 8.2 0 0 1-1.26-4.37c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.69 8.23-8.23 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.8-.23-.09-.39-.13-.56.12-.16.25-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43l-.48-.01c-.16 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></svg>
-            WhatsApp us
-          </a>
-        </div>
-        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
-      </form>
-
-      <div class="contact-direct">
-        <span class="cd-or">or reach us directly</span>
-        <a class="email" id="contact-email" href="#">studio@khatibdesigns.com</a>
-        <div class="phones" id="contact-phones"></div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <span class="brand"><span class="k">Khatib</span><span class="d">Designs</span></span>
-    <nav class="foot-links" aria-label="Footer">
-      <a href="#about">Studio</a>
-      <a href="#services">Services</a>
-      <a href="/ai/">AI</a>
-      <a href="/dubai/">Dubai</a>
-      <a href="#work">Work</a>
-      <a href="/blog/">Insights</a>
-      <a href="#contact">Contact</a>
-      <a href="/ar/" hreflang="ar" lang="ar">عربي</a>
-      <a href="/legal/terms/">Terms</a>
-      <a href="/legal/privacy/">Privacy</a>
-      <a href="/legal/refunds/">Refunds</a>
-    </nav>
-    <span>&copy; 2015&ndash;<span id="year"></span> Khatib Designs &middot; Together We Venture</span>
-  </footer>
-
-  <!-- COUNTRY DRAWER -->
-  <div class="scrim" id="scrim"></div>
-  <aside class="drawer" id="drawer" aria-label="Projects by region">
-    <div class="drawer-head">
-      <span class="eyebrow" id="drawer-eyebrow"></span>
-      <h2 id="drawer-title"></h2>
-      <div class="meta" id="drawer-meta"></div>
-      <button class="x-close" id="drawer-x" aria-label="Close">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M18 6 6 18"/></svg>
-      </button>
-    </div>
-    <div class="drawer-body" id="drawer-body"></div>
-  </aside>
-
-  <!-- PROJECT MODAL -->
-  <div class="modal-scrim" id="modal-scrim">
-    <div class="modal" id="modal">
-      <div class="modal-grid">
-        <div class="modal-visual" id="modal-visual"></div>
-        <div class="modal-info" id="modal-info"></div>
-      </div>
+    <div class="bar__end">
+      <details class="lang">
+        <summary aria-label="EN, Language: English"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg><span>EN</span></summary>
+        <ul><li><a href="/" lang="en" hreflang="en" aria-current="true">English <small>EN</small></a></li><li><a href="/ar/" lang="ar" hreflang="ar">العربية <small>AR</small></a></li><li><a href="/de/" lang="de" hreflang="de">Deutsch <small>DE</small></a></li><li><a href="/fr/" lang="fr" hreflang="fr">Français <small>FR</small></a></li></ul>
+      </details>
+      <a class="btn btn--ink btn--sm" href="/book/">Book a conversation</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-label="Menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></button>
     </div>
   </div>
+</header>
+<main id="main">
+  <section class="hero" aria-labelledby="hero-h">
+    <div>
+      <h1 id="hero-h">AI that works, from a consultancy <span>founded in 2015.</span></h1>
+      <p class="deck">Khatib Designs leads digital transformation and AI for companies worldwide: deciding where it pays, building it, and running it. Led by Nader Alkhatib, lecturer and speaker on applied AI.</p>
+      <div class="cta">
+        <a class="btn btn--ink" href="/book/">Book a conversation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn--line" href="/speaking/">Invite Nader to speak</a>
+      </div>
+    </div>
+    <div class="visual">
+      <svg class="ribbon" viewBox="0 0 760 640" aria-hidden="true"><defs><linearGradient id="rg1" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#8fdcd3"/><stop offset=".55" stop-color="#cbbdf2"/><stop offset="1" stop-color="#5b4fd6"/></linearGradient></defs><path class="ribbon__band" d="M170 840 C 200 650, 250 470, 380 380 S 650 290, 960 210" data-d="M170 840 C 200 650, 250 470, {380,380} S 650 290, 960 210" fill="none" stroke="url(#rg1)" stroke-width="96" stroke-linecap="butt" opacity=".85"/></svg>
+      <figure class="photo-card"><img src="/assets/v2/img/nader-studio-720.webp" srcset="/assets/v2/img/nader-studio-480.webp 480w, /assets/v2/img/nader-studio-720.webp 720w, /assets/v2/img/nader-studio-960.webp 960w" sizes="(max-width: 900px) 88vw, 440px" alt="Nader Alkhatib, founder and CEO of Khatib Designs" width="1080" height="1080" fetchpriority="high"></figure>
+      <div class="tag"><b>Nader Alkhatib</b><span>Founder &amp; CEO · Lecturer &amp; speaker</span></div>
+    </div>
+  </section>
 
-  <!-- Floating WhatsApp -->
-  <div class="khd-dock">
-    <a class="dock-book" href="/book/" data-cta="book-call" data-cta-location="dock"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4M9.5 15.2l1.8 1.8 3.4-3.6"/></svg><span>Book a free call</span></a>
-    <a class="dock-wa" href="https://wa.me/96550003048?text=Hi%20Khatib%20Designs%2C%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.9c0 1.76.46 3.45 1.32 4.95L2 22l5.3-1.39a9.9 9.9 0 0 0 4.73 1.2h.01c5.46 0 9.9-4.45 9.9-9.9C21.94 6.45 17.5 2 12.04 2Zm5.49 13.86c-.21.58-1.2 1.11-1.68 1.18-.43.06-.97.09-1.56-.1-.36-.11-.82-.26-1.41-.52-2.48-1.07-4.11-3.57-4.23-3.74-.12-.16-1.01-1.34-1.01-2.56 0-1.22.63-1.82.86-2.07.23-.25.5-.31.66-.31l.48.01c.15.01.36-.05.56.43.2.5.7 1.72.76 1.84.06.12.1.26.02.43-.08.16-.12.26-.25.41-.12.14-.26.32-.37.43-.12.12-.25.25-.11.5.14.25.63 1.06 1.38 1.72.94.84 1.74 1.11 1.99 1.23.25.12.4.1.54-.06.15-.17.63-.72.79-.97.17-.25.33-.21.56-.12.22.08 1.44.68 1.69.8.25.12.41.18.47.28.07.11.07.6-.14 1.18Z"/></svg></a>
+  <div class="clients"><div class="wrap"><small>Client work since 2013</small><span>ABS Medical</span><span>Phood Solutions</span><span>CG LLC</span><span>WCS</span><span>Coines</span><span>SUC</span></div></div>
+
+  <section class="section" aria-labelledby="practice-h">
+    <div class="wrap">
+      <div class="head"><h2 id="practice-h">Four ways we work with you.</h2><p>Most clients start with one and stay for the others.</p></div>
+      <div class="practices">
+        <div class="practice">
+          <h3>AI consulting</h3>
+          <div><p>Where AI pays in your business, what it must not touch, and the systems that make it real. Strategy that ends in something running.</p><a class="link" href="/ai/">Consulting <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+          <ul><li>AI readiness and strategy</li><li>Governance mapped to ISO/IEC 42001, NIST AI RMF and the EU AI Act</li><li>Agents and automation in your systems</li><li>Managed AI operations</li></ul>
+        </div>
+        <div class="practice">
+          <h3>Digital transformation</h3>
+          <div><p>Moving how your organisation works onto modern digital systems: processes, data and customer channels, delivered in stages your teams can absorb. Nader has led engineering on a European bank's digital transformation, and our team has moved clients onto modern systems since 2013.</p><a class="link" href="/digital-transformation/">Transformation <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+          <ul><li>Transformation roadmap and operating model</li><li>Process and system modernisation</li><li>Digital customer channels: mobile, web, self-service</li><li>Change and adoption with your teams</li></ul>
+        </div>
+        <div class="practice">
+          <h3>Speaking &amp; education</h3>
+          <div><p>Nader gives keynotes, lectures and workshops on applied AI for leadership teams, universities and conferences, and mentors founders and teams.</p><a class="link" href="/speaking/">Speaking <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+          <ul><li>Keynotes and talks</li><li>University lectures</li><li>Executive workshops and training</li><li>Mentoring for founders and teams</li></ul>
+        </div>
+        <div class="practice">
+          <h3>Product &amp; engineering</h3>
+          <div><p>Apps, platforms and APIs, designed and built by a team that has shipped for clients in the US, Europe and the Gulf since 2013.</p><a class="link" href="/work/">See the work <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+          <ul><li>Mobile and web products</li><li>Platform and API architecture</li><li>Fractional technology leadership</li><li>Long-term care and support</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white" aria-labelledby="speak-h">
+    <div class="wrap speaker">
+      <figure class="photo-card photo-card--tall"><img src="/assets/v2/img/stage-portrait-720.webp" srcset="/assets/v2/img/stage-portrait-480.webp 480w, /assets/v2/img/stage-portrait-720.webp 720w, /assets/v2/img/stage-portrait-960.webp 960w" sizes="(max-width: 900px) 88vw, 440px" alt="Nader Alkhatib on stage, speaking to a conference audience" width="1152" height="2048" loading="lazy"></figure>
+      <div>
+        <h2 id="speak-h">Learn AI from someone who builds it.</h2>
+        <p>Nader Alkhatib has run AI in production since 2017 and has led engineering teams across banks, startups and his own company. On stage and in the lecture room he teaches what his team ships: practical, governed AI a business can actually use.</p>
+        <ul class="topics">
+          <li>Applied AI for leadership teams <span>Keynote or workshop</span></li>
+          <li>AI governance in practice <span>Lecture or workshop</span></li>
+          <li>Building with AI agents <span>Technical session</span></li>
+          <li>From pilot to production <span>Executive briefing</span></li>
+        </ul>
+        <div class="cta"><a class="btn btn--violet" href="/speaking/">Invite Nader to speak</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="work-h">
+    <div class="wrap">
+      
+      <article class="feature">
+        <div>
+          <h2 id="work-h" class="feature__title">A smart scale that sees food waste.</h2><div class="meta"><span><b>Phood Solutions</b></span><span>United States</span><span>2017–2019</span><span>Computer vision</span></div>
+          <p>For a US food-waste startup we built Phood 2.0. An Android app on an industrial touch scale reads the weight over the serial port and takes a photo; a ResNet-20 classifier on AWS Lambda names the food. A Node.js API turns every log into waste reports for commercial kitchens.</p>
+          <a class="link" href="/work/phood/">Read the case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <svg class="diagram" viewBox="0 0 560 300" role="img" aria-label="Phood system: scale and Android app send weight and photo to a classifier on AWS Lambda, then to the API and kitchen reports">
+          <g font-family="Figtree, sans-serif" font-size="14" fill="#141a33">
+            <rect x="10" y="30" width="160" height="70" rx="12" fill="#fff" stroke="#e4e6ee"/><text x="26" y="60" font-weight="600">Touch scale</text><text x="26" y="80" fill="#5d6378">weight over serial</text>
+            <rect x="10" y="200" width="160" height="70" rx="12" fill="#fff" stroke="#e4e6ee"/><text x="26" y="230" font-weight="600">Android app</text><text x="26" y="250" fill="#5d6378">photo + weight</text>
+            <rect x="210" y="115" width="160" height="70" rx="12" fill="#5b4fd6"/><text x="226" y="145" font-weight="600" fill="#fff">Classifier</text><text x="226" y="165" fill="#eeecfc">ResNet-20 · Lambda</text>
+            <rect x="410" y="30" width="140" height="70" rx="12" fill="#fff" stroke="#e4e6ee"/><text x="426" y="60" font-weight="600">Node.js API</text><text x="426" y="80" fill="#5d6378">logs, menus, roles</text>
+            <rect x="410" y="200" width="140" height="70" rx="12" fill="#fff" stroke="#e4e6ee"/><text x="426" y="230" font-weight="600">Waste reports</text><text x="426" y="250" fill="#5d6378">per kitchen</text>
+          </g>
+          <g fill="none" stroke="#141a33" stroke-width="1.25"><path d="M90 100 V200"/><path d="M170 235 H190 V150 H210"/><path d="M370 150 H390 V65 H410"/><path d="M480 100 V200"/></g>
+          <g fill="#141a33"><path d="M86 192 L90 200 L94 192Z"/><path d="M202 146 L210 150 L202 154Z"/><path d="M402 61 L410 65 L402 69Z"/><path d="M476 192 L480 200 L484 192Z"/></g>
+        </svg>
+      </article>
+      <div class="cases">
+        <a class="case" href="/work/#connect-here">
+          <div><h3>Connect Here</h3><div class="meta"><span><b>CG LLC</b></span><span>United States</span><span>2021–2024</span></div><p>A social app for people in the same venue, built for iOS and Android and kept running under a monthly maintenance agreement.</p></div>
+          <div class="shots"><img src="/assets/v2/img/screen-connecthere-1-480.webp" srcset="/assets/v2/img/screen-connecthere-1-480.webp 480w" sizes="(max-width: 900px) 88vw, 440px" alt="Connect Here venue screen" loading="lazy" width="285" height="617"><img src="/assets/v2/img/screen-connecthere-2-480.webp" srcset="/assets/v2/img/screen-connecthere-2-480.webp 480w" sizes="(max-width: 900px) 88vw, 440px" alt="Connect Here profile screen" loading="lazy" width="285" height="617"></div>
+        </a>
+        <a class="case" href="/work/#spotly">
+          <div><h3>Spotly</h3><div class="meta"><span><b>Our product</b></span><span>Live since 2026</span></div><p>Family days out, with every place screened by AI before it is published. Live on the App Store in Arabic and English.</p></div>
+          <div class="shots"><img src="/assets/v2/img/spotly-discover-480.webp" srcset="/assets/v2/img/spotly-discover-480.webp 480w" sizes="(max-width: 900px) 88vw, 440px" alt="Spotly Discover screen" loading="lazy" width="644" height="1400"><img src="/assets/v2/img/spotly-place-480.webp" srcset="/assets/v2/img/spotly-place-480.webp 480w" sizes="(max-width: 900px) 88vw, 440px" alt="Spotly place details" loading="lazy" width="644" height="1400"></div>
+        </a>
+      </div>
+      <p class="note"><a class="link" href="/work/">All work since 2013 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+    </div>
+  </section>
+
+  <section class="section section--white" aria-labelledby="engage-h">
+    <div class="wrap">
+      <div class="head"><h2 id="engage-h">How engagements run.</h2></div>
+      <div class="engage">
+        <div><h3>Readiness sprint</h3><span class="when">3 weeks</span><p>Where AI pays, the rules it runs under, and one working agent in production by the end.</p></div>
+        <div><h3>Build</h3><span class="when">6 to 12 weeks</span><p>The roadmap delivered: workflows in production, connected to the systems you already use.</p></div>
+        <div><h3>Operate</h3><span class="when">Monthly</span><p>We run it, tune it on real use, and report what it handled and what it saved.</p></div>
+        <div><h3>Advisory &amp; speaking</h3><span class="when">On request</span><p>Board briefings, keynotes, workshops and ongoing advisory with Nader.</p></div>
+      </div>
+      <p class="note">A fixed price and a fixed date, written down before we start. Every engagement is quoted in your currency after a free 30-minute call.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="prod-h">
+    <div class="wrap">
+      <div class="head"><h2 id="prod-h">We run our own products too.</h2></div>
+      <div class="products">
+        <a class="product" href="https://modax.app"><span><b>MODAX</b><span>Business system for sales, bookings and staff, with Qyas body measurement for tailors. Used by real shops.</span></span></a>
+        <a class="product" href="https://modaxflow.com"><span><b>Modax Flow</b><span>AI chat assistants for websites and WhatsApp.</span></span></a>
+        <a class="product" href="https://apps.apple.com/kw/app/spotly-family-days-out/id6772814230"><span><b>Spotly</b><span>Family days out, screened by AI. App Store.</span></span></a>
+        <a class="product" href="https://apps.apple.com/kw/app/safey-photo-vault-app-lock/id1189852939"><span><b>Safey</b><span>Encrypted vault, on the App Store since 2017.</span></span></a>
+        <a class="product" href="/ai/governance-kit/"><span><b>AI Governance Starter Kit</b><span>12 editable templates, from €49.</span></span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white" aria-labelledby="ins-h">
+    <div class="wrap">
+      <div class="head"><h2 id="ins-h">Notes from the work.</h2></div>
+      <div class="articles">
+        <a class="article" href="/blog/chatgpt-vs-custom-ai-assistant-gcc/"><small>Agents</small><b>ChatGPT vs Custom AI Assistant: How to Decide</b><span>Read</span></a>
+        <a class="article" href="/blog/ai-project-timeline-gcc/"><small>Delivery</small><b>AI Project Timeline: How Long an AI Build Takes</b><span>Read</span></a>
+        <a class="article" href="/blog/ai-search-visibility-gcc/"><small>Field notes</small><b>AI Search Visibility: Ranked #5, Zero Clicks</b><span>Read</span></a>
+      </div>
+      <p class="more-link"><a class="link" href="/blog/">All articles <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="q-h">
+    <div class="wrap">
+      <div class="head"><h2 id="q-h">In our clients' words.</h2></div>
+      <div class="quotes">
+        <figure class="quote"><blockquote>Nader's team built the AI behind our smart scale: the app, the model that recognises each food, and the API for our kitchen reports. They tested it on the real hardware, not a simulator.</blockquote><figcaption><b>Luc Dang</b><br>CEO, Phood Solutions · Boston, MA</figcaption></figure>
+        <figure class="quote"><blockquote>For five years Khatib Designs was our right hand on everything technical. They built our iOS apps, including eCureCare, connected them to our health records, and were there whenever something needed fixing.</blockquote><figcaption><b>Anthony Benigni</b><br>CEO, ABS Medical · Boston, MA</figcaption></figure>
+        <figure class="quote"><blockquote>We kept Khatib Designs on a monthly maintenance agreement for three years. Updates went out on time, issues were handled quickly, and I never had to chase anyone.</blockquote><figcaption><b>Leslie Brooks</b><br>Founder, Connect Here · Palm Beach, FL</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" aria-labelledby="close-h">
+    <div class="closing">
+      <svg class="ribbon" viewBox="0 0 760 640" aria-hidden="true"><defs><linearGradient id="rg2" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#8fdcd3"/><stop offset=".55" stop-color="#cbbdf2"/><stop offset="1" stop-color="#5b4fd6"/></linearGradient></defs><path d="M220 800 C 270 600, 300 440, 430 340 S 700 190, 900 -160" data-d="M220 800 C 270 600, 300 440, {430,340} S 700 190, 900 -160" fill="none" stroke="url(#rg2)" stroke-width="110" stroke-linecap="butt" opacity=".8"/></svg>
+      <div>
+        <h2 id="close-h">Tell us what you're trying to solve.</h2>
+        <p>A 30-minute conversation with Nader. You leave with a clear next step, whether or not we work together.</p>
+        <div class="cta"><a class="btn btn--ink" href="/book/">Book a conversation</a><a class="btn btn--line" href="/speaking/">Invite Nader to speak</a></div>
+      </div>
+      <div class="contact-lines"><a href="mailto:nader@khatibdesigns.com">nader@khatibdesigns.com</a><a href="tel:+359876375875">+359 87 637 5875</a><a href="tel:+96550003048">+965 5000 3048</a></div>
+    </div>
+  </section>
+</main>
+<footer class="foot">
+  <div class="foot__in">
+    <div><img src="/assets/v2/wordmark-black.svg" alt="Khatib Designs" width="33" height="40" loading="lazy"><p>Khatib Designs Ltd (ХАТИБ ДИЗАЙНС ООД)<br>Registered in Sofia, Bulgaria · Est. 2015<br>AI and digital transformation consultancy, serving clients worldwide.</p></div>
+    <div><h3>Services</h3><ul><li><a href="/ai/">AI consulting</a></li><li><a href="/digital-transformation/">Digital transformation</a></li><li><a href="/speaking/">Speaking &amp; education</a></li><li><a href="/work/">Product &amp; engineering</a></li><li><a href="/apps/">App pricing</a></li></ul></div>
+    <div><h3>Company</h3><ul><li><a href="/company/">About</a></li><li><a href="/nader/">Nader Alkhatib</a></li><li><a href="/blog/">Insights</a></li><li><a href="/book/">Contact</a></li></ul></div>
+    <div><h3>Contact</h3><ul><li><a href="mailto:nader@khatibdesigns.com">nader@khatibdesigns.com</a></li><li><a href="tel:+359876375875" dir="ltr">+359 87 637 5875</a></li><li><a href="tel:+96550003048" dir="ltr">+965 5000 3048</a></li><li><a href="https://www.linkedin.com/in/nader-khatib/" rel="noopener">LinkedIn</a></li></ul></div>
   </div>
-  <script src="/assets/dock.js" defer></script>
-
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-  <!-- globe.gl (heavy WebGL) is loaded lazily by site.js, off the critical path -->
-  <script defer src="assets/data.js"></script>
-  <script defer src="assets/i18n.js"></script>
-  <script defer src="assets/globe.js"></script>
-  <script defer src="assets/site.js"></script>
-  <script defer src="assets/pricing.js"></script>
-
+  <div class="foot__legal"><span>© 2015–2026 Khatib Designs Ltd</span><span><a href="/legal/terms/">Terms</a> · <a href="/legal/privacy/">Privacy</a> · <a href="/legal/refunds/">Refunds</a></span></div>
+</footer>
+<script src="/assets/v2/site.js?v=f8a0e3a5" defer></script>
 </body>
 </html>
