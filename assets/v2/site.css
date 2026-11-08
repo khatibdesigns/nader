@@ -468,3 +468,14 @@ html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3, html[lang="ar"] h4 {
 @media (max-width: 1140px) and (min-width: 901px) { [dir="rtl"] .nav { margin-left: 0; margin-right: 8px; } }
 @media (max-width: 560px) { [dir="rtl"] .lang ul { left: -60px; right: auto; } }
 .hp, .sr-only { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+/* currency switcher */
+.pricebar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; }
+.pricebar .note { margin: 0; }
+.cur { display: inline-flex; align-items: center; gap: 10px; font-size: var(--s1); color: var(--deck); }
+.cur[hidden] { display: none; }
+.cur select { font: inherit; color: var(--ink); background: var(--white); border: 1px solid var(--hair); border-radius: 8px; padding: 8px 32px 8px 12px; min-height: 40px; cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23141a33' stroke-width='1.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-size: 16px; background-position: right 10px center; }
+[dir="rtl"] .cur select { padding: 8px 12px 8px 32px; background-position: left 10px center; }
+.cur select:hover { border-color: var(--violet); }
+.head .cur { margin-top: 14px; }
+span.money.money { display: inline; white-space: nowrap; font-size: inherit; font-weight: inherit; color: inherit; letter-spacing: inherit; margin: 0; padding: 0; border: 0; }
+.facts b span { display: inline; font-size: inherit; color: inherit; }

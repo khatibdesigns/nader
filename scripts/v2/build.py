@@ -69,7 +69,7 @@ BURGER = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-widt
 
 def asset_ver():
     h = hashlib.md5()
-    for f in ('assets/v2/site.css', 'assets/v2/site.js', 'assets/v2/fonts.css'):
+    for f in ('assets/v2/site.css', 'assets/v2/site.js', 'assets/v2/fonts.css', 'assets/v2/price.js'):
         p = os.path.join(ROOT, f)
         if os.path.exists(p):
             h.update(open(p, 'rb').read())
@@ -272,6 +272,8 @@ def build_pages():
                 ld = ld + [{'@context': 'https://schema.org', '@type': 'FAQPage', 'mainEntity': [{'@type': 'Question', 'name': strip(q), 'acceptedAnswer': {'@type': 'Answer', 'text': strip(a)}} for q, a in qa]}]
             meta = dict(meta, jsonld=ld)
             rbody = responsive(body)
+            if 'class="money"' in rbody:
+                rbody += f'<script src="/assets/v2/price.js?v={VER}" defer></script>\n'
             pre = ''
             m = re.search(r'<img[^>]*fetchpriority="high"[^>]*>', rbody)
             if m:
