@@ -131,5 +131,47 @@
     var heads = body.querySelectorAll('h2');
     if (heads.length >= 2) heads[1].parentNode.insertBefore(card, heads[1]); else body.appendChild(card);
   }
+  // end-of-article author block — the articles are the only pages that end anonymously
+  function initArticleAuthor() {
+    // case.js also runs on /work/* case studies — they get nothing
+    if (!/^\/(ar\/)?blog\//.test(location.pathname)) return;
+    var isAr = document.documentElement.lang === 'ar';
+    var art = document.querySelector('article.article');
+    if (!art || art.querySelector('.khd-author')) return;
+
+    var card = document.createElement('aside');
+    card.className = 'svc-card khd-author';
+    card.setAttribute('style', 'margin:34px 0');
+    card.innerHTML = isAr
+      ? '<span class="eyebrow"><span class="dot"></span>بقلم</span>' +
+        '<h3 style="margin-top:14px">نادر الخطيب</h3>' +
+        '<p>مدير المصنع الرقمي في <strong>stc الكويت</strong>. استشاري ذكاء اصطناعي للشركات. ' +
+        'مؤسّس <strong>خطيب ديزاينز</strong>.</p>' +
+        '<p>هو من كتب إطار حوكمة الذكاء الاصطناعي الذي يعمل العمل تحته في stc الكويت &mdash; مستويات المخاطر، ' +
+        'ودرجات الاستقلالية، وبوّابات الموافقة التي تحدّد ما يُسمح لنظام ذكاء اصطناعي بأن يمسّه. ' +
+        'ويدير خطيب ديزاينز، استوديو تصميم وتمكين ذكاء اصطناعي عربي أولًا أطلق أكثر من 100 منتج ' +
+        'عبر ست دول منذ 2015.</p>' +
+        '<div class="row" style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap">' +
+          '<a class="btn" rel="author" href="/ar/nader/">المزيد عن نادر</a>' +
+          '<a class="btn solid" href="/ar/book/" data-cta="book-call" data-cta-location="author">احجز مكالمة 30 دقيقة</a>' +
+        '</div>'
+      : '<span class="eyebrow"><span class="dot"></span>Written by</span>' +
+        '<h3 style="margin-top:14px">Nader Al-Khatib</h3>' +
+        '<p>Digital Factory Director at <strong>stc Kuwait</strong>. Enterprise AI consultant. ' +
+        'Founder of <strong>Khatib Designs</strong>.</p>' +
+        '<p>He wrote the AI governance framework stc Kuwait&rsquo;s work runs under &mdash; risk tiers, ' +
+        'autonomy levels and the approval gates that decide what an AI system is allowed to touch. ' +
+        'He also runs Khatib Designs, an Arabic-first design and AI-enablement studio that has shipped ' +
+        '100+ products across six countries since 2015.</p>' +
+        '<div class="row" style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap">' +
+          '<a class="btn" rel="author" href="/nader/">More about Nader</a>' +
+          '<a class="btn solid" href="/book/" data-cta="book-call" data-cta-location="author">Book a 30-min call</a>' +
+        '</div>';
+
+    var faq = art.querySelector('.article-faq');
+    if (faq && faq.parentNode) faq.parentNode.insertBefore(card, faq.nextSibling);
+    else { var body = art.querySelector('.article-body'); if (!body) return; body.appendChild(card); }
+  }
   initArticleOffer();
+  initArticleAuthor();
 })();
