@@ -47,6 +47,15 @@
         ],
         "createdAt": "2026-11-08T14:34:42.640Z",
         "reason": "lead: .path has padding clamp(28px,4vw,52px); only the decorative ribbon SVG bleeds to the edge"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "scripts/v2/src/*/work/index.html"
+        ],
+        "createdAt": "2026-11-09T11:35:56.378Z",
+        "reason": "false positive: full-bleed .logos/.section bands; inner .wrap carries padding-inline var(--gut) (min 16px) and section padding from site.css, which the fragment scan cannot see; verified in 390px and 1440px renders"
       }
     ]
   }
