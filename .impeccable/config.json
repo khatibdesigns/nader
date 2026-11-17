@@ -56,6 +56,24 @@
         ],
         "createdAt": "2026-11-09T11:35:56.378Z",
         "reason": "false positive: full-bleed .logos/.section bands; inner .wrap carries padding-inline var(--gut) (min 16px) and section padding from site.css, which the fragment scan cannot see; verified in 390px and 1440px renders"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "offer/index.html"
+        ],
+        "createdAt": "2026-11-17T21:45:31.075Z",
+        "reason": "Assistant reviewed: shared section and facts styles provide 64px minimum section padding and 18px facts padding; detector misses logical properties."
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "ar/offer/index.html"
+        ],
+        "createdAt": "2026-11-17T21:45:35.848Z",
+        "reason": "Assistant reviewed: shared section and facts styles provide 64px minimum section padding and 18px facts padding; detector misses logical properties."
       }
     ]
   }
