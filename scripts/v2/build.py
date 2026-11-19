@@ -298,6 +298,50 @@ def read_article(path):
     return dict(raw=s, title=title, desc=desc, h1=h1, date=dt, cat=cat)
 
 
+# Commercial articles where a reader benefits from an explicit service route and
+# one relevant Kuwait delivery proof point. Kept here rather than hand-editing
+# generated article chrome, so regular rebuilds retain the internal-link plan.
+ARTICLE_PROOF = {
+    'ai-automation-companies-kuwait': 'printit',
+    'ai-company-near-me-kuwait': 'iwash',
+    'ai-consulting-kuwait-business': 'printit',
+    'ai-agents-vs-chatbots-kuwait': 'iwash',
+    'whatsapp-ai-chatbot-gcc': 'iwash',
+    'ai-whatsapp-automation-gcc': 'iwash',
+    'ai-booking-assistant-kuwait': 'iwash',
+    'ai-automation-marketplaces-gcc': 'printit',
+    'ai-automation-restaurants-gcc': 'iwash',
+    'ai-automation-retail-fnb-gcc': 'printit',
+    'app-cost-kuwait': 'printit',
+    'knet-payment-gateway-integration-kuwait': 'printit',
+    'website-cost-kuwait': 'iwash',
+    'design-development-pricing-kuwait': 'printit',
+    'app-development-contract-kuwait': 'iwash',
+    'choosing-app-development-company-gcc': 'printit',
+}
+
+
+def commercial_proof(slug, rel_html):
+    """Add one service route and one pertinent Kuwait case study to selected articles."""
+    case = ARTICLE_PROOF.get(slug)
+    if not case or not rel_html:
+        return rel_html
+    service = ('<a class="rel" href="/ai/"><span class="rel__cat">AI consulting · Kuwait &amp; GCC</span>'
+               '<b>AI consultancy and automation</b><span>Scope one practical workflow, govern it, and connect it to the tools your team already uses.</span></a>')
+    cases = {
+        'iwash': ('<a class="rel" href="/work/iwash/"><span class="rel__cat">Kuwait · Case study</span>'
+                  '<b>iWASH</b><span>An on-demand car-wash app with nearby providers, booking, KNET or cash payment, and job tracking.</span></a>'),
+        'printit': ('<a class="rel" href="/work/printit/"><span class="rel__cat">Kuwait · Case study</span>'
+                    '<b>PrintIt</b><span>A printing marketplace with live quotes from nearby shops and delivered orders.</span></a>'),
+    }[case]
+    additions = ''
+    if 'href="/ai/"' not in rel_html:
+        additions += service
+    if f'href="/work/{case}/"' not in rel_html:
+        additions += cases
+    return rel_html.replace('</div></div></section>', additions + '</div></div></section>', 1) if additions else rel_html
+
+
 def wrap_article(lang, slug, path):
     """Wrap an article in the v2 chrome. Works on legacy pages and on already-wrapped ones,
     so template changes reach every article on each build."""
@@ -316,7 +360,7 @@ def wrap_article(lang, slug, path):
     if 'data-v2="article"' in s:
         art = re.search(r'(<article class="article" data-v2="article">.*?</article>)', body, re.S).group(1)
         rm = re.search(r'(<section class="section section--white related">.*?</section>)', body, re.S)
-        rel_html = rm.group(1) if rm else ''
+        rel_html = commercial_proof(slug, rm.group(1) if rm else '') if lang == 'en' else (rm.group(1) if rm else '')
         cm = re.search(r'(<section class="wrap" aria-label="Contact">.*?</section>)', body, re.S)
         closing = cm.group(1) if cm else ''
     else:
@@ -328,6 +372,7 @@ def wrap_article(lang, slug, path):
             if cards:
                 rel_html = '<section class="section section--white related"><div class="wrap"><div class="head"><h2>' + T[lang]['more'] + '</h2></div><div class="rel-grid">' + ''.join(
                     f'<a class="rel" href="{h}"><span class="rel__cat">{c}</span><b>{t}</b><span>{p}</span></a>' for h, c, t, p in cards) + '</div></div></section>'
+                rel_html = commercial_proof(slug, rel_html) if lang == 'en' else rel_html
         cta = re.search(r'<section class="case-cta-band">.*?<h2>(.*?)</h2><p>(.*?)</p>', body, re.S)
         closing = ''
         if cta:
@@ -480,5 +525,7 @@ if __name__ == '__main__':
         print(f'pages: {len(b)}')
     idx = build_blog()
     print(f'articles: en {len(idx["en"])}, ar {len(idx["ar"])}')
-    u = build_sitemap(b)
+    # `build_pages()` returns every static route, not only edited ones. Marking
+    # all of them fresh makes sitemap dates misleading on every rebuild.
+    u = build_sitemap(['/ai/', '/ar/ai/'] + [f'/blog/{slug}/' for slug in ARTICLE_PROOF])
     print(f'sitemap: {len(u)} urls')
