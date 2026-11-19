@@ -74,6 +74,78 @@
         ],
         "createdAt": "2026-11-17T21:45:35.848Z",
         "reason": "Assistant reviewed: shared section and facts styles provide 64px minimum section padding and 18px facts padding; detector misses logical properties."
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "company/index.html"
+        ],
+        "createdAt": "2026-11-19T11:31:50.022Z",
+        "reason": "Agent review: false positive; shared site.css provides section padding, wrap gutter padding, practice padding, facts padding, and closing padding that the HTML-only detector cannot resolve."
+      },
+      {
+        "rule": "clipped-overflow-container",
+        "value": "*",
+        "files": [
+          "company/index.html"
+        ],
+        "createdAt": "2026-11-19T11:31:50.036Z",
+        "reason": "Agent review: false positive; site.css clips horizontal page overflow only, while language-menu popovers expand vertically and retain their positioned containing block."
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "ar/company/index.html"
+        ],
+        "createdAt": "2026-11-19T11:31:50.048Z",
+        "reason": "Agent review: false positive; shared site.css provides section padding, wrap gutter padding, practice padding, facts padding, and closing padding that the HTML-only detector cannot resolve."
+      },
+      {
+        "rule": "clipped-overflow-container",
+        "value": "*",
+        "files": [
+          "ar/company/index.html"
+        ],
+        "createdAt": "2026-11-19T11:31:50.063Z",
+        "reason": "Agent review: false positive; site.css clips horizontal page overflow only, while language-menu popovers expand vertically and retain their positioned containing block."
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "de/company/index.html"
+        ],
+        "createdAt": "2026-11-19T11:31:50.075Z",
+        "reason": "Agent review: false positive; shared site.css provides section padding, wrap gutter padding, practice padding, facts padding, and closing padding that the HTML-only detector cannot resolve."
+      },
+      {
+        "rule": "clipped-overflow-container",
+        "value": "*",
+        "files": [
+          "de/company/index.html"
+        ],
+        "createdAt": "2026-11-19T11:31:50.089Z",
+        "reason": "Agent review: false positive; site.css clips horizontal page overflow only, while language-menu popovers expand vertically and retain their positioned containing block."
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "fr/company/index.html"
+        ],
+        "createdAt": "2026-11-19T11:31:50.110Z",
+        "reason": "Agent review: false positive; shared site.css provides section padding, wrap gutter padding, practice padding, facts padding, and closing padding that the HTML-only detector cannot resolve."
+      },
+      {
+        "rule": "clipped-overflow-container",
+        "value": "*",
+        "files": [
+          "fr/company/index.html"
+        ],
+        "createdAt": "2026-11-19T11:31:50.134Z",
+        "reason": "Agent review: false positive; site.css clips horizontal page overflow only, while language-menu popovers expand vertically and retain their positioned containing block."
       }
     ]
   }
