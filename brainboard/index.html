@@ -587,7 +587,7 @@ function render() {
     b.addEventListener('click', () => { Object.assign(st, o.state); render(); });
     sv.appendChild(b);
   }
-  $('#send').href = 'https://wa.me/96550003048?text=' + encodeURIComponent(L(T.waHead) + '\n\n' + briefText());
+  $('#send').href = 'https://wa.me/96550003048?text=' + encodeURIComponent(L(T.waHead) + '\n\n' + briefText() + '\n\n[khd-site]');
   $('#bookcall').href = ar() ? '/ar/book/' : '/book/';
   $('#apps').href = ar() ? '/ar/apps/' : '/apps/';
   $('#summary').textContent = summaryText();
