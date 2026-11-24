@@ -9,8 +9,22 @@
      "AW-XXXXXXXXXX" id into ADS_ID and each action's label into
      ADS_LABELS.  GA4 keeps working regardless.
    ============================================================ */
+
+/* Cold-email booking link: /book/?r=<code>. The code is a random per-lead id from the Lead Engine.
+   Tell the Lead Engine the page was opened, then drop the code from the address bar so the
+   visitor sees a clean /book/ (and it never lands in GA or a shared link). Runs before GA. */
 (function () {
-  var GA_ID  = 'G-HNDZLK8C8S';                // GA4 Measurement ID (khatibdesigns.com)
+  try {
+    var m = /[?&]r=([a-z0-9]{6,12})(?:&|$)/i.exec(location.search);
+    if (!m) return;
+    new Image().src = 'https://links.khatibdesigns.com/t/v/' + m[1].toLowerCase() + '.gif';
+    var q = location.search.replace(/([?&])r=[^&]*&?/, '$1').replace(/[?&]$/, '');
+    history.replaceState(history.state, '', location.pathname + q + location.hash);
+  } catch (e) {}
+})();
+
+(function () {
+  var GA_ID  = 'G-HNDZLK8C8S';               // GA4 Measurement ID (khatibdesigns.com)
   var ADS_ID = '';                            // e.g. 'AW-1234567890' ← paste when Ads is set up
   var ADS_LABELS = {                          // per-conversion labels from Google Ads
     generate_lead:     '',                    // contact-form lead   ← primary
