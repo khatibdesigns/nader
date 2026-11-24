@@ -167,7 +167,7 @@ def head(lang, path, meta, alternates, style='', extra=''):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="/assets/analytics.js" defer></script>
+<script src="/assets/analytics.js?v=2" defer></script>
 <title>{t}</title>
 <meta name="description" content="{d}">
 <link rel="canonical" href="{canonical}">
@@ -391,7 +391,7 @@ def wrap_article(lang, slug, path):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="/assets/analytics.js" defer></script>
+<script src="/assets/analytics.js?v=2" defer></script>
 {keep_s}
 <meta name="theme-color" content="#f8f8fb">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
