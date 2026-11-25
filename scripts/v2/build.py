@@ -321,13 +321,37 @@ ARTICLE_PROOF = {
 }
 
 
+APP_SLUG = re.compile(r'(^|-)(app|apps|mvp|website|knet|landing)(-|$)|design-development')
+
+SERVICE_CARD = {
+    ('en', 'ai'): ('<a class="rel" href="/ai/"><span class="rel__cat">AI consulting · Kuwait &amp; GCC</span>'
+                   '<b>AI consultancy and automation</b><span>Scope one practical workflow, govern it, and connect it to the tools your team already uses.</span></a>'),
+    ('en', 'apps'): ('<a class="rel" href="/apps/"><span class="rel__cat">App development · Kuwait &amp; GCC</span>'
+                     '<b>App development: ready apps and custom builds</b><span>Arabic and English iPhone and Android apps, with clear prices and a 4 to 6 week ready-app launch.</span></a>'),
+    ('ar', 'ai'): ('<a class="rel" href="/ar/ai/"><span class="rel__cat">استشارات الذكاء الاصطناعي · الكويت والخليج</span>'
+                   '<b>استشارات وأتمتة بالذكاء الاصطناعي</b><span>نحدد سير عمل واحدًا عمليًا، ونضع قواعده، ونربطه بالأدوات التي يستخدمها فريقك.</span></a>'),
+    ('ar', 'apps'): ('<a class="rel" href="/ar/apps/"><span class="rel__cat">تطوير التطبيقات · الكويت والخليج</span>'
+                     '<b>تطوير التطبيقات: تطبيقات جاهزة وتطبيقات مخصصة</b><span>تطبيقات آيفون وأندرويد بالعربية والإنجليزية، بأسعار واضحة وإطلاق التطبيق الجاهز خلال أربعة إلى ستة أسابيع.</span></a>'),
+}
+
+PERSON = '"author":{"@type":"Person","@id":"https://khatibdesigns.com/nader/#nader","name":"Nader Alkhatib","url":"https://khatibdesigns.com/nader/","jobTitle":"Founder & CEO, Khatib Designs"}'
+
+
+def service_route(lang, slug, rel_html):
+    """Every article links to the service it sells: /apps/ for build topics, /ai/ for the rest."""
+    kind = 'apps' if APP_SLUG.search(slug) else 'ai'
+    href = lp(lang, f'/{kind}/')
+    if not rel_html or f'href="{href}"' in rel_html:
+        return rel_html
+    return rel_html.replace('<div class="rel-grid">', '<div class="rel-grid">' + SERVICE_CARD[(lang, kind)], 1)
+
+
 def commercial_proof(slug, rel_html):
     """Add one service route and one pertinent Kuwait case study to selected articles."""
     case = ARTICLE_PROOF.get(slug)
     if not case or not rel_html:
         return rel_html
-    service = ('<a class="rel" href="/ai/"><span class="rel__cat">AI consulting · Kuwait &amp; GCC</span>'
-               '<b>AI consultancy and automation</b><span>Scope one practical workflow, govern it, and connect it to the tools your team already uses.</span></a>')
+    service = SERVICE_CARD[('en', 'ai')]
     cases = {
         'iwash': ('<a class="rel" href="/work/iwash/"><span class="rel__cat">Kuwait · Case study</span>'
                   '<b>iWASH</b><span>An on-demand car-wash app with nearby providers, booking, KNET or cash payment, and job tracking.</span></a>'),
@@ -335,7 +359,7 @@ def commercial_proof(slug, rel_html):
                     '<b>PrintIt</b><span>A printing marketplace with live quotes from nearby shops and delivered orders.</span></a>'),
     }[case]
     additions = ''
-    if 'href="/ai/"' not in rel_html:
+    if 'href="/ai/"' not in rel_html and 'href="/apps/"' not in rel_html:
         additions += service
     if f'href="/work/{case}/"' not in rel_html:
         additions += cases
@@ -356,11 +380,14 @@ def wrap_article(lang, slug, path):
     keep_s = '\n'.join(keep)
     # founder byline: no employer other than Khatib Designs (client rule, 2026-11)
     keep_s = keep_s.replace('"jobTitle":"Digital Factory Director at stc Kuwait; Enterprise AI Consultant"', '"jobTitle":"Founder & CEO, Khatib Designs"')
+    # every article is authored by Nader (one Person entity, linked to /nader/), not the company
+    keep_s = re.sub(r'"author":\s*\{[^{}]*"Organization"[^{}]*\}', lambda m: PERSON, keep_s)
     body = s[s.index('</head>'):]
     if 'data-v2="article"' in s:
         art = re.search(r'(<article class="article" data-v2="article">.*?</article>)', body, re.S).group(1)
         rm = re.search(r'(<section class="section section--white related">.*?</section>)', body, re.S)
-        rel_html = commercial_proof(slug, rm.group(1) if rm else '') if lang == 'en' else (rm.group(1) if rm else '')
+        rel_html = service_route(lang, slug, rm.group(1) if rm else '')
+        rel_html = commercial_proof(slug, rel_html) if lang == 'en' else rel_html
         cm = re.search(r'(<section class="wrap" aria-label="Contact">.*?</section>)', body, re.S)
         closing = cm.group(1) if cm else ''
     else:
@@ -372,6 +399,7 @@ def wrap_article(lang, slug, path):
             if cards:
                 rel_html = '<section class="section section--white related"><div class="wrap"><div class="head"><h2>' + T[lang]['more'] + '</h2></div><div class="rel-grid">' + ''.join(
                     f'<a class="rel" href="{h}"><span class="rel__cat">{c}</span><b>{t}</b><span>{p}</span></a>' for h, c, t, p in cards) + '</div></div></section>'
+                rel_html = service_route(lang, slug, rel_html)
                 rel_html = commercial_proof(slug, rel_html) if lang == 'en' else rel_html
         cta = re.search(r'<section class="case-cta-band">.*?<h2>(.*?)</h2><p>(.*?)</p>', body, re.S)
         closing = ''
@@ -381,6 +409,8 @@ def wrap_article(lang, slug, path):
             closing = f'<section class="wrap" aria-label="Contact"><div class="closing"><div><h2>{cta_h}</h2><p>{ctap}</p></div><div class="cta"><a class="btn btn--ink" href="{book}">{ctal}</a></div></div></section>'
         art = art.replace(' reveal"', '"').replace('class="reveal"', '')
         art = art.replace('<article class="article">', '<article class="article" data-v2="article">', 1)
+    art = art.replace('&middot; Khatib Designs</div>', '&middot; <a href="/nader/" rel="author">Nader Alkhatib</a></div>', 1)
+    art = art.replace('&middot; خطيب ديزاينز</div>', '&middot; <a href="/ar/nader/" rel="author">نادر الخطيب</a></div>', 1)
     # the generated hero cards carry the old dark brand; they stay as the share image (og:image) only
     art = re.sub(r'\s*<img class="article-hero"[^>]*>', '', art)
     langs_alt = re.findall(r'<link rel="alternate" hreflang="([a-z-]+)" href="https://khatibdesigns.com([^"]+)"', headpart)
@@ -512,6 +542,13 @@ def build_sitemap(extra=()):
             seen.add(u); out.append(u)
     today = date.today().isoformat()
     fresh = set(SITE + p for p in extra)
+    # an article's own dateModified wins when it is newer than the stored date
+    for u in out:
+        f = os.path.join(ROOT, u[len(SITE):].strip('/'), 'index.html')
+        if '/blog/' in u and os.path.exists(f):
+            dm = re.search(r'"dateModified":\s*"(\d{4}-\d{2}-\d{2})', open(f, encoding='utf-8').read())
+            if dm and dm.group(1) > lastmod.get(u, ''):
+                lastmod[u] = dm.group(1)
     body = ''.join(f'<url><loc>{u}</loc><lastmod>{today if (u in fresh or u not in lastmod) else lastmod[u]}</lastmod></url>\n' for u in out)
     open(sm, 'w', encoding='utf-8').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + body + '</urlset>\n')
     return out

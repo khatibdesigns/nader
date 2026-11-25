@@ -423,6 +423,12 @@ a.article:hover b { color: var(--violet); }
 .post .article-body li + li { margin-top: .45em; }
 .post .article-body a { color: var(--violet-dark); text-underline-offset: 3px; }
 .post .article-body strong { color: var(--ink); font-weight: 600; }
+.post .article-body .table-wrap { overflow-x: auto; margin-top: 1.4em; }
+.post .article-body table { width: 100%; border-collapse: collapse; font-size: 1rem; line-height: 1.5; }
+.post .article-body th, .post .article-body td { text-align: start; vertical-align: top; padding: .7em .9em .7em 0; border-bottom: 1px solid var(--hair); }
+.post .article-body th { color: var(--ink); font-weight: 600; font-size: .9rem; }
+.post .article-body td:last-child { color: var(--ink); font-weight: 600; }
+@media (min-width: 640px) { .post .article-body td:last-child { white-space: nowrap; } }
 .post .article-faq { margin-top: clamp(40px, 6vw, 64px); padding-top: 32px; border-top: 1px solid var(--ink); }
 .post .article-faq h2 { font-size: var(--s4); margin-bottom: 8px; }
 .post .faq-item { padding: 20px 0; border-bottom: 1px solid var(--hair); }
